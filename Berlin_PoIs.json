@@ -1,0 +1,1255 @@
+{
+  "meta": {
+    "code": 200,
+    "requestId": "5be16b2fdb04f50a0488bfb8"
+  },
+  "response": {
+    "venues": [
+      {
+        "id": 1,
+        "name": "Evo Berlin Rosa",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 14",
+          "crossStreet": "Münzstrasse",
+          "lat": 52.52446691047428,
+          "lng": 13.410111731235915,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52446691047428,
+              "lng": 13.410111731235915
+            }
+          ],
+          "postalCode": "10119",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 14 (Münzstrasse)",
+            "10119 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d175941735",
+            "name": "Fitnessstudio",
+            "pluralName": "Fitnessstudios",
+            "shortName": "Fitnessstudio / Fitness",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/gym_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 2,
+        "name": "Zeitgold",
+        "location": {
+          "lat": 52.524414,
+          "lng": 13.410585,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524414,
+              "lng": 13.410585
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d125941735",
+            "name": "Startup-Unternehmen",
+            "pluralName": "Startup-Unternehmen",
+            "shortName": "Startup-Unternehmen",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/technology_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 3,
+        "name": "Edel:Kultur",
+        "location": {
+          "address": "Rosa-Luxemburg-Straße 14",
+          "lat": 52.524551,
+          "lng": 13.410288,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524551,
+              "lng": 13.410288
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Straße 14",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d124941735",
+            "name": "Büro",
+            "pluralName": "Büros",
+            "shortName": "Büro",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 4,
+        "name": "Magine TV",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 14",
+          "lat": 52.524402633783765,
+          "lng": 13.410942841835999,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524402633783765,
+              "lng": 13.410942841835999
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 14",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d124941735",
+            "name": "Büro",
+            "pluralName": "Büros",
+            "shortName": "Büro",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 5,
+        "name": "Mega Loft",
+        "location": {
+          "address": "Rosa-Luxemburg Strasse",
+          "lat": 52.524503,
+          "lng": 13.410271,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524503,
+              "lng": 13.410271
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg Strasse",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "52e81612bcbc57f1066b7a35",
+            "name": "Clubhaus",
+            "pluralName": "Clubhäuser",
+            "shortName": "Club",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 6,
+        "name": "lebbensmittel",
+        "location": {
+          "address": "Rochstrabe 2 10178",
+          "lat": 52.524379283612745,
+          "lng": 13.409993745648894,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524379283612745,
+              "lng": 13.409993745648894
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rochstrabe 2 10178",
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d10d941735",
+            "name": "Deutsches Restaurant",
+            "pluralName": "Deutsche Restaurants",
+            "shortName": "Deutsch",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/food/german_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 7,
+        "name": "Anorak Productions",
+        "location": {
+          "lat": 52.524612,
+          "lng": 13.41023,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524612,
+              "lng": 13.41023
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "52e81612bcbc57f1066b7a3d",
+            "name": "Werbeagentur",
+            "pluralName": "Werbeagenturen",
+            "shortName": "Werbeagentur",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 8,
+        "name": "Apartment",
+        "location": {
+          "address": "Memhardstr. 8",
+          "crossStreet": "Rosa-Luxemburg-Str.",
+          "lat": 52.524081063419416,
+          "lng": 13.409985425778364,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524081063419416,
+              "lng": 13.409985425778364
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Memhardstr. 8 (Rosa-Luxemburg-Str.)",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d104951735",
+            "name": "Boutique",
+            "pluralName": "Boutiquen",
+            "shortName": "Boutique",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/apparel_boutique_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 9,
+        "name": "Lux Eleven",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 9-13",
+          "lat": 52.52445825036537,
+          "lng": 13.410011679450522,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52445825036537,
+              "lng": 13.410011679450522
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 9-13",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1fa931735",
+            "name": "Hotel",
+            "pluralName": "Hotels",
+            "shortName": "Hotel",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/travel/hotel_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 10,
+        "name": "Waytostay",
+        "location": {
+          "address": "Max Beer Strasse, Mitte",
+          "lat": 52.52437,
+          "lng": 13.41053,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52437,
+              "lng": 13.41053
+            }
+          ],
+          "postalCode": "10119",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Max Beer Strasse, Mitte",
+            "10119 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4d954b06a243a5684965b473",
+            "name": "Wohnhaus (Wohnung / Apartment)",
+            "pluralName": "Wohnhäuser (Wohnungen / Apartments)",
+            "shortName": "Wohngebiet",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/apartment_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 11,
+        "name": "Lux the Lounge",
+        "location": {
+          "lat": 52.524274,
+          "lng": 13.409817,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524274,
+              "lng": 13.409817
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d11e941735",
+            "name": "Cocktailbar",
+            "pluralName": "Cocktailbars",
+            "shortName": "Cocktail",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/nightlife/cocktails_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 12,
+        "name": "14 Oz. SUPERSALE",
+        "location": {
+          "address": "Memhardstr. 7",
+          "lat": 52.52374629454287,
+          "lng": 13.409877058384154,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52374629454287,
+              "lng": 13.409877058384154
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "neighborhood": "Mitte",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Memhardstr. 7",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d103951735",
+            "name": "Bekleidungsgeschäft",
+            "pluralName": "Bekleidungsgeschäfte",
+            "shortName": "Bekleidung",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/apparel_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 13,
+        "name": "THE LODGE",
+        "location": {
+          "address": "Rosa Luxemburg Strasse 9-13",
+          "lat": 52.524315,
+          "lng": 13.410076,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524315,
+              "lng": 13.410076
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa Luxemburg Strasse 9-13",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d11e941735",
+            "name": "Cocktailbar",
+            "pluralName": "Cocktailbars",
+            "shortName": "Cocktail",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/nightlife/cocktails_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "venuePage": {
+          "id": "36907391"
+        },
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 14,
+        "name": "Perfekt Nails",
+        "location": {
+          "lat": 52.523813,
+          "lng": 13.411074,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.523813,
+              "lng": 13.411074
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4f04aa0c2fb6e1c99f3db0b8",
+            "name": "Nagelstudio",
+            "pluralName": "Nagelstudios",
+            "shortName": "Nagelstudio",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/nailsalon_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 15,
+        "name": "Eden Books-Ein Verlag der Edel Germany GmbH",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 14",
+          "lat": 52.52447423982066,
+          "lng": 13.410253822803497,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52447423982066,
+              "lng": 13.410253822803497
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 14",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d124941735",
+            "name": "Büro",
+            "pluralName": "Büros",
+            "shortName": "Büro",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 16,
+        "name": "Blumeninnovation trendfloristik",
+        "location": {
+          "address": "Karl-Liebknecht-Str. 23",
+          "lat": 52.523850158242546,
+          "lng": 13.410977663715915,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.523850158242546,
+              "lng": 13.410977663715915
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Karl-Liebknecht-Str. 23",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d11b951735",
+            "name": "Blumenladen",
+            "pluralName": "Blumenläden",
+            "shortName": "Blumenladen",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/flowershop_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 17,
+        "name": "Wohnung von CAD",
+        "location": {
+          "address": "Rosa Luxembourg Strasse",
+          "lat": 52.5244026184082,
+          "lng": 13.410174369812012,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.5244026184082,
+              "lng": 13.410174369812012
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa Luxembourg Strasse",
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d121941735",
+            "name": "Lounge",
+            "pluralName": "Lounges",
+            "shortName": "Lounge",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/nightlife/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 18,
+        "name": "Ulf Haines",
+        "location": {
+          "lat": 52.52424745924677,
+          "lng": 13.409654921157156,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52424745924677,
+              "lng": 13.409654921157156
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d104951735",
+            "name": "Boutique",
+            "pluralName": "Boutiquen",
+            "shortName": "Boutique",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/apparel_boutique_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 19,
+        "name": "Vintage Shop Berlin",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 17",
+          "lat": 52.525047038700784,
+          "lng": 13.41007947921753,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.525047038700784,
+              "lng": 13.41007947921753
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 17",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d101951735",
+            "name": "Secondhand- / Vintageladen",
+            "pluralName": "Secondhand- / Vintageläden",
+            "shortName": "Secondhand / Vintage",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 20,
+        "name": "TYPE HYPE",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 9",
+          "crossStreet": "Münzstr.",
+          "lat": 52.52455093981894,
+          "lng": 13.409918546676636,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52455093981894,
+              "lng": 13.409918546676636
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 9 (Münzstr.)",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1f4941735",
+            "name": "Design Studio",
+            "pluralName": "Design-Studio",
+            "shortName": "Design",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/design_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 21,
+        "name": "The Early Bird Hype",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 15",
+          "lat": 52.52471529429766,
+          "lng": 13.410410712109895,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52471529429766,
+              "lng": 13.410410712109895
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 15",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d128951735",
+            "name": "Geschenkwarenladen",
+            "pluralName": "Geschenkwarenläden",
+            "shortName": "Geschenkwarenladen",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/giftshop_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 22,
+        "name": "Prince Coffeeshop",
+        "location": {
+          "address": "Rosa-Luxemburg-Straße 9",
+          "lat": 52.524283,
+          "lng": 13.40962,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524283,
+              "lng": 13.40962
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Straße 9",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "5744ccdfe4b0c0459246b4e2",
+            "name": "Konditorei",
+            "pluralName": "Konditoreien",
+            "shortName": "Gebäck",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/food/dessert_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 23,
+        "name": "Alltagsstudio ConceptM",
+        "location": {
+          "address": "Rosa-Luxemburg-Str. 16",
+          "lat": 52.524749,
+          "lng": 13.410438,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524749,
+              "lng": 13.410438
+            }
+          ],
+          "cc": "DE",
+          "neighborhood": "Mitte",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Rosa-Luxemburg-Str. 16",
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d127941735",
+            "name": "Konferenzraum",
+            "pluralName": "Konferenzräume",
+            "shortName": "Konferenzraum",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/office_conferenceroom_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 24,
+        "name": "Asian Restaurant",
+        "location": {
+          "address": "Memhardstraße 3",
+          "lat": 52.52418219552753,
+          "lng": 13.410302353068666,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52418219552753,
+              "lng": 13.410302353068666
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Memhardstraße 3",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d142941735",
+            "name": "Asiatisches Restaurant",
+            "pluralName": "Asiatische Restaurants",
+            "shortName": "Asiatisch",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/food/asian_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 25,
+        "name": "Späti",
+        "location": {
+          "lat": 52.524115,
+          "lng": 13.41106,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524115,
+              "lng": 13.41106
+            }
+          ],
+          "cc": "DE",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4d954b0ea243a5684a65b473",
+            "name": "Kiosk",
+            "pluralName": "Kiosks",
+            "shortName": "Kiosk",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/conveniencestore_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 26,
+        "name": "Bell 'Chicco",
+        "location": {
+          "lat": 52.524802,
+          "lng": 13.410173,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.524802,
+              "lng": 13.410173
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d16d941735",
+            "name": "Café",
+            "pluralName": "Cafés",
+            "shortName": "Café",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/food/cafe_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 27,
+        "name": "Grillwalker",
+        "location": {
+          "address": "Alexanderplatz",
+          "lat": 52.52455809756914,
+          "lng": 13.409961062948963,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52455809756914,
+              "lng": 13.409961062948963
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Alexanderplatz",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1cb941735",
+            "name": "Imbisswagen",
+            "pluralName": "Imbisswagen",
+            "shortName": "Imbisswagen",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/food/streetfood_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 28,
+        "name": "BerlinOnline",
+        "location": {
+          "address": "Karl-Liebknecht-Str. 29",
+          "lat": 52.52470760322904,
+          "lng": 13.412418365478516,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.52470760322904,
+              "lng": 13.412418365478516
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Karl-Liebknecht-Str. 29",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d124941735",
+            "name": "Büro",
+            "pluralName": "Büros",
+            "shortName": "Büro",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/building/default_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 29,
+        "name": "peter domenie",
+        "location": {
+          "lat": 52.525255,
+          "lng": 13.410495,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.525255,
+              "lng": 13.410495
+            }
+          ],
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d104951735",
+            "name": "Boutique",
+            "pluralName": "Boutiquen",
+            "shortName": "Boutique",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/apparel_boutique_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      },
+      {
+        "id": 30,
+        "name": "Jet-Clean Textilreinigung",
+        "location": {
+          "address": "Memhardstr. 1",
+          "lat": 52.523610947624505,
+          "lng": 13.410530090332031,
+          "labeledLatLngs": [
+            {
+              "label": "display",
+              "lat": 52.523610947624505,
+              "lng": 13.410530090332031
+            }
+          ],
+          "postalCode": "10178",
+          "cc": "DE",
+          "city": "Berlin",
+          "state": "Berlin",
+          "country": "Deutschland",
+          "formattedAddress": [
+            "Memhardstr. 1",
+            "10178 Berlin",
+            "Deutschland"
+          ]
+        },
+        "categories": [
+          {
+            "id": "4bf58dd8d48988d1fc941735",
+            "name": "Wäscherei",
+            "pluralName": "Wäschereien",
+            "shortName": "Wäscherei",
+            "icon": {
+              "prefix": "https://ss3.4sqi.net/img/categories_v2/shops/laundry_",
+              "suffix": ".png"
+            },
+            "primary": true
+          }
+        ],
+        "referralId": "v-1541499695",
+        "hasPerk": false
+      }
+    ],
+    "confident": true,
+    "geocode": {
+      "what": "",
+      "where": "berlin berlin",
+      "feature": {
+        "cc": "DE",
+        "name": "Berlin",
+        "displayName": "Berlin, Deutschland",
+        "matchedName": "Berlin, Berlin, Deutschland",
+        "highlightedName": "<b>Berlin</b>, <b>Berlin</b>, Deutschland",
+        "woeType": 7,
+        "slug": "berlin",
+        "id": "geonameid:2950159",
+        "longId": "72057594040878095",
+        "geometry": {
+          "center": {
+            "lat": 52.52437,
+            "lng": 13.41053
+          },
+          "bounds": {
+            "ne": {
+              "lat": 52.675075983544005,
+              "lng": 13.757081929101975
+            },
+            "sw": {
+              "lat": 52.33858497674041,
+              "lng": 13.088542091271195
+            }
+          }
+        }
+      },
+      "parents": [
+
+      ]
+    }
+  }
+}
+

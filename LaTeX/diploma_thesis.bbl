@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+
+\bibitem{mach87ulvm}
+Michael Young, Avadis Tevanian, Richard Rashid, David Golub, Jeffrey Eppinger,
+  Jonathan Chew, William Bolosky, David Black, and Robert Baron.
+\newblock The duality of memory and communication in the implementation of a
+  multiprocessor operating system.
+\newblock In {\em Proceedings of the eleventh ACM Symposium on Operating
+  systems principles (SOSP)}, pages 63--76. ACM Press, November 1987.
+
+\end{thebibliography}
