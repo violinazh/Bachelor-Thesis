@@ -1,3 +1,5 @@
+CALL spatial.importOSM("/home/vzh/Downloads/neo4j-community-3.5.0/import/berlin.osm");
+
 MATCH (n:Person)
 DETACH DELETE n
 
@@ -51,6 +53,9 @@ p.crossroad = toInteger(row.EdgeId),
 p.lat = toFloat(row.Latitude),
 p.long = toFloat(row.Longitude),
 p.dist = toFloat(row.Distance_from_start_node);
+
+MATCH (:CROSSROAD)-[h:HAS_POI]->(:POI)
+SET h.distance = 0
 
 -> Checking for duplicates
 LOAD CSV WITH HEADERS FROM "file:///CoffeeShopsBER.csv" AS row
@@ -150,6 +155,21 @@ MATCH (p:POI) WHERE p.type = "restaurant" RETURN p
 MATCH (p:POI) WHERE ANY(someid IN p.type WHERE someid = "restaurant")
 RETURN p
 
+-> Find all category types
+- as list
+MATCH (p:POI)
+WITH collect(DISTINCT p.type) AS poitypes
+UNWIND poitypes AS poitype
+RETURN poitype
+
+- separately
+MATCH (p:POI)
+WITH collect(DISTINCT p.type) AS poitypes
+UNWIND poitypes AS poitype
+UNWIND poitype AS type
+WITH DISTINCT type
+RETURN type
+
 -> Calculating the nearest neighbour of a point from a specific category:
 
 (!Euclidean distance) MATCH (a:CROSSROAD)-[k:HAS_POI]->(o:POI {id: 10, type: "coffee_shop"})
@@ -176,7 +196,33 @@ RETURN p.id as POI, totalCost
 ORDER BY totalCost
 limit 1
 
+- Alternative solution, but number of hops unknown in advance
+MATCH poipath = (c1:CROSSROAD)-[r:ROAD*0..30]->(c2:CROSSROAD)-->(p:POI)
+WHERE c1.id = 178732
+WITH c1, p, reduce(total=0, h in relationships(poipath) | total + h.distance) AS totalCost
+WITH c1, p.type AS poitype, min(totalCost) AS minCost
+RETURN poitype, minCost
+ORDER BY minCost
 
+- With pid included and type simple
+MATCH poipath = (c1:CROSSROAD)-[r:ROAD*0..30]->(c2:CROSSROAD)-->(p:POI)
+WHERE c1.id = 178732
+WITH c1, p, reduce(total=0, h in relationships(poipath) | total + h.distance) AS totalCost
+WITH c1, p.id as pid, p.type AS poitype, min(totalCost) AS minCost
+UNWIND poitype as type
+RETURN head(collect(pid)), type, min(minCost)
+
+
+For JAVA:
+
+- For every crossroad find the pois
+MATCH (a:CROSSROAD {id:189146})-[r:HAS_POI]->(p:POI)
+UNWIND p.type as type
+RETURN a.id, p.id, type, r.dist
+
+- Find all roads
+MATCH (a:CROSSROAD)-[r:ROAD]->(b:CROSSROAD) 
+RETURN a.id, r.distance, b.id
 
 
 
