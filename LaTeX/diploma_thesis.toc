@@ -3,12 +3,11 @@
 \babel@toc {ngerman}{}
 \babel@toc {american}{}
 \contentsline {chapter}{Abstract}{v}{chapter*.1}
-\contentsline {chapter}{Acknowledgments}{vii}{chapter*.2}
-\contentsline {chapter}{Contents}{1}{section*.3}
+\contentsline {chapter}{Contents}{1}{section*.2}
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}
 \contentsline {chapter}{\numberline {2}Related Work}{5}{chapter.2}
 \contentsline {chapter}{\numberline {3}Design}{7}{chapter.3}
 \contentsline {chapter}{\numberline {4}Implementation}{9}{chapter.4}
 \contentsline {chapter}{\numberline {5}Evaluation}{11}{chapter.5}
 \contentsline {chapter}{\numberline {6}Conclusion}{13}{chapter.6}
-\contentsline {chapter}{Bibliography}{15}{section*.5}
+\contentsline {chapter}{Bibliography}{15}{section*.4}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  1 FEB 2019 16:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  23 FEB 2019 22:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -535,8 +535,6 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 53.
  [5] [6
 
-] [7] [8
-
 ] (./diploma_thesis.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 5.
@@ -551,11 +549,23 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 
 ]
 Chapter 1.
-[3] [4
 
-]
+Overfull \hbox (17.30565pt too wide) in paragraph at lines 76--79
+\T1/ptm/m/n/12 straints for this query can be ap-plied as op-er-a-tors. For thi
+s query a route $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r[]; r[]; :::; r[]\OT1/cmr/m
+/n/12 )$\T1/ptm/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--85
+
+ []
+
+[3] [4]
 Chapter 2.
-[5] [6
+[5
+
+] [6
 
 ]
 Chapter 3.
@@ -574,36 +584,40 @@ Chapter 6.
 [13] [14
 
 ] (./diploma_thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 87.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 110.
  [15
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 87.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 110.
  (./diploma_thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 87.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 87.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 110.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 110.
 Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: AE700F7C4B3E8FEB828D4B11FB06188E;462.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 87.
+(rerunfilecheck)             Checksum: F8011DA3E96160E6BD2E73B4403FAAE9;410.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 110.
  ) 
 Here is how much of TeX's memory you used:
- 8851 strings out of 494587
- 125168 string characters out of 6177759
- 224849 words of memory out of 5000000
- 12292 multiletter control sequences out of 15000+600000
- 38071 words of font info for 39 fonts, out of 8000000 for 9000
+ 8867 strings out of 494587
+ 125328 string characters out of 6177759
+ 225641 words of memory out of 5000000
+ 12302 multiletter control sequences out of 15000+600000
+ 41183 words of font info for 50 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 28i,5n,43p,441b,342s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,5n,43p,729b,342s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
-8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (23 pages, 87676 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
+/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uh
+vr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on diploma_thesis.pdf (21 pages, 124336 bytes).
 PDF statistics:
- 194 PDF objects out of 1000 (max. 8388607)
- 160 compressed objects within 2 object streams
- 36 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 197 PDF objects out of 1000 (max. 8388607)
+ 161 compressed objects within 2 object streams
+ 33 named destinations out of 1000 (max. 500000)
+ 78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
