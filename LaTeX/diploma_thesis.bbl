@@ -1,11 +1,37 @@
 \begin{thebibliography}{1}
 
-\bibitem{mach87ulvm}
-Michael Young, Avadis Tevanian, Richard Rashid, David Golub, Jeffrey Eppinger,
-  Jonathan Chew, William Bolosky, David Black, and Robert Baron.
-\newblock The duality of memory and communication in the implementation of a
-  multiprocessor operating system.
-\newblock In {\em Proceedings of the eleventh ACM Symposium on Operating
-  systems principles (SOSP)}, pages 63--76. ACM Press, November 1987.
+\bibitem{skyline}
+Xuegang Huang and Christian~S. Jensen.
+\newblock In-route skyline querying for location-based services.
+\newblock Department of Computer Science, Aalborg University, Denmark.
+
+\bibitem{personalSRQ}
+Jiajie Xu4, Zhiming~Ding Jian~Dai, Chengfei~Liu.
+\newblock On personalized and sequenced route planning.
+\newblock Institute of Software, Chinese Academy of Sciences, Beijing, China,
+  University of Chinese Academy of Sciences, Beijing, China, Department of
+  Computer Science and Software Engineering, School of Software and Electrical
+  Engineering, Faculty of Science, Engineering and Technology, Swinburne
+  University of Technology, Melbourne, Australia, School of Computer Science
+  and Technology, Soochow University, Suzhou, China, School of Computer
+  Science, Beijing University of Technology, Beijing , China.
+
+\bibitem{dynamicSRQ}
+Stefan~Funke, Jochen~Eisner.
+\newblock Sequenced route queries: Getting things done on the way back home.
+\newblock Universit\"at Stuttgart, Institut f\"ur Formale Methoden der
+  Informatik.
+
+\bibitem{OSR}
+Mehdi Sharifzadeh, Cyrus~Shahabi, Mohammad~Kolahdouzan.
+\newblock The optimal sequenced route query.
+\newblock Computer Science Department, University of Southern California.
+
+\bibitem{semanticSRQ}
+Yasuhiro Fujiwara, Makoto~Onizuka Yuya~Sasaki, Yoshiharu~Ishikawa.
+\newblock Sequenced route query with semantic hierarchy.
+\newblock Graduate School of Information Science and Technology, Osaka
+  University, Osaka, Japan, Graduate School of Information Science, Nagoya
+  University, Nagoya, Japan, NTT Software Innovation Center, Tokyo, Japan.
 
 \end{thebibliography}

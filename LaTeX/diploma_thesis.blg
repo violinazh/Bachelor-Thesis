@@ -3,44 +3,63 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: diploma_thesis.aux
 The style file: styles/plain.bst
 Database file #1: diploma_thesis.bib
-You've used 1 entry,
+Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
+while executing---line 1070 of file styles/plain.bst
+Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
+while executing---line 1070 of file styles/plain.bst
+Warning--empty booktitle in skyline
+Warning--empty year in skyline
+Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
+while executing---line 1111 of file styles/plain.bst
+Warning--empty booktitle in personalSRQ
+Warning--empty year in personalSRQ
+Warning--empty booktitle in dynamicSRQ
+Warning--empty year in dynamicSRQ
+Warning--empty booktitle in OSR
+Warning--empty year in OSR
+Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
+while executing---line 1111 of file styles/plain.bst
+Warning--empty booktitle in semanticSRQ
+Warning--empty year in semanticSRQ
+You've used 5 entries,
             2161 wiz_defined-function locations,
-            508 strings with 4401 characters,
-and the built_in function-call counts, 674 in all, are:
-= -- 61
-> -- 48
-< -- 1
+            525 strings with 5473 characters,
+and the built_in function-call counts, 1299 in all, are:
+= -- 106
+> -- 47
+< -- 0
 + -- 20
-- -- 18
-* -- 56
-:= -- 112
-add.period$ -- 4
-call.type$ -- 1
-change.case$ -- 12
+- -- 14
+* -- 65
+:= -- 211
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 22
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 22
-empty$ -- 41
-format.name$ -- 18
-if$ -- 139
+cite$ -- 15
+duplicate$ -- 70
+empty$ -- 141
+format.name$ -- 14
+if$ -- 275
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 15
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 28
+num.names$ -- 10
+pop$ -- 57
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 17
 quote$ -- 0
-skip$ -- 16
+skip$ -- 32
 stack$ -- 0
-substring$ -- 30
-swap$ -- 9
-text.length$ -- 1
+substring$ -- 26
+swap$ -- 5
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 0
-while$ -- 5
-width$ -- 2
-write$ -- 14
+type$ -- 20
+warning$ -- 10
+while$ -- 10
+width$ -- 6
+write$ -- 47
+(There were 4 error messages)
