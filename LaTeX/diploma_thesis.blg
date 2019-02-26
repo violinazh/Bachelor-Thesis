@@ -2,11 +2,20 @@ This is BibTeX, Version 0.99d (TeX Live 2018)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: diploma_thesis.aux
 The style file: styles/plain.bst
+A level-1 auxiliary file: abstract.aux
+A level-1 auxiliary file: intro.aux
+A level-1 auxiliary file: relatedwork.aux
+A level-1 auxiliary file: operators.aux
+A level-1 auxiliary file: equality.aux
+A level-1 auxiliary file: conclusion.aux
 Database file #1: diploma_thesis.bib
 Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
 while executing---line 1070 of file styles/plain.bst
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
 while executing---line 1070 of file styles/plain.bst
+Warning--empty title in evagian
+Warning--empty booktitle in evagian
+Warning--empty year in evagian
 Warning--empty booktitle in skyline
 Warning--empty year in skyline
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
@@ -21,45 +30,45 @@ Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara
 while executing---line 1111 of file styles/plain.bst
 Warning--empty booktitle in semanticSRQ
 Warning--empty year in semanticSRQ
-You've used 5 entries,
+You've used 6 entries,
             2161 wiz_defined-function locations,
-            525 strings with 5473 characters,
-and the built_in function-call counts, 1299 in all, are:
-= -- 106
-> -- 47
+            534 strings with 5647 characters,
+and the built_in function-call counts, 1535 in all, are:
+= -- 124
+> -- 54
 < -- 0
-+ -- 20
-- -- 14
-* -- 65
-:= -- 211
-add.period$ -- 15
-call.type$ -- 5
-change.case$ -- 22
++ -- 23
+- -- 16
+* -- 79
+:= -- 247
+add.period$ -- 17
+call.type$ -- 6
+change.case$ -- 25
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 70
-empty$ -- 141
-format.name$ -- 14
-if$ -- 275
+cite$ -- 19
+duplicate$ -- 84
+empty$ -- 169
+format.name$ -- 16
+if$ -- 325
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 5
-newline$ -- 28
-num.names$ -- 10
-pop$ -- 57
+int.to.str$ -- 6
+missing$ -- 6
+newline$ -- 32
+num.names$ -- 12
+pop$ -- 70
 preamble$ -- 1
-purify$ -- 17
+purify$ -- 20
 quote$ -- 0
-skip$ -- 32
+skip$ -- 37
 stack$ -- 0
-substring$ -- 26
-swap$ -- 5
+substring$ -- 31
+swap$ -- 6
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 20
-warning$ -- 10
-while$ -- 10
-width$ -- 6
-write$ -- 47
+type$ -- 24
+warning$ -- 13
+while$ -- 12
+width$ -- 7
+write$ -- 54
 (There were 4 error messages)

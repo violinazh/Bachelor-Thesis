@@ -4,7 +4,7 @@
 % Simon Kellner <kellner@kit.edu>
 % Konrad Miller <miller@kit.edu>
 %
-\documentclass[12pt, a4paper]{book}
+\documentclass[12pt, a4paper, openany]{book}
 \usepackage{graphicx}
 \usepackage{chngpage}
 \usepackage{xspace,ifthen,epsfig}
@@ -48,267 +48,20 @@
 
 
 \input{diploma_thesis_title}
-
 \input{declaration}
 
-\chapter{Abstract}
-
-Trip planning queries are often from the type Sequenced route Queries (SRQ), a form of nearest neighbor queries, which define a starting point and a list of categories, given by the user. This type of queries are gaining significant interest, because of advances in location based mobile services and they are also of great importance in developing robust systems, where crisis management is of utter importance. 
-
-\noindent Existing approaches strive to find a best route, based on length, duration or other prime factors, passing through multiple location, called points of interest (PoIs), and they match the route perfectly. However, users may be also interested in other qualities of the route, such as the relationship among sequence points, hierarchy, order and priority of the PoIs. Therefor, in this thesis  I introduce a couple of operators, which the users may be interested in applying to SRQ, and propose approaches to designing and implementing some of the operators. The implementation considers only metric spaces, as these are mostly relevant to the user, when working with road networks in real-life maps.
+\include{abstract}
 
 \mainmatter
-\cleardoublepage
 \phantomsection
 \addcontentsline{toc}{chapter}{Contents}
 \tableofcontents 
 
-\chapter{Introduction}
-\label{sec:intro}
-A sequenced route query is defined as finding the shortest path from a starting point towards a possible destination, passing through multiple locations, defined by their category type. There has been significant research and proposed approaches on the topic, but there is not a developed query language to answer this types of queries. The work in this thesis has been focused on researching the topic of sequenced route queries and designing a language to enable the user to express his need in the form of a user query in a flexible manner, such as applying different constraints on the route to be found. 
-
-\textbf{Example:}
-Suppose that a user is planning a trip to town: he first wants to go to a restaurant for lunch, then he wants to stop by a bank, then he meets a friend in the shopping mall and after that he plans to have a dinner at a restaurant. In this specific scenario, the user wants to express his wish for the restaurant to be the same.
-
-The specific constrains such as the equality in the given example above are proposed in the thesis as operators on the query. Existing approaches have been used to transform the complex user query and changes to the approaches have been made in order to retrieve a desired result. 
-
-The completeness of the operators stems from %should put grafic (? extensive research on the topic).
-
-\textbf{Problem definition:}
-We have a starting point $sp$ and a category sequence $M = (c_1, c_2, ..., c_n)$, which constitutes the query, defined by the user. The constraints for this query can be applied as operators.
-For this query a route $(r_1, r_2, ..., r_n)$, defined as a sequence of PoIs, is calculated.
-
-\textbf{Construction:}
-The graph is constructed using the Neo4j graph database as seen in %should put grafic
-The crossroads are defined as nodes, labeled CROSSROAD, with attributes id, longitute and latitude, the roads are mapped as relationships, labeled ROAD, with attribute distance. A PoI is mapped to the nearest CROSSROAD, using a relationship HAS-POI, with attributes id and a list of possible category types it belongs to. 
-The map used for implementation and testing is the road network of Berlin, with 428769 nodes, 504229 roads, 5548 PoIs and 7 category types: restaurant, coffee shop, atms/banks, movie theaters, pharmacies, pubs/bars, gas stations. 
-\newline
-
-The remainder of the thesis is organized as follows: I first review the related work that has been done on the topic of SRQ in Section 2. In Section 3 I cover the proposed operators and I go into details on some of them in three separate sections for each of them: Design, Implementation and Evaluation. Finally, I conclude the thesis by summing up the progress made on the subject and discuss future work.
-
-\chapter{Related Work}
-\label{sec:relwork}
-In this section I would like to review some existing research, related to the topic of this thesis. Sequenced route queries have been extensively researched and different algorithms that optimize the problem and address different use scenarios have been developed. Usually, existing approaches differentiate between vector and metric spaces, considering the Euclidean distance between geographic points or the real-life road-network-based distances accordingly. Some algorithms are focused on returning a single optimal route, where the PoIs match the given categories in the category sequence perfectly, whereas others consider semantic hierarchy or multiple route factors such as rating, distance and category weights. \newline
-
-In \textit{The Optimal Sequenced Route} the researchers propose two effective algorithms for solving the sequenced route query problem. They first elaborate on why a classic shortest path algorithm such as Dijkstra would be impractical for real-life scenarios and then go on to propose the LORD (Light Optimal Route Discoverer) and R-LORD algorithm, which uses a R-tree, which are Dijkstra-based and made for vector spaces and the PNE (Progressive Neighbor Exploration) algorithm, which emplys the nearest neighbour search and is designed specifically for metric spaces. Both of their proposed algorithms calculate a perfect route and only return one optimal route (while modification of the PNE algorithm also allow for finding k optimal routes), significantly outperforming Dijkstra's algorithm. \cite{OSR}
-\newline
-
-A different approach to the SRQ, designed for metric spaces, is proposed in \textit{Sequenced Route Query with Semantic Hierarchy}. The authors suggest a Skyline based algorithm, called bulk SkySR (BSSR), which searches for all preferred routes to users by extending the shortest route search with the semantic similarity of PoIs' categories. This approach expects a category tree, representing the semantic hierarchy of categories, and applies the Skyline concept, which is searching for routes that are not worse than any other routes in terms of their scores, to the route length and semantic similarity, also known as the route scores. The BSSR algorithm also exploits the branch-and-bound concept by searching for routes simultaneously to reduce the search space. \cite{semanticSRQ}
-\newline
-
-Another research article proposes the Personalized and Sequenced Route (PSR) Query, which considers both personalization and sequenced constraints. The approach takes into account multiple factors of a route, such as distance rating and associates different weight with each PoI category and a distance weight. The framework designed to obtain one optimal route consists of three phases: guessing, crossover and refinement, and is focused on spatial databases. \cite{personalSRQ} 
-\newline
-
-In \textit{In-Route Skyline Querying for Location-Based Services} queries are issued by user moving along a routes towards destinations (PoIs), also defined as query points. The movement of the user is constrained to a road network and the travel distance is considered. In-route queries know the destination and current location of the user, which dynamically changes, and the anticipated route towards the endpoint. Users can apply weights to several spatially-related criteria, when deciding on PoIs to visit next, such as the total distance difference, known as detour, and the relative distance of the current data point. \cite{dynamicSRQ}
-\newline
-
-An article \textit{Sequenced Route Queries: Getting Things Done on the Way Back Home} suggest speedup techniques for sequenced route queries. A contraction hierarchy is proposed for preprocessing results for faster retrieval of answers by shortest path queries in road networks. The second technique uses the distance sensitivity of routes ("most queries are of a local kind"), which it bases on users' typical behavior. In this approach, one optimal route is returned, but queries where the order of PoIs is not necessarily fixed are possible as long as the number of PoIs remains moderate. Also, constraints on the order of visited PoIs can be made, e.g. visiting a restaurant before a shopping center. \cite{skyline}
-
-\chapter{Operators} 
-\label{sec:operators}
-
-% ToDo
-Equality – some of the PoIs in the route must be the same
-\newline
-Necessity – some of the PoIs in the route can be missing
-\newline
-Conjunction, disjunction and negation applied to some of the user-specified categories in the sequence
-\newline
-Order - some of the PoIs in the route must be in the given order
-\newline
-Hops between PoIs – defined number of PoIs between the given categories
-\newline
-Perfection – some of the PoIs in the route must match the user-specified category perfectly
-\newline
-
-\section{Equality operator}
-
-\subsection{Design} 
-\label{sec:design}
-
-\subsection{Implementation}
-\label{sec:implementation}
-	
-	
-	\SetKw{Return}{return}
-	\SetKw{Break}{break}
-	
-	\SetKwFunction{PNE}{PNE}
-	\SetKwFunction{NNN}{nextNearestNeigbour}
-	\SetKwFunction{travelDistance}{travelDistance}
-	
-	\SetKwFunction{modifiedPNE}{modifiedPNE}
-	\SetKwFunction{dummyPSR}{dummyPSR}
-	\SetKwFunction{caseOne}{case1}
-	\SetKwFunction{caseTwo}{case2}
-	\SetKwFunction{caseThree}{case3}
-	\SetKwFunction{caseFour}{case4}
-	
-	\begin{algorithm}
-		\caption{equalityOperator}
-		\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
-		
-		\Input{$Query(sp, M = (c_1, c_2, ..., c_n)), Equal(i, j)$}
-		\Output{$Route = (r_1, r_2, ..., r_n)$}
-		\BlankLine
-		
-		$initialize$ $heap$\; 
-		$initialize$ $UB $\; 
-		$optimalRoute =$ \PNE{$Query$}\;
-		\eIf{$optimalRoute[i] = optimalRoute[j]$}{
-			optimal route has been found\;
-			\Return $optimalRoute$\;
-		}
-		{
-			\dummyPSR{}\;
-			\modifiedPNE{}\;
-		}
-		
-	\end{algorithm}
-	
-	\begin{algorithm}
-		\caption{\protect\modifiedPNE}
-		\lForEach{$r_i$ in $U_{M_i}$}{
-			\tcp{Checking the upper bound for every $r_i$ in the category set $U_{M_i}$}
-			\If{\travelDistance{$(r_{i-1}, r_i)$} < $UB$}{
-				place the new PSR $(r_{i-1}, r_i)$ on the $heap$\;
-				fetch a $PSR$ from the $heap$\;
-				\Switch{$l = length(PSR)$}{
-					\Case(Finding PSRs before $r_j$){$l < m-2$}{
-						\caseOne{}\;
-					}
-					\Case(Finding PSR containing $r_j$){$l = m-1$}{
-						\caseTwo{}\;
-					}
-					\Case(Finding PSR after $r_j$){$l = m$}{
-						\caseThree{}\;
-					}
-					\Case(Finding PSR containing $r_{j+1}$){$l = m+1$}{
-						\caseFour{}\;
-					}
-					\Case(Finding optimal PSR $r_{i-1}, ..., r_{j+1}$){$l = m+2$}{
-						$secondPSR = (r_{i-1}, ..., r_{j+1})$ \tcp*{Second part of the route}
-						$thirdPSR = PNE(r_{j+1}, (c_{j+2}, ..., c_n))$ \tcp*{Third part of the route}
-						\Return $concatinate(firstPSR, secondPSR, thirdPSR)$\;
-					}
-				}
-				
-			}
-		}
-		
-	\end{algorithm}
-	
-	\begin{procedure}
-		\caption{dummyPSR()}
-		\tcp{Dividing the route in three parts $(r_1, ..., r_i), (r_i, ..., r_j), (r_j, ..., r_n)$ to be found consequetively}
-		\tcp{Creating a dummy PSR (partial sequence route) from the found optimal route and calculating an upper bound}
-		$firstPSR = (r_1, r_2, ..., r_{i-1})$ \tcp*{First part of the route}
-		$dummyPSR$ $\leftarrow$ remove $r_1$ to $r_{i-2}$ and $r_{j+2}$ to $r_n$ from $optimalRoute$\;
-		$dummyPSR(j) = optimalRoute[i]$\;
-		$r_{j+1} =$ \NNN{$r_i, U_{M_{j+1}}$}\;
-		$dummyPSR  = (r_{i-1}, r_i, ..., r_i, r_{j+1})$\;
-		$UB =$ \travelDistance{$dummyPSR$}\;
-		remove $optimalRoute$ from the $heap$\;
-		place $dummyPSR$ on the $heap$\;
-	\end{procedure}
-	
-	\begin{procedure}
-		\caption{caseOne()}
-		a) \NNN{$r_k, U_{M_{k+1}}$}\;
-		update $PSR$ to contain $r_{k+1}$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			place $PSR$ on the $heap$\;
-		}{
-			\Break\;
-		}
-		b) \NNN{$r_{k-1}, U_{M_k}$}\;
-		update $PSR$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			place $PSR$ on the $heap$\;
-		}{
-			\Break\;
-		}
-	\end{procedure}
-	
-	\begin{procedure}
-		\caption{caseTwo()}
-		a) \travelDistance{$(r_{j-1}, r_i)$}\;
-		update $PSR$ to contain $r_i$ in the place of $r_j$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			place $PSR$ on the $heap$\;
-		}{
-			\Break\;
-		}
-		b) \NNN{$r_{j-2}, U_{M_{j-1}}$}\;
-		update $PSR$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			place $PSR$ on the $heap$\;
-		}{
-			\Break\;
-		}
-	\end{procedure}
-	
-	\begin{procedure}
-		\caption{caseThree()}
-		a) \NNN{$r_j, U_{M_{j+1}}$}\;
-		update $PSR$ to contain $r_{j+1}$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			place $PSR$ on the $heap$\;
-		}{
-			\Break\;
-		}
-		b) \travelDistance{$(r_{j-1}, r_i)$}\;
-		update $PSR$ to contain $r_i$ in the place of $r_j$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			place $PSR$ on the $heap$\;
-		}{
-			\Break\;
-		}
-	\end{procedure}
-	
-	\begin{procedure}
-		\caption{caseFour()}
-		\NNN{$r_i, U_{M_{j+1}}$}\;
-		update $PSR$ to contain $r_{j+1}$\;
-		\eIf{\travelDistance{$PSR$} $< UB$}{
-			update $UB$\;
-			\tcp{Keeping only one route $(r_{i-1}, ..., r_{j+1})$ on the $heap$}
-			place $PSR$ on the $heap$ and remove longer PSR\;
-		}{
-			\Break\;
-		}
-	\end{procedure}
-	
-	\begin{algorithm}
-		\caption{\protect\PNE}
-		\tcp{Incrementally create the set of candidate routes for $Query(sp, M)$ from starting point $sp$ towards PoI set $U_{M_m}$}
-		\tcp{Candidate routes are stored in a heap sorted by length of the routes}
-		\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length}
-		\tcp{Trimming: There must be only one candidate SR on the heap}
-		\Switch{$l = length(PSR)$}{
-			\Case{$l = m$}{
-				$PSR$ is the optimal route\;
-			}
-			\Case{$l \neq m$}{
-				a) \NNN{$r_|PSR|, U_{m_{|PSR|+1}}$}\;
-				update $PSR$ and put it back on the $heap$\;
-				b) \NNN{$r_{|PSR|-1}, U_{m_|PSR|}$}\;
-				generate a new $PSR$ and place it on the $heap$\;
-			}
-		}
-	\end{algorithm}
-
-\subsection{Evaluation}
-\label{sec:evaluation}
-
-\chapter{Conclusion}
-\label{sec:conclusion}
+\include{intro}
+\include{relatedwork}
+\include{operators}
+\include{equality}
+\include{conclusion}
 
 \backmatter    
 %\chapter{Bibliography}

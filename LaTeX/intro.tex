@@ -1,0 +1,30 @@
+\chapter{Introduction}
+\label{sec:intro}
+A sequenced route query is defined as finding the shortest path from a starting point towards a possible destination, passing through multiple locations, defined by their category type. There has been significant research and proposed approaches on the topic, but there is not a developed query language to answer this types of queries. The work in this thesis has been focused on researching the topic of sequenced route queries and designing a language to enable the user to express his need in the form of a user query in a flexible manner, such as applying different constraints on the route to be found. 
+
+\textbf{Example:}
+Suppose that a user is planning a trip to town: he first wants to go to a restaurant for lunch, then he wants to stop by a bank, then he meets a friend in the shopping mall and after that he plans to have a dinner at a restaurant. In this specific scenario, the user wants to express his wish for the restaurant to be the same.
+
+The specific constrains such as the equality in the given example above are proposed in the thesis as operators on the query. Existing approaches have been used to transform the complex user query and changes to the approaches have been made in order to retrieve a desired result. 
+
+The completeness of the operators stems from %should put grafic (? extensive research on the topic).
+
+\textbf{Problem definition:}
+We have a starting point $sp$ and a category sequence $M = (c_1, c_2, ..., c_n)$, which constitutes the query, defined by the user. The constraints for this query can be applied as operators.
+For this query a route $(r_1, r_2, ..., r_n)$, defined as a sequence of PoIs, is calculated.
+
+\textbf{Construction:}
+The graph is constructed using the Neo4j graph database as seen in \ref{fig:neo4jmodel}
+The crossroads are defined as nodes, labeled CROSSROAD, with attributes id, longitute and latitude, the roads are mapped as relationships, labeled ROAD, with attribute distance. A PoI is mapped to the nearest CROSSROAD, using a relationship HAS-POI, with attributes id and a list of possible category types it belongs to. \cite{evagian}
+
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{images/Neo4j-model.png}
+	\centering
+	\caption{Neo4j Model\cite{evagian}}
+	\label{fig:neo4jmodel}
+\end{figure}
+
+The map used for implementation and testing is the road network of Berlin, with 428769 nodes, 504229 roads, 5548 PoIs and 7 category types: restaurant, coffee shop, atms/banks, movie theaters, pharmacies, pubs/bars, gas stations. 
+\newline
+
+The remainder of the thesis is organized as follows: First I review the related work that has been done on the topic of SRQ in Section 2. In Section 3 I cover the proposed operators and go into details on some of them in three separate sections for each of them: Design, Implementation and Evaluation. Finally, I conclude the thesis by summing up the progress made on the subject and discuss future work.

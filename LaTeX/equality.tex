@@ -1,0 +1,186 @@
+\section{Equality operator}
+The equality operator is based on the need to express that some PoIs in the SRQ of the same category can or should be equal, as given in the example in Chapter 1 \ref{sec:intro}
+
+\subsection{Design} 
+\label{sec:design}
+The equality operator is designed using the PNE approach from \cite{OSR}. It uses the progressive neighbour explorator as  its base to upgrade on and extends it with a heuristic approach to shrink the search space. 
+
+\subsection{Implementation}
+\label{sec:implementation}
+
+\subsection{Evaluation}
+\label{sec:evaluation}
+
+\SetKw{Return}{return}
+\SetKw{Break}{break}
+
+\SetKwFunction{PNE}{PNE}
+\SetKwFunction{NNN}{nextNearestNeigbour}
+\SetKwFunction{travelDistance}{travelDistance}
+
+\SetKwFunction{modifiedPNE}{modifiedPNE}
+\SetKwFunction{dummyPSR}{dummyPSR}
+\SetKwFunction{caseOne}{case1}
+\SetKwFunction{caseTwo}{case2}
+\SetKwFunction{caseThree}{case3}
+\SetKwFunction{caseFour}{case4}
+
+\begin{algorithm}
+	\caption{equalityOperator}
+	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+	
+	\Input{$Query(sp, M = (c_1, c_2, ..., c_n)), Equal(i, j)$}
+	\Output{$Route = (r_1, r_2, ..., r_n)$}
+	\BlankLine
+	
+	$initialize$ $heap$\; 
+	$initialize$ $UB $\; 
+	$optimalRoute =$ \PNE{$Query$}\;
+	\eIf{$optimalRoute[i] = optimalRoute[j]$}{
+		optimal route has been found\;
+		\Return $optimalRoute$\;
+	}
+	{
+		\dummyPSR{}\;
+		\modifiedPNE{}\;
+	}
+	
+\end{algorithm}
+
+\begin{algorithm}
+	\caption{\protect\modifiedPNE}
+	\lForEach{$r_i$ in $U_{M_i}$}{
+		\tcp{Checking the upper bound for every $r_i$ in the category set $U_{M_i}$}
+		\If{\travelDistance{$(r_{i-1}, r_i)$} < $UB$}{
+			place the new PSR $(r_{i-1}, r_i)$ on the $heap$\;
+			fetch a $PSR$ from the $heap$\;
+			\Switch{$l = length(PSR)$}{
+				\Case(Finding PSRs before $r_j$){$l < m-2$}{
+					\caseOne{}\;
+				}
+				\Case(Finding PSR containing $r_j$){$l = m-1$}{
+					\caseTwo{}\;
+				}
+				\Case(Finding PSR after $r_j$){$l = m$}{
+					\caseThree{}\;
+				}
+				\Case(Finding PSR containing $r_{j+1}$){$l = m+1$}{
+					\caseFour{}\;
+				}
+				\Case(Finding optimal PSR $r_{i-1}, ..., r_{j+1}$){$l = m+2$}{
+					$secondPSR = (r_{i-1}, ..., r_{j+1})$ \tcp*{Second part of the route}
+					$thirdPSR = PNE(r_{j+1}, (c_{j+2}, ..., c_n))$ \tcp*{Third part of the route}
+					\Return $concatinate(firstPSR, secondPSR, thirdPSR)$\;
+				}
+			}
+			
+		}
+	}
+	
+\end{algorithm}
+
+\begin{procedure}
+	\caption{dummyPSR()}
+	\tcp{Dividing the route in three parts $(r_1, ..., r_i), (r_i, ..., r_j), (r_j, ..., r_n)$ to be found consequetively}
+	\tcp{Creating a dummy PSR (partial sequence route) from the found optimal route and calculating an upper bound}
+	$firstPSR = (r_1, r_2, ..., r_{i-1})$ \tcp*{First part of the route}
+	$dummyPSR$ $\leftarrow$ remove $r_1$ to $r_{i-2}$ and $r_{j+2}$ to $r_n$ from $optimalRoute$\;
+	$dummyPSR(j) = optimalRoute[i]$\;
+	$r_{j+1} =$ \NNN{$r_i, U_{M_{j+1}}$}\;
+	$dummyPSR  = (r_{i-1}, r_i, ..., r_i, r_{j+1})$\;
+	$UB =$ \travelDistance{$dummyPSR$}\;
+	remove $optimalRoute$ from the $heap$\;
+	place $dummyPSR$ on the $heap$\;
+\end{procedure}
+
+\begin{procedure}
+	\caption{caseOne()}
+	a) \NNN{$r_k, U_{M_{k+1}}$}\;
+	update $PSR$ to contain $r_{k+1}$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		place $PSR$ on the $heap$\;
+	}{
+		\Break\;
+	}
+	b) \NNN{$r_{k-1}, U_{M_k}$}\;
+	update $PSR$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		place $PSR$ on the $heap$\;
+	}{
+		\Break\;
+	}
+\end{procedure}
+
+\begin{procedure}
+	\caption{caseTwo()}
+	a) \travelDistance{$(r_{j-1}, r_i)$}\;
+	update $PSR$ to contain $r_i$ in the place of $r_j$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		place $PSR$ on the $heap$\;
+	}{
+		\Break\;
+	}
+	b) \NNN{$r_{j-2}, U_{M_{j-1}}$}\;
+	update $PSR$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		place $PSR$ on the $heap$\;
+	}{
+		\Break\;
+	}
+\end{procedure}
+
+\begin{procedure}
+	\caption{caseThree()}
+	a) \NNN{$r_j, U_{M_{j+1}}$}\;
+	update $PSR$ to contain $r_{j+1}$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		place $PSR$ on the $heap$\;
+	}{
+		\Break\;
+	}
+	b) \travelDistance{$(r_{j-1}, r_i)$}\;
+	update $PSR$ to contain $r_i$ in the place of $r_j$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		place $PSR$ on the $heap$\;
+	}{
+		\Break\;
+	}
+\end{procedure}
+
+\begin{procedure}
+	\caption{caseFour()}
+	\NNN{$r_i, U_{M_{j+1}}$}\;
+	update $PSR$ to contain $r_{j+1}$\;
+	\eIf{\travelDistance{$PSR$} $< UB$}{
+		update $UB$\;
+		\tcp{Keeping only one route $(r_{i-1}, ..., r_{j+1})$ on the $heap$}
+		place $PSR$ on the $heap$ and remove longer PSR\;
+	}{
+		\Break\;
+	}
+\end{procedure}
+
+\begin{algorithm}
+	\caption{\protect\PNE}
+	\tcp{Incrementally create the set of candidate routes for $Query(sp, M)$ from starting point $sp$ towards PoI set $U_{M_m}$}
+	\tcp{Candidate routes are stored in a heap sorted by length of the routes}
+	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length}
+	\tcp{Trimming: There must be only one candidate SR on the heap}
+	\Switch{$l = length(PSR)$}{
+		\Case{$l = m$}{
+			$PSR$ is the optimal route\;
+		}
+		\Case{$l \neq m$}{
+			a) \NNN{$r_|PSR|, U_{m_{|PSR|+1}}$}\;
+			update $PSR$ and put it back on the $heap$\;
+			b) \NNN{$r_{|PSR|-1}, U_{m_|PSR|}$}\;
+			generate a new $PSR$ and place it on the $heap$\;
+		}
+	}
+\end{algorithm}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  24 FEB 2019 22:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  26 FEB 2019 12:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -481,7 +481,8 @@ Package: relsize 2013/03/29 ver 4.1
 \algocf@algoframe=\box44
 \algocf@algobox=\box45
 )
-(./diploma_thesis.aux)
+(./diploma_thesis.aux (./abstract.aux) (./intro.aux) (./relatedwork.aux)
+(./operators.aux) (./equality.aux) (./conclusion.aux))
 \openout1 = `diploma_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
@@ -499,9 +500,11 @@ LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 43.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
-) (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count138
 \scratchdimen=\dimen142
@@ -561,8 +564,8 @@ it_logo_de_1c.pdf>]pdfTeX warning (ext4): destination with the same identifier
 (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.51 
-      [2] (./declaration.tex
+l.51 \input
+           {declaration} [2] (./declaration.tex
 Overfull \hbox (3.87248pt too wide) in paragraph at lines 6--7
 \T1/ptm/m/n/12 Hil-f-s-mit-tel voll-ständig und genau angegeben und alles ken-n
 tlich gemacht zu haben,
@@ -576,13 +579,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 [3
 
 
-]) [4
+])
+\openout2 = `abstract.aux'.
 
-
-]
+ (./abstract.tex
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 54.
- [5] [6
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
+) [4
+
+
 
 ] (./diploma_thesis.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
@@ -594,103 +599,144 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
  [1
 
 
-] [2
 
 ]
+\openout2 = `intro.aux'.
+
+ (./intro.tex
 Chapter 1.
 
-Overfull \hbox (17.30565pt too wide) in paragraph at lines 77--80
+Overfull \hbox (17.30565pt too wide) in paragraph at lines 12--15
 \T1/ptm/m/n/12 straints for this query can be ap-plied as op-er-a-tors. For thi
 s query a route $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 r[]; r[]; :::; r[]\OT1/cmr/m
 /n/12 )$\T1/ptm/m/n/12 ,
  []
 
+<images/Neo4j-model.png, id=89, 614.295pt x 794.97pt>
+File: images/Neo4j-model.png Graphic file (type png)
+<use images/Neo4j-model.png>
+Package pdftex.def Info: images/Neo4j-model.png  used on input line 21.
+(pdftex.def)             Requested size: 245.71364pt x 317.98236pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--86
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--29
 
  []
 
-[3] [4]
+[2
+
+
+]) [3 <./images/Neo4j-model.png>]
+\openout2 = `relatedwork.aux'.
+
+ (./relatedwork.tex
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--92
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 93--95
+Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--98
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
 
  []
 
-[5
+[4
+
+
 
 ]
-Overfull \hbox (3.38924pt too wide) in paragraph at lines 99--101
+Overfull \hbox (3.38924pt too wide) in paragraph at lines 11--13
 []\T1/ptm/m/n/12 Another re-search ar-ti-cle pro-poses the Per-son-al-ized and 
 Se-quenced Route (PSR)
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 99--101
+Underfull \hbox (badness 10000) in paragraph at lines 11--13
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 102--104
+Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-[6]
+) [5]
+\openout2 = `operators.aux'.
+
+ (./operators.tex
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 111--123
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 124.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 126.
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 155.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 157.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-) [7
 
-] [8] [9] [10]
-[11] [12]
-Chapter 4.
-[13
+Underfull \hbox (badness 10000) in paragraph at lines 6--11
 
-] [14
+ []
 
-] (./diploma_thesis.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 318.
- [15
+) [6
+
+
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 318.
- (./diploma_thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 318.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 318.
+\openout2 = `equality.aux'.
+
+ (./equality.tex
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 4.
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 36.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 38.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)) [7
+
+
+] [8] [9] [10] [11]
+\openout2 = `conclusion.aux'.
+
+ (./conclusion.tex
+Chapter 4.
+) [12
+
+
+
+] (./diploma_thesis.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 71.
+ [13
+
+
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 71.
+ (./diploma_thesis.aux (./abstract.aux)
+(./intro.aux) (./relatedwork.aux) (./operators.aux) (./equality.aux)
+(./conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 71.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 71.
 Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
 (rerunfilecheck)             Checksum: DB10D4015A35033F164C092735A31621;573.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 318.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 71.
  ) 
 Here is how much of TeX's memory you used:
- 9991 strings out of 494587
- 142724 string characters out of 6177759
- 277498 words of memory out of 5000000
- 13268 multiletter control sequences out of 15000+600000
+ 10048 strings out of 494587
+ 143501 string characters out of 6177759
+ 280961 words of memory out of 5000000
+ 13281 multiletter control sequences out of 15000+600000
  53501 words of font info for 60 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,18n,43p,848b,655s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,43p,870b,653s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/
@@ -706,10 +752,10 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (21 pages, 204953 bytes).
+Output written on diploma_thesis.pdf (17 pages, 285741 bytes).
 PDF statistics:
- 402 PDF objects out of 1000 (max. 8388607)
- 358 compressed objects within 4 object streams
- 172 named destinations out of 1000 (max. 500000)
- 94 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 395 PDF objects out of 1000 (max. 8388607)
+ 353 compressed objects within 4 object streams
+ 170 named destinations out of 1000 (max. 500000)
+ 99 words of extra memory for PDF output out of 10000 (max. 10000000)
 
