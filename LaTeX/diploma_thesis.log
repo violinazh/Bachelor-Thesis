@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  26 FEB 2019 12:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  8 MAR 2019 13:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -696,25 +696,25 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 36.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 38.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 40.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 42.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )) [7
 
 
-] [8] [9] [10] [11]
+] [8] [9] [10] [11] [12]
 \openout2 = `conclusion.aux'.
 
  (./conclusion.tex
 Chapter 4.
-) [12
+) [13
 
 
 
 ] (./diploma_thesis.bbl)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 71.
- [13
+ [14
 
 
 
@@ -730,13 +730,13 @@ Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 71.
  ) 
 Here is how much of TeX's memory you used:
- 10048 strings out of 494587
- 143501 string characters out of 6177759
- 280961 words of memory out of 5000000
- 13281 multiletter control sequences out of 15000+600000
- 53501 words of font info for 60 fonts, out of 8000000 for 9000
+ 10081 strings out of 494587
+ 143860 string characters out of 6177759
+ 285963 words of memory out of 5000000
+ 13295 multiletter control sequences out of 15000+600000
+ 61084 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,18n,43p,870b,653s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,43p,870b,610s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/
@@ -752,10 +752,10 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (17 pages, 285741 bytes).
+Output written on diploma_thesis.pdf (18 pages, 288038 bytes).
 PDF statistics:
- 395 PDF objects out of 1000 (max. 8388607)
- 353 compressed objects within 4 object streams
- 170 named destinations out of 1000 (max. 500000)
+ 421 PDF objects out of 1000 (max. 8388607)
+ 378 compressed objects within 4 object streams
+ 189 named destinations out of 1000 (max. 500000)
  99 words of extra memory for PDF output out of 10000 (max. 10000000)
 

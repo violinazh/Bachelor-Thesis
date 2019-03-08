@@ -215,16 +215,11 @@ RETURN head(collect(pid)), type, min(minCost)
 
 For JAVA:
 
-- For every crossroad find the pois
-MATCH (a:CROSSROAD {id:189146})-[r:HAS_POI]->(p:POI)
-UNWIND p.type as type
-RETURN a.id, p.id, type, r.dist
-
-- Find all roads
-MATCH (a:CROSSROAD)-[r:ROAD]->(b:CROSSROAD) 
-RETURN a.id, r.distance, b.id
-
-
+- Checking the path reurned by Dijkstra-KNN
+MATCH (start:CROSSROAD{id:0}), (end:CROSSROAD{id:7509})
+CALL algo.shortestPath.stream(start, end, 'distance')
+YIELD nodeId, cost
+RETURN algo.getNodeById(nodeId).id AS id, cost
 
 
 
