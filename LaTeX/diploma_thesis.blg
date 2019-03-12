@@ -7,15 +7,14 @@ A level-1 auxiliary file: intro.aux
 A level-1 auxiliary file: relatedwork.aux
 A level-1 auxiliary file: operators.aux
 A level-1 auxiliary file: equality.aux
+A level-1 auxiliary file: evaluation.aux
 A level-1 auxiliary file: conclusion.aux
 Database file #1: diploma_thesis.bib
+Warning--I didn't find a database entry for "AhmadiDatasets"
 Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
 while executing---line 1070 of file styles/plain.bst
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
 while executing---line 1070 of file styles/plain.bst
-Warning--empty title in evagian
-Warning--empty booktitle in evagian
-Warning--empty year in evagian
 Warning--empty booktitle in skyline
 Warning--empty year in skyline
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
@@ -32,34 +31,34 @@ Warning--empty booktitle in semanticSRQ
 Warning--empty year in semanticSRQ
 You've used 6 entries,
             2161 wiz_defined-function locations,
-            534 strings with 5647 characters,
-and the built_in function-call counts, 1535 in all, are:
-= -- 124
-> -- 54
+            540 strings with 5849 characters,
+and the built_in function-call counts, 1549 in all, are:
+= -- 129
+> -- 60
 < -- 0
-+ -- 23
-- -- 16
-* -- 79
-:= -- 247
-add.period$ -- 17
++ -- 25
+- -- 18
+* -- 75
+:= -- 252
+add.period$ -- 18
 call.type$ -- 6
-change.case$ -- 25
+change.case$ -- 27
 chr.to.int$ -- 0
-cite$ -- 19
-duplicate$ -- 84
-empty$ -- 169
-format.name$ -- 16
-if$ -- 325
+cite$ -- 16
+duplicate$ -- 78
+empty$ -- 165
+format.name$ -- 18
+if$ -- 330
 int.to.chr$ -- 0
 int.to.str$ -- 6
-missing$ -- 6
-newline$ -- 32
+missing$ -- 5
+newline$ -- 33
 num.names$ -- 12
-pop$ -- 70
+pop$ -- 67
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 21
 quote$ -- 0
-skip$ -- 37
+skip$ -- 40
 stack$ -- 0
 substring$ -- 31
 swap$ -- 6
@@ -67,8 +66,8 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 24
-warning$ -- 13
+warning$ -- 10
 while$ -- 12
 width$ -- 7
-write$ -- 54
+write$ -- 57
 (There were 4 error messages)

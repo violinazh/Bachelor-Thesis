@@ -1,9 +1,11 @@
 \begin{thebibliography}{1}
 
-\bibitem{evagian}
-Eva Giannatou.
-\newblock
-  https://github.com/evagian/California-road-network-NEO4J-CYPHER-graph-and-queries.
+\bibitem{datasets}
+E.~Ahmadi and M.A. Nascimento.
+\newblock Datasets of roads, public transportation and points-of-interest in
+  {A}msterdam, {B}erlin and {O}slo.
+\newblock In: \url{https://sites.google.com/ualberta.ca/nascimentodatasets/},
+  2017.
 
 \bibitem{skyline}
 Xuegang Huang and Christian~S. Jensen.

@@ -32,11 +32,11 @@
    pdfkeywords={Trip Planning}
 ]{hyperref}
 \usepackage[ruled,linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{todonotes}
 
 \bibliographystyle{styles/plain}
 
 %\raggedbottom
-\newcommand{\todo}[1]{{\texttt{[#1]}}}
 \newcommand{\code}[1]{{\tt \small{#1}}}
 \newcommand{\evenindent}[2]{\ifodd #1 \else \hspace*{#2} \fi}
 
@@ -45,6 +45,7 @@
 \unitlength1cm
 
 \selectlanguage{american}
+\setlength{\parindent}{0pt}
 
 
 \input{diploma_thesis_title}
@@ -61,6 +62,8 @@
 \include{relatedwork}
 \include{operators}
 \include{equality}
+% add chapters for other operators
+\include{evaluation}
 \include{conclusion}
 
 \backmatter    
