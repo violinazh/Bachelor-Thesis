@@ -1,0 +1,68 @@
+\section{Not-Equality operator}
+The equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal.
+
+\subsection{Problem definition} 
+\label{sec:problem}
+
+\subsection{Precomputations} 
+\label{sec:precomp}
+
+% Introducing the proposed algorithm + proving the correctness
+\subsection{Proposed approach} 
+\label{sec:approach}
+The not-equality operator is designed using the PNE approach, proposed in \cite{OSR}. It uses the progressive neighbour explorator as its base to upgrade on and explore all the possible optimal routes until it finds an optimal route, in which the given PoIs are different.
+
+% Explaining the algorithm step by step
+\subsubsection{Algorithm}
+\label{sec:algortihm}
+
+\SetKw{Return}{return}
+\SetKw{Break}{break}
+
+\SetKwFunction{PNE}{PNE}
+\SetKwFunction{NN}{nearestNeigbour}
+\SetKwFunction{KNN}{kNearestNeigbour}
+\SetKwFunction{travelDistance}{travelDistance}
+\SetKwFunction{length}{length}
+
+\begin{algorithm}
+	\label{notequality}
+	\caption{notEqualityOperator}
+	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+	
+	\Input{$Query(sp, M = (c_1, c_2, ..., c_n)), NotEqual(i, j)$}
+	\Output{$Route = (r_1, r_2, ..., r_n)$}
+	\BlankLine
+	
+	$initialize$ $heap$\; 
+	
+	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked }
+	
+	fetch a $PSR$ from the $heap$\;
+	\While{$heap$ is not empty}{
+		\eIf{$length(PSR) = m$}{
+			\eIf{$PSR[i] != PSR[j]$}{
+				$PSR$ is the optimal route\;
+			}
+			{
+				\tcp{We continue}
+			}
+		}
+		{
+			a) \NN{$r_|PSR|, U_{m_{|PSR|+1}}$}\;
+			update $PSR$ and put it back on the $heap$\;
+			b) \KNN{$r_{|PSR|-1}, U_{m_|PSR|}$}\;
+			generate a new $PSR$ and place it on the $heap$\;
+		}
+	}
+	
+	
+\end{algorithm}
+
+% Proving the correctness and comparing to the baseline/trivial approach
+\subsubsection{Correctness}
+\label{sec:correctness}
+
+% Performance of the algorithm
+\subsection{Experimental study}
+\label{sec:experiments}

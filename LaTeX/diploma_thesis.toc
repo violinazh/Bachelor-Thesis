@@ -19,6 +19,13 @@
 \contentsline {subsubsection}{Algorithm}{8}{section*.7}
 \contentsline {subsubsection}{Correctness}{9}{section*.8}
 \contentsline {subsection}{\numberline {3.1.4}Experimental study}{9}{subsection.3.1.4}
-\contentsline {chapter}{\numberline {4}Evaluation}{14}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion and Future work}{15}{chapter.5}
-\contentsline {chapter}{Bibliography}{16}{section*.9}
+\contentsline {section}{\numberline {3.2}Not-Equality operator}{14}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Problem definition}{14}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Precomputations}{14}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Proposed approach}{14}{subsection.3.2.3}
+\contentsline {subsubsection}{Algorithm}{14}{section*.9}
+\contentsline {subsubsection}{Correctness}{14}{section*.10}
+\contentsline {subsection}{\numberline {3.2.4}Experimental study}{14}{subsection.3.2.4}
+\contentsline {chapter}{\numberline {4}Evaluation}{16}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion and Future work}{17}{chapter.5}
+\contentsline {chapter}{Bibliography}{18}{section*.11}

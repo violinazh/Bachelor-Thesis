@@ -16,7 +16,7 @@ For generating the routes and deciding which of them are worth further expanding
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
-\label{sec:design}
+\label{sec:algortihm}
 First, an optimal sequenced route is found using the PNE algorithm \ref{PNE}. It is checked, if the two PoIs that the user has asked to be equal, are equal in the OSR. If so, the OSR is returned, else the equality operator continues with the modified PNE algorithm.
 
 Second, we artificially create a sequenced route from the optimal route, found by PNE, as seen in \ref{dummy}. The optimal route is changed, so that $r_j$ is made to be equal to $r_i$ and the length of the artificially created PSR is the initial upper bound, by which later partial sequenced routes are either kept or discarded. The $firstPSR$ is a partial SR, which contains all the PoIs from the optimal route, found by PNE, until $r_i$, and it is kept and build upon.
@@ -226,7 +226,7 @@ Next, the modified PNE algorithm acts as a PNE algorithm and it fetches partial 
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
-\label{sec:implementation}
+\label{sec:correctness}
 
 % Performance of the algorithm
 \subsection{Experimental study}
