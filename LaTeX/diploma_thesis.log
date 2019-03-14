@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  12 MAR 2019 15:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  12 MAR 2019 19:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -793,9 +793,9 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Cskip=\skip89
 )
 \c@@todonotes@numberoftodonotes=\count161
-) (./diploma_thesis.aux (./abstract.aux) (./intro.aux) (./relatedwork.aux) (./o
-perators.aux)
-(./equality.aux) (./evaluation.aux) (./conclusion.aux))
+) (./diploma_thesis.aux (./abstract.aux) (./intro.aux) (./notes.aux) (./related
+work.aux)
+(./operators.aux) (./equality.aux) (./evaluation.aux) (./conclusion.aux))
 \openout1 = `diploma_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
@@ -950,6 +950,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--39
  []
 
 ) [3]
+\openout2 = `notes.aux'.
+
+ (./notes.tex
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 3.
+) [4
+
+
+]
 \openout2 = `relatedwork.aux'.
 
  (./relatedwork.tex
@@ -969,7 +978,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--10
 
  []
 
-[4
+[5
 
 
 
@@ -983,7 +992,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-) [5]
+) [6]
 \openout2 = `operators.aux'.
 
  (./operators.tex
@@ -998,7 +1007,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--11
 
  []
 
-) [6
+) [7
 
 
 
@@ -1006,29 +1015,26 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--11
 \openout2 = `equality.aux'.
 
  (./equality.tex
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 5.
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
+Underfull \hbox (badness 10000) in paragraph at lines 13--14
 
  []
 
-[7
+[8
 
 
 ]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 70.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 72.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 54.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 56.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)) [8] [9] [10]
-[11] [12]
+)) [9] [10]
+[11] [12] [13]
 \openout2 = `evaluation.aux'.
 
  (./evaluation.tex
 Chapter 4.
-) [13
+) [14
 
 
 
@@ -1037,31 +1043,31 @@ Chapter 4.
 
  (./conclusion.tex
 Chapter 5.
-) [14
+) [15
 
 
 
-] (./diploma_thesis.bbl) [15
+] (./diploma_thesis.bbl) [16
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 74.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 74.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 75.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 75.
  (./diploma_thesis.aux (./abstract.aux)
-(./intro.aux) (./relatedwork.aux) (./operators.aux) (./equality.aux)
-(./evaluation.aux) (./conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 74.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 74.
+(./intro.aux) (./notes.aux) (./relatedwork.aux) (./operators.aux)
+(./equality.aux) (./evaluation.aux) (./conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 75.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 75.
 Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 0C780329DCFC9AE76AB00B6AE572952D;979.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 74.
+(rerunfilecheck)             Checksum: 416EF11D359D8F3D64477EA462C074A3;1047.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 75.
  ) 
 Here is how much of TeX's memory you used:
- 20496 strings out of 494587
- 366212 string characters out of 6177759
- 484165 words of memory out of 5000000
- 23472 multiletter control sequences out of 15000+600000
+ 20506 strings out of 494587
+ 366310 string characters out of 6177759
+ 484679 words of memory out of 5000000
+ 23474 multiletter control sequences out of 15000+600000
  61084 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,16n,78p,870b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1080,10 +1086,10 @@ ist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (19 pages, 212402 bytes).
+Output written on diploma_thesis.pdf (20 pages, 213061 bytes).
 PDF statistics:
- 465 PDF objects out of 1000 (max. 8388607)
- 422 compressed objects within 5 object streams
- 195 named destinations out of 1000 (max. 500000)
- 154 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 474 PDF objects out of 1000 (max. 8388607)
+ 430 compressed objects within 5 object streams
+ 196 named destinations out of 1000 (max. 500000)
+ 162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
