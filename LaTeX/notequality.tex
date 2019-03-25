@@ -3,6 +3,10 @@ The equality operator is based on the need to express that some PoIs in the SRQ 
 
 \subsection{Problem definition} 
 \label{sec:problem}
+The not-equality operator is defined as follows: \newline
+
+\textbf{Not-Equality operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in U_{M_{i}}$, $r_j \in U_{M_{j}}$ and $M_i \neq M_j$, $NOTEQUAL(i, j)$ is an equality operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
+$Q(sp, M, NOTEQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$ and where $r_i \neq r_j$.
 
 \subsection{Precomputations} 
 \label{sec:precomp}
@@ -30,18 +34,18 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 	\caption{notEqualityOperator}
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
 	
-	\Input{$Query(sp, M = (c_1, c_2, ..., c_n)), NotEqual(i, j)$}
-	\Output{$Route = (r_1, r_2, ..., r_n)$}
+	\Input{$(sp, M = (c_1, c_2, ..., c_l)), NOTEQUAL(i, j)$}
+	\Output{$R = (r_1, r_2, ..., r_l)$}
 	\BlankLine
 	
 	$initialize$ $heap$\; 
 	
-	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked }
+	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked}
 	
 	fetch a $PSR$ from the $heap$\;
 	\While{$heap$ is not empty}{
-		\eIf{$length(PSR) = m$}{
-			\eIf{$PSR[i] != PSR[j]$}{
+		\eIf{$length(PSR) = l$}{
+			\eIf{$PSR[i] \neq PSR[j]$}{
 				$PSR$ is the optimal route\;
 			}
 			{

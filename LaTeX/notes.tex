@@ -1,4 +1,74 @@
 % This section sums up important notation, definitions, and key lemmas that are not the main focus of the thesis.
 % Reformulating the OSRQuery
-\subsection{Notations and Preliminaries} 
+% Table -> summary of notations
+\chapter{Notations and Preliminaries} 
 \label{sec:notes}
+In this chapter, I would like to introduce some terms, notations and definitions that are used throughout the thesis, such as the definition for a sequenced route query (SRQ), which we need in order to define the operators. \newline
+
+\textbf{PoIs sets:} We assume that we have $n$ sets $U_1$, $U_2$, ..., $U_n$, which contain points in a 2-dimensional space ${\rm I\!R}^2$ and $dist(., .)$ is a distance function, which obtains the distance between two points in a two dimensional road network. The sets $U_i$ represent the data sets for the different categories of points of interest, e.g. restaurants, gas stations etc.. \newline
+
+\textbf{Category sequence:} $M = (c_1, c_2, ..., c_l)$ is a sequence of categories, if $1 \leq M_i \leq n$ for $1 \leq i \leq l$, where n is the number of points sets $U_i$. The user is only allowed to ask for existing location types. \newline
+
+\textbf{Route:} $R =(r_1, r_2, ..., r_r)$ is a route, if $r_i \in {\rm I\!R}^2$ for each $1 \leq i \leq r$. $R_sp$ is a route that starts from the starting point $sp$: $R_{sp} = (sp, r_1, r_2, ..., r_r)$\newline
+
+\textbf{Route length:} The length of a route $R = (r_1, r_2, ..., r_r)$ is defined as:
+
+\begin{equation}
+length(R) = \sum_{i=1}^{r-1} dist(P_i, P_{i+1})
+\end{equation}
+
+For $r = 1$ $length(R) = 0$.
+\newline
+
+\textbf{Sequenced route:} Let $M = (c_1, c_2, ..., c_l)$ be a sequence of point of interest categories. $R = (r_1, r_2, ..., r_l)$ is a sequenced route that follows the category sequence M, if $P_i \in U_{M_i}$ where $1 \leq i \leq l$. The points of interest in the route should belong to the corresponding category sets, defined in the category sequence. \newline
+
+\textbf{Optimal sequenced route (OSR) query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$ and a starting point $sp$ in ${\rm I\!R}^2$, $Q(sp, M)$ is the Optimal Sequenced Route (OSR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$.
+
+\begin{equation}
+length(sp, R) = dist(sp, P_1) + length(R)
+\end{equation}
+
+All other sequenced routes that follow $M$ are referred to as candidate sequenced routes (SR). \newline
+
+Table \ref{table} summarizes all used notations.
+
+\begin{table}[h!]
+\centering
+	\begin{tabular}{ |c|c| } 
+		\hline
+		\textit{Symbol} & \textit{Meaning} \\
+		\hline
+		$U_i$ & a point set for a category in ${\rm I\!R}^2$ \\ 
+		\hline
+		$|U_i|$ & cardinality of the set $U_i$ \\ 
+		\hline
+		$n$ & number of point sets $U_i$ \\ 
+		\hline
+		$dist(., .)$ & distance function in ${\rm I\!R}^2$ \\ 
+		\hline
+		$M$ & category sequence, $=(c_1, c_2, ..., c_l)$ \\ 
+		\hline
+		$|M|$ & $l$, size of sequence $M$ = number of items in $M$ \\ 
+		\hline
+		$c_i$ & $i$th member of $M$ \\ 
+		\hline
+		$R$ & route, $= (r_1, r_2, ..., r_r)$ \\ 
+		\hline
+		$|R|$ & $r$, size of route $R$ = number of points in $R$ \\ 
+		\hline
+		$r_i$ & $i$th point in $R$ \\ 
+		\hline
+		$length(R)$ & length of $R$ \\ 
+		\hline
+		$length(sp, R)$ & length of $R_{sp} = (sp, r_1, r_2, ..., r_r)$, $= length(R_{sp})$ \\ 
+		\hline
+		$Q(sp, M)$ & sequenced route query \\ 
+		\hline
+	\end{tabular}
+\caption{Notations}
+\label{table}
+\end{table}
+
+
+
+
