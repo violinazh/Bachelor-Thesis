@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  25 MAR 2019 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  7 APR 2019 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -795,20 +795,8 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \c@@todonotes@numberoftodonotes=\count161
 ) (./diploma_thesis.aux (./abstract.aux) (./intro.aux) (./notes.aux) (./related
 work.aux)
-(./operators.aux) (./equality.aux) (./notequality.aux
-
-LaTeX Warning: Label `sec:problem' multiply defined.
-
-
-LaTeX Warning: Label `sec:precomp' multiply defined.
-
-
-LaTeX Warning: Label `sec:approach' multiply defined.
-
-
-LaTeX Warning: Label `sec:experiments' multiply defined.
-
-) (./evaluation.aux) (./conclusion.aux))
+(./operators.aux) (./equality.aux) (./notequality.aux) (./evaluation.aux)
+(./conclusion.aux))
 \openout1 = `diploma_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
@@ -826,8 +814,7 @@ LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 43.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -953,6 +940,11 @@ Underfull \vbox (badness 3965) has occurred while \output is active []
 
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 18--20
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 21--22
 
  []
@@ -962,7 +954,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--39
 
  []
 
-) [3]
+) [3] [4]
 \openout2 = `notes.aux'.
 
  (./notes.tex
@@ -997,7 +989,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-[4
+[5
 
 
 
@@ -1006,7 +998,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-) [5]
+) [6]
 \openout2 = `relatedwork.aux'.
 
  (./relatedwork.tex
@@ -1026,7 +1018,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--10
 
  []
 
-[6
+[7
 
 
 
@@ -1040,7 +1032,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-) [7]
+) [8]
 \openout2 = `operators.aux'.
 
  (./operators.tex
@@ -1055,7 +1047,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--11
 
  []
 
-) [8
+) [9
 
 
 
@@ -1071,24 +1063,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
 
  []
 
-[9
+[10
 
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--39
+
+ []
+
+[11]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 60.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 62.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 77.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-))
-Underfull \vbox (badness 10000) has occurred while \output is active []
+)
+Underfull \vbox (badness 3058) has occurred while \output is active []
 
- [10]
-[11] [12] [13] [14] [15]
+ [12]
+[13] [14] [15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
+
+ []
+
+
+LaTeX Warning: Float too large for page by 20.10373pt on input line 343.
+
+) [17] [18] [19]
 \openout2 = `notequality.aux'.
 
  (./notequality.tex
@@ -1096,15 +1106,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-) [16
+[20
 
 
-] [17]
+]) [21] [22]
 \openout2 = `evaluation.aux'.
 
  (./evaluation.tex
 Chapter 5.
-) [18
+) [23
 
 
 
@@ -1113,11 +1123,11 @@ Chapter 5.
 
  (./conclusion.tex
 Chapter 6.
-) [19
+) [24
 
 
 
-] (./diploma_thesis.bbl) [20
+] (./diploma_thesis.bbl) [25
 
 
 
@@ -1130,18 +1140,14 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 76.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 76.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 76.
 Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: AC407259766E162F28FCEDC3F6BBE9CA;1454.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
+(rerunfilecheck)             Checksum: DDB812ABBFCDF5175099FE73AD7E06D6;1453.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 76.
  ) 
 Here is how much of TeX's memory you used:
- 20563 strings out of 494587
- 367056 string characters out of 6177759
- 487445 words of memory out of 5000000
- 23488 multiletter control sequences out of 15000+600000
+ 20682 strings out of 494587
+ 369096 string characters out of 6177759
+ 490407 words of memory out of 5000000
+ 23536 multiletter control sequences out of 15000+600000
  61084 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,18n,78p,870b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1161,10 +1167,10 @@ nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (24 pages, 234851 bytes).
+Output written on diploma_thesis.pdf (29 pages, 248851 bytes).
 PDF statistics:
- 562 PDF objects out of 1000 (max. 8388607)
- 512 compressed objects within 6 object streams
- 232 named destinations out of 1000 (max. 500000)
+ 682 PDF objects out of 1000 (max. 8388607)
+ 626 compressed objects within 7 object streams
+ 303 named destinations out of 1000 (max. 500000)
  210 words of extra memory for PDF output out of 10000 (max. 10000000)
 

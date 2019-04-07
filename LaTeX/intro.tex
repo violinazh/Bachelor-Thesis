@@ -16,9 +16,9 @@ We have a starting point $sp$ and a category sequence $M = (c_1, c_2, ..., c_n)$
 For this query a route $(r_1, r_2, ..., r_n)$, defined as a sequence of PoIs, is calculated. \newline
 
 \textbf{Graph model:}
-The graph is constructed using Berlin's spatial datasets from \cite{datasets}, structured in separate CSV files for the crossroads, roads and points of interest.
+The road network or also known as spatial network is modeled as weighted graph where the crossroads are represented by nodes and roads are represented by the edges connecting the nodes. The weights on the edges in this specific research problem are the distances between the nodes on the edges. The distance between any two points can be found by summing up the lengths of the edges that belong to the shortest path between the two points.\newline
 
-For the implementation of the operators the datasets are imported into a graph structure of nodes and edges, where each node has a unique id, its latitude and longitude and a list of PoIs that have been mapped to it and each edge has a source and destination node and the distance between the two nodes in kilometers as parameters. Each PoI is mapped to the nearest crossroad and has a unique id, a type, its latitude and longitude and the distance to the node it is mapped to. \newline
+The graph used in this paper is constructed using Berlin's spatial datasets from \cite{datasets}, structured in separate CSV files for the crossroads, roads and points of interest. For the implementation of the operators the datasets are imported into a graph structure of nodes and edges, where each node has a unique id, its latitude and longitude and a list of PoIs that have been mapped to it and each edge has a source and destination node and the distance between the two nodes in kilometers as parameters. Each PoI is mapped to the nearest crossroad and has a unique id, a type, its latitude and longitude and the distance to the node it is mapped to. \newline
 
 % Not used anymore
 \iffalse
@@ -39,11 +39,11 @@ The map used for implementation and testing is the road network of Berlin, with 
 
 % e.g. processing time for the trivial approach 
 \section{Challenges}
-\todo[color=yellow!40]{Challenges}
+\todo[color=yellow!40]{Todo: Challenges}
 
 % ! Write at the end
 % Shortly presenting the algorithms for the operators
 \section{Contributions}
-\todo[color=yellow!40]{Contributions}
+\todo[color=yellow!40]{Todo: Contributions}
 
 The remainder of the thesis is organized as follows: First, I review the related work that has been done on the topic of SRQ in Section 2. In Section 3 I cover the proposed operators and go into details on some of them in three separate sections for each of them: Design, Implementation and Evaluation. Finally, I conclude the thesis by summing up the progress made on the subject and discuss future work.

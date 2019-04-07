@@ -2,23 +2,27 @@
 The equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal.
 
 \subsection{Problem definition} 
-\label{sec:problem}
+\label{sec:problemNEO}
 The not-equality operator is defined as follows: \newline
 
 \textbf{Not-Equality operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in U_{M_{i}}$, $r_j \in U_{M_{j}}$ and $M_i \neq M_j$, $NOTEQUAL(i, j)$ is an equality operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
 $Q(sp, M, NOTEQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$ and where $r_i \neq r_j$.
 
 \subsection{Precomputations} 
-\label{sec:precomp}
+\label{sec:precompNEO}
+The precomputations are the same as for the equality operator in Section \ref{sec:precompEO}.
 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
-\label{sec:approach}
+\label{sec:approachNEO}
 The not-equality operator is designed using the PNE approach, proposed in \cite{OSR}. It uses the progressive neighbour explorator as its base to upgrade on and explore all the possible optimal routes until it finds an optimal route, in which the given PoIs are different.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
-\label{sec:algortihm}
+\label{sec:algortihmNEO}
+The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until the $heap$ is empty. Each full SR (line 7 to 13) is checked if it satisfies the requirement for $r_i$ and $r_j$ to not be equal. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 14 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}.
+
+Modified PNE proceeds with examining the routes on the heap by size and modifying them according to PNE. When the current route on the heap is a full SR, then the optimal route has been found. The four cases (line 5, 13, 21 and 27) correspond to the cases in algorithm of the proposed approach, with the only difference being that no heuristic and length checks are performed. 
 
 \SetKw{Return}{return}
 \SetKw{Break}{break}
@@ -30,7 +34,7 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 \SetKwFunction{length}{length}
 
 \begin{algorithm}
-	\label{notequality}
+	\label{alg:notequality}
 	\caption{notEqualityOperator}
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
 	
@@ -40,6 +44,9 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 	
 	$initialize$ $heap$\; 
 	
+	$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
+	place $firstPSR$ on heap\;
+	
 	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked}
 	
 	fetch a $PSR$ from the $heap$\;
@@ -47,9 +54,10 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 		\eIf{$length(PSR) = l$}{
 			\eIf{$PSR[i] \neq PSR[j]$}{
 				$PSR$ is the optimal route\;
+				\Return $PSR$\;
 			}
 			{
-				\tcp{We continue}
+				\tcp{We continue with the next PSR on the heap}
 			}
 		}
 		{
@@ -59,14 +67,19 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 			generate a new $PSR$ and place it on the $heap$\;
 		}
 	}
+
+	\tcp*{In the rare case that there is only one PoI of the given  category, the algorithm would return an empty route}
+	\Return $null$\;
 	
 	
 \end{algorithm}
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
-\label{sec:correctness}
+\label{sec:correctnessNEO}
+\todo[color=yellow!40]{Todo: Correctness}
 
 % Performance of the algorithm
 \subsection{Experimental study}
-\label{sec:experiments}
+\label{sec:experimentsNEO}
+\todo[color=yellow!40]{Todo: Experiments}

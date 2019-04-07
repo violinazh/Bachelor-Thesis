@@ -17,7 +17,6 @@ public class EqualityOperator {
     private Route firstPSR;
 
     private PriorityQueue<Route> heap;
-    private Map<Key, Integer> neighbors; // a HashMap for finding k? neighbor
     private double UB; // upper bound variable
 
     private StopWatch stopWatch;
@@ -46,7 +45,6 @@ public class EqualityOperator {
             }
         };
         heap = new PriorityQueue<Route>(initialCapacity, comparator);
-        neighbors = new HashMap<Key, Integer>();
 
         UB = 0;
         stopWatch = new StopWatch();
@@ -336,12 +334,12 @@ public class EqualityOperator {
             vid = route.getRpoi(index).getVid();
         }
         Key key = new Key(vid, index);
-        if (neighbors.containsKey(key)) {
-            k = neighbors.get(key) + 1;
-            neighbors.put(key, k);
+        if (route.getNeighbors().containsKey(key)) {
+            k = route.getNeighbors().get(key) + 1;
+            route.putToMap(key, k);
         } else {
             k = 1;
-            neighbors.put(key, k);
+            route.putToMap(key, k);
         }
 
         R_POI rpoi = null;
@@ -381,12 +379,12 @@ public class EqualityOperator {
             vid = route.getRpoi(index).getVid();
         }
         Key key = new Key(vid, index);
-        if (neighbors.containsKey(key)) {
-            k = neighbors.get(key) + 1;
-            neighbors.put(key, k);
+        if (route.getNeighbors().containsKey(key)) {
+            k = route.getNeighbors().get(key) + 1;
+            route.putToMap(key, k);
         } else {
             k = 1;
-            neighbors.put(key, k);
+            route.putToMap(key, k);
         }
 
         R_POI rpoi = null;
