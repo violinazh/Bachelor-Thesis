@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  7 APR 2019 18:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  9 APR 2019 22:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -795,8 +795,8 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \c@@todonotes@numberoftodonotes=\count161
 ) (./diploma_thesis.aux (./abstract.aux) (./intro.aux) (./notes.aux) (./related
 work.aux)
-(./operators.aux) (./equality.aux) (./notequality.aux) (./evaluation.aux)
-(./conclusion.aux))
+(./operators.aux) (./equality.aux) (./notequality.aux) (./or.aux)
+(./evaluation.aux) (./conclusion.aux))
 \openout1 = `diploma_thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
@@ -814,7 +814,8 @@ LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
 LaTeX Font Info:    Try loading font information for T1+ptm on input line 43.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -913,15 +914,15 @@ ine 8.
 ] (./diploma_thesis.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 5.
-)
-\tf@toc=\write6
-\openout6 = `diploma_thesis.toc'.
-
  [1
 
 
 
-]
+])
+\tf@toc=\write6
+\openout6 = `diploma_thesis.toc'.
+
+ [2]
 \openout2 = `intro.aux'.
 
  (./intro.tex
@@ -936,7 +937,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--17
 
 Underfull \vbox (badness 3965) has occurred while \output is active []
 
- [2
+ [3
 
 
 ]
@@ -954,7 +955,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--39
 
  []
 
-) [3] [4]
+) [4] [5]
 \openout2 = `notes.aux'.
 
  (./notes.tex
@@ -989,7 +990,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-[5
+[6
 
 
 
@@ -998,7 +999,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-) [6]
+) [7]
 \openout2 = `relatedwork.aux'.
 
  (./relatedwork.tex
@@ -1018,7 +1019,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--10
 
  []
 
-[7
+[8
 
 
 
@@ -1032,7 +1033,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-) [8]
+) [9]
 \openout2 = `operators.aux'.
 
  (./operators.tex
@@ -1047,7 +1048,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--11
 
  []
 
-) [9
+) [10
 
 
 
@@ -1056,65 +1057,110 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--11
 
  (./equality.tex
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 4.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 23.
 
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 26--27
+Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
 
-[10
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 46.
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 46.
+ [11
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
-
- []
-
-[11]
-LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 77.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 77.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-Underfull \vbox (badness 3058) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [12]
-[13] [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
 
  []
 
 
-LaTeX Warning: Float too large for page by 20.10373pt on input line 343.
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-) [17] [18] [19]
+ [13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [16]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [18]
+Underfull \hbox (badness 10000) in paragraph at lines 305--306
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19]
+Overfull \vbox (27.10373pt too high) has occurred while \output is active []
+
+
+[20]) [21]
 \openout2 = `notequality.aux'.
 
  (./notequality.tex
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
+Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
  []
 
-[20
+[22
 
 
-]) [21] [22]
+]) [23] [24]
+\openout2 = `or.aux'.
+
+ (./or.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--19
+
+ []
+
+
+Overfull \hbox (28.32077pt too wide) in paragraph at lines 33--34
+\T1/ptm/m/n/12 sively in-spects each op-tion $\OML/cmm/m/it/12 M[]$ \T1/ptm/m/n
+/12 from the or se-quences $\OML/cmm/m/it/12 OR[]$ \T1/ptm/m/n/12 in $\OML/cmm/
+m/it/12 S \OT1/cmr/m/n/12 = (\OML/cmm/m/it/12 OR[]; OR[]; :::; OR[]\OT1/cmr/m/n
+/12 )$\T1/ptm/m/n/12 ,
+ []
+
+[25
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26]
+Overfull \vbox (40.5136pt too high) has occurred while \output is active []
+
+
+[27]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+Underfull \hbox (badness 10000) in paragraph at lines 120--121
+
+ []
+
+) [29]
 \openout2 = `evaluation.aux'.
 
  (./evaluation.tex
 Chapter 5.
-) [23
+) [30
 
 
 
@@ -1123,31 +1169,32 @@ Chapter 5.
 
  (./conclusion.tex
 Chapter 6.
-) [24
+) [31
 
 
 
-] (./diploma_thesis.bbl) [25
+] (./diploma_thesis.bbl) [32
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 76.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 76.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 77.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 77.
  (./diploma_thesis.aux (./abstract.aux)
 (./intro.aux) (./notes.aux) (./relatedwork.aux) (./operators.aux)
-(./equality.aux) (./notequality.aux) (./evaluation.aux) (./conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 76.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 76.
+(./equality.aux) (./notequality.aux) (./or.aux) (./evaluation.aux)
+(./conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 77.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 77.
 Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: DDB812ABBFCDF5175099FE73AD7E06D6;1453.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 76.
+(rerunfilecheck)             Checksum: 5A88E02340C8A0283397CC924D018150;1795.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 77.
  ) 
 Here is how much of TeX's memory you used:
- 20682 strings out of 494587
- 369096 string characters out of 6177759
- 490407 words of memory out of 5000000
- 23536 multiletter control sequences out of 15000+600000
+ 20809 strings out of 494587
+ 370923 string characters out of 6177759
+ 466684 words of memory out of 5000000
+ 23571 multiletter control sequences out of 15000+600000
  61084 words of font info for 67 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,18n,78p,870b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1167,10 +1214,10 @@ nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (29 pages, 248851 bytes).
+Output written on diploma_thesis.pdf (36 pages, 264347 bytes).
 PDF statistics:
- 682 PDF objects out of 1000 (max. 8388607)
- 626 compressed objects within 7 object streams
- 303 named destinations out of 1000 (max. 500000)
- 210 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 836 PDF objects out of 1000 (max. 8388607)
+ 772 compressed objects within 8 object streams
+ 389 named destinations out of 1000 (max. 500000)
+ 250 words of extra memory for PDF output out of 10000 (max. 10000000)
 

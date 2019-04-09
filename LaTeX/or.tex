@@ -1,0 +1,153 @@
+\SetKw{Return}{return}
+\SetKw{Break}{break}
+
+\SetKwFunction{PNE}{PNE}
+\SetKwFunction{NN}{nearestNeigbour}
+\SetKwFunction{KNN}{kNearestNeigbour}
+\SetKwFunction{travelDistance}{travelDistance}
+\SetKwFunction{length}{length}
+\SetKwFunction{modifyRouteA}{modifyRouteA}
+\SetKwFunction{modifyRouteB}{modifyRouteB}
+
+\section{Or operator}
+The or operator gives the user flexibility to express his need for different route alternatives. It represents the disjunction operator, usually present in query languages. In the context of a sequenced route query, the user can specify multiple categories or a list of categories, which can be disjoint. Then the query is responsible for finding the best route out of all the options that the user has specified. The best route is qualified based on length.
+
+\subsection{Problem definition} 
+\label{sec:problemOr}
+In order to explain the or query, first we need to define what an OR sequence is:\newline
+\textbf{OR sequence:} An or sequence $OR = (M_1, M_2, ..., M_m)$ represents the disjunction of category sequences, such as $M_1 = (c_1, c_2, ..., c_l)$. At least one of the category sequences, defined in this or sequence, must be present in the final result of the query.\newline
+
+The or query is defined as follows: \newline
+\textbf{Or query:} Given a sequence of OR sequences $S = (OR_1, OR_2, ..., OR_n)$ and a starting point $sp$ in ${\rm I\!R}^2$
+$Q(sp, S)$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows one of the possible permutations of the sequence $S$. 
+For example $P = (M_a, M_b, ..., M_z)$ is a permutation of $S$, where $M_a = (c_{a1}, c_{a2}, ..., c_{al})$, $M_b = (c_{b1}, c_{b2}, ..., c_{bl})$ and $M_z = (c_{z1}, c_{z2}, ..., c_{zl})$ build a category sequence \newline
+$M = (c_{a1}, c_{a2}, ..., c_{al}, c_{b1}, c_{b2}, ..., c_{bl}, c_{z1}, c_{z2}, ..., c_{zl})$.
+
+\subsection{Precomputations} 
+\label{sec:precompOr}
+The precomputations are the same as for the equality operator in Section \ref{sec:precompEO}.
+
+% Introducing the proposed algorithm + proving the correctness
+\subsection{Proposed approach} 
+\label{sec:approachOr}
+The or operator is designed using the PNE approach, proposed in \cite{OSR}. It progressively inspects each option $M_i$ from the or sequences $OR_i$ in $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
+
+% Explaining the algorithm step by step
+\subsubsection{Algorithm}
+\label{sec:algortihmOr}
+The algorithm (shown in \ref{alg:or}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1 to 16). It then proceeds to inspect and modify the routes on the heap based on their length, until a SR is reached. As can be seen in line 2, a PSR is build with each $M_i$ from the first or sequences $OR_1$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor to the starting point as the PNE algorithm would, otherwise it finds the shortest route with PNE for the starting point and category sequence $M_i$ (line 11). From all these PSR the shortest one is chosen and put on the heap.
+
+Modified PNE proceeds with examining the routes on the heap by $index(PSR)$ and modifying them according to PNE. $index(PSR)$ indicates the index of the last found or sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. It is a full SR, . When the current route on the heap is a full SR, where $s = n$, which indicates the last or sequence $OR_n.$, then the optimal route has been found (line 21 to 24). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm \ref{alg:PNE} (line 25 to 30).
+
+\begin{algorithm}[H]
+	\label{alg:or}
+	\caption{orOperator}
+	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+	
+	\Input{$(sp, S = (OR_1, OR_2, ..., OR_n))$}
+	\Output{$R = (r_1, r_2, ..., r_l)$}
+	\BlankLine
+	
+	$initialize$ $heap$\; 
+	
+	\ForEach(Finding all the possible neighbors to the starting point){$M_i$ in $OR_1$}{
+		$initialize$ $shortestPSR$\;
+		\tcp{Building a new $PSR$ with $M_i$}
+		\eIf{$|M_i| = 1$}{
+			\tcp{$M_i$ only contains one category}
+			\NN{$sp, U_{M_{i}}$}\;
+			$update$ $shortestPSR$\;
+		}
+		{
+			\tcp{$M_i$ is a sequence of categories}
+			\PNE{$sp, M_i$}\;
+			$update$ $shortestPSR$\;
+		}	
+		
+	}
+	$firstPSR \leftarrow shortestPSR$\;
+	place $firstPSR$ on heap\;
+	
+	\BlankLine
+	
+	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked}
+	
+	fetch a $PSR$ from the $heap$\;
+	\tcp{$index(PSR)$ indicates the index of the last found or sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. It is a full SR, when $s = n$, which indicates the last or sequence $OR_n.$}
+	\Switch{$s = index(PSR)$}{
+		\Case{$s == n$}{
+			$PSR$ is the optimal route\;
+			\Return $PSR$\;
+		}
+		\Case{$s \neq n$}{
+			\tcp{a)}
+			\modifyRouteA{$PSR$}\;
+			
+			\tcp{b)}
+			\modifyRouteB{$PSR$}\;
+		}
+	}
+
+\end{algorithm}
+
+In case a) \ref{proc:modifyRouteA} a PSR is build with each $M_i$ from the or sequences $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor $r_{|PSR|}$ in $U_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the shortest route with PNE for $r_{|PSR|}$ as a starting point and category sequence $M_i$ (line 10). From all these PSR the shortest one is chosen and put on the heap. Trimming is also performed (see \ref{proc:trim}).
+
+\begin{procedure}[H]
+	\label{proc:modifyRouteA}
+	\caption{modifyRouteA($PSR$)}
+	\ForEach(){$M_i$ in $OR_s$}{
+		$initialize$ $shortestPSR$\;
+		\tcp{Building a new $PSR$ with $M_i$}
+		\eIf{$|M_i| = 1$}{
+			\tcp{$M_i$ only contains one category}
+			\NN{$r_{|PSR|}, U_{M_{i}}$}\;
+			$update$ $shortestPSR$\;
+		}
+		{
+			\tcp{$M_i$ is a sequence of categories}
+			\PNE{$r_{|PSR|}, M_i$}\;
+			$update$ $shortestPSR$\;
+		}	
+		
+	}
+	$newPSR \leftarrow shortestPSR$\;
+	\tcp{Trimming is also done (see \ref{proc:trim})}
+	place $newPSR$ on heap\;
+\end{procedure}
+
+\pagebreak
+
+In case b) \ref{proc:modifyRouteB} a PSR is build with each $M_i$ from the or sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the kth nearest neighbor $r_{|PSR|-1}$ in $U_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the shortest route with PNE for $r_{|PSR|-1}$ as a starting point and category sequence $M_i$ (line 10). From all these PSR the shortest one is chosen and put on the heap.\newline
+
+\begin{procedure}[H]
+	\label{proc:modifyRouteB}
+	\caption{modifyRouteB($PSR$)}
+	\ForEach(){$M_i$ in $OR_{s-1}$}{
+		$initialize$ $shortestPSR$\;
+		\tcp{Building a new $PSR$ with $M_i$}
+		\eIf{$|M_i| = 1$}{
+			\tcp{$M_i$ only contains one category}
+			\KNN{$r_{|PSR|-1}, U_{M_{i}}$}\;
+			$update$ $shortestPSR$\;
+		}
+		{
+			\tcp{$M_i$ is a sequence of categories}
+			\PNE{$r_{|PSR|-1}, M_{i}$}\;
+			$update$ $shortestPSR$\;
+		}	
+		
+	}
+	$newPSR \leftarrow shortestPSR$\;
+	place $newPSR$ on heap\;
+\end{procedure}
+
+
+% Proving the correctness and comparing to the baseline/trivial approach
+\subsubsection{Correctness}
+\label{sec:correctnessOr}
+\todo[color=yellow!40]{Todo: Correctness}
+
+% Performance of the algorithm
+\subsection{Experimental study}
+\label{sec:experimentsOr}
+\todo[color=yellow!40]{Todo: Experiments}

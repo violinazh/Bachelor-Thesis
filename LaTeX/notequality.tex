@@ -1,5 +1,14 @@
+\SetKw{Return}{return}
+\SetKw{Break}{break}
+
+\SetKwFunction{PNE}{PNE}
+\SetKwFunction{NN}{nearestNeigbour}
+\SetKwFunction{KNN}{kNearestNeigbour}
+\SetKwFunction{travelDistance}{travelDistance}
+\SetKwFunction{length}{length}
+
 \section{Not-Equality operator}
-The equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal.
+The not-equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal.
 
 \subsection{Problem definition} 
 \label{sec:problemNEO}
@@ -22,18 +31,9 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 \label{sec:algortihmNEO}
 The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until the $heap$ is empty. Each full SR (line 7 to 13) is checked if it satisfies the requirement for $r_i$ and $r_j$ to not be equal. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 14 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}.
 
-Modified PNE proceeds with examining the routes on the heap by size and modifying them according to PNE. When the current route on the heap is a full SR, then the optimal route has been found. The four cases (line 5, 13, 21 and 27) correspond to the cases in algorithm of the proposed approach, with the only difference being that no heuristic and length checks are performed. 
+The algorithm proceeds with examining the routes on the heap by size and modifying them according to PNE. When the current route on the heap is a full SR, then the optimal route has been found. The four cases (line 5, 13, 21 and 27) correspond to the cases in algorithm of the proposed approach, with the only difference being that no heuristic and length checks are performed. 
 
-\SetKw{Return}{return}
-\SetKw{Break}{break}
-
-\SetKwFunction{PNE}{PNE}
-\SetKwFunction{NN}{nearestNeigbour}
-\SetKwFunction{KNN}{kNearestNeigbour}
-\SetKwFunction{travelDistance}{travelDistance}
-\SetKwFunction{length}{length}
-
-\begin{algorithm}
+\begin{algorithm}[H]
 	\label{alg:notequality}
 	\caption{notEqualityOperator}
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
@@ -46,6 +46,8 @@ Modified PNE proceeds with examining the routes on the heap by size and modifyin
 	
 	$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
 	place $firstPSR$ on heap\;
+	
+	\BlankLine
 	
 	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked}
 	
@@ -62,13 +64,14 @@ Modified PNE proceeds with examining the routes on the heap by size and modifyin
 		}
 		{
 			a) \NN{$r_|PSR|, U_{m_{|PSR|+1}}$}\;
+			\tcp{Trimming can also be done \ref{proc:trim}}
 			update $PSR$ and put it back on the $heap$\;
 			b) \KNN{$r_{|PSR|-1}, U_{m_|PSR|}$}\;
 			generate a new $PSR$ and place it on the $heap$\;
 		}
 	}
 
-	\tcp*{In the rare case that there is only one PoI of the given  category, the algorithm would return an empty route}
+	\tcp{In the rare case that there is only one PoI of the given  category, the algorithm would return an empty route}
 	\Return $null$\;
 	
 	
