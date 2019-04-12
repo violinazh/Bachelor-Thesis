@@ -4,8 +4,6 @@
 \SetKwFunction{PNE}{PNE}
 \SetKwFunction{NN}{nearestNeigbour}
 \SetKwFunction{KNN}{kNearestNeigbour}
-\SetKwFunction{travelDistance}{travelDistance}
-\SetKwFunction{length}{length}
 \SetKwFunction{modifyRouteA}{modifyRouteA}
 \SetKwFunction{modifyRouteB}{modifyRouteB}
 
@@ -25,7 +23,7 @@ $M = (c_{a1}, c_{a2}, ..., c_{al}, c_{b1}, c_{b2}, ..., c_{bl}, c_{z1}, c_{z2}, 
 
 \subsection{Precomputations} 
 \label{sec:precompOr}
-The precomputations are the same as for the equality operator in Section \ref{sec:precompEO}.
+The precomputations are the same as for the or operator in Section \ref{sec:precompEO}.
 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
@@ -37,7 +35,7 @@ The or operator is designed using the PNE approach, proposed in \cite{OSR}. It p
 \label{sec:algortihmOr}
 The algorithm (shown in \ref{alg:or}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1 to 16). It then proceeds to inspect and modify the routes on the heap based on their length, until a SR is reached. As can be seen in line 2, a PSR is build with each $M_i$ from the first or sequences $OR_1$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor to the starting point as the PNE algorithm would, otherwise it finds the shortest route with PNE for the starting point and category sequence $M_i$ (line 11). From all these PSR the shortest one is chosen and put on the heap.
 
-Modified PNE proceeds with examining the routes on the heap by $index(PSR)$ and modifying them according to PNE. $index(PSR)$ indicates the index of the last found or sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. It is a full SR, . When the current route on the heap is a full SR, where $s = n$, which indicates the last or sequence $OR_n.$, then the optimal route has been found (line 21 to 24). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm \ref{alg:PNE} (line 25 to 30).
+Modified PNE proceeds with examining the routes on the heap by $index(PSR)$ and modifying them according to PNE. $index(PSR)$ indicates the index of the last found or sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. It is a full SR, . When the current route on the heap is a full SR, where $s = n$, which indicates the last or sequence $OR_n.$, then the optimal route has been found (line 21 to 24). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm \ref{alg:PNE} (line 25 to 30). \newline
 
 \begin{algorithm}[H]
 	\label{alg:or}
@@ -117,6 +115,7 @@ In case a) \ref{proc:modifyRouteA} a PSR is build with each $M_i$ from the or se
 
 \pagebreak
 
+\todo[color=yellow!40]{Todo: How to handle the complex case with PNE}
 In case b) \ref{proc:modifyRouteB} a PSR is build with each $M_i$ from the or sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the kth nearest neighbor $r_{|PSR|-1}$ in $U_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the shortest route with PNE for $r_{|PSR|-1}$ as a starting point and category sequence $M_i$ (line 10). From all these PSR the shortest one is chosen and put on the heap.\newline
 
 \begin{procedure}[H]
@@ -131,6 +130,7 @@ In case b) \ref{proc:modifyRouteB} a PSR is build with each $M_i$ from the or se
 			$update$ $shortestPSR$\;
 		}
 		{
+			% This has to handled better
 			\tcp{$M_i$ is a sequence of categories}
 			\PNE{$r_{|PSR|-1}, M_{i}$}\;
 			$update$ $shortestPSR$\;

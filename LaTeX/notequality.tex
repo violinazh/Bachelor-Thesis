@@ -19,7 +19,7 @@ $Q(sp, M, NOTEQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for t
 
 \subsection{Precomputations} 
 \label{sec:precompNEO}
-The precomputations are the same as for the equality operator in Section \ref{sec:precompEO}.
+The precomputations are the same as for the not equality operator in Section \ref{sec:precompEO}.
 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
@@ -29,9 +29,7 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmNEO}
-The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until the $heap$ is empty. Each full SR (line 7 to 13) is checked if it satisfies the requirement for $r_i$ and $r_j$ to not be equal. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 14 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}.
-
-The algorithm proceeds with examining the routes on the heap by size and modifying them according to PNE. When the current route on the heap is a full SR, then the optimal route has been found. The four cases (line 5, 13, 21 and 27) correspond to the cases in algorithm of the proposed approach, with the only difference being that no heuristic and length checks are performed. 
+The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until the $heap$ is empty. Each full SR (line 7 to 13) is checked if it satisfies the requirement for $r_i$ and $r_j$ to not be equal. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 14 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}. \newline
 
 \begin{algorithm}[H]
 	\label{alg:notequality}

@@ -35,8 +35,15 @@
 \contentsline {subsection}{\numberline {4.3.2}Precomputations}{25}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Proposed approach}{25}{subsection.4.3.3}
 \contentsline {subsubsection}{Algorithm}{25}{section*.19}
-\contentsline {subsubsection}{Correctness}{29}{section*.20}
+\contentsline {subsubsection}{Correctness}{29}{section*.21}
 \contentsline {subsection}{\numberline {4.3.4}Experimental study}{29}{subsection.4.3.4}
-\contentsline {chapter}{\numberline {5}Evaluation}{30}{chapter.5}
-\contentsline {chapter}{\numberline {6}Conclusion and Future work}{31}{chapter.6}
-\contentsline {chapter}{Bibliography}{32}{section*.23}
+\contentsline {section}{\numberline {4.4}Order operator}{30}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Problem definition}{30}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Precomputations}{30}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Proposed approach}{30}{subsection.4.4.3}
+\contentsline {subsubsection}{Algorithm}{31}{section*.24}
+\contentsline {subsubsection}{Correctness}{34}{section*.25}
+\contentsline {subsection}{\numberline {4.4.4}Experimental study}{34}{subsection.4.4.4}
+\contentsline {chapter}{\numberline {5}Evaluation}{35}{chapter.5}
+\contentsline {chapter}{\numberline {6}Conclusion and Future work}{36}{chapter.6}
+\contentsline {chapter}{Bibliography}{37}{section*.28}

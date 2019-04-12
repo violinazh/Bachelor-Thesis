@@ -1,0 +1,150 @@
+\SetKw{Return}{return}
+\SetKw{Break}{break}
+
+\SetKwFunction{PNE}{PNE}
+\SetKwFunction{NN}{nearestNeigbour}
+\SetKwFunction{KNN}{kNearestNeigbour}
+\SetKwFunction{modifyRouteA}{modifyRouteA}
+\SetKwFunction{modifyRouteB}{modifyRouteB}
+
+\section{Order operator}
+The order operator gives the user the opportunity to provide the algorithm with route alternatives that satisfy his needs, from which the best can be found according to length.  In the context of a sequenced route query, the user can specify single, none or multiple categories out of a sequenced category list to be in a specified by him order. Then only these categories are found in the form of a sequenced route query (SRQ) while the others are inspected prioritized and algorithmically. The query is responsible for finding the best route out of all possible permutations of the category sequence.
+
+\subsection{Problem definition} 
+\label{sec:problemOrder}
+First we need to define what an ORDER sequence is:\newline
+\textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, with $k \leq l$ and $1 \leq i_i \leq l$ is a sequence of indices in a category sequence $M_1 = (c_1, c_2, ..., c_l)$. They represent the categories at the given indices and indicate that these categories should remain in the given places in this category sequence $M$. The PoIs from categories, of which no indices are specified in the ORDER sequence can be placed at any other index from the remaining indices for the not ordered categories. \newline
+
+The order query is then defined as follows: \newline
+\textbf{Order query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$, $Q(sp, M, ORDER)$ is a Route Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows partially $M$ as defined by the ORDER sequence.
+
+\subsection{Precomputations} 
+\label{sec:precompOrder}
+The precomputations are the same as for the order operator in Section \ref{sec:precompEO}.
+
+% Introducing the proposed algorithm + proving the correctness
+\subsection{Proposed approach} 
+\label{sec:approachOr}
+The order operator is designed using the PNE approach, proposed in \cite{OSR}. It keeps a sequence of the not ordered categories, which is the complement of the ORDER sequence: $NOTORDERED = \overline{ORDER}$, and inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route. For the categories, the indices of which are in the ordered list, the algorithm finds them according to PNE. 
+The NOTORDERED sequence is accordingly updated for every PSR, as it is specific to a route. Each time a PSR is build with one of the not ordered categories, it is removed from the NOTORDERED sequence for this specific route.
+
+% Explaining the algorithm step by step
+\subsubsection{Algorithm}
+\label{sec:algortihmOrder}
+The algorithm (shown in \ref{alg:order}) starts by initializing the heap, ordered by the length of the routes, and the NOTORDERED sequence, which is simply the complement of the ordered category list (line 1, 2). For building the first PSR (line 3 to 14), the algorithm checks if the first index is contained in the ORDER sequence and if that is the case it finds the nearest neighbor to the starting point from the first category, otherwise it builds partial routes with all possible categories for the first position, which are all the categories in the NOTORDERED list. From all these PSR the shortest one is chosen and put on the heap. It then proceeds to inspect and modify the routes on the heap based on their length, until a SR is reached. 
+
+The algorithm proceeds with examining the routes on the heap by size and modifying them according to PNE. When the current route on the heap is a full SR, then the optimal route has been found. When the current route on the heap is a full SR, where $s = l$, then the optimal route has been found (line 18 to 21). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm \ref{alg:PNE} (line 22 to 27). \newline
+
+\begin{algorithm}[H]
+	\label{alg:order}
+	\caption{orderOperator}
+	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+	
+	\Input{$(sp, M = (c_1, c_2, ..., c_l), ORDER = (i_1, i_2, ..., i_k))$}
+	\Output{$R = (r_1, r_2, ..., r_l)$}
+	\BlankLine
+	
+	$initialize$ $heap$\;
+	$initialize NOTORDERED = \overline{ORDER}$\;
+	
+	\BlankLine
+	
+	\eIf{$ORDER$ contains 1}{
+		$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
+	}{
+		\ForEach(Finding all the possible neighbors to the starting point){$i$ in $NOTORDERED$}{
+			
+			$initialize$ $shortestPSR$\;
+			\tcp{Building a new $PSR$ with $c_i$}
+			\NN{$sp, U_{M_{i}}$}\;
+			$update$ $shortestPSR$\;	
+		}
+	
+		$firstPSR \leftarrow shortestPSR$\;
+
+	}
+	place $firstPSR$ on heap\;
+	
+	
+	\BlankLine
+	
+	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked}
+	
+	fetch a $PSR$ from the $heap$\;
+	\Switch{$s = size(current)$}{
+		\Case{$s == l$}{
+			$PSR$ is the optimal route\;
+			\Return $PSR$\;
+		}
+		\Case{$s \neq l$}{
+			\tcp{a)}
+			\modifyRouteA{$PSR$}\;
+			
+			\tcp{b)}
+			\modifyRouteB{$PSR$}\;
+		}
+	}
+
+\end{algorithm}
+
+\pagebreak
+
+In case a) \ref{proc:mRouteA} it is checked if the category to be found next is part of the ORDER sequence. If this is the case it finds the nearest neighbor to the last PoI in the current PSR $r_{s-1}$ from the category set $U_{M_{s}}$, otherwise it finds all nearest neighbors to $r_{s-1}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the heap.
+Trimming is also performed (see \ref{proc:trim}).
+
+\begin{procedure}[H]
+	\label{proc:mRouteA}
+	\caption{modifyRouteA($PSR$)}
+
+	\eIf{$ORDER$ contains $s$}{
+		$newPSR =$\NN{$r_{s-1}, U_{M_{s}}$}\;
+	}{
+		\ForEach(Finding all the possible neighbors out of the remaining categories in the not ordered list){$i$ in $NOTORDERED$}{
+			
+			$initialize$ $shortestPSR$\;
+			\tcp{Building a new $PSR$ with $c_{i}$}
+			\NN{$r_{s-1}, U_{M_{i}}$}\;
+			$update$ $shortestPSR$\;	
+		}
+		
+		$newPSR \leftarrow shortestPSR$\;
+	}
+
+	\tcp{Trimming is also done (see \ref{proc:trim})}
+	place $newPSR$ on heap\;
+\end{procedure}
+
+
+In case b) \ref{proc:mRouteB} an alternative PSR with the kth nearest neighbor to $r_{s-2}$ is found. The algorithm checks again if the category to be found next is part of the ORDER sequence. If this is the case it simply finds the kth nearest neighbor to $r_{s-2}$ from the category set $U_{M_{s-1}}$, otherwise it finds all nearest neighbors to $r_{s-2}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the heap. \newline
+
+\begin{procedure}[H]
+	\label{proc:mRouteB}
+	\caption{modifyRouteB($PSR$)}
+	
+	\eIf{$ORDER$ contains $s-1$}{
+		$newPSR =$\KNN{$r_{s-2}, U_{M_{s-1}}$}\;
+	}{
+		\ForEach(Finding all the possible neighbors out of the remaining categories in the not ordered list){$i$ in $NOTORDERED$}{
+			
+			$initialize$ $shortestPSR$\;
+			\tcp{Building a new $PSR$ with $c_{i-1}$}
+			\KNN{$r_{s-2}, U_{M_{i-1}}$}\;
+			$update$ $shortestPSR$\;	
+		}
+		
+		$newPSR \leftarrow shortestPSR$\;
+	}
+
+	place $newPSR$ on heap\;
+\end{procedure}
+
+
+% Proving the correctness and comparing to the baseline/trivial approach
+\subsubsection{Correctness}
+\label{sec:correctnessOrder}
+\todo[color=yellow!40]{Todo: Correctness}
+
+% Performance of the algorithm
+\subsection{Experimental study}
+\label{sec:experimentsOrder}
+\todo[color=yellow!40]{Todo: Experiments}
