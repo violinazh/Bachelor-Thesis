@@ -6,6 +6,7 @@
 \SetKwFunction{KNN}{kNearestNeigbour}
 \SetKwFunction{travelDistance}{travelDistance}
 \SetKwFunction{length}{length}
+\SetKwFunction{trim}{trim}
 
 \section{Not-Equality operator}
 The not-equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal.
@@ -29,7 +30,7 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmNEO}
-The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until the $heap$ is empty. Each full SR (line 7 to 13) is checked if it satisfies the requirement for $r_i$ and $r_j$ to not be equal. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 14 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}. \newline
+The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until a full SR is found (line 7 to 20). Each full SR (line 8 to 11) is checked if it is a full SR. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 12 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}. \newline
 
 \begin{algorithm}[H]
 	\label{alg:notequality}
@@ -40,7 +41,8 @@ The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, 
 	\Output{$R = (r_1, r_2, ..., r_l)$}
 	\BlankLine
 	
-	$initialize$ $heap$\; 
+	$initialize$ $heap$\;
+	$initialize$ $candidate$\;
 	
 	$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
 	place $firstPSR$ on heap\;
@@ -50,30 +52,54 @@ The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, 
 	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length and it is checked}
 	
 	fetch a $PSR$ from the $heap$\;
-	\While{$heap$ is not empty}{
-		\eIf{$length(PSR) = l$}{
-			\eIf{$PSR[i] \neq PSR[j]$}{
-				$PSR$ is the optimal route\;
-				\Return $PSR$\;
-			}
-			{
-				\tcp{We continue with the next PSR on the heap}
+	\Switch{$s = size(PSR)$}{
+		\Case{$s == l$}{
+			$PSR$ is the optimal route\;
+			\Return $PSR$\;
+		}
+		\Case{$s \neq l$}{
+			a) \NN{$r_{|PSR|}, U_{M_{|PSR|+1}}$}\;
+			update $PSR$\;
+			\trim{$PSR$}\;
+			b) \KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
+			generate a new $PSR$\;
+			\trim{$PSR$}\;
+			
+		}
+	}
+	
+\end{algorithm}
+
+Each time a $PSR$ is generated the trim procedure \ref{proc:trim_NEO} is performed. It is checked if the generated $PSR$ is a full SR (line 1) and if that is the case (line 1 to 16) the routes gets further examined. In the case that the route satisfies the requirement for $i$ and $j$ to not be equal (line 2 to 8), its length is compared of that of the candidate route and if it is shorter or equal, the candidate route is updated and the sequenced route is placed on the $heap$. Otherwise (line 8 to 15) we check if $j$ is the last index in the route and in this case (line 10 to 14) the kth neighbor of the previous PoI to the last one is found and a new $PSR$ is generated. If the route doesn't satisfy the requirements for $i$ and $j$ to not be equal and $j$ to be last index, it is simply discarded as not possible SR.
+If the generated route is still not a full SR (line 16 to 21) the $PSR$ is placed on the $heap$. \newline
+
+\begin{procedure}[H]
+	\label{proc:trim_NEO}
+	\caption{trim($PSR$)}
+	\eIf{$size(PSR) = l$}{
+		\eIf{$PSR[i] \neq PSR[j]$}{
+			\tcp{Optimization: length check}
+			\If{$length(PSR) <= length(candidate)$}{
+				update $candidate$\;
+				place $PSR$ on the $heap$\;
 			}
 		}
 		{
-			a) \NN{$r_|PSR|, U_{m_{|PSR|+1}}$}\;
-			\tcp{Trimming can also be done \ref{proc:trim}}
-			update $PSR$ and put it back on the $heap$\;
-			b) \KNN{$r_{|PSR|-1}, U_{m_|PSR|}$}\;
-			generate a new $PSR$ and place it on the $heap$\;
+			\tcp{In case $j$ is the last index in the route, we find the kth neighbor of the previous PoI to the last one}
+			\If{$size(PSR) = j + 1$}{
+				\KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
+				generate a new $PSR$\;
+				\trim{$PSR$}\;
+			}
+		}
+		
+	}{
+		\tcp{Optimization: length check}
+		\If{$length(PSR) <= length(candidate)$}{
+			place $PSR$ on the $heap$\;
 		}
 	}
-
-	\tcp{In the rare case that there is only one PoI of the given  category, the algorithm would return an empty route}
-	\Return $null$\;
-	
-	
-\end{algorithm}
+\end{procedure}
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}

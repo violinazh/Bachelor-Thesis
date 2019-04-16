@@ -28,7 +28,7 @@
 \contentsline {subsection}{\numberline {4.2.2}Precomputations}{22}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Proposed approach}{22}{subsection.4.2.3}
 \contentsline {subsubsection}{Algorithm}{22}{section*.15}
-\contentsline {subsubsection}{Correctness}{23}{section*.16}
+\contentsline {subsubsection}{Correctness}{24}{section*.16}
 \contentsline {subsection}{\numberline {4.2.4}Experimental study}{24}{subsection.4.2.4}
 \contentsline {section}{\numberline {4.3}Or operator}{25}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Problem definition}{25}{subsection.4.3.1}

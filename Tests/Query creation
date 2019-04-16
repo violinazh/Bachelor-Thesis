@@ -1,3 +1,5 @@
+	int[] equal = new int[2];
+        List<List<Integer>> categories = new ArrayList<>();
 	List<Integer> cat0 = new ArrayList<Integer>();
         cat0.add(0);
         cat0.add(1);
