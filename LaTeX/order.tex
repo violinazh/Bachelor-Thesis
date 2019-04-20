@@ -24,7 +24,7 @@ The precomputations are the same as for the order operator in Section \ref{sec:p
 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
-\label{sec:approachOr}
+\label{sec:approachOrder}
 The order operator is designed using the PNE approach, proposed in \cite{OSR}. It keeps a sequence of the not ordered categories, which is the complement of the ORDER sequence: $NOTORDERED = \overline{ORDER}$, and inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route. For the categories, the indices of which are in the ordered list, the algorithm finds them according to PNE. 
 The NOTORDERED sequence is accordingly updated for every PSR, as it is specific to a route. Each time a PSR is build with one of the not ordered categories, it is removed from the NOTORDERED sequence for this specific route.
 
@@ -45,7 +45,7 @@ The algorithm proceeds with examining the routes on the heap by size and modifyi
 	\BlankLine
 	
 	$initialize$ $heap$\;
-	$initialize NOTORDERED = \overline{ORDER}$\;
+	$initialize$ $NOTORDERED = \overline{ORDER}$\;
 	
 	\BlankLine
 	
@@ -108,6 +108,7 @@ Trimming is also performed (see \ref{proc:trim}).
 		}
 		
 		$newPSR \leftarrow shortestPSR$\;
+		update $PSR.NOTORDERED$\;
 	}
 
 	\tcp{Trimming is also done (see \ref{proc:trim})}
@@ -133,6 +134,7 @@ In case b) \ref{proc:mRouteB} an alternative PSR with the kth nearest neighbor t
 		}
 		
 		$newPSR \leftarrow shortestPSR$\;
+		update $PSR.NOTORDERED$\;
 	}
 
 	place $newPSR$ on heap\;
