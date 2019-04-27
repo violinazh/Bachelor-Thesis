@@ -4,17 +4,23 @@ The top-level auxiliary file: diploma_thesis.aux
 The style file: styles/plain.bst
 A level-1 auxiliary file: abstract.aux
 A level-1 auxiliary file: intro.aux
+A level-1 auxiliary file: notes.aux
 A level-1 auxiliary file: relatedwork.aux
 A level-1 auxiliary file: operators.aux
 A level-1 auxiliary file: equality.aux
+A level-1 auxiliary file: notequality.aux
+A level-1 auxiliary file: or.aux
+A level-1 auxiliary file: order.aux
 A level-1 auxiliary file: evaluation.aux
 A level-1 auxiliary file: conclusion.aux
 Database file #1: diploma_thesis.bib
-Warning--I didn't find a database entry for "AhmadiDatasets"
 Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
 while executing---line 1070 of file styles/plain.bst
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
 while executing---line 1070 of file styles/plain.bst
+Warning--empty title in evagian
+Warning--empty booktitle in evagian
+Warning--empty year in evagian
 Warning--empty booktitle in skyline
 Warning--empty year in skyline
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
@@ -29,45 +35,45 @@ Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara
 while executing---line 1111 of file styles/plain.bst
 Warning--empty booktitle in semanticSRQ
 Warning--empty year in semanticSRQ
-You've used 6 entries,
+You've used 7 entries,
             2161 wiz_defined-function locations,
-            540 strings with 5849 characters,
-and the built_in function-call counts, 1549 in all, are:
-= -- 129
-> -- 60
+            545 strings with 5961 characters,
+and the built_in function-call counts, 1785 in all, are:
+= -- 147
+> -- 67
 < -- 0
-+ -- 25
-- -- 18
-* -- 75
-:= -- 252
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 27
++ -- 28
+- -- 20
+* -- 89
+:= -- 288
+add.period$ -- 20
+call.type$ -- 7
+change.case$ -- 30
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 78
-empty$ -- 165
-format.name$ -- 18
-if$ -- 330
+cite$ -- 20
+duplicate$ -- 92
+empty$ -- 193
+format.name$ -- 20
+if$ -- 380
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 5
-newline$ -- 33
-num.names$ -- 12
-pop$ -- 67
+int.to.str$ -- 7
+missing$ -- 6
+newline$ -- 37
+num.names$ -- 14
+pop$ -- 80
 preamble$ -- 1
-purify$ -- 21
+purify$ -- 24
 quote$ -- 0
-skip$ -- 40
+skip$ -- 45
 stack$ -- 0
-substring$ -- 31
-swap$ -- 6
+substring$ -- 36
+swap$ -- 7
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
-warning$ -- 10
-while$ -- 12
-width$ -- 7
-write$ -- 57
+type$ -- 28
+warning$ -- 13
+while$ -- 14
+width$ -- 8
+write$ -- 64
 (There were 4 error messages)

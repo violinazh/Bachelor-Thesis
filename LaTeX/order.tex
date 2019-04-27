@@ -18,9 +18,9 @@ First we need to define what an ORDER sequence is:\newline
 The order query is then defined as follows: \newline
 \textbf{Order query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$, $Q(sp, M, ORDER)$ is a Route Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows partially $M$ as defined by the ORDER sequence.
 
-\subsection{Precomputations} 
-\label{sec:precompOrder}
-The precomputations are the same as for the order operator in Section \ref{sec:precompEO}.
+%\subsection{Precomputations} 
+%\label{sec:precompOrder}
+%The precomputations are the same as for the order operator in Section \ref{sec:precompEO}.
 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
@@ -140,13 +140,12 @@ In case b) \ref{proc:mRouteB} an alternative PSR with the kth nearest neighbor t
 	place $newPSR$ on heap\;
 \end{procedure}
 
+\subsection{Baseline approach} 
+\label{sec:baselineOrder}
+The baseline approach on the order operator is entirely based on PNE by simply running PNE on all permutations of the query.
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
 \label{sec:correctnessOrder}
 \todo[color=yellow!40]{Todo: Correctness}
 
-% Performance of the algorithm
-\subsection{Experimental study}
-\label{sec:experimentsOrder}
-\todo[color=yellow!40]{Todo: Experiments}

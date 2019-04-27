@@ -21,9 +21,9 @@ $Q(sp, S)$ is a Sequenced Route (SR) Query, which searches for the shortest (in 
 For example $P = (M_a, M_b, ..., M_z)$ is a permutation of $S$, where $M_a = (c_{a1}, c_{a2}, ..., c_{al})$, $M_b = (c_{b1}, c_{b2}, ..., c_{bl})$ and $M_z = (c_{z1}, c_{z2}, ..., c_{zl})$ build a category sequence \newline
 $M = (c_{a1}, c_{a2}, ..., c_{al}, c_{b1}, c_{b2}, ..., c_{bl}, c_{z1}, c_{z2}, ..., c_{zl})$.
 
-\subsection{Precomputations} 
-\label{sec:precompOr}
-The precomputations are the same as for the or operator in Section \ref{sec:precompEO}.
+%\subsection{Precomputations} 
+%\label{sec:precompOr}
+%The precomputations are the same as for the or operator in Section \ref{sec:precompEO}.
 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
@@ -171,12 +171,12 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 \end{procedure}
 
 
+\subsection{Baseline approach} 
+\label{sec:baselineOr}
+The baseline approach on the or operator is entirely based on PNE by simply running PNE on all permutations of the query.
+
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
 \label{sec:correctnessOr}
 \todo[color=yellow!40]{Todo: Correctness}
 
-% Performance of the algorithm
-\subsection{Experimental study}
-\label{sec:experimentsOr}
-\todo[color=yellow!40]{Todo: Experiments}

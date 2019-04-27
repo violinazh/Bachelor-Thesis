@@ -73,3 +73,51 @@
                 }
             }
         }
+        
+        
+              List<List<Integer>> categories = new ArrayList<>();
+        List<Integer> cat0 = new ArrayList<Integer>();
+        cat0.add(0);
+        cat0.add(1);
+        cat0.add(2);
+        cat0.add(3);
+        cat0.add(4);
+        cat0.add(5);
+        cat0.add(6);
+        List<Integer> cat1 = new ArrayList<Integer>();
+        cat1.addAll(cat0);
+        List<Integer> cat2 = new ArrayList<Integer>();
+        cat2.addAll(cat0);
+        List<Integer> cat3 = new ArrayList<Integer>();
+        cat3.addAll(cat0);
+        List<Integer> cat4 = new ArrayList<Integer>();
+        cat4.addAll(cat0);
+        categories.add(cat0);
+        categories.add(cat1);
+        //categories.add(cat2);
+        //categories.add(cat3);
+        //categories.add(cat4);
+        List<List<Integer>> perm = Lists.cartesianProduct(categories);
+        List<List<Integer>> permutations = new ArrayList<>();
+        List<List<Integer>> permutations2 = new ArrayList<>();
+        permutations.addAll(perm);
+        permutations2.addAll(perm);
+        int counter = 0;
+        while (counter < 1000) {
+            Collections.shuffle(permutations);
+
+            for (int i = 0; i < permutations.size(); i++) {
+
+                    String temp = permutations.get(i).toString();
+                    String temp2 = permutations2.get(i).toString();
+                    String s = temp.replaceAll("\\[|\\]|\\s", "");
+                    String s2 = temp2.replaceAll("\\[|\\]|\\s", "");
+                    String str = s + " " + s2;
+                    appendStringToFile("src/main/resources/Queries_OR/queries_complex_2.txt", str);
+                    counter++;
+
+
+            }
+        }
+
+

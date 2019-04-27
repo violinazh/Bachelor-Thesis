@@ -7,6 +7,11 @@ E.~Ahmadi and M.A. Nascimento.
 \newblock In: \url{https://sites.google.com/ualberta.ca/nascimentodatasets/},
   2017.
 
+\bibitem{evagian}
+Eva Giannatou.
+\newblock
+  https://github.com/evagian/California-road-network-NEO4J-CYPHER-graph-and-queries.
+
 \bibitem{skyline}
 Xuegang Huang and Christian~S. Jensen.
 \newblock In-route skyline querying for location-based services.

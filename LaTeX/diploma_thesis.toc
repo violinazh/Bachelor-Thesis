@@ -9,41 +9,40 @@
 \contentsline {section}{\numberline {1.2}Problem definition}{4}{section.1.2}
 \contentsline {section}{\numberline {1.3}Challenges}{4}{section.1.3}
 \contentsline {section}{\numberline {1.4}Contributions}{4}{section.1.4}
-\contentsline {chapter}{\numberline {2}Notations and Preliminaries}{6}{chapter.2}
-\contentsline {chapter}{\numberline {3}Related Work}{8}{chapter.3}
-\contentsline {chapter}{\numberline {4}Operators}{10}{chapter.4}
-\contentsline {section}{\numberline {4.1}Equality operator}{11}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Problem definition}{11}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Precomputations}{11}{subsection.4.1.2}
-\contentsline {subsection}{\numberline {4.1.3}Proposed approach}{11}{subsection.4.1.3}
-\contentsline {subsubsection}{Heuristic}{11}{section*.7}
-\contentsline {subsubsection}{Algorithm}{12}{section*.8}
-\contentsline {subsubsection}{Correctness}{18}{section*.9}
-\contentsline {subsection}{\numberline {4.1.4}Baseline approach}{19}{subsection.4.1.4}
-\contentsline {subsubsection}{Algorithm}{19}{section*.11}
-\contentsline {subsubsection}{Correctness}{21}{section*.12}
-\contentsline {subsection}{\numberline {4.1.5}Experimental study}{21}{subsection.4.1.5}
-\contentsline {section}{\numberline {4.2}Not-Equality operator}{22}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Problem definition}{22}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Precomputations}{22}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Proposed approach}{22}{subsection.4.2.3}
-\contentsline {subsubsection}{Algorithm}{22}{section*.15}
-\contentsline {subsubsection}{Correctness}{24}{section*.16}
-\contentsline {subsection}{\numberline {4.2.4}Experimental study}{24}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Or operator}{25}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Problem definition}{25}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Precomputations}{25}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Proposed approach}{25}{subsection.4.3.3}
-\contentsline {subsubsection}{Algorithm}{25}{section*.19}
-\contentsline {subsubsection}{Correctness}{31}{section*.20}
-\contentsline {subsection}{\numberline {4.3.4}Experimental study}{31}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Order operator}{32}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Problem definition}{32}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Precomputations}{32}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Proposed approach}{32}{subsection.4.4.3}
-\contentsline {subsubsection}{Algorithm}{33}{section*.23}
-\contentsline {subsubsection}{Correctness}{36}{section*.24}
-\contentsline {subsection}{\numberline {4.4.4}Experimental study}{36}{subsection.4.4.4}
-\contentsline {chapter}{\numberline {5}Evaluation}{37}{chapter.5}
-\contentsline {chapter}{\numberline {6}Conclusion and Future work}{38}{chapter.6}
-\contentsline {chapter}{Bibliography}{39}{section*.27}
+\contentsline {chapter}{\numberline {2}Notations and Preliminaries}{5}{chapter.2}
+\contentsline {chapter}{\numberline {3}Related Work}{7}{chapter.3}
+\contentsline {chapter}{\numberline {4}Operators}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Equality operator}{10}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Problem definition}{10}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Precomputations}{10}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Proposed approach}{10}{subsection.4.1.3}
+\contentsline {subsubsection}{Heuristic}{10}{section*.7}
+\contentsline {subsubsection}{Algorithm}{11}{section*.8}
+\contentsline {subsubsection}{Correctness}{17}{section*.9}
+\contentsline {subsection}{\numberline {4.1.4}Baseline approach}{18}{subsection.4.1.4}
+\contentsline {subsubsection}{Algorithm}{18}{section*.11}
+\contentsline {subsubsection}{Correctness}{20}{section*.12}
+\contentsline {section}{\numberline {4.2}Not-Equality operator}{21}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Problem definition}{21}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Proposed approach}{21}{subsection.4.2.2}
+\contentsline {subsubsection}{Algorithm}{21}{section*.14}
+\contentsline {subsubsection}{Correctness}{23}{section*.15}
+\contentsline {section}{\numberline {4.3}Or operator}{24}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Problem definition}{24}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Proposed approach}{24}{subsection.4.3.2}
+\contentsline {subsubsection}{Algorithm}{24}{section*.17}
+\contentsline {subsection}{\numberline {4.3.3}Baseline approach}{30}{subsection.4.3.3}
+\contentsline {subsubsection}{Correctness}{30}{section*.18}
+\contentsline {section}{\numberline {4.4}Order operator}{31}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Problem definition}{31}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Proposed approach}{31}{subsection.4.4.2}
+\contentsline {subsubsection}{Algorithm}{32}{section*.20}
+\contentsline {subsection}{\numberline {4.4.3}Baseline approach}{35}{subsection.4.4.3}
+\contentsline {subsubsection}{Correctness}{35}{section*.21}
+\contentsline {chapter}{\numberline {5}Experimental studies}{36}{chapter.5}
+\contentsline {section}{\numberline {5.1}Equality operator}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Not-Equality operator}{40}{section.5.2}
+\contentsline {section}{\numberline {5.3}Or operator}{43}{section.5.3}
+\contentsline {section}{\numberline {5.4}Order operator}{44}{section.5.4}
+\contentsline {chapter}{\numberline {6}Conclusion and Future work}{45}{chapter.6}
+\contentsline {chapter}{Bibliography}{46}{section*.23}

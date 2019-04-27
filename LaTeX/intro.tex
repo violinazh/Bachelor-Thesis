@@ -12,30 +12,9 @@ With existing approaches, the user may get the shortest route \cite{OSR} or all 
 Specific constrains such as the equality in the given example above are proposed in the thesis as operators on the query. Existing approaches have been used to transform the complex user query and changes to the approaches have been made in order to retrieve a desired result. 
 
 \section{Problem definition}
+
 We have a starting point $sp$ and a category sequence $M = (c_1, c_2, ..., c_n)$, which constitutes the query, defined by the user. The constraints for this query can be applied as operators.
 For this query a route $(r_1, r_2, ..., r_n)$, defined as a sequence of PoIs, is calculated. \newline
-
-\textbf{Graph model:}
-The road network or also known as spatial network is modeled as weighted graph where the crossroads are represented by nodes and roads are represented by the edges connecting the nodes. The weights on the edges in this specific research problem are the distances between the nodes on the edges. The distance between any two points can be found by summing up the lengths of the edges that belong to the shortest path between the two points.\newline
-
-The graph used in this paper is constructed using Berlin's spatial datasets from \cite{datasets}, structured in separate CSV files for the crossroads, roads and points of interest. For the implementation of the operators the datasets are imported into a graph structure of nodes and edges, where each node has a unique id, its latitude and longitude and a list of PoIs that have been mapped to it and each edge has a source and destination node and the distance between the two nodes in kilometers as parameters. Each PoI is mapped to the nearest crossroad and has a unique id, a type, its latitude and longitude and the distance to the node it is mapped to. \newline
-
-% Not used anymore
-\iffalse
-The graph is constructed using the Neo4j graph database as seen in \ref{fig:neo4jmodel}
-The crossroads are defined as nodes, labeled CROSSROAD, with attributes id, longitute and latitude, the roads are mapped as relationships, labeled ROAD, with attribute distance. A PoI is mapped to the nearest CROSSROAD, using a relationship HAS-POI, with attributes id and a list of possible category types it belongs to. \cite{evagian}
-
-\begin{figure}[h]
-	\includegraphics[scale=0.4]{images/Neo4j-model.png}
-	\centering
-	\caption{Neo4j Model\cite{evagian}}
-	\label{fig:neo4jmodel}
-\end{figure}
-\fi
-
- 
-The map used for implementation and testing is the road network of Berlin, with 428769 crossroads, 504229 roads, 5548 PoIs and 7 category types: restaurant (2081), coffee shop (1002), atms/banks (597), movie theaters (141), pharmacies (589), pubs/bars (958), gas stations (180). 
-\newline
 
 % e.g. processing time for the trivial approach 
 \section{Challenges}
