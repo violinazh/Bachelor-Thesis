@@ -184,12 +184,6 @@ This process continues until in step 11 the optimal route $(ph_2, r_2, b_2)$ wit
 	\label{heapORDER}
 \end{table}
 
-Trimming
-Case ordered
-b): null
-Heap 9: [[POIs: (2, 6, pharmacy, 3.0), (2, 4, restaurant, 2.0), (2, 5, bank, 1.0), Length: 6.0, Cat unordered: []], [POIs: (2, 5, bank, 4.0), (2, 4, restaurant, 1.0), (2, 6, pharmacy, 2.0), Length: 7.0, Cat unordered: []], [POIs: (2, 6, pharmacy, 3.0), (1, 1, restaurant, 4.0), Length: 7.0, Cat unordered: [2]], [POIs: (1, 2, pharmacy, 3.0), (2, 4, restaurant, 7.0), Length: 10.0, Cat unordered: [2]], [POIs: (1, 2, pharmacy, 3.0), (1, 1, restaurant, 2.0), (1, 7, bank, 3.0), Length: 8.0, Cat unordered: []], [POIs: (2, 5, bank, 4.0), (1, 1, restaurant, 5.0), Length: 9.0, Cat unordered: [3]]]
-ORDER route: [POIs: (2, 6, pharmacy, 3.0), (2, 4, restaurant, 2.0), (2, 5, bank, 1.0), Length: 6.0, Cat unordered: []]
-
 \subsection{Baseline approach} 
 \label{sec:baselineOrder}
 A naive solution, similar to the one with the order operator in Chapter \ref{sec:baselineOr}, to find an optimal route with the order operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.

@@ -9,50 +9,50 @@
 \contentsline {section}{\numberline {2.1}Motivation}{4}{section.2.1}
 \contentsline {section}{\numberline {2.2}Problem definition}{6}{section.2.2}
 \contentsline {section}{\numberline {2.3}Challenges}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}Contributions}{6}{section.2.4}
-\contentsline {section}{\numberline {2.5}Outline}{6}{section.2.5}
-\contentsline {chapter}{\numberline {3}Notations and Preliminaries}{7}{chapter.3}
-\contentsline {chapter}{\numberline {4}Related Work}{9}{chapter.4}
-\contentsline {chapter}{\numberline {5}Operators}{11}{chapter.5}
-\contentsline {section}{\numberline {5.1}Equality operator}{12}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Motivation}{12}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Problem definition}{12}{subsection.5.1.2}
-\contentsline {subsection}{\numberline {5.1.3}Precomputations}{12}{subsection.5.1.3}
-\contentsline {subsection}{\numberline {5.1.4}Proposed approach}{12}{subsection.5.1.4}
-\contentsline {subsubsection}{Heuristic}{12}{section*.5}
-\contentsline {subsubsection}{Algorithm}{13}{section*.6}
-\contentsline {subsubsection}{Running example}{19}{section*.7}
-\contentsline {subsubsection}{Correctness}{20}{section*.8}
-\contentsline {subsection}{\numberline {5.1.5}Baseline approach}{20}{subsection.5.1.5}
-\contentsline {subsubsection}{Algorithm}{21}{section*.10}
-\contentsline {subsubsection}{Correctness}{23}{section*.11}
-\contentsline {section}{\numberline {5.2}Not-Equality operator}{24}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Motivation}{24}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Problem definition}{24}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Proposed approach}{24}{subsection.5.2.3}
-\contentsline {subsubsection}{Algorithm}{25}{section*.13}
-\contentsline {subsubsection}{Running example}{26}{section*.14}
-\contentsline {subsubsection}{Correctness}{27}{section*.15}
-\contentsline {section}{\numberline {5.3}Or operator}{28}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Motivation}{28}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Problem definition}{28}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Proposed approach}{28}{subsection.5.3.3}
-\contentsline {subsubsection}{Algorithm}{29}{section*.17}
-\contentsline {subsubsection}{Running example}{34}{section*.18}
-\contentsline {subsection}{\numberline {5.3.4}Baseline approach}{35}{subsection.5.3.4}
-\contentsline {subsubsection}{Correctness}{35}{section*.19}
-\contentsline {section}{\numberline {5.4}Order operator}{36}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Motivation}{36}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Problem definition}{36}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Proposed approach}{36}{subsection.5.4.3}
-\contentsline {subsubsection}{Algorithm}{37}{section*.21}
-\contentsline {subsubsection}{Running example}{40}{section*.22}
-\contentsline {subsection}{\numberline {5.4.4}Baseline approach}{41}{subsection.5.4.4}
-\contentsline {subsubsection}{Correctness}{42}{section*.23}
-\contentsline {chapter}{\numberline {6}Experimental studies}{43}{chapter.6}
-\contentsline {section}{\numberline {6.1}Equality operator}{44}{section.6.1}
-\contentsline {section}{\numberline {6.2}Not-Equality operator}{47}{section.6.2}
-\contentsline {section}{\numberline {6.3}Or operator}{50}{section.6.3}
-\contentsline {section}{\numberline {6.4}Order operator}{51}{section.6.4}
-\contentsline {chapter}{\numberline {7}Conclusion and Future work}{52}{chapter.7}
-\contentsline {chapter}{Bibliography}{55}{section*.27}
+\contentsline {section}{\numberline {2.4}Contributions}{7}{section.2.4}
+\contentsline {section}{\numberline {2.5}Outline}{8}{section.2.5}
+\contentsline {chapter}{\numberline {3}Notations and Preliminaries}{9}{chapter.3}
+\contentsline {chapter}{\numberline {4}Related Work}{11}{chapter.4}
+\contentsline {chapter}{\numberline {5}Operators}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}Equality operator}{14}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Motivation}{14}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Problem definition}{14}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Precomputations}{14}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Proposed approach}{14}{subsection.5.1.4}
+\contentsline {subsubsection}{Heuristic}{14}{section*.3}
+\contentsline {subsubsection}{Algorithm}{15}{section*.4}
+\contentsline {subsubsection}{Running example}{21}{section*.5}
+\contentsline {subsubsection}{Correctness}{22}{section*.6}
+\contentsline {subsection}{\numberline {5.1.5}Baseline approach}{22}{subsection.5.1.5}
+\contentsline {subsubsection}{Algorithm}{23}{section*.8}
+\contentsline {subsubsection}{Correctness}{25}{section*.9}
+\contentsline {section}{\numberline {5.2}Not-Equality operator}{26}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Motivation}{26}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Problem definition}{26}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Proposed approach}{26}{subsection.5.2.3}
+\contentsline {subsubsection}{Algorithm}{27}{section*.11}
+\contentsline {subsubsection}{Running example}{28}{section*.12}
+\contentsline {subsubsection}{Correctness}{29}{section*.13}
+\contentsline {section}{\numberline {5.3}Or operator}{30}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Motivation}{30}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Problem definition}{30}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Proposed approach}{30}{subsection.5.3.3}
+\contentsline {subsubsection}{Algorithm}{31}{section*.15}
+\contentsline {subsubsection}{Running example}{36}{section*.16}
+\contentsline {subsection}{\numberline {5.3.4}Baseline approach}{37}{subsection.5.3.4}
+\contentsline {subsubsection}{Correctness}{37}{section*.17}
+\contentsline {section}{\numberline {5.4}Order operator}{38}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Motivation}{38}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Problem definition}{38}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Proposed approach}{38}{subsection.5.4.3}
+\contentsline {subsubsection}{Algorithm}{39}{section*.19}
+\contentsline {subsubsection}{Running example}{42}{section*.20}
+\contentsline {subsection}{\numberline {5.4.4}Baseline approach}{43}{subsection.5.4.4}
+\contentsline {subsubsection}{Correctness}{43}{section*.21}
+\contentsline {chapter}{\numberline {6}Experimental studies}{44}{chapter.6}
+\contentsline {section}{\numberline {6.1}Equality operator}{45}{section.6.1}
+\contentsline {section}{\numberline {6.2}Not-Equality operator}{48}{section.6.2}
+\contentsline {section}{\numberline {6.3}Or operator}{51}{section.6.3}
+\contentsline {section}{\numberline {6.4}Order operator}{52}{section.6.4}
+\contentsline {chapter}{\numberline {7}Conclusion and Future work}{53}{chapter.7}
+\contentsline {chapter}{Bibliography}{56}{section*.26}
