@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  27 APR 2019 12:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  28 APR 2019 20:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -809,26 +809,41 @@ Package: multirow 2018/08/03 v2.3 Span multiple rows of a table
 \multirow@dima=\skip91
 \bigstrutjot=\dimen190
 )
-(./diploma_thesis.aux (./abstract.aux) (./intro.aux) (./notes.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
+)
+(/usr/share/texlive/texmf-dist/tex/latex/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks46
+\SOUL@lasttoken=\toks47
+\SOUL@cmds=\toks48
+\SOUL@buffer=\toks49
+\SOUL@token=\toks50
+\SOUL@spaceskip=\skip92
+\SOUL@ttwidth=\dimen191
+\SOUL@uldp=\dimen192
+\SOUL@ulht=\dimen193
+) (./diploma_thesis.aux
+(./abstract.aux) (./abbreviations.aux) (./intro.aux) (./notes.aux)
 (./relatedwork.aux) (./operators.aux) (./equality.aux) (./notequality.aux)
 (./or.aux) (./order.aux) (./evaluation.aux) (./conclusion.aux))
 \openout1 = `diploma_thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 45.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 47.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
@@ -836,16 +851,16 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count164
-\scratchdimen=\dimen191
+\scratchdimen=\dimen194
 \scratchbox=\box59
 \nofMPsegments=\count165
 \nofMParguments=\count166
-\everyMPshowfont=\toks46
+\everyMPshowfont=\toks51
 \MPscratchCnt=\count167
-\MPscratchDim=\dimen192
+\MPscratchDim=\dimen195
 \MPnumerator=\count168
 \makeMPintoPDFobject=\count169
-\everyMPtoPDFconversion=\toks47
+\everyMPtoPDFconversion=\toks52
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -865,7 +880,7 @@ e
 ))
 \c@lstlisting=\count170
 \AtBeginShipoutBox=\box60
-Package hyperref Info: Link coloring OFF on input line 45.
+Package hyperref Info: Link coloring OFF on input line 47.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -875,9 +890,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count171
 )
-LaTeX Info: Redefining \ref on input line 45.
-LaTeX Info: Redefining \pageref on input line 45.
-LaTeX Info: Redefining \nameref on input line 45.
+LaTeX Info: Redefining \ref on input line 47.
+LaTeX Info: Redefining \pageref on input line 47.
+LaTeX Info: Redefining \nameref on input line 47.
 
 (./diploma_thesis.out) (./diploma_thesis.out)
 \@outlinefile=\write5
@@ -885,7 +900,7 @@ LaTeX Info: Redefining \nameref on input line 45.
 
 
 ABD: EveryShipout initializing macros (./diploma_thesis_title.tex)
-LaTeX Font Info:    Try loading font information for T1+phv on input line 54.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 56.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
@@ -894,7 +909,7 @@ it_logo_de_1c.pdf>]pdfTeX warning (ext4): destination with the same identifier
 (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.54 \input
+l.56 \input
            {declaration} [2] (./declaration.tex
 Overfull \hbox (3.87248pt too wide) in paragraph at lines 6--7
 \T1/ptm/m/n/12 Hil-f-s-mit-tel voll-ständig und genau angegeben und alles ken-n
@@ -915,13 +930,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
  (./abstract.tex
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
-ine 8.
 ) [4
 
 
@@ -938,29 +946,53 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 \openout6 = `diploma_thesis.toc'.
 
  [2]
+\openout2 = `abbreviations.aux'.
+
+ (./abbreviations.tex
+Chapter 1.
+) [3
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.1.1}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.64 \include{abbreviations}
+                            ]
 \openout2 = `intro.aux'.
 
  (./intro.tex
-Chapter 1.
+Chapter 2.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 4.
-
-Underfull \hbox (badness 10000) in paragraph at lines 16--18
-
- []
+[4
 
 
-Underfull \vbox (badness 3965) has occurred while \output is active []
 
- [3
+]
+<images/Example_routes.png, id=256, 325.215pt x 194.22563pt>
+File: images/Example_routes.png Graphic file (type png)
+<use images/Example_routes.png>
+Package pdftex.def Info: images/Example_routes.png  used on input line 21.
+(pdftex.def)             Requested size: 325.2142pt x 194.22514pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-])
-[4]
+ [5pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.30 
+      <./images/Example_routes.png>]
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
+ine 40.
+) [6]
 \openout2 = `notes.aux'.
 
  (./notes.tex
-Chapter 2.
+Chapter 3.
 
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
@@ -991,7 +1023,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
-[5
+[7
 
 
 
@@ -1000,17 +1032,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
-) [6pdfTeX warning (ext4): destination with the same identifier (name{table.2.1
+) [8pdfTeX warning (ext4): destination with the same identifier (name{table.3.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.64 \include{notes}
+l.66 \include{notes}
                     ]
 \openout2 = `relatedwork.aux'.
 
  (./relatedwork.tex
-Chapter 3.
+Chapter 4.
 
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
@@ -1026,7 +1058,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--10
 
  []
 
-[7
+[9
 
 
 
@@ -1040,17 +1072,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
-) [8]
+) [10]
 \openout2 = `operators.aux'.
 
  (./operators.tex
-Chapter 4.
+Chapter 5.
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
-) [9
+) [11
 
 
 
@@ -1059,185 +1091,167 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  (./equality.tex
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 23.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 22.
+ [12
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
- []
+]
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 48.
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 46.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 46.
- [10
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 48.
 
+Underfull \vbox (badness 1297) has occurred while \output is active []
 
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11pdfTeX warning (ext4): destination with the same identifier (name{algocf.1}
+ [13pdfTeX warning (ext4): destination with the same identifier (name{algocf.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.81 
+l.83 
      pdfTeX warning (ext4): destination with the same identifier (name{algocf.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.81 
-     ]
-Underfull \hbox (badness 10000) in paragraph at lines 99--100
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [13pdfTeX warning (ext4): destination with the same identifier (name{algocf.2}
-) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.136 
-      pdfTeX warning (ext4): destination with the same identifier (name{algocf.
-2}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.136 
-      ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [14]pdfTeX warning (ext4): destination with the same identifier (name{algocf.3
-}) has been already used, duplicate ignored
+l.83 
+     ] [14]pdfTeX warning (ext4): destination with the same identifier (name{al
+gocf.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.192 	\caption
-               {caseThree()}
+l.109 	\caption
+               {\protect\modifiedPNE returns Route}pdfTeX warning (ext4): desti
+nation with the same identifier (name{algocf.2}) has been already used, duplica
+te ignored
+<to be read again> 
+                   \relax 
+l.109 ...ption{\protect\modifiedPNE returns Route}
+                                                  
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15pdfTeX warning (ext4): destination with the same identifier (name{algocf.3}
+ [15]
+Underfull \vbox (badness 1502) has occurred while \output is active []
+
+ [16pdfTeX warning (ext4): destination with the same identifier (name{algocf.3}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.209 
+l.191 
       ]pdfTeX warning (ext4): destination with the same identifier (name{algocf
 .3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.214 	\caption
-               {caseFour()}
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [16]pdfTeX warning (ext4): destination with the same identifier (name{algocf.3
-}) has been already used, duplicate ignored
+l.194 	\caption
+               {caseThree()}pdfTeX warning (ext4): destination with the same id
+entifier (name{algocf.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.239 	\caption
+l.214 	\caption
+               {caseFour()}pdfTeX warning (ext4): destination with the same ide
+ntifier (name{algocf.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.237 	\caption
                {\protect\PNE \cite{OSR}}pdfTeX warning (ext4): destination with
  the same identifier (name{algocf.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.239 	\caption{\protect\PNE \cite{OSR}}
+l.237 	\caption{\protect\PNE \cite{OSR}}
                                         
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]pdfTeX warning (ext4): destination with the same identifier (name{algocf.4
-}) has been already used, duplicate ignored
+ [17]
+Overfull \vbox (73.40225pt too high) has occurred while \output is active []
+
+
+[18] [19]
+Overfull \hbox (32.64111pt too wide) in paragraph at lines 278--305
+ [][] 
+ []
+
+[20pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.321 
+      ]pdfTeX warning (ext4): destination with the same identifier (name{algocf
+.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.286 	\caption
+l.324 	\caption
                {equalityOperator-baseline}pdfTeX warning (ext4): destination wi
 th the same identifier (name{algocf.4}) has been already used, duplicate ignore
 d
 <to be read again> 
                    \relax 
-l.286 	\caption{equalityOperator-baseline}
+l.324 	\caption{equalityOperator-baseline}
                                           
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-Overfull \vbox (27.10373pt too high) has occurred while \output is active []
+ [21]
+Overfull \vbox (34.35373pt too high) has occurred while \output is active []
 
 
-[19pdfTeX warning (ext4): destination with the same identifier (name{algocf.5})
+[22pdfTeX warning (ext4): destination with the same identifier (name{algocf.5})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.355 \subsubsection
-                    {Correctness}]) [20]
+l.393 \subsubsection
+                    {Correctness}]) [23]
 \openout2 = `notequality.aux'.
 
- (./notequality.tex
-Underfull \hbox (badness 10000) in paragraph at lines 16--17
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
-
- []
-
-
-Underfull \vbox (badness 7649) has occurred while \output is active []
-
- [21
+ (./notequality.tex [24
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 73--75
+Underfull \hbox (badness 10000) in paragraph at lines 76--78
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{algocfproc.tr
-im}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.78 	\caption{trim($PSR$)}
-                           
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22pdfTeX warning (ext4): destination with the same identifier (name{algocf.6}
-) has been already used, duplicate ignored
+[25pdfTeX warning (ext4): destination with the same identifier (name{algocf.6})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.105 \subsubsection
-                    {Correctness}]) [23]
+l.78 
+     ]pdfTeX warning (ext4): destination with the same identifier (name{algocfp
+roc.trim}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.81 	\caption{trim($PSR$)}
+                            [26]) [27pdfTeX warning (ext4): destination with th
+e same identifier (name{table.5.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.71 \include{notequality}
+                          ]
 \openout2 = `or.aux'.
 
  (./or.tex
-Underfull \hbox (badness 10000) in paragraph at lines 15--17
-
- []
-
-
-Overfull \hbox (28.32077pt too wide) in paragraph at lines 31--32
+Overfull \hbox (28.32077pt too wide) in paragraph at lines 36--37
 \T1/ptm/m/n/12 sively in-spects each op-tion $\OML/cmm/m/it/12 M[]$ \T1/ptm/m/n
 /12 from the or se-quences $\OML/cmm/m/it/12 OR[]$ \T1/ptm/m/n/12 in $\OML/cmm/
 m/it/12 S \OT1/cmr/m/n/12 = (\OML/cmm/m/it/12 OR[]; OR[]; :::; OR[]\OT1/cmr/m/n
 /12 )$\T1/ptm/m/n/12 ,
  []
 
-[24
+[28
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 38--39
+Underfull \hbox (badness 10000) in paragraph at lines 43--44
 
  []
 
@@ -1245,65 +1259,77 @@ pdfTeX warning (ext4): destination with the same identifier (name{algocf.7}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 	\caption
+l.47 	\caption
               {orOperator}pdfTeX warning (ext4): destination with the same iden
 tifier (name{algocf.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.42 	\caption{orOperator}
+l.47 	\caption{orOperator}
                           
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [25]
-Overfull \vbox (110.4157pt too high) has occurred while \output is active []
+ [29]
+Overfull \vbox (117.6657pt too high) has occurred while \output is active []
 
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 93--97
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 98--102
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
-Underfull \hbox (badness 10000) in paragraph at lines 137--139
+ [31]
+Underfull \hbox (badness 10000) in paragraph at lines 139--141
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{algocf.8}) ha
-s been already used, duplicate ignored
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]pdfTeX warning (ext4): destination with the same identifier (name{algocf.8
+}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.142 	\caption
+l.144 	\caption
                {modifyRouteB($PSR$)}
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [29])
-[30]
+ [33]
+Overfull \hbox (15.18144pt too wide) in paragraph at lines 176--179
+\T1/ptm/m/n/12 phar-macy, then go to the movies and then to a restau-rant (i.e.
+, $\OML/cmm/m/it/12 S \OT1/cmr/m/n/12 = (\OML/cmm/m/it/12 OR[]; OR[]; OR[]\OT1/
+cmr/m/n/12 )$\T1/ptm/m/n/12 ,
+ []
+
+[34]
+Overfull \hbox (6.60379pt too wide) in paragraph at lines 182--203
+ [][] 
+ []
+
+) [35pdfTeX warning (ext4): destination with the same identifier (name{table.5.
+3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.72 \include{or}
+                 ]
 \openout2 = `order.aux'.
 
  (./order.tex
-Underfull \hbox (badness 10000) in paragraph at lines 15--17
-
- []
-
-
-Overfull \hbox (4.40236pt too wide) in paragraph at lines 18--20
+Overfull \hbox (4.40236pt too wide) in paragraph at lines 23--25
 \OML/cmm/m/it/12 sp$ \T1/ptm/m/n/12 in $[][]$ and an OR-DER se-quence $\OML/cmm
 /m/it/12 ORDER \OT1/cmr/m/n/12 = (\OML/cmm/m/it/12 i[]; i[]; :::; i[]\OT1/cmr/m
 /n/12 )$\T1/ptm/m/n/12 , $\OML/cmm/m/it/12 Q\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s
 p; M; ORDER\OT1/cmr/m/n/12 )$
  []
 
-[31
+[36
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 36--37
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
 
  []
 
@@ -1311,25 +1337,25 @@ pdfTeX warning (ext4): destination with the same identifier (name{algocf.8}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.40 	\caption
+l.45 	\caption
               {orderOperator}pdfTeX warning (ext4): destination with the same i
 dentifier (name{algocf.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.40 	\caption{orderOperator}
+l.45 	\caption{orderOperator}
                              
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32]
+ [37]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]pdfTeX warning (ext4): destination with the same identifier (name{algocfpr
+ [38]pdfTeX warning (ext4): destination with the same identifier (name{algocfpr
 oc.modifyRouteA}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.97 	\caption{modifyRouteA($PSR$)}
-                                   
-Underfull \hbox (badness 10000) in paragraph at lines 119--120
+l.102 	\caption{modifyRouteA($PSR$)}
+                                    
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
 
  []
 
@@ -1337,22 +1363,50 @@ pdfTeX warning (ext4): destination with the same identifier (name{algocfproc.mo
 difyRouteB}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.123 	\caption{modifyRouteB($PSR$)}
+l.128 	\caption{modifyRouteB($PSR$)}
                                     
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34])
-[35pdfTeX warning (ext4): destination with the same identifier (name{algocf.9})
+ [39]
+Underfull \hbox (badness 1917) in paragraph at lines 174--175
+[]|$\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 b[]; r[] \OT1/cmr/m/n/12 : 5\OML/cmm/m/it
+/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 ph\OT1/cmr/m/n/12 ])\OML/cmm/m/it/12 ; 
+\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ph[]; r[] \OT1/cmr/m/n/12 : 5\OML/cmm/m/it/12
+ ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 b\OT1/cmr/m/n/12 ])\OML/cmm/m/it/12 ; \OT1
+/cmr/m/n/12 (\OML/cmm/m/it/12 b[]; r[] \OT1/cmr/m/n/12 : 5\OML/cmm/m/it/12 ; \O
+T1/cmr/m/n/12 [\OML/cmm/m/it/12 ph\OT1/cmr/m/n/12 ])\OML/cmm/m/it/12 ; \OT1/cmr
+/m/n/12 (\OML/cmm/m/it/12 b[]; r[]; ph[] \OT1/cmr/m/n/12 : 7\OML/cmm/m/it/12 ; 
+\OT1/cmr/m/n/12 [])\OML/cmm/m/it/12 ;$
+ []
+
+
+Overfull \hbox (54.8743pt too wide) in paragraph at lines 156--183
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[40pdfTeX warning (ext4): destination with the same identifier (name{algocf.9})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.71 \include{order}
-                    ]
+l.192 
+      ]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41pdfTeX warning (ext4): destination with the same identifier (name{table.5.4
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.201 
+      ]) [42]
 \openout2 = `evaluation.aux'.
 
  (./evaluation.tex
-Chapter 5.
+Chapter 6.
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--6
 
@@ -1371,12 +1425,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--11
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [36
+ [43
 
 
 
 ]
-<images/eo_length.png, id=847, 1806.75pt x 501.875pt>
+<images/eo_length.png, id=943, 1806.75pt x 501.875pt>
 File: images/eo_length.png Graphic file (type png)
 <use images/eo_length.png>
 Package pdftex.def Info: images/eo_length.png  used on input line 48.
@@ -1386,17 +1440,14 @@ Overfull \hbox (61.6864pt too wide) in paragraph at lines 48--50
  [][] 
  []
 
-
-Underfull \vbox (badness 1648) has occurred while \output is active []
-
- [37pdfTeX warning (ext4): destination with the same identifier (name{table.5.1
-}) has been already used, duplicate ignored
+[44pdfTeX warning (ext4): destination with the same identifier (name{table.6.1}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.53 
      ]
-<images/eo_frequency.png, id=857, 1505.625pt x 501.875pt>
+<images/eo_frequency.png, id=954, 1505.625pt x 501.875pt>
 File: images/eo_frequency.png Graphic file (type png)
 <use images/eo_frequency.png>
 Package pdftex.def Info: images/eo_frequency.png  used on input line 58.
@@ -1406,20 +1457,20 @@ Overfull \hbox (61.691pt too wide) in paragraph at lines 58--60
  [][] 
  []
 
-[38pdfTeX warning (ext4): destination with the same identifier (name{figure.5.1
+[45pdfTeX warning (ext4): destination with the same identifier (name{figure.6.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.66 
-     pdfTeX warning (ext4): destination with the same identifier (name{figure.5
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.6
 .2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.66 
       <./images/eo_length.png> <./images/eo_frequency.png>]
-<images/eo_distance.png, id=867, 1505.625pt x 501.875pt>
+<images/eo_distance.png, id=965, 1505.625pt x 501.875pt>
 File: images/eo_distance.png Graphic file (type png)
 <use images/eo_distance.png>
 Package pdftex.def Info: images/eo_distance.png  used on input line 68.
@@ -1429,7 +1480,7 @@ Overfull \hbox (61.691pt too wide) in paragraph at lines 68--70
  [][] 
  []
 
-<images/eo2_length.png, id=870, 1505.625pt x 501.875pt>
+<images/eo2_length.png, id=968, 1505.625pt x 501.875pt>
 File: images/eo2_length.png Graphic file (type png)
 <use images/eo2_length.png>
 Package pdftex.def Info: images/eo2_length.png  used on input line 79.
@@ -1440,16 +1491,16 @@ Overfull \hbox (61.691pt too wide) in paragraph at lines 79--81
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 8000) has occurred while \output is active []
 
- [39pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+ [46pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.84 
       <./images/eo_distance.png>]
-<images/neo_length.png, id=880, 1505.625pt x 501.875pt>
+<images/neo_length.png, id=977, 1505.625pt x 501.875pt>
 File: images/neo_length.png Graphic file (type png)
 <use images/neo_length.png>
 Package pdftex.def Info: images/neo_length.png  used on input line 94.
@@ -1462,14 +1513,14 @@ Overfull \hbox (61.691pt too wide) in paragraph at lines 94--96
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+ [47pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.99 
       <./images/eo2_length.png>]
-<images/neo_frequency.png, id=890, 1505.625pt x 501.875pt>
+<images/neo_frequency.png, id=987, 1505.625pt x 501.875pt>
 File: images/neo_frequency.png Graphic file (type png)
 <use images/neo_frequency.png>
 Package pdftex.def Info: images/neo_frequency.png  used on input line 105.
@@ -1482,14 +1533,14 @@ Overfull \hbox (61.691pt too wide) in paragraph at lines 105--107
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [41pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+ [48pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.110 
        <./images/neo_length.png>]
-<images/neo_distance.png, id=898, 1505.625pt x 501.875pt>
+<images/neo_distance.png, id=995, 1505.625pt x 501.875pt>
 File: images/neo_distance.png Graphic file (type png)
 <use images/neo_distance.png>
 Package pdftex.def Info: images/neo_distance.png  used on input line 117.
@@ -1502,14 +1553,14 @@ Overfull \hbox (61.691pt too wide) in paragraph at lines 117--119
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+ [49pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.122 
        <./images/neo_frequency.png>]
-<images/or.png, id=906, 1806.75pt x 501.875pt>
+<images/or.png, id=1003, 1806.75pt x 501.875pt>
 File: images/or.png Graphic file (type png)
 <use images/or.png>
 Package pdftex.def Info: images/or.png  used on input line 131.
@@ -1522,65 +1573,78 @@ Overfull \hbox (61.6864pt too wide) in paragraph at lines 131--133
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43pdfTeX warning (ext4): destination with the same identifier (name{figure.5.
+ [50pdfTeX warning (ext4): destination with the same identifier (name{figure.6.
 7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.136 
        <./images/neo_distance.png>]
-<images/order.png, id=914, 1389.19pt x 454.69875pt>
+<images/order.png, id=1011, 1389.19pt x 454.69875pt>
 File: images/order.png Graphic file (type png)
 <use images/order.png>
 Package pdftex.def Info: images/order.png  used on input line 145.
 (pdftex.def)             Requested size: 347.29665pt x 113.67441pt.
-) [44pdfTeX warning (ext4): destination with the same identifier (name{figure.5
+) [51pdfTeX warning (ext4): destination with the same identifier (name{figure.6
 .8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.73 \include{evaluation}
+l.75 \include{evaluation}
                          pdfTeX warning (ext4): destination with the same ident
-ifier (name{figure.5.9}) has been already used, duplicate ignored
+ifier (name{figure.6.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.73 \include{evaluation}
+l.75 \include{evaluation}
                           <./images/or.png> <./images/order.png>]
 \openout2 = `conclusion.aux'.
 
 
 (./conclusion.tex
-Chapter 6.
-) [45
+Chapter 7.
+) [52
 
 
 
-] (./diploma_thesis.bbl) [46
+] (./diploma_thesis.lof)
+\tf@lof=\write7
+\openout7 = `diploma_thesis.lof'.
+
+ [53
 
 
+] (./diploma_thesis.lot)
+\tf@lot=\write8
+\openout8 = `diploma_thesis.lot'.
+
+ [54
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
+(./diploma_thesis.bbl [55
+
+
+]) [56]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 86.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 86.
  (./diploma_thesis.aux (./abstract.aux)
-(./intro.aux) (./notes.aux) (./relatedwork.aux) (./operators.aux)
-(./equality.aux) (./notequality.aux) (./or.aux) (./order.aux) (./evaluation.aux
-) (./conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 81.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 81.
+(./abbreviations.aux) (./intro.aux) (./notes.aux) (./relatedwork.aux)
+(./operators.aux) (./equality.aux) (./notequality.aux) (./or.aux) (./order.aux)
+(./evaluation.aux) (./conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 86.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 86.
 Package rerunfilecheck Info: File `diploma_thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 1E0B9D426BF236453C83F41167122E9B;2048.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 81.
+(rerunfilecheck)             Checksum: D96498DB02F010F1A62FF5A6F042D9E5;2407.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 86.
  ) 
 Here is how much of TeX's memory you used:
- 21110 strings out of 494587
- 375188 string characters out of 6177759
- 470319 words of memory out of 5000000
- 23717 multiletter control sequences out of 15000+600000
- 61084 words of font info for 67 fonts, out of 8000000 for 9000
+ 21339 strings out of 494587
+ 378125 string characters out of 6177759
+ 477056 words of memory out of 5000000
+ 23898 multiletter control sequences out of 15000+600000
+ 61397 words of font info for 68 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,18n,78p,890b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,18n,78p,2543b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
@@ -1597,10 +1661,10 @@ nts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (50 pages, 600299 bytes).
+Output written on diploma_thesis.pdf (60 pages, 638714 bytes).
 PDF statistics:
- 1103 PDF objects out of 1200 (max. 8388607)
- 1004 compressed objects within 11 object streams
- 520 named destinations out of 1000 (max. 500000)
- 327 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1246 PDF objects out of 1440 (max. 8388607)
+ 1132 compressed objects within 12 object streams
+ 546 named destinations out of 1000 (max. 500000)
+ 380 words of extra memory for PDF output out of 10000 (max. 10000000)
 

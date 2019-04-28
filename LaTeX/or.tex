@@ -8,12 +8,17 @@
 \SetKwFunction{modifyRouteB}{modifyRouteB}
 
 \section{Or operator}
+
+\subsection{Motivation}
+\label{sec:motOR}
 The or operator gives the user flexibility to express his need for different route alternatives. It represents the disjunction operator, usually present in query languages. In the context of a sequenced route query, the user can specify multiple categories or a list of categories, which can be disjoint. Then the query is responsible for finding the best route out of all the options that the user has specified. The best route is qualified based on length.
+
+Suppose that a user poses the following query: first he has time to go to either a bank or a pharmacy, then he has a date in a movie theater and after that he plans to go to the restaurant. The proposed approach uses a modified PNE to generate an optimal result for this type of query.
 
 \subsection{Problem definition} 
 \label{sec:problemOr}
-In order to explain the or query, first we need to define what an OR sequence is:\newline
-\textbf{OR sequence:} An or sequence $OR = (M_1, M_2, ..., M_m)$ represents the disjunction of category sequences, such as $M_1 = (c_1, c_2, ..., c_l)$. At least one of the category sequences, defined in this or sequence, must be present in the final result of the query.\newline
+In order to explain the or query, first we need to define what an OR sequence is: \newline
+\textbf{OR sequence:} An or sequence $OR = (M_1, M_2, ..., M_m)$ represents the disjunction of category sequences, such as $M_1 = (c_1, c_2, ..., c_l)$. At least one of the category sequences, defined in this or sequence, must be present in the final result of the query.
 
 The or query is defined as follows: \newline
 \textbf{Or query:} Given a sequence of OR sequences $S = (OR_1, OR_2, ..., OR_n)$ and a starting point $sp$ in ${\rm I\!R}^2$
@@ -131,9 +136,6 @@ Trimming is also performed (see \ref{proc:trim}). \newline
 	place $newPSR$ on heap\;
 \end{procedure}
 
-\pagebreak
-
-
 In case b) \ref{proc:modifyRouteB} it is checked if the indicator $PSR.prevPosition$ for the PSR is set ot $true$ (line 1). If that is the case, it means, that the OR sequence of the previous position $OR_{s-1}$ should be examined again (line 1 to 19). A PSR is build with each $M_i$ from the or sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the kth nearest neighbor $r_{|PSR|-1}$ in $U_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the k-th nearest neighbor to $r_{|PSR|-1}$ in $U_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSR the shortest one is chosen and put on the heap. 
 If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that the k-th nearest neighbor to $r_{|PSR|}$ in $U_{PSR.categories[1]}$ is found (line 20 to 25). The indicator $PSR.prevPosition$ for the PSR is also updated to indicate that in \modifyRouteB{$PSR$} the k-th neighbor to the second to last PoI should be found. \newline
 
@@ -170,10 +172,41 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 	place $newPSR$ on heap\;
 \end{procedure}
 
+\subsubsection{Running example}
+We describe the algorithm for the or operator using the example in Section \ref{sec:motOR}, using the road network in Figure \ref{fig:example}. The user wanted to visit either a bank or a pharmacy, then go to the movies and then to a restaurant (i.e., $S = (OR_1, OR_2, OR_3)$, $|S| = n = 3$, $OR_1 = ((b), (ph))$, $OR_2 = ((mt))$, $OR_2 = ((r))$). In Figure \ref{heapOR} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+First, all routes from the starting point $sp$ to all possible category sequences in OR sequence $OR_1$ $(b)$ and $(ph)$ are generated. Since there is only one category the simple case is executed, where the nearest neighbor is found. Routes $(b_1)$ with length 2 and $(ph_1)$ with length 3 are generated and compared and the second one is chosen, based on its length, and placed on the heap. In step 1 route $(b_1)$ fetched and the nearest neighbor from the next OR sequence $OR_2$ is found. $OR_2$ only contains one category sequence with one category, therefore this is a simple case a), where the nearest neighbor is found. In b) the next nearest neighbor to the starting point from the OR sequence $OR_1$ is found, which is $ph_1$ with length 3, because $b_2$ with length 4 is further apart. 
+In step 5 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed on the heap as the candidate route. Then in step 6 another SR $(ph_1, mt_1, r_2)$ with length 10 is generated, but it is longer than the candidate route, previously generated, so it gets discarded. Finally, the optimal route $(b_1, mt_1, r_2)$ with length 9 is returned.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |l|l| } 
+		\hline
+		Step & PSR $R : length(r), index(R)$ \\
+		\hline
+		1 & $(b_1 : 2, 1)$ \\ 
+		\hline
+		2 & $(ph_1 : 3, 1), (b_1, mt_1 : 5, 2)$ \\ 
+		\hline
+		3 & $(ph_2 : 3, 1), (ph_1, mt_1 : 6, 2), (b_1, mt_1 : 5, 2)$ \\ 
+		\hline
+		4 & $(b_2 : 4, 1), (b_1, mt_1 : 5, 2), (ph_1, mt_1 : 6, 2), (ph_2, mt_1 : 7, 2)$ \\ 
+		\hline
+		5 & $(b_1, mt_1 : 5, 2), (ph_1, mt_1 : 6, 2), (ph_2, mt_1 : 7, 2), (b_2, mt_1 : 9, 2)$ \\ 
+		\hline
+		6 & $(ph_1, mt_1 : 6, 2), (ph_2, mt_1 : 7, 2), (b_1, mt_1, r_2 : 9, 3), (b_2, mt_1 : 9, 2)$ \\ 
+		\hline
+		7 & $(ph_2, mt_1 : 7, 2), (b_1, mt_1, r_2 : 9, 3), (b_2, mt_1 : 9, 2),$ \st{$(ph_1, mt_1, r_2 : 10, 3)$} \\ 
+		\hline
+		8 & $(b_1, mt_1, r_2 : 9, 3), (b_2, mt_1 : 9, 2),$ \st{$(ph_2, mt_1, r_2 : 11, 3)$} \\ 
+		\hline
+	\end{tabular}
+	\caption{Steps of the algorithm for OR using the road network from Figure \ref{fig:example}}
+	\label{heapOR}
+\end{table}
 
 \subsection{Baseline approach} 
 \label{sec:baselineOr}
-The baseline approach on the or operator is entirely based on PNE by simply running PNE on all permutations of the query.
+A naive solution to find an optimal route with the or operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}

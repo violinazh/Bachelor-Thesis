@@ -9,11 +9,14 @@
 \SetKwFunction{trim}{trim}
 
 \section{Not-Equality operator}
-The not-equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal.
+
+\subsection{Motivation}
+\label{sec:motNEO}
+The not-equality operator is based on the need to express that some PoIs in the SRQ of the same category shouldn't be equal. Following a similar example ot the one in Section \ref{sec:motivation} for the road network in Figure \ref{fig:example}, a user is planning a trip to town: he first wants to go to a restaurant for lunch, then he wants to stop by a pharmacy and after that he wants to go to a different restaurant for coffee. In this specific scenario, the user wants to express his wish for the restaurants to be the different, but with the existing PNE \cite{OSR} approach, which finds an OSR, the user would get the route $(r_1, ph_1, r_1)$ with length 5, where both restaurants are the same. The proposed approach in this chapter strives to find the optimal route, where the two restaurants are different. It will not necessarily be the shortest possible sequenced route, but it will be the shortest route out of all possible routes, where the two PoIs are different. Such route in our example graph would be $(r_1, ph_2, r_2)$ with length 7 (shown with dashed lines in the figure).
 
 \subsection{Problem definition} 
 \label{sec:problemNEO}
-The not-equality operator is defined as follows: \newline
+The not-equality operator is defined as follows:
 
 \textbf{Not-Equality operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in U_{M_{i}}$, $r_j \in U_{M_{j}}$ and $M_i \neq M_j$, $NOTEQUAL(i, j)$ is an equality operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
 $Q(sp, M, NOTEQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$ and where $r_i \neq r_j$.
@@ -30,7 +33,7 @@ The not-equality operator is designed using the PNE approach, proposed in \cite{
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmNEO}
-The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until a full SR is found (line 7 to 20). Each full SR (line 8 to 11) is checked if it is a full SR. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 12 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}. \newline
+The algorithm (shown in \ref{alg:notequality}) starts by initializing the heap, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the heap based on their length, until a full SR is found (line 7 to 20). Each full SR (line 8 to 11) is checked if it is a full SR. If this is the case, the found optimal SR is returned, otherwise the next PSR on the heap is fetched. If the fetched PSR is not a full SR but a partial route (line 12 to 19), then the algorithm performs a) and b) as in the PNE algorithm \ref{alg:PNE}.
 
 \begin{algorithm}[H]
 	\label{alg:notequality}
@@ -100,6 +103,31 @@ If the generated route is still not a full SR (line 16 to 21) the $PSR$ is place
 		}
 	}
 \end{procedure}
+
+\subsubsection{Running example}
+We describe the algorithm for the not-equality operator using the example in Section \ref{sec:motNEO}. The user in the example wanted to visit a restaurant, a pharmacy and a restaurant again, but he wanted both restaurants to not be equal ($M = (r, ph, r)$, $|M| = l = 3$, $NOTEQUAL(0, 2)$). In Figure \ref{heapNEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a new $firstPSR$ is generated and put on the heap: $(r_1)$ with length 1. In step 2 route $(r_1)$ is fetched from the heap and modified according to a) and b) as in the PNE algorithm. Similarly, this process is repeated until the route on top of the heap follows the sequence $M = (r, ph, r)$. the difference here from the PNE algorithm comes from the trimming part. For example in step 2, route $(r_1, ph_1)$ is fetched from the heap and in a) the full SR $(r_1, ph_1, r_1)$ is generated. In the trimming function, it is checked if the restaurants at positions 0 and 2 are equal. In case they are not the candidate route is initialized and placed on the heap, but in our case, they are equal and $j$ is also the last index 2, which means that the next neighbor to $ph_1$ is found and the alternate route $(r_1, ph_1, r_2)$ with length 10 is generated and placed on the heap. Then some more PSR are generated, until in step 4 $(r_1, ph_2)$ again a full SR $(r_1, ph_2, r_2)$ with length 7 is generated. The route is then trimmed and since the restaurants are not equal and also the route is shorter than the current candidate route, the candidate route is updated and the new SR is place on the heap. In step 5 the fetched route $(r_1, ph_2, r_2)$ is a full SR, which satisfies the condition for the restaurant at indices 0 and 2 to not be equal, is returned as the optimal route.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |l|l| } 
+		\hline
+		Step & PSR $R : length(R)$ \\
+		\hline
+		1 & $(r_1 : 1)$ \\ 
+		 \hline
+		2 & $(r_1, ph_1 : 3), (r_2 : 5)$ \\ 
+		\hline
+		3 & $(r_2 : 5), (r_1, ph_2 : 5), (r_1, ph_1, r_2 : 10)$ \\ 
+		\hline
+		4 & $(r_1, ph_2 : 5), (r_2, ph_2 : 7), (r_1, ph_1, r_2 : 10)$ \\ 
+		\hline
+		5 & $(r_1, ph_2, r_2 : 7), (r_2, ph_2 : 7), (r_1, ph_1, r_2 : 10)$ \\ 
+		\hline
+	\end{tabular}
+	\caption{Steps of the algorithm for NEO using the road network from Figure \ref{fig:example}}
+	\label{heapNEO}
+\end{table}
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}

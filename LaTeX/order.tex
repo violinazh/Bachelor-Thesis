@@ -8,12 +8,17 @@
 \SetKwFunction{modifyRouteB}{modifyRouteB}
 
 \section{Order operator}
-The order operator gives the user the opportunity to provide the algorithm with route alternatives that satisfy his needs, from which the best can be found according to length.  In the context of a sequenced route query, the user can specify single, none or multiple categories out of a sequenced category list to be in a specified by him order. Then only these categories are found in the form of a sequenced route query (SRQ) while the others are inspected prioritized and algorithmically. The query is responsible for finding the best route out of all possible permutations of the category sequence.
+
+\subsection{Motivation}
+\label{sec:motORDER}
+The order operator gives the user the opportunity to provide the algorithm with route alternatives that satisfy his needs, from which the best can be found according to length.  In the context of a sequenced route query, the user can specify single, none or multiple categories out of a sequenced category list to be in a specific order. Then only these categories are found in the form of a sequenced route query (SRQ) while the others are inspected and  prioritized algorithmically. The query is responsible for finding the best route, based on length, out of all possible permutations of the category sequence.
+
+Suppose that a user poses the following query: he wants the place he visits to be a restaurant, before and after that he wants to visit a bank and a pharmacy, but it is not important for him to visit one before the other. So the query only knows that restaurant must be visited second. The proposed approach in this chapter uses a modified PNE to generate an optimal result for this type of query.
 
 \subsection{Problem definition} 
 \label{sec:problemOrder}
 First we need to define what an ORDER sequence is:\newline
-\textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, with $k \leq l$ and $1 \leq i_i \leq l$ is a sequence of indices in a category sequence $M_1 = (c_1, c_2, ..., c_l)$. They represent the categories at the given indices and indicate that these categories should remain in the given places in this category sequence $M$. The PoIs from categories, of which no indices are specified in the ORDER sequence can be placed at any other index from the remaining indices for the not ordered categories. \newline
+\textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, with $k \leq l$ and $1 \leq i_i \leq l$ is a sequence of indices in a category sequence $M_1 = (c_1, c_2, ..., c_l)$. They represent the categories at the given indices and indicate that these categories should remain in the given places in this category sequence $M$. The PoIs from categories, of which no indices are specified in the ORDER sequence can be placed at any other index from the remaining indices for the not ordered categories.
 
 The order query is then defined as follows: \newline
 \textbf{Order query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$, $Q(sp, M, ORDER)$ is a Route Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows partially $M$ as defined by the ORDER sequence.
@@ -140,9 +145,54 @@ In case b) \ref{proc:mRouteB} an alternative PSR with the kth nearest neighbor t
 	place $newPSR$ on heap\;
 \end{procedure}
 
+\subsubsection{Running example}
+We describe the algorithm for the order operator using the example in Section \ref{sec:motORDER}, using the road network in Figure \ref{fig:example}. The user wanted to visit the restaurant at seond place in his route and also visit a bank and a pharmacy (i.e., $M = (b, r, ph)$, $|M| = l = 3$, $ORDER = (1)$). In Figure \ref{heapORDER} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+First, the $notordered$ list is initiated: $[b, ph]$. Since the first position of the category sequence in the query is not fixed, routes from the starting point $sp$ with both categories in the $notordered$ list are generated: $b_1$ with length 2 and $ph_1$ with length 3. Route $b_1$ is shorter and is therefore placed on the heap. In step one, we have the case, where the searched PoI is at a fixed position 1. In this case in a) the nearest neighbor to $b_1$ from type restaurant $r_2$ is found, while in b) the next nearest neighbor to the starting point types bank and pharmacy are found and compared again. In step 5 the first SR $(ph_1, r_1, b_1)$ with length 8 is generated and placed as a candidate route on the heap.
+
+This process continues until in step 11 the optimal route $(ph_2, r_2, b_2)$ with length 6 is returned.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{ |l|p{14cm}| } 
+		\hline
+		Step & PSR $R : length(r), r.notordered$ \\
+		\hline
+		1 & $(b_1 : 2, [ph])$ \\ 
+		\hline
+		2 & $(ph_1 : 3, [b]), (b_1, r_2 : 5, [ph])$ \\ 
+		\hline
+		3 & $(ph_2 : 3, [b]), (ph_1, r_1 : 5, [b]), (b_1, r_2 : 5, [ph])$ \\ 
+		\hline
+		4 & $(b_2 : 4, [ph]), (ph_2, r_2 : 5, [b]), (ph_1, r_1 : 5, [b]), (b_1, r_2 : 5, [ph])$ \\ 
+		\hline
+		5 & $(ph_1, r_1 : 5, [b]), (b_2, r_2 : 5, [ph]), (ph_2, r_2 : 5, [b]), (b_1, r_2 : 5, [ph])$ \\ 
+		\hline
+		6 & $(b_2, r_2 : 5, [ph]), (ph_2, r_2 : 5, [b]), (b_1, r_2 : 5, [ph]), (ph_1, r_1, b_1 : 8, [])$ \\ 
+		\hline
+		7 & $(b_1, r_2 : 5, [ph]), (b_2, r_2, ph : 5, [ph]), (ph_2, r_2 : 5, [b]), (b_2, r_2, ph_2 : 7, []),$ \st{$(ph_1, r_1, b_1 : 8, [])$} $, (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
+		\hline
+		8 & $(b_2, r_2 : 5, [ph]), (ph_2, r_2 : 5, [b]), (b_1, r_1 : 5, [ph]), (b_2, r_2, ph_2 : 7, []), $ \st{$(b_1, r_2, ph_2 : 7, [])$} $, (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
+		\hline
+		9 & $(b_1, r_1 : 5, [ph]), (b_2, r_2 : 5, [ph]), (ph_2, r_2, b_2 : 6, []),$ \st{$(b_2, r_2, ph_2 : 7, [])$} $, (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
+		\hline
+		10 & $(b_2, r_2 : 5, [ph]), (ph_2, r_2, b_2 : 6, []),$ \st{$(b_1, r_1, ph_1 : 7, [])$} $, (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
+		\hline
+		11 & $(ph_2, r_2, b_2 : 6, []), (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
+		\hline
+	\end{tabular}
+	\caption{Steps of the algorithm for ORDER using the road network from Figure \ref{fig:example}}
+	\label{heapORDER}
+\end{table}
+
+Trimming
+Case ordered
+b): null
+Heap 9: [[POIs: (2, 6, pharmacy, 3.0), (2, 4, restaurant, 2.0), (2, 5, bank, 1.0), Length: 6.0, Cat unordered: []], [POIs: (2, 5, bank, 4.0), (2, 4, restaurant, 1.0), (2, 6, pharmacy, 2.0), Length: 7.0, Cat unordered: []], [POIs: (2, 6, pharmacy, 3.0), (1, 1, restaurant, 4.0), Length: 7.0, Cat unordered: [2]], [POIs: (1, 2, pharmacy, 3.0), (2, 4, restaurant, 7.0), Length: 10.0, Cat unordered: [2]], [POIs: (1, 2, pharmacy, 3.0), (1, 1, restaurant, 2.0), (1, 7, bank, 3.0), Length: 8.0, Cat unordered: []], [POIs: (2, 5, bank, 4.0), (1, 1, restaurant, 5.0), Length: 9.0, Cat unordered: [3]]]
+ORDER route: [POIs: (2, 6, pharmacy, 3.0), (2, 4, restaurant, 2.0), (2, 5, bank, 1.0), Length: 6.0, Cat unordered: []]
+
 \subsection{Baseline approach} 
 \label{sec:baselineOrder}
-The baseline approach on the order operator is entirely based on PNE by simply running PNE on all permutations of the query.
+A naive solution, similar to the one with the order operator in Chapter \ref{sec:baselineOr}, to find an optimal route with the order operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
