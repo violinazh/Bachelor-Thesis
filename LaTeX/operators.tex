@@ -1,5 +1,11 @@
 \chapter{Operators} 
 \label{sec:operators}
 
-In this chapter the proposed operators are covered in terms of their design, implementation and evaluation.\newline
+In this chapter the proposed operators are covered in terms of their design, implementation and evaluation.
 
+We have a starting point and a category sequence, which constitutes the SRQ. In addition to this two query parameters, the user can define other parameters, which are applied to the route query as query operators. Such possible query operators, presented in this thesis, are the equality operator, not-equality operator, or operator and order operator. 
+
+We define the \textit{Complex Route Query} (CRQ):
+
+\textbf{Complex route query (CRQ):} Given a starting point $sp$, a category sequence $M = (c_1, c_2, ..., c_n)$ and an operator $OPERATOR$, $Q(sp, M, OPERATOR)$ is a Complex Route (CR) Query, which searches for the optimal route $R = (r_1', r_2', ..., r_l')$, defined as a sequence of PoIs.
+%Depending on which operator is applied to the query the found route $R$ follows $M$ in a way that the operator states

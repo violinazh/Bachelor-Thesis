@@ -41,9 +41,9 @@ In order to faster calculate the heuristic for the partial routes, the nearest n
 The equality operator is designed using the PNE approach, proposed in \cite{OSR}. It uses the progressive neighbour explorator as its base to upgrade on and extends it with a heuristic approach to shrink the search space.
 
 \subsubsection{Heuristic}
-For generating the routes and deciding which of them are worth further expanding on, the proposed approach uses an initially calculated \textit{upper bound} of an artificially build OSR, which satisfies the equality condition, and compares it to a lower bound of a route, considered by the algorithm. The \textit{lower bound} of a certain route represents the sum of its length and its heuristic. The heuristic of a certain PSR is the maximum distance out of the distances to PoIs from the set of categories that are yet to be expanded. The function $heuristic(PSR)$ \ref{proc:heuristic} calculates the heuristic for a given route $R$.
+For generating the routes and deciding which of them are worth further expanding on, the proposed approach uses an initially calculated \textit{upper bound} of an artificially build OSR, which satisfies the equality condition, and compares it to a lower bound of a route, considered by the algorithm. The \textit{lower bound} of a certain route represents the sum of its length and its heuristic. The heuristic of a certain PSR is the maximum distance out of the distances to PoIs from the set of categories that are yet to be expanded. The function $heuristic(PSR)$ \nameref{proc:heuristic} calculates the heuristic for a given route $R$.
 
-\begin{function}[H]
+\begin{function}[htb!]
 	\label{proc:heuristic}
 	\caption{heuristic($R$)}
 	\tcp{Calculates the heuristic for the given route $R = (r_1, r_2, ..., r_k)$}
@@ -54,11 +54,11 @@ For generating the routes and deciding which of them are worth further expanding
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 
-The algorithm for the equality operator as shown in \ref{alg:equality} is constructed using multiple procedures.
+The algorithm for the equality operator as shown in \nameref{alg:equality} is constructed using multiple procedures.
 
-\begin{algorithm}[H]
-	\label{alg:equality}
-	\caption{equalityOperator}
+\begin{algorithm}[htb!]
+	
+	
 	
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
 	
@@ -78,6 +78,8 @@ The algorithm for the equality operator as shown in \ref{alg:equality} is constr
 		\dummySR{}\;
 		\modifiedPNE{}\;
 	}
+\caption{equalityOperator()}
+\label{alg:equality}
 \end{algorithm}
 
 \pagebreak
@@ -88,7 +90,7 @@ First, an optimal sequenced route is found using the PNE algorithm \ref{alg:PNE}
 
 Second, we artificially create a sequenced route from the optimal route, found by PNE, as seen in \ref{proc:dummy}. The optimal route is changed, so that $r_j$ is made to be equal to $r_i$ (line 2, 3) and the length of the artificially created PSR is the initial upper bound (line 4), by which later partial sequenced routes are either kept or discarded.
 
-\begin{procedure}[H]
+\begin{procedure}[htb!]
 	\label{proc:dummy}
 	\caption{dummySR($optimalRoute$)}
 	
@@ -105,7 +107,7 @@ Next, the modified PNE algorithm acts as a PNE algorithm and it fetches partial 
 
 At each subsequent iteration of the algorithm \ref{alg:mPNE} (line 9 to 26) there are four distinct cases depending on the length of the route. Case one (line 11) \ref{proc:c1} and four (line 20) \ref{proc:c4} follow the original PNE. Case two (line 14) \ref{proc:c2} is focused on finding the travel distance between $r_{j-1}$ and $r_i$. In each of the cases after fetching the route first the \textit{lower bound} of the fetched PSR is compared to the global \textit{upper bound} to see if the route should be modified or discarded (lines 1 to 3). After that the PSR is modified accordingly and again a length check is performed before finally putting the route on the $heap$. The length check is performed to make sure that the PSR is not longer than the already found SR with a length, which is the upper bound $UB$.  
 
-\begin{algorithm}[H]
+\begin{algorithm}[htb!]
 	\label{alg:mPNE}
 	\caption{\protect\modifiedPNE returns Route}
 	
@@ -139,9 +141,9 @@ At each subsequent iteration of the algorithm \ref{alg:mPNE} (line 9 to 26) ther
 	
 \end{algorithm}
 
-In case one \ref{proc:c1} we find PSRs before $r_j$. Two modifications of the PSR are performed, which follow the PNE algorithm \ref{alg:PNE}. In a) (line 4 to 9) the nearest neighbor to the last PoI in the PSR $r_k$ in $U_{M_{k+1}}$ is found and the PSR is updated to contain $r_{k+1}$ and placed back on the heap. In b) (line 11 to 15) the k-th nearest neighbor to the second to last PoI $r_{k+1}$ in $U_{M_{k}}$ is found and the last PoIs in the PSR $r_k$ is replaced with it.
+In case one \ref{proc:c1} we find PSRs before $r_j$. Two modifications of the PSR are performed, which follow the PNE algorithm \ref{alg:PNE}. In a) (line 4 to 9) the nearest neighbor to the last PoI in the PSR $r_k$ in $U_{M_{k+1}}$ is found and the PSR is updated to contain $r_{k+1}$ and placed back on the heap. In b) (line 11 to 15) the k-th nearest neighbor to the second to last PoI $r_{k+1}$ in $U_{M_{k}}$ is found and the last PoIs in the PSR $r_k$ is replaced with it. \newline
 
-\pagebreak
+\raggedbottom
 
 \begin{procedure}[H]
 	\label{proc:c1}
@@ -188,9 +190,11 @@ In case two \ref{proc:c2} $r_j$ is to be found. In a) (line 4 to 10) instead of 
 	}
 \end{procedure}
 
+\flushbottom
+
 In case three \ref{proc:c3} $r_{j+1}$ is to be found. In a) (line 4 to 10) the nearest neighbor to the last PoI in the PSR $r_j$ in $U_{M_{j+1}}$ is found and the PSR is updated to contain $r_{j+1}$ and placed back on the heap. In b) (line 12) the k-th nearest neighbor to the second to last PoI $r_{j-1}$ in $U_{M_{j-2}}$ is expected to be found, but in our case this is $r_j$ and we have already calculated the travel distance between $r_{j-1}$ and $r_i$ in case two \ref{proc:c2}, so here nothing further needs to be done.
 
-\begin{procedure}[H]
+\begin{procedure}[htb!]
 	\label{proc:c3}
 	\caption{caseThree()}
 	
@@ -210,7 +214,7 @@ In case three \ref{proc:c3} $r_{j+1}$ is to be found. In a) (line 4 to 10) the n
 
 In case four \ref{proc:c4} we find PSR after $r_j$. The case is similar to case one \ref{proc:c1}, except that in a) instead of directly putting the PSR on the heap, trimming \ref{proc:trim} is performed in a) (line 10) to check if the route is a full SR and if the candidate route $found$ and the upper bound $UB$ must be updated.
 
-\begin{procedure}[H]
+\begin{procedure}[htb!]
 	\label{proc:c4}
 	\caption{caseFour()}
 	
@@ -233,7 +237,7 @@ In case four \ref{proc:c4} we find PSR after $r_j$. The case is similar to case 
 	}	
 \end{procedure}
 
-\begin{algorithm}[H]
+\begin{algorithm}[htb!]
 	\label{alg:PNE}
 	\caption{\protect\PNE \cite{OSR}}
 	\tcp{Incrementally create the set of candidate routes for $Q(sp, M)$ from starting point $sp$ towards PoI set $U_{M_l}$}
@@ -319,6 +323,8 @@ The baseline approach to the equality operator is entirely based on PNE by simpl
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 The algorithm (shown in \ref{alg:equality_baseline}) starts by finding an optimal sequenced route with PNE (line 2), as mentioned in the proposed approach \ref{sec:approachEO} and checks if $r_i$ and $r_j$ are already equal (line 3). If this is the case, it returns the found optimal route (line 5), otherwise (line 7) it continues with the modified PNE \ref{alg:mPNE_baseline}. 
+
+\raggedbottom
 
 \begin{algorithm}[H]
 	\label{alg:equality_baseline}

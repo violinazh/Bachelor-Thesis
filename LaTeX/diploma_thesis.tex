@@ -31,12 +31,25 @@
    pdfsubject={B.sc. Thesis},
    pdfkeywords={Trip Planning}
 ]{hyperref}
-\usepackage[ruled,linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage[ruled,linesnumbered,vlined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{todonotes}
 \usepackage{float}
 \usepackage{multirow}
 \usepackage{parskip}
 \usepackage{soul}
+
+
+\makeatletter
+\let\original@algocf@latexcaption\algocf@latexcaption
+\long\def\algocf@latexcaption#1[#2]{%
+	\@ifundefined{NR@gettitle}{%
+		\def\@currentlabelname{#2}%
+	}{%
+		\NR@gettitle{#2}%
+	}%
+	\original@algocf@latexcaption{#1}[{#2}]%
+}
+\makeatother
 
 \bibliographystyle{styles/plain}
 
@@ -77,6 +90,7 @@
 
 \listoffigures
 \listoftables
+\listofalgorithms
 
 \backmatter    
 %\chapter{Bibliography}
