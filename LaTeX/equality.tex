@@ -12,10 +12,13 @@
 \SetKwFunction{dummySR}{dummySR}
 \SetKwFunction{heuristic}{heuristic}
 \SetKwFunction{trim}{trim}
-\SetKwFunction{caseOne}{case1}
-\SetKwFunction{caseTwo}{case2}
-\SetKwFunction{caseThree}{case3}
-\SetKwFunction{caseFour}{case4}
+\SetKwFunction{caseBefore}{caseBefore}
+\SetKwFunction{caseContaining}{caseContaining}
+\SetKwFunction{caseAfterOrContaining}{caseAfterOrContaining}
+\SetKwFunction{caseAfter}{caseAfter}
+
+\SetKwBlock{A}{a)}{end}
+\SetKwBlock{B}{b)}{end}
 
 \section{Equality operator}
 \label{ch:EO}
@@ -38,38 +41,41 @@ In order to faster calculate the heuristic for the partial routes, the nearest n
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
 \label{sec:approachEO}
-The equality operator is designed using the PNE approach, proposed in \cite{OSR}. It uses the progressive neighbour explorator as its base to upgrade on and extends it with a heuristic approach to shrink the search space.
+The equality operator is designed using the PNE approach, proposed in \cite{OSR} and briefly presented in algorithm \texttt{\nameref{alg:PNE}}. It uses the progressive neighbor explorator as its base to upgrade on and extends it with a heuristic approach to shrink the search space.
 
 \subsubsection{Heuristic}
-For generating the routes and deciding which of them are worth further expanding on, the proposed approach uses an initially calculated \textit{upper bound} of an artificially build OSR, which satisfies the equality condition, and compares it to a lower bound of a route, considered by the algorithm. The \textit{lower bound} of a certain route represents the sum of its length and its heuristic. The heuristic of a certain PSR is the maximum distance out of the distances to PoIs from the set of categories that are yet to be expanded. The function $heuristic(PSR)$ \nameref{proc:heuristic} calculates the heuristic for a given route $R$.
+For generating the routes and deciding which of them are worth further expanding on, the proposed approach uses an initially calculated \textit{upper bound} of an artificially build OSR, which satisfies the equality condition, and compares it to a lower bound of a route, considered by the algorithm. The \textit{lower bound} of a certain route represents the sum of its length and its heuristic. The heuristic of a certain PSR is the maximum distance out of the distances to PoIs from the set of categories that are yet to be expanded. The function \texttt{\ref{proc:heuristic}()} calculates the heuristic for a given route $R$.
 
 \begin{function}[htb!]
-	\label{proc:heuristic}
-	\caption{heuristic($R$)}
+\caption{heuristic($R$)}
+\label{proc:heuristic}
+
 	\tcp{Calculates the heuristic for the given route $R = (r_1, r_2, ..., r_k)$}
-	\tcp{For every route, which already contains $r_i$ $R = (r_1, r_2, ...,r_i, ..., r_k)$ the distance to $r_j$ is calculated as the \dist{$r_k, r_i$}}
-	\For(For all direct neighbors to $r_k$ of every subsequent category find the maximum distance){$c_{k+1}$ to $c_n$}{find maximum\;}
+	\tcp{For every route, which already contains $r_i$ $R = (r_1, r_2, ...,r_i, ..., r_k)$ the distance to $r_j$ is calculated as \dist{$r_k, r_i$}}
+	\For(For all direct neighbors to $r_k$ of every subsequent category find the maximum distance){$c_{k+1}$ to $c_n$}{find $max($\dist{$r_k, r_i$}$)$\;}	
+
 \end{function}
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 
-The algorithm for the equality operator as shown in \nameref{alg:equality} is constructed using multiple procedures.
+The algorithm for the equality operator as shown in \texttt{\nameref{alg:equality}} is constructed using multiple procedures.
 
 \begin{algorithm}[htb!]
+\caption{equalityOperator()}
+\label{alg:equality}
 	
-	
-	
-	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
+	\SetKwInOut{Input}{Input}
+	\SetKwInOut{Output}{Output}
 	
 	\Input{$Q(sp, M = (c_1, c_2, ..., c_l)), EQUAL(i, j)$}
 	\Output{$R = (r_1, r_2, ..., r_l)$}
 	\BlankLine
 	
 	$initialize$ $heap$ \tcp*{Heap with PSR}
-	$initialize$ $found$ \tcp*{The candidate SR}
+	$initialize$ $foundSR$ \tcp*{The candidate SR}
 	$initialize$ $UB$\; 
-	$optimalRoute =$\PNE{$Q$}\;
+	$optimalRoute \leftarrow$\PNE{$Q$}\;
 	\eIf{$optimalRoute[i] = optimalRoute[j]$}{
 		optimal route has been found\;
 		\Return $optimalRoute$\;
@@ -78,38 +84,37 @@ The algorithm for the equality operator as shown in \nameref{alg:equality} is co
 		\dummySR{}\;
 		\modifiedPNE{}\;
 	}
-\caption{equalityOperator()}
-\label{alg:equality}
+
 \end{algorithm}
 
 \pagebreak
 
-$heap$, $found$ and $UB$ are initialized (line 1 to 3). In $heap$ the PSR which are to be examined by the algorithm are stored. It is sorted by the \textit{lower bound} of the PSR. $found$ stores a candidate SR. $UB$ is the length of the candidate route and it is updated each time a full SR is found The update is performed in $trim(SR)$ \ref{proc:trim}
+$heap$, $found$ and $UB$ are initialized (line 1 to 3). In $heap$ the PSR which are to be examined by the algorithm are stored. It is sorted by the \textit{lower bound} of the PSR. $foundSR$ stores a candidate SR. $UB$ is the length of the candidate route and it is updated each time a full SR is found. The update is performed in procedure \texttt{\ref{proc:trim}()}.
 
-First, an optimal sequenced route is found using the PNE algorithm \ref{alg:PNE} (line 4). It is checked, if the two PoIs that the user has asked to be equal (line 5), are equal in the OSR. If so, the OSR is returned (line 7), else the equality operator continues with the creation of an artificial SR $dummySR$ and the modified PNE algorithm (line 9, 10). 
+First, an optimal sequenced route is found using the PNE algorithm (line 4). It is checked, if the two PoIs that the user has asked to be equal (line 5), are equal in the OSR. If so, the OSR is returned (line 7), else the equality operator continues with the creation of an artificial SR $dummySR$ and the modified PNE algorithm (line 9, 10). 
 
-Second, we artificially create a sequenced route from the optimal route, found by PNE, as seen in \ref{proc:dummy}. The optimal route is changed, so that $r_j$ is made to be equal to $r_i$ (line 2, 3) and the length of the artificially created PSR is the initial upper bound (line 4), by which later partial sequenced routes are either kept or discarded.
+Second, we artificially create a sequenced route from the optimal route, found by PNE, as seen in \texttt{\ref{proc:dummy}()}. The optimal route is changed, so that $r_j$ is made to be equal to $r_i$ (line 2, 3) and the length of the artificially created PSR is the initial upper bound (line 4), by which later partial sequenced routes are either kept or discarded.
 
 \begin{procedure}[htb!]
-	\label{proc:dummy}
-	\caption{dummySR($optimalRoute$)}
+\caption{dummySR($optimalRoute$)}
+\label{proc:dummy}
 	
 	\tcp{Creating a dummy SR (partial sequence route) from the found optimal route; replacing $r_j$ with $r_i$}
-	$dummySR = (r_1, r_2, ..., r_{i-1}, r_i, ..., r_i)$ \tcp*{First part of the route}
-	$dummySR \leftarrow add$ \PNE{$r_i, (c_{j+1}, ..., c_l)$}\;
+	initiate $dummySR$ as $(r_1, r_2, ..., r_{i-1}, r_i, ..., r_i)$ \tcp*{First part of the optimal route}
+	$dummySR \leftarrow add$ route found by \PNE{$r_i, (c_{j+1}, ..., c_l)$}\;
 	$UB =$ \length{$dummySR$}\;
 	place $dummySR$ on the $heap$\;
 \end{procedure}
 
-The modified PNE algorithm \ref{alg:mPNE} begins iterating all $r_1$ from the category set $U_{M_1}$, which are subsequent to $sp$ (line 1 to 7) in the and it compares the \textit{lower bound}, generated by them, to the global \textit{upper bound} (line 4). They are only considered in further steps of the algorithm, if the partial sequenced route has a smaller lower bound than the upper bound.
+Then the algorithm \texttt{\nameref{alg:mPNE}} begins iterating all $r_1$ from the category set $U_{M_1}$, builds PSRs with $sp$ and each $r_1$ (line 1 to 7) and compares the \textit{lower bound}, generated by them, to the global \textit{upper bound} (line 4). The built PSRs are only considered in further steps of the algorithm, if their \textit{lower bound} is smaller than the \textit{upper bound}.
 
-Next, the modified PNE algorithm acts as a PNE algorithm and it fetches partial sequenced routes from the heap and generates new routes (line 8 to 24). This process is repeated until the $heap$ runs out of PSRs, which means that all possible candidate routes have been expanded and taken into account.
+Next, the modified PNE performs as the original PNE algorithm by fetching partial sequenced routes from the $heap$ and generating new routes (line 8 to 24). This process is repeated until the $heap$ runs out of PSRs, which means that all possible candidate routes have been expanded and taken into consideration.
 
-At each subsequent iteration of the algorithm \ref{alg:mPNE} (line 9 to 26) there are four distinct cases depending on the length of the route. Case one (line 11) \ref{proc:c1} and four (line 20) \ref{proc:c4} follow the original PNE. Case two (line 14) \ref{proc:c2} is focused on finding the travel distance between $r_{j-1}$ and $r_i$. In each of the cases after fetching the route first the \textit{lower bound} of the fetched PSR is compared to the global \textit{upper bound} to see if the route should be modified or discarded (lines 1 to 3). After that the PSR is modified accordingly and again a length check is performed before finally putting the route on the $heap$. The length check is performed to make sure that the PSR is not longer than the already found SR with a length, which is the upper bound $UB$.  
+At each subsequent iteration of the algorithm \texttt{\nameref{alg:mPNE}} (line 9 to 26) there are four distinct cases depending on the length of the route. Case \newline \texttt{\ref{proc:c1}()} (line 11) and \texttt{\ref{proc:c4}()} (line 20) follow the original PNE. Case \texttt{\ref{proc:c2}()} (line 14) is focused on finding the travel distance between $r_{j-1}$ and $r_i$. In each of the cases after fetching the route first the \textit{lower bound} of the fetched PSR is compared to the global \textit{upper bound} to see if the route should be modified or discarded immediately (lines 1 to 3). After that the PSR is modified accordingly and again a length check is performed before finally placing the route on the $heap$. The length check is performed to make sure that the PSR is not longer than the already found SR which has a length equal to the upper bound $UB$.  
 
 \begin{algorithm}[htb!]
-	\label{alg:mPNE}
-	\caption{\protect\modifiedPNE returns Route}
+\caption{modifiedPNE()}
+\label{alg:mPNE}
 	
 	\ForEach(Checking the upper bound for every $r_1$ neighbor of $sp$ in the category set $U_{M_1}$){$r_1$ in $U_{M_1}$}{
 		build a new $PSR$ with $r_1$\;
@@ -119,141 +124,166 @@ At each subsequent iteration of the algorithm \ref{alg:mPNE} (line 9 to 26) ther
 		}
 	}
 	
-	\While{heap is not empty}{
-		$current$ = fetch a $PSR$ from the $heap$\;
+	\While{$heap$ is not empty}{
+		$current \leftarrow$ fetch a $PSR$ from the $heap$\;
 		\Switch{$s = size(current)$}{
 			\Case(Finding PSRs before $r_j$){$s <= j-1$}{
-				\caseOne{}\;
+				\caseBefore{}\;
 			}
 			\Case(Finding PSR containing $r_j$){$s = j$}{
-				\caseTwo{}\;
+				\caseContaining{}\;
 			}
 			\Case(Finding PSR after/containing $r_j$){$s = j+1$}{
-				\caseThree{}\;
+				\caseAfterOrContaining{}\;
 			}
 			\Case(Finding PSRs after $r_j$){$s >= j+2$}{
-				\caseFour{}\;
+				\caseAfter{}\;
 			}
 		}
 	}
 	
-	\Return $found$
+	\Return $foundSR$
 	
 \end{algorithm}
 
-In case one \ref{proc:c1} we find PSRs before $r_j$. Two modifications of the PSR are performed, which follow the PNE algorithm \ref{alg:PNE}. In a) (line 4 to 9) the nearest neighbor to the last PoI in the PSR $r_k$ in $U_{M_{k+1}}$ is found and the PSR is updated to contain $r_{k+1}$ and placed back on the heap. In b) (line 11 to 15) the k-th nearest neighbor to the second to last PoI $r_{k+1}$ in $U_{M_{k}}$ is found and the last PoIs in the PSR $r_k$ is replaced with it. \newline
+\texttt{\ref{proc:c1}()} finds PSRs before $r_j$. Two modifications of the PSR are performed, which follow the PNE algorithm. In a) (line 4 to 9) the nearest neighbor to the last PoI in the PSR $r_k$ in $U_{M_{k+1}}$ is found and the PSR is updated to contain $r_{k+1}$ and placed back on the $heap$. In b) (line 11 to 15) the k-th nearest neighbor to the second to last PoI $r_{k+1}$ in $U_{M_{k}}$ is found and the last PoIs in the PSR $r_k$ is replaced with it. \newline
 
 \raggedbottom
 
 \begin{procedure}[H]
-	\label{proc:c1}
-	\caption{caseOne()}
+\caption{caseBefore()}
+\label{proc:c1}
 	
 	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
 	\If{$LB <= UB$}{
-		a) \NN{$r_k, U_{M_{k+1}}$}\;
-		update $PSR$ to contain $r_{k+1}$\;
-		\tcp{Length check}
+		\A{
+			\NN{$r_k, U_{M_{k+1}}$}\;
+			update $PSR$ to contain $r_{k+1}$\;
+			\tcp{Length check}
+			\If{$length(PSR) <= UB$}{
+				place $PSR$ on the $heap$\;
+			}	
+		} 
+	}
+	\B{
+		\KNN{$r_{k-1}, U_{M_k}$}\;
+		update $PSR$\;
+		\If{$length(PSR) <= UB$}{
+			place $PSR$ on the $heap$\;
+		}	
+	}
+\end{procedure}
+
+In \texttt{\ref{proc:c2}()} $r_j$ is to be found. In a) (line 4 to 10) instead of finding the nearest neighbor like the PNE algorithm does, the travel distance between the last PoI in the PSR $r_{j-1}$ and $r_i$ is calculated, because we want $r_j$ to be equal to $r_i$ in the route. In b) (line 12 to 16) the k-th nearest neighbor to the second to last PoI $r_{j-2}$ in $U_{M_{j-1}}$ is found and the last PoIs in the PSR $r_{j-1}$ is replaced with it.
+
+\begin{procedure}[H]
+\caption{caseContaining()}
+\label{proc:c2}
+	
+	
+	$LB = \length{$current$} + \heuristic{$current$}$\;
+	\tcp{Heuristic check}
+	\If{$LB <= UB$}{
+		\A{
+			\dist{$r_{j-1}, r_i$}\;
+			update $PSR$ to contain $r_i$ in the place $j$\;
+			\tcp{Length check}
+			\If{$length(PSR) <= UB$}{
+				\tcp{Trimming part}
+				\trim{$PSR$}\;
+			}
+		}
+	}
+	\B{
+		\KNN{$r_{j-2}, U_{M_{j-1}}$}\;
+		update $PSR$\;
 		\If{$length(PSR) <= UB$}{
 			place $PSR$ on the $heap$\;
 		}
-	}
-	b) \KNN{$r_{k-1}, U_{M_k}$}\;
-	update $PSR$\;
-	\If{$length(PSR) <= UB$}{
-		place $PSR$ on the $heap$\;
-	}	
-\end{procedure}
-
-In case two \ref{proc:c2} $r_j$ is to be found. In a) (line 4 to 10) instead of finding the nearest neighbor like the PNE algorithm does, the travel distance between the last PoI in the PSR $r_{j-1}$ and $r_i$ is found, because we want $r_j$ to be equal to $r_i$ ind the route. In b) (line 12 to 16) the k-th nearest neighbor to the second to last PoI $r_{j-2}$ in $U_{M_{j-1}}$ is found and the last PoIs in the PSR $r_{j-1}$ is replaced with it.
-
-\begin{procedure}[H]
-	\label{proc:c2}
-	\caption{caseTwo()}
-	
-	$LB = \length{$current$} + \heuristic{$current$}$\;
-	\tcp{Heuristic check}
-	\If{$LB <= UB$}{
-		a) \dist{$r_{j-1}, r_i$}\;
-		update $PSR$ to contain $r_i$ in the place $j$\;
-		\tcp{Length check}
-		\If{$length(PSR) <= UB$}{
-			\tcp{Trimming part}
-			\trim{$PSR$}\;
-		}
-	}
-	b) \KNN{$r_{j-2}, U_{M_{j-1}}$}\;
-	update $PSR$\;
-	\If{$length(PSR) <= UB$}{
-		place $PSR$ on the $heap$\;
-	}
+	} 
 \end{procedure}
 
 \flushbottom
 
-In case three \ref{proc:c3} $r_{j+1}$ is to be found. In a) (line 4 to 10) the nearest neighbor to the last PoI in the PSR $r_j$ in $U_{M_{j+1}}$ is found and the PSR is updated to contain $r_{j+1}$ and placed back on the heap. In b) (line 12) the k-th nearest neighbor to the second to last PoI $r_{j-1}$ in $U_{M_{j-2}}$ is expected to be found, but in our case this is $r_j$ and we have already calculated the travel distance between $r_{j-1}$ and $r_i$ in case two \ref{proc:c2}, so here nothing further needs to be done.
+In \texttt{\ref{proc:c3}()} $r_{j+1}$ is to be found. In a) (line 4 to 10) the nearest neighbor to the last PoI in the PSR $r_j$ in $U_{M_{j+1}}$ is found and the PSR is updated to contain $r_{j+1}$ and placed back on the $heap$. In b) (line 12) the k-th nearest neighbor to the second to last PoI $r_{j-1}$ in $U_{M_{j-2}}$ is usually found (according ot PNE), but in our case this is $r_j$ and we have already calculated the travel distance between $r_{j-1}$ and $r_i$ in \texttt{\ref{proc:c2}()}, so here nothing further needs to be done.
 
 \begin{procedure}[htb!]
-	\label{proc:c3}
-	\caption{caseThree()}
+\caption{caseAfterOrContaining()}
+\label{proc:c3}
+	
 	
 	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
 	\If{$LB < UB$}{
-		a) \NN{$r_j, U_{M_{j+1}}$}\;
-		update $PSR$ to contain $r_{j+1}$\;
-		\tcp{Length check}
-		\If{$length(PSR) <= UB$}{
-			\tcp{Trimming part}
-			\trim{$PSR$}\;
-		}
+		\A{
+			\NN{$r_j, U_{M_{j+1}}$}\;
+			update $PSR$ to contain $r_{j+1}$\;
+			\tcp{Length check}
+			\If{$length(PSR) <= UB$}{
+				\tcp{Trimming part}
+				\trim{$PSR$}\;
+			}
+		} 
 	}	
-	b) \tcp{Found in caseTwo}
+	\B{
+		\tcp{Already found in $caseContaning()$}
+	} 
 \end{procedure}
 
-In case four \ref{proc:c4} we find PSR after $r_j$. The case is similar to case one \ref{proc:c1}, except that in a) instead of directly putting the PSR on the heap, trimming \ref{proc:trim} is performed in a) (line 10) to check if the route is a full SR and if the candidate route $found$ and the upper bound $UB$ must be updated.
+In \texttt{\ref{proc:c4}()} we find PSR after $r_j$. The case is similar to procedure \newline \texttt{\ref{proc:c1}()}, except that in a) instead of directly putting the PSR on the $heap$, trimming is performed in a) (line 10) to check if the route is a full SR and if the candidate route $foundSR$ and the upper bound $UB$ must be updated.
 
 \begin{procedure}[htb!]
-	\label{proc:c4}
-	\caption{caseFour()}
+\caption{caseAfter()}
+\label{proc:c4}
 	
-	\tcp{Same procedure as caseOne() + trimming part to filter SR and update UB if needed}
+	
+	\tcp{Same procedure as caseBefore() + trimming part to filter SR and update UB if needed}
 	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
 	\If{$LB <= UB$}{
-		a) \NN{$r_k, U_{M_{k+1}}$}\;
-		update $PSR$ to contain $r_{k+1}$\;
-		\tcp{Length check}
-		\If{$length(PSR) <= UB$}{
-			\tcp{Trimming part}
-			\trim{$PSR$}\;
-		}
+		\A{
+			\NN{$r_k, U_{M_{k+1}}$}\;
+			update $PSR$ to contain $r_{k+1}$\;
+			\tcp{Length check}
+			\If{$length(PSR) <= UB$}{
+				\tcp{Trimming part}
+				\trim{$PSR$}\;
+			}
+		} 
 	}
-	b) \KNN{$r_{k-1}, U_{M_k}$}\;
-	update $PSR$\;
-	\If{$length(PSR) <= UB$}{
-		place $PSR$ on the $heap$\;
+	\B{
+		\KNN{$r_{k-1}, U_{M_k}$}\;
+		update $PSR$\;
+		\If{$length(PSR) <= UB$}{
+			place $PSR$ on the $heap$\;
+		}
 	}	
 \end{procedure}
 
 \begin{algorithm}[htb!]
-	\label{alg:PNE}
-	\caption{\protect\PNE \cite{OSR}}
+\caption{pne()\cite{OSR}}
+\label{alg:PNE}
+	
 	\tcp{Incrementally create the set of candidate routes for $Q(sp, M)$ from starting point $sp$ towards PoI set $U_{M_l}$}
 	\tcp{Candidate routes are stored in a heap sorted by length of the routes}
 	\tcp{At each iteration of PNE a $PSR$ (partial sequenced route) is fetched and examined based on its length}
-	\tcp{Trimming: There must be only one candidate SR on the heap}
+	\tcp{Trimming: There must be only one candidate SR on the $heap$}
 	\Switch{$s = size(PSR)$}{
 		\Case{$s == l$}{
 			$PSR$ is the optimal route\;
 			\Return $PSR$\;
 		}
 		\Case{$s \neq l$}{
-			a) \NN{$r_{|PSR|}, U_{M_{|PSR|+1}}$}\;
-			update $PSR$ and put it back on the $heap$\;
-			b) \KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
-			generate a new $PSR$ and place it on the $heap$\;
+			\A{
+				\NN{$r_{|PSR|}, U_{M_{|PSR|+1}}$}\;
+				update $PSR$ and perform trimming in case it is a candidate SR \;
+				put $PSR$ back on the $heap$ \;
+			} 
+			\B{
+				\KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
+				generate a new $PSR$ and place it on the $heap$\;
+			} 
 		}
 	}
 \end{algorithm}
@@ -261,12 +291,13 @@ In case four \ref{proc:c4} we find PSR after $r_j$. The case is similar to case 
 \pagebreak
 
 \begin{procedure}[H]
-	\label{proc:trim}
-	\caption{trim($PSR$)}
+\caption{trim($PSR$)}
+\label{proc:trim}
+	
 	\eIf{$size(PSR) = l$}{
 		\If{$length(PSR) <= UB$}{
 			update $UB$\;
-			update $found$\;
+			update $foundSR$\;
 		}
 	}{
 		place $PSR$ on the $heap$\;
@@ -275,8 +306,8 @@ In case four \ref{proc:c4} we find PSR after $r_j$. The case is similar to case 
 
 \subsubsection{Running example}
 We describe the algorithm for the equality operator using the example in Section \ref{sec:motivation}. The user in the example wanted to visit a restaurant, a bank, a movie theater and a restaurant again, but he wanted both restaurants to be equal ($M = (r, b, mt, r)$, $|M| = l = 4$, $EQUAL(0, 3)$). In Figure \ref{heapEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
-First, the $optimalRoute$ is found with PNE: $(r_1, b_1, mt_1, r_2)$. The algorithm checks if the PoIs at indices 0 and 3 are equal and since they are not, it continues with building the $dummySR$: $(r_1, b_1, mt_1, r_1)$. The \textit{upper bound} is initialized with the length of the $dummySR$, which is 12, and also $found$ is initialized with $dummySR$ until a better route is possibly found.
-In step 2 of the $modifiedPNE()$ all neighbors to the starting point $sp$ from type restaurant ($r_1$, $r_2$) are found and if their calculated $lower bound$ is smaller than the $upper bound$, which is the case for both restaurant, they are put on the heap: Partial routes $R_1 = (r_1)$ with length 1 and heuristic 5 and $R_2 = (r_2)$ with length 5 and heuristic 9 are generated and placed on the heap. Since the heap is ordered ascending by $lower bound$, which is calculated as the sum of length and heuristic, $R_1$ is at the top of the heap and fetched in step 3. Here we have $caseOne()$, where we first check if the $LB$ of the PSR satisfies the condition to be smaller than the $UB$, and step a) of the PNE algorithm is performed. The nearest neighbor to $r_1$ of type bank $b_1$ is found and the new generated PSR $(r_1, b_1)$ with length 4 and heuristic 3 is calculated and placed on the heap. In step 4, $(r_1, b_1)$ is fetched and we enter $caseOne()$ again and since the condition for the \textit{lower bound} to be smaller than the \textit{upper bound} is fulfilled, steps a) and b) are performed; in a) the nearest neighbor to $b_1$ from type movie theater is found, which is $mt_1$, and the PSR is extended, then in b) the next nearest neighbor to $r_1$ from type bank $b_2$ is found and a new PSR $(r_1, b_2)$ is generated. For both PSR their length is less the global \textit{upper bound} and they are put on the heap. The process is repeated until a route with $size(PSR) = 3$ is reached. This is the case with step 8, where we have fetches PSR $(r_1, b_1, mt_1)$. Here $caseTwo()$ is performed: the next PoI is forcefully set to be the PoI at index 0, which is $r_1$ and the travel distance from $mt_1$ to $r_1$ is calculated. $Trimming$ is performed on new SR $(r_1, b_1, mt_1, r_1)$ with length 12: it is compared with the found route and $found$, but it is the same and $found$ and $UB$ are not updated. In another scenario, if the newly found SR was shorter than $found$, then it would be updated together with $UB$. In the next step 9, again we have $caseTwo()$ and a new full SR $(r_2, b_1, mt_1, r_2)$ with length 15 is generated, but when compared with $found$, it is longer, so it gets discarded. The same steps are executed in the next two step 10 and 11, until all routes have been developed and checked, whch is the case when heap is empty. Then the optimal sequenced route with equal PoIs at indices 0 and 3 in $found$ is returned: $(r_1, b_1, mt_1, r_1)$.
+First, the $optimalRoute$ is found with PNE: $(r_1, b_1, mt_1, r_2)$. The algorithm checks if the PoIs at indices 0 and 3 are equal and since they are not, it continues with building the $dummySR$: $(r_1, b_1, mt_1, r_1)$. The \textit{upper bound} is initialized with the length of the $dummySR$, which is 12, and also $foundSR$ is initialized with $dummySR$ until a better route is possibly found.
+In step 2 of the $modifiedPNE()$ all neighbors to the starting point $sp$ from type restaurant ($r_1$, $r_2$) are found and if their calculated $lower bound$ is smaller than the $upper bound$, which is the case for both restaurant, they are put on the $heap$: Partial routes $R_1 = (r_1)$ with length 1 and heuristic 5 and $R_2 = (r_2)$ with length 5 and heuristic 9 are generated and placed on the $heap$. Since the $heap$ is ordered ascending by $lower bound$, which is calculated as the sum of length and heuristic, $R_1$ is at the top of the $heap$ and fetched in step 3. Here we have $caseBefore()$, where we first check if the $LB$ of the PSR satisfies the condition to be smaller than the $UB$, and step a) of the PNE algorithm is performed. The nearest neighbor to $r_1$ of type bank $b_1$ is found and the new generated PSR $(r_1, b_1)$ with length 4 and heuristic 3 is calculated and placed on the $heap$. In step 4, $(r_1, b_1)$ is fetched and we enter $caseBefore()$ again and since the condition for the \textit{lower bound} to be smaller than the \textit{upper bound} is fulfilled, steps a) and b) are performed; in a) the nearest neighbor to $b_1$ from type movie theater is found, which is $mt_1$, and the PSR is extended, then in b) the next nearest neighbor to $r_1$ from type bank $b_2$ is found and a new PSR $(r_1, b_2)$ is generated. For both PSR their length is less the global \textit{upper bound} and they are put on the $heap$. The process is repeated until a route with $size(PSR) = 3$ is reached. This is the case with step 8, where we have fetches PSR $(r_1, b_1, mt_1)$. Here $caseContaining()$ is performed: the next PoI is forcefully set to be the PoI at index 0, which is $r_1$ and the travel distance from $mt_1$ to $r_1$ is calculated. $Trimming$ is performed on new SR $(r_1, b_1, mt_1, r_1)$ with length 12: it is compared with the found route and $foundSR$, but it is the same and $foundSR$ and $UB$ are not updated. In another scenario, if the newly found SR was shorter than $founSRd$, then it would be updated together with $UB$. In the next step 9, again we have $caseContaining()$ and a new full SR $(r_2, b_1, mt_1, r_2)$ with length 15 is generated, but when compared with $foundSR$, it is longer, so it gets discarded. The same steps are executed in the next two step 10 and 11, until all routes have been developed and checked, whch is the case when $heap$ is empty. Then the optimal sequenced route with equal PoIs at indices 0 and 3 in $foundSR$ is returned: $(r_1, b_1, mt_1, r_1)$.
 
 \begin{table}[h]
 	\centering
@@ -318,17 +349,18 @@ In step 2 of the $modifiedPNE()$ all neighbors to the starting point $sp$ from t
 
 \subsection{Baseline approach} 
 \label{sec:baselineEO}
-The baseline approach to the equality operator is entirely based on PNE by simply forcing $r_i$ and $r_j$ to be equal in the process of modifying the routes. In this variant, there is no heuristic and also no length checks.
+The baseline approach to the equality operator is entirely based on PNE by simply forcing $r_i$ and $r_j$ to be equal in the process of modifying the routes. In this variant, there is no heuristic and also no length checks are performed.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
-The algorithm (shown in \ref{alg:equality_baseline}) starts by finding an optimal sequenced route with PNE (line 2), as mentioned in the proposed approach \ref{sec:approachEO} and checks if $r_i$ and $r_j$ are already equal (line 3). If this is the case, it returns the found optimal route (line 5), otherwise (line 7) it continues with the modified PNE \ref{alg:mPNE_baseline}. 
+The algorithm \texttt{\nameref{alg:equality_baseline}} starts by finding an optimal sequenced route with PNE (line 2), as mentioned in the proposed approach \ref{sec:approachEO} and checks if $r_i$ and $r_j$ are already equal (line 3). If this is the case, it returns the found optimal route (line 5), otherwise (line 7) it continues with to perform \texttt{\nameref{alg:mPNE_baseline}}. 
 
-\raggedbottom
+\pagebreak
 
 \begin{algorithm}[H]
-	\label{alg:equality_baseline}
-	\caption{equalityOperator-baseline}
+\caption{equalityOperator-baseline()}
+\label{alg:equality_baseline}
+	
 	
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
 	
@@ -347,53 +379,70 @@ The algorithm (shown in \ref{alg:equality_baseline}) starts by finding an optima
 	}
 \end{algorithm}
 
-Modified PNE proceeds with examining the routes on the $heap$, ordered by length, by size and modifying them according to PNE (line 4 to 38). When the current route on the heap is a full SR, then the optimal route has been found (line 34). The four cases (line 5, 13, 21 and 27) correspond to the cases in algortihm of the proposed approach, with the only difference being that no heuristic and length checks are performed. \newline
+The algorithm \texttt{\nameref{alg:mPNE_baseline}} proceeds with examining the routes on the $heap$, ordered by length, by size and modifying them according to PNE (line 4 to 38). When the current route on the $heap$ is a full SR, then the optimal route has been found (line 34). The four cases (line 5, 13, 21 and 27) correspond to the cases in algorithm of the proposed approach, with the only difference being that no heuristic and length checks are performed. \newline
+
+\raggedbottom
 
 \begin{algorithm}[H]
-	\label{alg:mPNE_baseline}
-	\caption{\protect\modifiedPNE-baseline returns Route}
+\caption{modifiedPNE-baseline()}
+\label{alg:mPNE_baseline}
+	
 	
 	$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
-	place $firstPSR$ on heap\;
+	place $firstPSR$ on $heap$\;
 	
 	$current$ = fetch a $PSR$ from the $heap$\;
 	\Switch{$s = size(current)$}{
 		\Case(Finding PSRs before $r_j$){$s <= j-1$}{
-			a) \NN{$r_k, U_{M_{k+1}}$}\;
-			update $PSR$ to contain $r_{k+1}$\;
-			place $PSR$ on the $heap$\;
-			b) \KNN{$r_{k-1}, U_{M_k}$}\;
-			update $PSR$\;
-			place $PSR$ on the $heap$\;
+			\A{
+				\NN{$r_k, U_{M_{k+1}}$}\;
+				update $PSR$ to contain $r_{k+1}$\;
+				place $PSR$ on the $heap$\;
+			} 
+			\B{
+				\KNN{$r_{k-1}, U_{M_k}$}\;
+				update $PSR$\;
+				place $PSR$ on the $heap$\;
+			} 
 		}
 		\Case(Finding PSR containing $r_j$){$s = j$}{
-			a) \dist{$r_{j-1}, r_i$}\;
-			update $PSR$ to contain $r_i$ in the place $j$\;
-			\trim{$PSR$} \tcp*{Trimming part}
-			b) \KNN{$r_{j-2}, U_{M_{j-1}}$}\;
-			update $PSR$\;
-			place $PSR$ on the $heap$\;
+			\A{
+				\dist{$r_{j-1}, r_i$}\;
+				update $PSR$ to contain $r_i$ in the place $j$\;
+				\trim{$PSR$} \tcp*{Trimming part}
+			} 
+			\B{
+				\KNN{$r_{j-2}, U_{M_{j-1}}$}\;
+				update $PSR$\;
+				place $PSR$ on the $heap$\;
+			} 
 		}
 		\Case(Finding PSR after/containing $r_j$){$s = j+1$}{
-			a) \NN{$r_j, U_{M_{j+1}}$}\;
-			update $PSR$ to contain $r_{j+1}$\;
-			\trim{$PSR$} \tcp*{Trimming part}
-			b) \tcp{Found in caseTwo}
+			\A{
+				\NN{$r_j, U_{M_{j+1}}$}\;
+				update $PSR$ to contain $r_{j+1}$\;
+				\trim{$PSR$} \tcp*{Trimming part}
+			} 
+			\B{
+				\tcp{Found in $caseContaning()$}
+			} 
 		}
 		\Case(Finding PSRs after $r_j$){$s >= j+2$}{
-			a) \NN{$r_k, U_{M_{k+1}}$}\;
-			update $PSR$ to contain $r_{k+1}$\;
-			\trim{$PSR$} \tcp*{Trimming part}
-			b) \KNN{$r_{k-1}, U_{M_k}$}\;
-			update $PSR$\;
-			place $PSR$ on the $heap$\;
+			\A{
+				\NN{$r_k, U_{M_{k+1}}$}\;
+				update $PSR$ to contain $r_{k+1}$\;
+				\trim{$PSR$} \tcp*{Trimming part}
+			} 
+			\B{
+				\KNN{$r_{k-1}, U_{M_k}$}\;
+				update $PSR$\;
+				place $PSR$ on the $heap$\;
+			} 
 		}
 		\Case(Optimal route with equal PoIs at $i$ and $j$ has been found){$s == l$}{
 			\Return $current$\;
 		}
 	}
-
-	\Return $found$\;
 	
 \end{algorithm}
 

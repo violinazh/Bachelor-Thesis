@@ -5,24 +5,24 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {algocf}{\numberline {-}{\ignorespaces Function\nobreakspace heuristic($R$)}}{17}{algocffunc.heuristic}
-\contentsline {algocf}{\numberline {1}{\ignorespaces equalityOperator()}}{17}{algocf.1}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace dummySR($optimalRoute$)}}{18}{algocfproc.dummySR}
-\contentsline {algocf}{\numberline {2}{\ignorespaces \modifiedPNE returns Route}}{19}{algocf.2}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseOne}}{20}{algocfproc.caseOne}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseTwo}}{20}{algocfproc.caseTwo}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseThree}}{21}{algocfproc.caseThree}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseFour}}{21}{algocfproc.caseFour}
-\contentsline {algocf}{\numberline {3}{\ignorespaces \PNE \cite {OSR}}}{22}{algocf.3}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{22}{algocfproc.trim}
-\contentsline {algocf}{\numberline {4}{\ignorespaces equalityOperator-baseline}}{24}{algocf.4}
-\contentsline {algocf}{\numberline {5}{\ignorespaces \modifiedPNE -baseline returns Route}}{26}{algocf.5}
-\contentsline {algocf}{\numberline {6}{\ignorespaces notEqualityOperator}}{29}{algocf.6}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{30}{algocfproc.trim}
-\contentsline {algocf}{\numberline {7}{\ignorespaces orOperator}}{34}{algocf.7}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{36}{algocfproc.modifyRouteA}
+\contentsline {algocf}{\numberline {1}{\ignorespaces equalityOperator()}}{18}{algocf.1}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace dummySR($optimalRoute$)}}{19}{algocfproc.dummySR}
+\contentsline {algocf}{\numberline {2}{\ignorespaces modifiedPNE()}}{20}{algocf.2}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseBefore}}{20}{algocfproc.caseBefore}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseContaining}}{21}{algocfproc.caseContaining}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseAfterOrContaining}}{22}{algocfproc.caseAfterOrContaining}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseAfter}}{22}{algocfproc.caseAfter}
+\contentsline {algocf}{\numberline {3}{\ignorespaces pne()\cite {OSR}}}{23}{algocf.3}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{23}{algocfproc.trim}
+\contentsline {algocf}{\numberline {4}{\ignorespaces equalityOperator-baseline()}}{26}{algocf.4}
+\contentsline {algocf}{\numberline {5}{\ignorespaces modifiedPNE-baseline()}}{27}{algocf.5}
+\contentsline {algocf}{\numberline {6}{\ignorespaces notEqualityOperator()}}{30}{algocf.6}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{31}{algocfproc.trim}
+\contentsline {algocf}{\numberline {7}{\ignorespaces orOperator()}}{35}{algocf.7}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{37}{algocfproc.modifyRouteA}
 \contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{38}{algocfproc.modifyRouteB}
-\contentsline {algocf}{\numberline {8}{\ignorespaces orderOperator}}{42}{algocf.8}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{43}{algocfproc.modifyRouteA}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{44}{algocfproc.modifyRouteB}
+\contentsline {algocf}{\numberline {8}{\ignorespaces orderOperator()}}{43}{algocf.8}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{44}{algocfproc.modifyRouteA}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{45}{algocfproc.modifyRouteB}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

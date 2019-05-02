@@ -37,8 +37,9 @@
 \usepackage{multirow}
 \usepackage{parskip}
 \usepackage{soul}
+\usepackage{nameref}
 
-
+\usepackage{etoolbox}
 \makeatletter
 \let\original@algocf@latexcaption\algocf@latexcaption
 \long\def\algocf@latexcaption#1[#2]{%
@@ -84,6 +85,7 @@
 \include{notequality}
 \include{or}
 \include{order}
+%\include{summary}
 
 \include{evaluation}
 \include{conclusion}
