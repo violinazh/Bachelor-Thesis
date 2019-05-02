@@ -17,61 +17,99 @@ A level-1 auxiliary file: conclusion.aux
 Database file #1: diploma_thesis.bib
 Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
 while executing---line 1070 of file styles/plain.bst
+Too many commas in name 1 of "Feifei Li, Dihan Cheng, Marios Hadjieleftheriou, George Kollios and Shang-Hua Teng" for entry tpq
+while executing---line 1070 of file styles/plain.bst
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
 while executing---line 1070 of file styles/plain.bst
+Too many commas in name 1 of "Yaron Kanza, Roy Levin, Eliyahu Safra, Yehoshua Sagiv" for entry interactive
+while executing---line 1070 of file styles/plain.bst
+Too many commas in name 1 of "Haiquan Chen, Wei-Shinn Ku, Min-Te Sun, Roger Zimmermann" for entry multi
+while executing---line 1070 of file styles/plain.bst
+Too many commas in name 1 of "Dimitris Papadias, Jun Zhang, Nikos Mamoulis, Yufei Tao" for entry spatialDB
+while executing---line 1070 of file styles/plain.bst
+Too many commas in name 1 of "Dimitris Papadias, Jun Zhang, Nikos Mamoulis, Yufei Tao" for entry spatialDB
+while executing---line 1111 of file styles/plain.bst
+Warning--empty booktitle in spatialDB
+Warning--empty year in spatialDB
+Too many commas in name 1 of "Feifei Li, Dihan Cheng, Marios Hadjieleftheriou, George Kollios and Shang-Hua Teng" for entry tpq
+while executing---line 1111 of file styles/plain.bst
+Warning--empty booktitle in tpq
+Warning--empty year in tpq
+Too many commas in name 1 of "Haiquan Chen, Wei-Shinn Ku, Min-Te Sun, Roger Zimmermann" for entry multi
+while executing---line 1111 of file styles/plain.bst
+Warning--empty booktitle in multi
+Warning--empty year in multi
 Warning--empty booktitle in skyline
 Warning--empty year in skyline
 Too many commas in name 1 of "Jian Dai, Chengfei Liu, Jiajie Xu4, Zhiming Ding" for entry personalSRQ
 while executing---line 1111 of file styles/plain.bst
 Warning--empty booktitle in personalSRQ
 Warning--empty year in personalSRQ
+Warning--empty booktitle in optMulti
+Warning--empty year in optMulti
 Warning--empty booktitle in dynamicSRQ
 Warning--empty year in dynamicSRQ
+Warning--empty booktitle in voronoi
+Warning--empty year in voronoi
+Warning--empty booktitle in dynamic
+Warning--empty year in dynamic
 Warning--empty booktitle in OSR
 Warning--empty year in OSR
+Warning--empty booktitle in skyOp
+Warning--empty year in skyOp
+Warning--empty booktitle in mtnn
+Warning--empty year in mtnn
+Too many commas in name 1 of "Yaron Kanza, Roy Levin, Eliyahu Safra, Yehoshua Sagiv" for entry interactive
+while executing---line 1111 of file styles/plain.bst
+Warning--empty booktitle in interactive
+Warning--empty year in interactive
+Warning--empty booktitle in minCost
+Warning--empty year in minCost
+Warning--empty booktitle in betterOSR
+Warning--empty year in betterOSR
 Too many commas in name 1 of "Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara, Makoto Onizuka" for entry semanticSRQ
 while executing---line 1111 of file styles/plain.bst
 Warning--empty booktitle in semanticSRQ
 Warning--empty year in semanticSRQ
-You've used 6 entries,
+You've used 17 entries,
             2161 wiz_defined-function locations,
-            543 strings with 5877 characters,
-and the built_in function-call counts, 1549 in all, are:
-= -- 129
-> -- 60
+            592 strings with 7789 characters,
+and the built_in function-call counts, 4318 in all, are:
+= -- 358
+> -- 155
 < -- 0
-+ -- 25
-- -- 18
-* -- 75
-:= -- 252
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 27
++ -- 68
+- -- 46
+* -- 208
+:= -- 690
+add.period$ -- 51
+call.type$ -- 17
+change.case$ -- 74
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 78
-empty$ -- 165
-format.name$ -- 18
-if$ -- 330
+cite$ -- 49
+duplicate$ -- 232
+empty$ -- 473
+format.name$ -- 46
+if$ -- 923
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 5
-newline$ -- 33
-num.names$ -- 12
-pop$ -- 67
+int.to.str$ -- 17
+missing$ -- 16
+newline$ -- 88
+num.names$ -- 34
+pop$ -- 191
 preamble$ -- 1
-purify$ -- 21
+purify$ -- 57
 quote$ -- 0
-skip$ -- 40
+skip$ -- 108
 stack$ -- 0
-substring$ -- 31
-swap$ -- 6
+substring$ -- 90
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
-warning$ -- 10
-while$ -- 12
-width$ -- 7
-write$ -- 57
-(There were 4 error messages)
+type$ -- 68
+warning$ -- 32
+while$ -- 34
+width$ -- 19
+write$ -- 156
+(There were 12 error messages)
