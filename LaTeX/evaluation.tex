@@ -7,7 +7,7 @@ The road network or also known as spatial network is modeled as weighted graph w
 \textbf{Dataset:}
 The graph used to conduct the experiments on is constructed using Berlin's spatial datasets from \cite{datasets}, structured in separate CSV files for the crossroads, roads and points of interest. For the implementation of the operators the datasets are imported into a graph structure of nodes and edges, where each node has a unique id, its latitude and longitude and a list of PoIs that have been mapped to it and each edge has a source and destination node and the distance between the two nodes in kilometers as parameters. Each PoI is mapped to the nearest crossroad and has a unique id, a type, its latitude and longitude and the distance to the node it is mapped to.
 
-The map used for the experiments is the road network of Berlin, with 428769 crossroad nodes, 504229 road edges, 5548 PoIs and 7 category types: restaurant, coffee shop, atms/bank, movie theater, pharmaciy, pubs/bar, gas station (see \ref{dataset}). 
+The map used for the experiments is the road network of Berlin, with 428769 crossroad nodes, 504229 road edges, 5548 PoIs and 7 category types: restaurant, coffee shop, atms/bank, movie theater, pharmaciy, pubs/bar, gas station (see Table \ref{dataset}). 
 
 \begin{table}[H]
 	\centering
@@ -31,18 +31,18 @@ The map used for the experiments is the road network of Berlin, with 428769 cros
 \end{table}
 
 \textbf{Technical details:}
-The experiments were performed on 2 Linux machines with AMD Opteron Processor 6212 with 2,60 GHz and Intel Xeon E5-2630 processor with 2.40GHz and respectively 16 CPUs and 128 GB RAM. The experiments for each parameter type were executed on 1000 queries with randomly selected starting points and the average of the results is reported.
+The experiments were performed on two Linux machines with AMD Opteron Processor 6212 with 2,60 GHz and Intel Xeon E5-2630 processor with 2.40GHz and respectively 16 CPUs and 128 GB RAM. The experiments for each parameter type were executed on 1000 queries with randomly selected starting points. Finally, the average of the results is reported.
 
-Several experiments were conducted to evaluate the performance of the proposed algorithms. The evaluation criteria. which relate to all the operators, presented in the thesis are the following: (1) processing time (in milliseconds), (2) total number of heap fetches and (3) maximum heap size, representing the work space (WS) of the method.
+Several experiments were conducted to evaluate the performance of the proposed algorithms. The evaluation criteria. which relate to all the operators, presented in the thesis are the following: (1) processing time (in milliseconds), (2) total number of heap fetches and (3) maximum heap size, representing the work space (WS) of the method. Since most of the route planning services are mobile services, designed to use on the go, response time is of utter importance. We also want to see how the workspace relates to the number of fetch operations, performed on the heap. Furthermore, to highlight the benefits of three of the operators - EO, OR, ORDER, we also run the experiments on the baseline approaches to compare them with the proposed algorithms. 
 
 \section{Equality operator}
 \label{sec:experimentsEO}
 
-The equality operator was evaluated with respect to the effect of following 3 parameters: (1) query length (cardinality of the category sequence $|M|$), (2) frequency of the categories in place of the equal indices i, j and (3) distance between the equal indices i, j in the category sequence $M$.
+The equality operator was evaluated with respect to the effect of following 3 parameters: (1) query length (cardinality of the category sequence $|M|$), (2) frequency of the categories in place of the equal indices $i$, $j$ and (3) distance between the equal indices $i$, $j$ in the category sequence $M$.
 
 In the first set of experiments, shown in Figure \ref{fig:eo_length} a), b), c), the equality operator was evaluated in terms of query length, which varies from 3 to 7. Queries with length less than 3 would be immediately solved with PNE, which is why we do not consider them in these experiments. 
 As we can see in Figure \ref{fig:eo_length} a), the query processing time increases proportionately to the query length. Figure \ref{fig:eo_length} a) also shows what portion of the total processing time of the proposed approach belongs to executing PNE in the first step of the algorithm. And as expected, both PNE's time and the proposed approach's time is increasing with the query length.
-Figure \ref{fig:eo_length} b), c) follow the same trend of a). As query length increases, number of heap fetches and maximum heap size also increase.
+Figure \ref{fig:eo_length} b), c) follow the same trend of a). As query length increases, number of heap fetches and maximum heap size also increase accordingly.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.25]{images/eo_length.png}
@@ -51,8 +51,8 @@ Figure \ref{fig:eo_length} b), c) follow the same trend of a). As query length i
 	\label{fig:eo_length}
 \end{figure}
 
-In the next set of experiments, shown in Figure \ref{fig:eo_frequency} a), b), c), the equality operator was evaluated in terms of the frequency of the categories in place of the equal indices i, j. Frequency relates to the size of each PoI dataset (see Table \ref{dataset}) and is categorized into low, middle and high, for a query length of 5.  Figure \ref{fig:eo_frequency} b), c) follow the same trend as the experiments for query length. 
-As frequency of the categories, which are selected to be equal, increases, the processing time, number of heap fetches and heap maximum size increase proportionately. This can be explained with the fact that having more points in the PoI dataset of the equal categories increases the search space of the algorithm and respectively more partial routes are being generated, which increases the heap size, number of heap fetches and logically in turn the processing time.
+In the next set of experiments, shown in Figure \ref{fig:eo_frequency} a), b), c), the equality operator was evaluated in terms of the frequency of the categories in place of the equal indices $i$, $j$. Frequency relates to the size of each PoI dataset (see Table \ref{dataset}) and is categorized into \textit{low}, \textit{middle} and \textit{high}, for a default query length of 5.  Figure \ref{fig:eo_frequency} b), c) follow the same trend as the experiments for query length. 
+As frequency of the categories, which are selected to be equal, increases, the processing time, number of heap fetches and heap maximum size increase proportionately. This can be explained with the fact that having more points in the PoI dataset of the equal categories increases the search space of the algorithm and respectively more partial routes are being generated, which increases the heap size, number of heap fetches and logically in turn the processing time of the query.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.3]{images/eo_frequency.png}
@@ -61,8 +61,8 @@ As frequency of the categories, which are selected to be equal, increases, the p
 	\label{fig:eo_frequency}
 \end{figure}
 
-In the third set of experiments, shown in Figure \ref{fig:eo_distance} a), b), c), the equality operator was evaluated in terms of the  distance between the equal indices i, j in the category sequence $M$, which varies from 1 to 3, for a query length of 5. When the distance between the equal indices is 0, the result is always found with PNE, therefore we do not consider distance 1 in the experiments. 
-As distance of the categories, which are selected to be equal, increases, the processing time, number of heap fetches and heap maximum size increase proportionately. This stems from the fact that by increasing the distance, the probability that the PoIs at indices i and j would be equal decreases, therefore less of the routes are found in the first step of the algorithm with PNE. This in turn causes the algorithm to continue with the heuristic approach in order to find an optimal route, which increases the processing time, number of heap fetches and also the work space (maximum heap size).
+In the third set of experiments, shown in Figure \ref{fig:eo_distance} a), b), c), the equality operator was evaluated in terms of the  distance between the equal indices $i$, $j$ in the category sequence $M$, which varies from 1 to 3, for a query length of 5. When the distance between the equal indices is 0, the result is always found with PNE, therefore we do not consider distance 1 in the experiments. 
+As distance of the categories, which are selected to be equal, increases, the processing time, number of heap fetches and heap maximum size increase proportionately. This stems from the fact that by increasing the distance, the probability that the PoIs at indices $i$ and $j$ would be equal decreases, therefore less of the routes are found in the first step of the algorithm with PNE. This in turn causes the method to continue with the heuristic approach in order to find an optimal route, which increases the processing time, number of heap fetches and also the work space (maximum heap size).
 
 \begin{figure}[H]
 	\includegraphics[scale=0.3]{images/eo_distance.png}
@@ -71,9 +71,9 @@ As distance of the categories, which are selected to be equal, increases, the pr
 	\label{fig:eo_distance}
 \end{figure}
 
-Finally, the last set of experiments, shown in Figure \ref{fig:eo_distance} a), b), c), compare the baseline approach with the proposed approach in terms of query length. It can be seen that the proposed approach outperforms the baseline approach for all values of the query length. Also with increase in query length, the processing time , number of heap fetches and maximum heap size of the baseline approach increase with a rate that is more of that of the proposed approach, in \ref{fig:eo_distance} a) for query length 7 the processing time of the baseline approach is so long that it exceeds the graphic's range and is not fully depicted.
+Finally, the last set of experiments, shown in Figure \ref{fig:eo_distance} a), b), c), compares the baseline approach with the proposed approach in terms of the factor query length. It can be seen that the proposed approach outperforms the baseline approach for all values of the query length. Also with increase in query length, the processing time , number of heap fetches and maximum heap size of the baseline approach increase with a more than a linear rate that is more of that of the proposed approach, in \ref{fig:eo_distance} a) for query length 7 the processing time of the baseline approach is so long that it exceeds the graphic's range and is not fully depicted.
 
-In conclusion, the proposed approach outperforms the baseline approach by a significant amount and it performs as expected in all parameters.
+In conclusion, the proposed method performs as expected in all studied parameters and outperforms the baseline approach by a significant amount. 
 
 \begin{figure}[H]
 	\includegraphics[scale=0.3]{images/eo2_length.png}
@@ -86,7 +86,7 @@ In conclusion, the proposed approach outperforms the baseline approach by a sign
 \section{Not-Equality operator}
 \label{sec:experimentsNEO}
 
-The not-equality operator was also evaluated with respect to the effect of following 3 parameters: (1) query length (cardinality of the category sequence $|M|$), (2) frequency of the categories in place of the equal indices i, j and (3) distance between the equal indices i, j in the category sequence $M$.
+The not-equality operator was also evaluated with respect to the effect of following 3 parameters: (1) query length (cardinality of the category sequence $|M|$), (2) frequency of the categories in place of the equal indices $i$, $j$ and (3) distance between the equal indices $i$, $j$ in the category sequence $M$.
 
 In the first set of experiments, shown in Figure \ref{fig:neo_length} a), b), c), the not-equality operator was evaluated in terms of query length, which varies from 3 to 7. As we can see in Figure \ref{fig:neo_length} a), the query processing time increases proportionately to the query length. Figure \ref{fig:neo_length} b), c) follow the same trend of a). As query length increases, number of heap fetches and maximum heap size also increase.
 
@@ -97,9 +97,9 @@ In the first set of experiments, shown in Figure \ref{fig:neo_length} a), b), c)
 	\label{fig:neo_length}
 \end{figure}
 
-In the second set of experiments, shown in Figure \ref{fig:neo_frequency} a), b), c), the equality operator was evaluated in terms of the frequency of the categories in place of the equal indices i, j, which can be low, middle and high, for a query length of 5.  
-Here we can see more interesting results than with the equality operator. The low frequency has higher results on all parameters than the middle frequency. This can be explained with the fact that when the categories which have to not be equal are less frequent, then the possibility of PNE reaching a route with different PoIs at places of the not equal categories is lower, therefore the not-equality algorithm searches for longer for not equal PoIs, compared to when the category has a middle frequency. And when the frequency is high, if PNE doesn't directly find a route with equal PoIs then the not-equality algorithm must inspect more points, therefore generates more routes and the time increases significantly. 
-Figure \ref{fig:neo_frequency} b), c) follow the same trend as processing time.
+In the second set of experiments, shown in Figure \ref{fig:neo_frequency} a), b), c), the not-equality operator was evaluated in terms of the frequency of the categories in place of the equal indices $i$, $j$, which can be \textit{low}, \textit{middle} and \textit{high}, for a default query length of 5.  
+Here we can see more interesting results compared to the equality operator. The \textit{low} frequency has higher results on all parameters than the \textit{middle} frequency. This can be explained with the fact that when the categories which have to not be equal are less frequent, then the possibility of PNE reaching a route with different PoIs at places of the not equal categories is lower, therefore the not-equality algorithm searches for longer for not equal PoIs, compared to when the category has a middle frequency. And when the frequency is high, if PNE doesn't directly find a route with equal PoIs then the not-equality algorithm must inspect more points, therefore generates more routes and the time increases significantly. 
+Figure \ref{fig:neo_frequency} b), c) follow the same trend as processing time. 
 
 \begin{figure}[H]
 	\includegraphics[scale=0.3]{images/neo_frequency.png}
@@ -108,10 +108,12 @@ Figure \ref{fig:neo_frequency} b), c) follow the same trend as processing time.
 	\label{fig:neo_frequency}
 \end{figure}
 
-In the third set of experiments, shown in Figure \ref{fig:neo_distance} a), b), c), the equality operator was evaluated in terms of the  distance between the equal indices i, j in the category sequence $M$, which varies from 0 to 3, , for a query length of 5.  
-Here we can also see more interesting results than with the equality operator. When the distance between the equal indices is 0, the result, usually found with PNE, always delivers equal points at indices i and j. Therefore the algorithm for the not-equality operator has to inspect more points in order to find the optimal route, where the PoIs at indices i and j are not equal to each other. This increases the search space and in turn the number of heap fetches, maximum heap size and the processing time increase as well. For distances 1, 2, 3 no obvious argumentation can be applied, because here we can not judge the possibility for equal PoIs found with PNE objectively.
+In the third set of experiments, shown in Figure \ref{fig:neo_distance} a), b), c), the equality operator was evaluated in terms of the  distance between the equal indices $i$, $j$ in the category sequence $M$, which varies from 0 to 3, for a default query length of 5.  
+Here we can also see more interesting results compared to the equality operator. When the distance between the equal indices is 0, the result, usually found with PNE, always contains equal points at indices $i$ and $j$. Therefore the algorithm for the not-equality operator has to inspect more points in order to find the optimal route, in which the PoIs at indices $i$ and $j$ are not equal to each other. This increases the search space and in turn the number of heap fetches, maximum heap size and the processing time increase as well. For distances 1, 2, 3 no obvious argumentation can be applied, because here we can not judge the possibility for equal PoIs found with PNE objectively.
 % Is this argumentation okay?
 Nevertheless, all three performance parameters - processing time, number of heap fetches and maximum heap size, follow the same trend and increase proportionately to each other.
+
+In conclusion, our proposed approach performs as expected and for a medium query length (with default length 5) delivers fast results in a response time of a couple milliseconds.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.3]{images/neo_distance.png}
@@ -124,8 +126,8 @@ Nevertheless, all three performance parameters - processing time, number of heap
 \section{Or operator}
 \label{sec:experimentsOr}
 
-The or operator was evaluated with respect to the type of number of operands, for a default query length of 5.  Three different types of queries were issued, where we changed the type and number of or operands in the first OR sequence $OR_1$ of the query, while the other four OR sequences only contained one category sequence with a single category. For 2 simple operands the first OR sequence contained two category sequenced with one single category each, for 3 simple operands the first OR sequence contained three category sequenced with one single category each and for 2 complex operands the first OR sequence contained two complex category sequences with 2 categories in each. In this way the complexity of the problem was gradually increased to see how the baseline approach compares to proposed approach of the algorithm.  
-Figure \ref{fig:or} a), b), c) shows that the processing time, number of heap fetches and maximum heap size increase proportionately with the complexity of the query. As seen from the experiments the proposed approach is also by magnitudes faster and also more efficient in terms of heap size, as the complexity of the query increases. 
+The or operator was studied with respect to the type of number of operands, for a default query length of 5. Three different types of queries were issued, in which we changed the type and number of or operands in the first OR sequence $OR_1$ of the query, while the other four OR sequences only contained one category sequence with a single category. For \textit{2 simple operands} the first OR sequence contained two category sequences with one single category each, for \textit{3 simple operands} the first OR sequence contained three category sequences with one single category each and for \textit{2 complex operands} the first OR sequence contained two complex category sequences with two categories in each. In this way the complexity of the problem was gradually increased to see how the baseline approach compares to proposed approach of the algorithm.  
+Figure \ref{fig:or} a), b), c) shows that the processing time, number of heap fetches and maximum heap size increase proportionately with the complexity of the query. As seen from the experiments the proposed approach is also by magnitudes faster with more than a linear rate and also more efficient in terms of heap size, as the complexity of the query increases. 
 
 \begin{figure}[H]
 	\includegraphics[scale=0.25]{images/or.png}
@@ -139,7 +141,7 @@ Figure \ref{fig:or} a), b), c) shows that the processing time, number of heap fe
 \label{sec:experimentsOrder}
 
 The order operator was evaluated with respect to the number of fixed positions in a default query length of 5. The number ranges between 0 and 3. When the number of fixed positions is 4 or 5, the problem can be solved with simple PNE, therefore we do not consider these numbers in the experiments. The complexity of the problem is gradually decreased to see how the baseline approach compares to proposed approach of the algorithm.  
-Figure \ref{fig:order} a), b), c) shows that the processing time, number of heap fetches and maximum heap size decrease proportionately with the complexity of the query. As seen from the experiments the proposed approach is also by magnitudes faster and also more efficient in terms of heap size.
+Figure \ref{fig:order} a), b), c) shows that the processing time, number of heap fetches and maximum heap size decrease proportionately with the complexity of the query. As seen from the experiments the proposed approach is also with more than a linear rate faster and also more efficient in terms of heap size.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.25]{images/order.png}
@@ -150,9 +152,9 @@ Figure \ref{fig:order} a), b), c) shows that the processing time, number of heap
 
 \section{Evaluation}
 \label{sec:eval}
-\todo{Todo: Evaluation}
 
-%It is important to mention that the implemented approaches could be easily modified to return \textit{k} number of optimal routes, if the user may be interested
-%Alternatives or additions to the route length: duration and PoI ratings
+We can conclude that we have successfully developed four operators for the route query language, which perform as expected in all our quantitative criteria such as time, heap fetch operations and required workspace. They also outperform the baseline methods with more than a linear rate with increasing of the search space and therefore prove to be effective solutions.
+
+It is important to mention that the implemented approaches could easily be modified to return \textit{k} number of optimal routes, if the user may be interested in this. Also, the proposed approaches are not only limited to using the route length  as measure criteria. Alternative to this could be the route duration. In different scenarios, the methods could also be extended to consider PoI ratings and subjective preferences such as preferred length of the route or traveling time to  specific location could be considered as well.  
 
 % We do not report I/O cost separately, because for all methods in all settings, the I/O time is no more than a few milliseconds; i.e., at least an order of magnitude lower than the total response time. 
