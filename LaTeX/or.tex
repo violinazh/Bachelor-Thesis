@@ -41,7 +41,7 @@ The or operator is designed using the PNE approach, proposed in \cite{OSR}. It p
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmOr}
-The algorithm \texttt{\nameref{alg:or}} starts by initializing the $heap$, ordered by the length of the routes, and the first PSR (line 1 to 16). It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a SR is reached. As can be seen in line 2, a PSR is build with each $M_i$ from the first OR sequences $OR_1$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor in $U_{M_i}$ to the starting point as the PNE algorithm would, otherwise it finds the nearest neighbor in $U_{M_i[1]}$ to the starting point and initializes the list of categories $PSR.categories$ for the $PSR$. From all these generated PSR the shortest one is chosen and put on the $heap$.
+The algorithm \texttt{\nameref{alg:or}} starts by initializing the $heap$, ordered by the length of the routes, and the first PSR (line 1 to 16). It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a SR is reached. As can be seen in line 2, a PSR is build with each $M_i$ from the first OR sequences $OR_1$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor in $C_{M_i}$ to the starting point as the PNE algorithm would, otherwise it finds the nearest neighbor in $C_{M_i[1]}$ to the starting point and initializes the list of categories $PSR.categories$ for the $PSR$. From all these generated PSR the shortest one is chosen and put on the $heap$.
 
 Modified PNE proceeds with examining the routes on the $heap$ by $index(PSR)$ and modifying them according to PNE. $index(PSR)$ indicates the index of the last found OR sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. When the current route on the $heap$ is a full SR, where $s = n$, indicating the last OR sequence $OR_n$, then the optimal route has been found (line 21 to 24). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm (line 25 to 30). \newline
 
@@ -62,13 +62,13 @@ Modified PNE proceeds with examining the routes on the $heap$ by $index(PSR)$ an
 		\tcp{Building a new $PSR$ with $M_i$}
 		\eIf{$|M_i| = 1$}{
 			\tcp{$M_i$ only contains one category}
-			\NN{$sp, U_{M_{i}}$}\;
+			\NN{$sp, C_{M_{i}}$}\;
 			$update$ $shortestPSR$\;
 		}
 		{
 			\tcp{$M_i$ is a sequence of categories}
 			\tcp{The neighbor from the first category $M_i[1]$ is found and the rest of the categries from $M_i$ are put into $categories$ for the specific PSR}
-			\NN{$sp, U_{M_i[1]}$}\;
+			\NN{$sp, C_{M_i[1]}$}\;
 			$PSR.categories \leftarrow M_i[2..l]$\;
 			$update$ $shortestPSR$\;
 		}	
@@ -100,8 +100,8 @@ Modified PNE proceeds with examining the routes on the $heap$ by $index(PSR)$ an
 \end{algorithm}
 
 In \texttt{\ref{proc:modifyRouteA}()} it is differentiated between a complete PSR and an incomplete PSR. 
-A complete PSR has an empty list of $PSR.categories$, which means that the next OR sequence can be examined (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 6) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor to $r_{|PSR|}$ in $U_{M_{i}}$ as the PNE algorithm would (line 6 to 10), otherwise it finds the nearest neighbor to $r_{|PSR|}$ in $U_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSR the shortest one is chosen and put on the $heap$.
-For an incomplete PSR the next nearest neighbor to $r_{|PSR|}$ in $U_{PSR.categories[1]}$ is found (line 20 to 25). The indicator $PSR.prevPosition$ for the PSR is also updated to indicate that in \texttt{\ref{proc:modifyRouteB}()} the k-th neighbor to the second to last PoI should be found.
+A complete PSR has an empty list of $PSR.categories$, which means that the next OR sequence can be examined (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 6) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor to $r_{|PSR|}$ in $C_{M_{i}}$ as the PNE algorithm would (line 6 to 10), otherwise it finds the nearest neighbor to $r_{|PSR|}$ in $C_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSR the shortest one is chosen and put on the $heap$.
+For an incomplete PSR the next nearest neighbor to $r_{|PSR|}$ in $C_{PSR.categories[1]}$ is found (line 20 to 25). The indicator $PSR.prevPosition$ for the PSR is also updated to indicate that in \texttt{\ref{proc:modifyRouteB}()} the k-th neighbor to the second to last PoI should be found.
 Trimming is also performed (see \texttt{\ref{proc:trim}()}). \newline
 
 \begin{procedure}[H]
@@ -115,13 +115,13 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}). \newline
 			\tcp{Building a new $PSR$ with $M_i$}
 			\eIf{$|M_i| = 1$}{
 				\tcp{$M_i$ only contains one category}
-				\NN{$r_{|PSR|}, U_{M_{i}}$}\;
+				\NN{$r_{|PSR|}, C_{M_{i}}$}\;
 				$update$ $shortestPSR$\;
 			}
 			{
 				\tcp{$M_i$ is a sequence of categories}
 				\tcp{The neighbor from the first category $M_i[1]$ is found and the rest of the categries from $M_i$ are put into $categories$ for the specific PSR}
-				\NN{$r_{|PSR|}, u_{M_i[1]}$}\;
+				\NN{$r_{|PSR|}, C_{M_i[1]}$}\;
 				$PSR.categories \leftarrow M_i[2..l]$\;
 				$update$ $shortestPSR$\;
 			}	
@@ -130,7 +130,7 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}). \newline
 		
 	}{
 		\tcp{We continue to find the PoI of the next category in the $PSR.categories$}
-		\NN{$r_{|PSR|}, U_{PSR.categories[1]}$}\;
+		\NN{$r_{|PSR|}, C_{PSR.categories[1]}$}\;
 		$remove$ $M_i[1]$ from $PSR.categories$\;
 		\tcp{$PSR.prevPosition$, when set to $true$ indicates that in \modifyRouteB{$PSR$} all the sequences in the OR sequence of the previous position $OR_s$ should be traversed and checked again, otherwise the k-th neigbor to the second to last PoI is found}
 		$PSR.prevPosition \leftarrow false$\;
@@ -143,8 +143,8 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}). \newline
 
 \pagebreak
 
-In \texttt{\ref{proc:modifyRouteB}()} it is checked if the indicator $PSR.prevPosition$ for the PSR is set ot $true$ (line 1). If that is the case, it means, that the OR sequence of the previous position $OR_{s-1}$ should be examined again (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the k-th nearest neighbor $r_{|PSR|-1}$ in $U_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the k-th nearest neighbor to $r_{|PSR|-1}$ in $U_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSRs the shortest one is chosen and put on the $heap$. 
-If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that the k-th nearest neighbor to $r_{|PSR|}$ in $U_{PSR.categories[1]}$ is found (line 20 to 25).
+In \texttt{\ref{proc:modifyRouteB}()} it is checked if the indicator $PSR.prevPosition$ for the PSR is set ot $true$ (line 1). If that is the case, it means, that the OR sequence of the previous position $OR_{s-1}$ should be examined again (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the k-th nearest neighbor $r_{|PSR|-1}$ in $C_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the k-th nearest neighbor to $r_{|PSR|-1}$ in $C_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSRs the shortest one is chosen and put on the $heap$. 
+If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that the k-th nearest neighbor to $r_{|PSR|}$ in $C_{PSR.categories[1]}$ is found (line 20 to 25).
 
 \enlargethispage{\baselineskip}
 
@@ -159,13 +159,13 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 			\tcp{Building a new $PSR$ with $M_i$}
 			\eIf{$|M_i| = 1$}{
 				\tcp{$M_i$ only contains one category}
-				\KNN{$r_{|PSR|-1}, U_{M_{i}}$}\;
+				\KNN{$r_{|PSR|-1}, C_{M_{i}}$}\;
 				$update$ $shortestPSR$\;
 			}
 			{
 				\tcp{$M_i$ is a sequence of categories}
 				\tcp{The neighbor from the first category $M_i[1]$ is found and the rest of the categries from $M_i$ are put into $categories$ for the specific PSR}
-				\KNN{$r_{|PSR|-1}, U_{M_i[1]}$}\;
+				\KNN{$r_{|PSR|-1}, C_{M_i[1]}$}\;
 				$PSR.categories \leftarrow M_i[2..l]$\;
 				$update$ $shortestPSR$\;
 			}	
@@ -174,7 +174,7 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 		$newPSR \leftarrow shortestPSR$\;
 	}{
 		\tcp{We find the k-th neighbor to the second to last PoI}
-		\KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
+		\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
 		$update$ $newPSR$\;
 	}
 	

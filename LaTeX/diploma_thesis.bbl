@@ -7,100 +7,103 @@ E.~Ahmadi and M.A. Nascimento.
 \newblock In: \url{https://sites.google.com/ualberta.ca/nascimentodatasets/},
   2017.
 
-\bibitem{spatialDB}
-Nikos Mamoulis Yufei~Tao Dimitris~Papadias, Jun~Zhang.
-\newblock Query processing in spatial network databases.
-\newblock Department of Computer Science, Hong Kong University of Science and
-  Technology.
+\bibitem{dynamicSRQ}
+Jochen Eisner and Stefan Funke.
+\newblock Sequenced route queries: Getting things done on the way back home.
+\newblock In {\em SIGSPATIAL '12 Proceedings of the 20th International
+  Conference on Advances in Geographic Information Systems}, pages 502--505,
+  2012.
 
-\bibitem{tpq}
-Marios Hadjieleftheriou George~Kollios Feifei~Li, Dihan~Cheng and Shang-Hua
-  Teng.
-\newblock On trip planning queries in spatial databases.
-\newblock Computer Science Department Boston University.
-
-\bibitem{multi}
-Min-Te Sun Roger~Zimmermann Haiquan~Chen, Wei-Shinn~Ku.
-\newblock The partial sequenced route query with traveling rules in road
-  networks.
-\newblock Geoinformatica (2011) 15: 541.
+\bibitem{semanticSRQ}
+Yuya Sasaki{,} Yoshiharu Ishikawa{,}~Yasuhiro Fujiwara and Makoto Onizuka.
+\newblock Sequenced route query with semantic hierarchy.
+\newblock In {\em EDBT}, pages 37--48, 2018.
 
 \bibitem{skyline}
 Xuegang Huang and Christian~S. Jensen.
 \newblock In-route skyline querying for location-based services.
-\newblock Department of Computer Science, Aalborg University, Denmark.
-
-\bibitem{personalSRQ}
-Jiajie Xu4-Zhiming~Ding Jian~Dai, Chengfei~Liu.
-\newblock On personalized and sequenced route planning.
-\newblock Institute of Software, Chinese Academy of Sciences, Beijing, China,
-  University of Chinese Academy of Sciences, Beijing, China, Department of
-  Computer Science and Software Engineering, School of Software and Electrical
-  Engineering, Faculty of Science, Engineering and Technology, Swinburne
-  University of Technology, Melbourne, Australia, School of Computer Science
-  and Technology, Soochow University, Suzhou, China, School of Computer
-  Science, Beijing University of Technology, Beijing , China.
-
-\bibitem{optMulti}
-Nikos~Mamoulis Jing~Li, Yin~Yang.
-\newblock Optimal route queries with arbitrary order constraints.
-\newblock IEEE Transactions on Knowledge and Data Engineering (Volume: 25,
-  Issue: 5, May 2013).
-
-\bibitem{dynamicSRQ}
-Stefan~Funke Jochen~Eisner.
-\newblock Sequenced route queries: Getting things done on the way back home.
-\newblock Universitat Stuttgart, Institut fur Formale Methoden der Informatik.
-
-\bibitem{voronoi}
-Cyrus~Shahabi Mehdi~Sharifzadeh.
-\newblock Processing optimal sequenced route queries using voronoi diagrams.
-\newblock C. Geoinformatica (2008) 12: 411.
-
-\bibitem{dynamic}
-Arnab~Bhattacharya Nirmesh~Malviya, Samuel~Madden.
-\newblock A continuous query system for dynamic route planning.
-\newblock MIT CSAIL, CSE - IIT Kanpur.
+\newblock In {\em W2GIS'04 Proceedings of the 4th international conference on
+  Web and Wireless Geographical Information Systems}, pages 120--135, 2004.
 
 \bibitem{OSR}
-Mehdi Sharifzadeh and Cyrus~Shahabi Mohammad~Kolahdouzan.
+Mehdi Sharifzadeh{,}~Mohammad Kolahdouzan and Cyrus Shahabi.
 \newblock The optimal sequenced route query.
-\newblock Computer Science Department, University of Southern California.
+\newblock {\em The VLDB Journal}, 17:765--787, 2008.
+
+\bibitem{tpq}
+Feifei Li{,} Dihan Cheng{,} Marios Hadjieleftheriou{,}~George Kollios and
+  Shang-Hua Teng.
+\newblock On trip planning queries in spatial databases.
+\newblock In {\em Bauzer Medeiros C., Egenhofer M.J., Bertino E. (eds) Advances
+  in Spatial and Temporal Databases (SSTD)}, pages 273--290, 2005.
 
 \bibitem{skyOp}
-Konrad~Stocker1 Stephan~B{\"o}rzs{\"o}nyi, Donald~Kossmann.
+Stephan B{\"o}rzs{\"o}nyi{,}~Donald Kossmann and Konrad Stocker.
 \newblock The skyline operator.
-\newblock Universit{\"a}t Passau, Technische Universit{\"a}t M{\"u}nchen.
-
-\bibitem{mtnn}
-Hui~Xiong Xiaobin~Ma, Shashi~Shekhar and Pusheng Zhang.
-\newblock Exploiting a page-level upper bound for multi-type nearest neighbor
-  queries.
-\newblock University of Minnesota, Rutgers University, Microsoft Corporation.
-
-\bibitem{interactive}
-Eliyahu Safra-Yehoshua~Sagiv Yaron~Kanza, Roy~Levin.
-\newblock An interactive approach to route search.
-\newblock Technion, Hebrew University.
+\newblock In {\em Proceedings 17th International Conference on Data
+  Engineering}, 2001.
 
 \bibitem{minCost}
-Wang-Chien~Lee Yuan~Tian, Ken C. K.~Lee.
+Yuan Tian{,} Ken C.~K. Lee and Wang-Chien Lee.
 \newblock Monitoring minimum cost paths on road networks.
-\newblock Department of Computer Science Engineering The Pennsylvania State
-  University.
+\newblock In {\em GIS '09 Proceedings of the 17th ACM SIGSPATIAL International
+  Conference on Advances in Geographic Information Systems}, pages 217--226,
+  2009.
+
+\bibitem{dynamic}
+Nirmesh Malviya{,}~Samuel Madden and Arnab Bhattacharya.
+\newblock A continuous query system for dynamic route planning.
+\newblock In {\em ICDE '11 Proceedings of the 2011 IEEE 27th International
+  Conference on Data Engineering}, pages 792--803, 2011.
+
+\bibitem{spatialDB}
+Dimitris Papadias{,} Jun Zhang{,}~Nikos Mamoulis and Yufei Tao.
+\newblock Query processing in spatial network databases.
+\newblock In {\em VLDB '03 Proceedings of the 29th international conference on
+  Very large data bases - Volume 29}, pages 802--813, 2003.
+
+\bibitem{interactive}
+Yaron Kanza{,} Roy Levin{,}~Eliyahu Safra and Yehoshua Sagiv.
+\newblock An interactive approach to route search.
+\newblock In {\em GIS '09 Proceedings of the 17th ACM SIGSPATIAL International
+  Conference on Advances in Geographic Information Systems}, pages 408--411,
+  2009.
+
+\bibitem{voronoi}
+Mehdi Sharifzadeh and Cyrus Shahabi.
+\newblock Processing optimal sequenced route queries using voronoi diagrams.
+\newblock {\em Geoinformatica}, 12:411--433, 2008.
 
 \bibitem{betterOSR}
-Noboru~Sonehara Yutaka~Ohsawa, Htoo~Htoo and Masao Sakauchi.
+Yutaka Ohsawa{,} Htoo Htoo{,}~Noboru Sonehara and Masao Sakauchi.
 \newblock Sequenced route query in road network distance based on incremental
   euclidean restriction.
-\newblock Graduate School of Science and Engineering, Saitama University,
-  National Institute of Informatics.
+\newblock In {\em Liddle S.W., Schewe KD., Tjoa A.M., Zhou X. (eds) Database
+  and Expert Systems Applications (DEXA)}, pages 484--491, 2012.
 
-\bibitem{semanticSRQ}
-Yasuhiro Fujiwara Makoto~Onizuka Yuya~Sasaki, Yoshiharu~Ishikawa.
-\newblock Sequenced route query with semantic hierarchy.
-\newblock Graduate School of Information Science and Technology, Osaka
-  University, Osaka, Japan, Graduate School of Information Science, Nagoya
-  University, Nagoya, Japan, NTT Software Innovation Center, Tokyo, Japan.
+\bibitem{multi}
+Haiquan Chen{,} Wei-Shinn Ku{,} Min-Te Sun and Roger Zimmermann.
+\newblock The partial sequenced route query with traveling rules in road
+  networks.
+\newblock {\em Geoinformatica}, 15:541--569, 2011.
+
+\bibitem{mtnn}
+Xiaobin Ma{,} Shashi Shekhar{,}~Hui Xiong and Pusheng Zhang.
+\newblock Exploiting a page-level upper bound for multi-type nearest neighbor
+  queries.
+\newblock In {\em GIS '06 Proceedings of the 14th annual ACM international
+  symposium on Advances in geographic information systems}, pages 179--186,
+  2006.
+
+\bibitem{personalSRQ}
+Jian Dai{,} Chengfei Liu{,}~Jiajie Xu4 and Zhiming Ding.
+\newblock On personalized and sequenced route planning.
+\newblock {\em World Wide Web}, 19:679--705, 2016.
+
+\bibitem{optMulti}
+Jing Li{,}~Yin Yang and Nikos Mamoulis.
+\newblock Optimal route queries with arbitrary order constraints.
+\newblock {\em IEEE Transactions on Knowledge and Data Engineering},
+  25:1097--1110, 2013.
 
 \end{thebibliography}

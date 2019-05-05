@@ -21,7 +21,7 @@ The not-equality operator is based on the need to express that some PoIs in the 
 \label{sec:problemNEO}
 The not-equality operator is defined as follows:
 
-\textbf{Not-Equality operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in U_{M_{i}}$, $r_j \in U_{M_{j}}$ and $M_i \neq M_j$, $NOTEQUAL(i, j)$ is an equality operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
+\textbf{Not-Equality operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in C_{M_{i}}$, $r_j \in C_{M_{j}}$ and $M_i \neq M_j$, $NOTEQUAL(i, j)$ is an equality operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
 $Q(sp, M, NOTEQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$ and where $r_i \neq r_j$.
 
 %\subsection{Precomputations} 
@@ -51,7 +51,7 @@ The algorithm \texttt{\nameref{alg:notequality}} starts by initializing the $hea
 	$initialize$ $heap$\;
 	$initialize$ $candidate$\;
 	
-	$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
+	$firstPSR =$\NN{$sp, C_{M_{1}}$}\;
 	place $firstPSR$ on $heap$\;
 	
 	\BlankLine
@@ -66,12 +66,12 @@ The algorithm \texttt{\nameref{alg:notequality}} starts by initializing the $hea
 		}
 		\Case{$s \neq l$}{
 			\A{
-				\NN{$r_{|PSR|}, U_{M_{|PSR|+1}}$}\;
+				\NN{$r_{|PSR|}, C_{M_{|PSR|+1}}$}\;
 				update $PSR$\;
 				\trim{$PSR$}\;
 			}
 			\B{
-				\KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
+				\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
 				generate a new $PSR$\;
 				\trim{$PSR$}\;
 			} 
@@ -100,7 +100,7 @@ Each time a $PSR$ is generated the procedure \texttt{\ref{proc:trim_NEO}()} is p
 		{
 			\tcp{In case $j$ is the last index in the route, we find the kth neighbor of the previous PoI to the last one}
 			\If{$size(PSR) = j + 1$}{
-				\KNN{$r_{|PSR|-1}, U_{M_{|PSR|}}$}\;
+				\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
 				generate a new $PSR$\;
 				\trim{$PSR$}\;
 			}

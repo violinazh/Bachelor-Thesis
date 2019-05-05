@@ -5,7 +5,7 @@
 The road network or also known as spatial network is modeled as weighted graph where the crossroads are represented by nodes and roads are represented by the edges connecting the nodes. The weights on the edges in this specific research problem are the distances between the nodes on the edges. The distance between any two points can be found by summing up the lengths of the edges that belong to the shortest path between the two points.
 
 \textbf{Dataset:}
-The graph used to conduct the experiments on is constructed using Berlin's spatial datasets from \cite{datasets}, structured in separate CSV files for the crossroads, roads and points of interest. For the implementation of the operators the datasets are imported into a graph structure of nodes and edges, where each node has a unique id, its latitude and longitude and a list of PoIs that have been mapped to it and each edge has a source and destination node and the distance between the two nodes in kilometers as parameters. Each PoI is mapped to the nearest crossroad and has a unique id, a type, its latitude and longitude and the distance to the node it is mapped to.
+The graph used to conduct the experiments on is constructed using Berlin's spatial datasets from \cite{datasets}, structured in separate CSV files for the crossroads, roads and CoI sets. For the implementation of the operators the datasets are imported into a graph structure of nodes and edges, where each node has a unique id, its latitude and longitude and a list of PoIs that have been mapped to it and each edge has a source and destination node and the distance between the two nodes in kilometers as parameters. Each PoI is mapped to the nearest crossroad and has a unique id, a type, its latitude and longitude and the distance to the node it is mapped to.
 
 The map used for the experiments is the road network of Berlin, with 428769 crossroad nodes, 504229 road edges, 5548 PoIs and 7 category types: restaurant, coffee shop, atms/bank, movie theater, pharmaciy, pubs/bar, gas station (see Table \ref{dataset}). 
 
@@ -13,7 +13,7 @@ The map used for the experiments is the road network of Berlin, with 428769 cros
 	\centering
 	\begin{tabular}{ |c|c|c| } 
 		\hline
-		\textit{Points} & \textit{Size} & \textit{Frequency}\\
+		\textit{Categories} & \textit{Size} & \textit{Frequency}\\
 		\hline
 		Restaurants & 2081 & \multirow{3}{3em}{High}\\ 
 		Coffee shops & 1002 &\\
@@ -26,14 +26,14 @@ The map used for the experiments is the road network of Berlin, with 428769 cros
 		Movie theaters & 141 &\\ 
 		\hline
 	\end{tabular}
-	\caption{PoIs in Berlin's dataset}
+	\caption{CoIs in Berlin's road network}
 	\label{dataset}
 \end{table}
 
 \textbf{Technical details:}
 The experiments were performed on two Linux machines with AMD Opteron Processor 6212 with 2,60 GHz and Intel Xeon E5-2630 processor with 2.40GHz and respectively 16 CPUs and 128 GB RAM. The experiments for each parameter type were executed on 1000 queries with randomly selected starting points. Finally, the average of the results is reported.
 
-Several experiments were conducted to evaluate the performance of the proposed algorithms. The evaluation criteria. which relate to all the operators, presented in the thesis are the following: (1) processing time (in milliseconds), (2) total number of heap fetches and (3) maximum heap size, representing the work space (WS) of the method. Since most of the route planning services are mobile services, designed to use on the go, response time is of utter importance. We also want to see how the workspace relates to the number of fetch operations, performed on the heap. Furthermore, to highlight the benefits of three of the operators - EO, OR, ORDER, we also run the experiments on the baseline approaches to compare them with the proposed algorithms. 
+Several experiments were conducted to evaluate the performance of the proposed algorithms. The evaluation criteria. which relate to all the operators, presented in the thesis are the following: (1) processing time (in milliseconds), (2) total number of heap fetches and (3) maximum heap size, representing the work space (WS) of the method. Since most of the route planning services are mobile services, designed to use on the go, response time is of utter importance. We also want to see how the work space relates to the number of fetch operations, performed on the heap. Furthermore, to highlight the benefits of three of the operators - EO, OR, ORDER, we also run the experiments on the baseline approaches to compare them with the proposed algorithms. 
 
 \section{Equality operator}
 \label{sec:experimentsEO}
@@ -51,8 +51,8 @@ Figure \ref{fig:eo_length} b), c) follow the same trend of a). As query length i
 	\label{fig:eo_length}
 \end{figure}
 
-In the next set of experiments, shown in Figure \ref{fig:eo_frequency} a), b), c), the equality operator was evaluated in terms of the frequency of the categories in place of the equal indices $i$, $j$. Frequency relates to the size of each PoI dataset (see Table \ref{dataset}) and is categorized into \textit{low}, \textit{middle} and \textit{high}, for a default query length of 5.  Figure \ref{fig:eo_frequency} b), c) follow the same trend as the experiments for query length. 
-As frequency of the categories, which are selected to be equal, increases, the processing time, number of heap fetches and heap maximum size increase proportionately. This can be explained with the fact that having more points in the PoI dataset of the equal categories increases the search space of the algorithm and respectively more partial routes are being generated, which increases the heap size, number of heap fetches and logically in turn the processing time of the query.
+In the next set of experiments, shown in Figure \ref{fig:eo_frequency} a), b), c), the equality operator was evaluated in terms of the frequency of the categories in place of the equal indices $i$, $j$. Frequency relates to the size of each CoI dataset (see Table \ref{dataset}) and is categorized into \textit{low}, \textit{middle} and \textit{high}, for a default query length of 5.  Figure \ref{fig:eo_frequency} b), c) follow the same trend as the experiments for query length. 
+As frequency of the categories, which are selected to be equal, increases, the processing time, number of heap fetches and heap maximum size increase proportionately. This can be explained with the fact that having more points in the CoI dataset of the equal categories increases the search space of the algorithm and respectively more partial routes are being generated, which increases the heap size, number of heap fetches and logically in turn the processing time of the query.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.3]{images/eo_frequency.png}
@@ -144,7 +144,7 @@ The order operator was evaluated with respect to the number of fixed positions i
 Figure \ref{fig:order} a), b), c) shows that the processing time, number of heap fetches and maximum heap size decrease proportionately with the complexity of the query. As seen from the experiments the proposed approach is also with more than a linear rate faster and also more efficient in terms of heap size.
 
 \begin{figure}[H]
-	\includegraphics[scale=0.25]{images/order.png}
+	\includegraphics[scale=0.3]{images/order.png}
 	\centering
 	\caption{Order operator - number of fixed positions experiments}
 	\label{fig:order}
@@ -153,7 +153,7 @@ Figure \ref{fig:order} a), b), c) shows that the processing time, number of heap
 \section{Evaluation}
 \label{sec:eval}
 
-We can conclude that we have successfully developed four operators for the route query language, which perform as expected in all our quantitative criteria such as time, heap fetch operations and required workspace. They also outperform the baseline methods with more than a linear rate with increasing of the search space and therefore prove to be effective solutions.
+We can conclude that we have successfully developed four operators for the route query language, which perform as expected in all our quantitative criteria such as time, heap fetch operations and required work space. They also outperform the baseline methods with more than a linear rate with increasing of the search space and therefore prove to be effective solutions.
 
 It is important to mention that the implemented approaches could easily be modified to return \textit{k} number of optimal routes, if the user may be interested in this. Also, the proposed approaches are not only limited to using the route length  as measure criteria. Alternative to this could be the route duration. In different scenarios, the methods could also be extended to consider PoI ratings and subjective preferences such as preferred length of the route or traveling time to  specific location could be considered as well.  
 

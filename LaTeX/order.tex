@@ -33,8 +33,7 @@ The order query is then defined as follows: \newline
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
 \label{sec:approachOrder}
-The order operator is designed using the PNE approach, proposed in \cite{OSR}. It keeps a sequence of the not ordered categories, which is the complement of the ORDER sequence: $NOTORDERED = \overline{ORDER}$, and inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route. For the categories, the indices of which are in the ordered list, the algorithm finds them according to PNE. 
-The NOTORDERED sequence is accordingly updated for every PSR, as it is specific to a route. Each time a PSR is build with one of the not ordered categories, it is removed from the NOTORDERED sequence for this specific route.
+The order operator is designed using the PNE approach, proposed in \cite{OSR}. It keeps a sequence of the not ordered categories, which is the complement of the ORDER sequence: $NOTORDERED = \overline{ORDER}$, and inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route. The NOTORDERED sequence is updated for every PSR, as it is specific to a route. Each time a PSR is build with one of the not ordered categories, it is removed from the NOTORDERED sequence for this specific route.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
@@ -59,13 +58,13 @@ The algorithm proceeds with examining the routes on the $heap$ by size and modif
 	\BlankLine
 	
 	\eIf{$ORDER$ contains 1}{
-		$firstPSR =$\NN{$sp, U_{M_{1}}$}\;
+		$firstPSR =$\NN{$sp, C_{M_{1}}$}\;
 	}{
 		\ForEach(Finding all the possible neighbors to the starting point){$i$ in $NOTORDERED$}{
 			
 			$initialize$ $shortestPSR$\;
 			\tcp{Building a new $PSR$ with $c_i$}
-			\NN{$sp, U_{M_{i}}$}\;
+			\NN{$sp, C_{M_{i}}$}\;
 			$update$ $shortestPSR$\;	
 		}
 	
@@ -98,7 +97,7 @@ The algorithm proceeds with examining the routes on the $heap$ by size and modif
 
 \pagebreak
 
-In \texttt{\ref{proc:mRouteA}()} it is checked if the category to be found next is part of the ORDER sequence. If this is the case it finds the nearest neighbor to the last PoI in the current PSR $r_{s-1}$ from the category set $U_{M_{s}}$, otherwise it finds all nearest neighbors to $r_{s-1}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$.
+In \texttt{\ref{proc:mRouteA}()} it is checked if the category to be found next is part of the ORDER sequence. If this is the case it finds the nearest neighbor to the last PoI in the current PSR $r_{s-1}$ from the category set $C_{M_{s}}$, otherwise it finds all nearest neighbors to $r_{s-1}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$.
 Trimming is also performed (see \texttt{\ref{proc:trim}()}).
 
 \begin{procedure}[H]
@@ -106,13 +105,13 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}).
 \label{proc:mRouteA}
 
 	\eIf{$ORDER$ contains $s$}{
-		$newPSR =$\NN{$r_{s-1}, U_{M_{s}}$}\;
+		$newPSR =$\NN{$r_{s-1}, C_{M_{s}}$}\;
 	}{
 		\ForEach(Finding all the possible neighbors out of the remaining categories in the not ordered list){$i$ in $NOTORDERED$}{
 			
 			$initialize$ $shortestPSR$\;
 			\tcp{Building a new $PSR$ with $c_{i}$}
-			\NN{$r_{s-1}, U_{M_{i}}$}\;
+			\NN{$r_{s-1}, C_{M_{i}}$}\;
 			$update$ $shortestPSR$\;	
 		}
 		
@@ -126,7 +125,7 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}).
 
 \vspace{\baselineskip}
 
-In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighbor to $r_{s-2}$ is found. The algorithm checks again if the category to be found next is part of the ORDER sequence. If this is the case it simply finds the k-th nearest neighbor to $r_{s-2}$ from the category set $U_{M_{s-1}}$, otherwise it finds all nearest neighbors to $r_{s-2}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$. \newline
+In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighbor to $r_{s-2}$ is found. The algorithm checks again if the category to be found next is part of the ORDER sequence. If this is the case it simply finds the k-th nearest neighbor to $r_{s-2}$ from the category set $C_{M_{s-1}}$, otherwise it finds all nearest neighbors to $r_{s-2}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$. \newline
 
 \begin{procedure}[H]
 \caption{modifyRouteB($PSR$)}
@@ -134,13 +133,13 @@ In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighb
 	
 	
 	\eIf{$ORDER$ contains $s-1$}{
-		$newPSR =$\KNN{$r_{s-2}, U_{M_{s-1}}$}\;
+		$newPSR =$\KNN{$r_{s-2}, C_{M_{s-1}}$}\;
 	}{
 		\ForEach(Finding all the possible neighbors out of the remaining categories in the not ordered list){$i$ in $NOTORDERED$}{
 			
 			$initialize$ $shortestPSR$\;
 			\tcp{Building a new $PSR$ with $c_{i-1}$}
-			\KNN{$r_{s-2}, U_{M_{i-1}}$}\;
+			\KNN{$r_{s-2}, C_{M_{i-1}}$}\;
 			$update$ $shortestPSR$\;	
 		}
 		

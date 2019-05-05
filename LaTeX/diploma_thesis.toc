@@ -7,9 +7,9 @@
 \contentsline {chapter}{\numberline {1}Abbreviations}{3}{chapter.1}
 \contentsline {chapter}{\numberline {2}Introduction}{4}{chapter.2}
 \contentsline {section}{\numberline {2.1}Motivation}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Problem definition}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Challenges}{7}{section.2.3}
-\contentsline {section}{\numberline {2.4}Contributions}{8}{section.2.4}
+\contentsline {section}{\numberline {2.2}Problem definition}{6}{section.2.2}
+\contentsline {section}{\numberline {2.3}Challenges}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Contributions}{7}{section.2.4}
 \contentsline {section}{\numberline {2.5}Outline}{8}{section.2.5}
 \contentsline {chapter}{\numberline {3}Notations and Preliminaries}{9}{chapter.3}
 \contentsline {chapter}{\numberline {4}Related Work}{11}{chapter.4}
@@ -56,4 +56,4 @@
 \contentsline {section}{\numberline {6.4}Order operator}{55}{section.6.4}
 \contentsline {section}{\numberline {6.5}Evaluation}{56}{section.6.5}
 \contentsline {chapter}{\numberline {7}Conclusion and Future work}{57}{chapter.7}
-\contentsline {chapter}{Bibliography}{63}{section*.26}
+\contentsline {chapter}{Bibliography}{62}{section*.26}

@@ -3,11 +3,11 @@
 % Table -> summary of notations
 \chapter{Notations and Preliminaries} 
 \label{sec:notes}
-In this chapter, I would like to introduce some terms, notations and definitions that are used throughout the thesis, such as the definition for a sequenced route query (SRQ), which we need in order to define the operators. \newline
+In this chapter, we would like to introduce some terms, notations and definitions that are used throughout the thesis, such as the definition for a Sequenced Route Query (SRQ), which we need in order to define the operators. \newline
 
-\textbf{PoIs sets:} We assume that we have $n$ sets $U_1$, $U_2$, ..., $U_n$, which contain points in a 2-dimensional space ${\rm I\!R}^2$ and $dist(., .)$ is a distance function, which obtains the distance between two points in a two dimensional road network. The sets $U_i$ represent the data sets for the different categories of points of interest, e.g. restaurants, gas stations etc.. \newline
+\textbf{PoIs sets:} We assume that we have $n$ sets $C_1$, $C_2$, ..., $C_n$, which contain points in a 2-dimensional space ${\rm I\!R}^2$ and $dist(., .)$ is a distance function, which obtains the distance between two points in a two dimensional road network. The sets $C_i$ represent the data sets for the different Categories of Interest (CoIs), e.g. restaurants, gas stations etc.. \newline
 
-\textbf{Category sequence:} $M = (c_1, c_2, ..., c_l)$ is a sequence of categories, if $1 \leq c_i \leq n$ for $1 \leq i \leq l$, where n is the number of points sets $U_i$. The user is only allowed to ask for existing location types. \newline
+\textbf{Category sequence:} $M = (c_1, c_2, ..., c_l)$ is a sequence of categories, if $1 \leq c_i \leq n$ for $1 \leq i \leq l$, where n is the number of present CoI sets $C_i$. The user is only allowed to ask for existing categories. \newline
 
 \textbf{Route:} $R =(r_1, r_2, ..., r_r)$ is a route, if $r_i \in {\rm I\!R}^2$ for each $1 \leq i \leq r$. $R_sp$ is a route that starts from the starting point $sp$: $R_{sp} = (sp, r_1, r_2, ..., r_r)$\newline
 
@@ -20,7 +20,7 @@ length(R) = \sum_{i=1}^{r-1} dist(P_i, P_{i+1})
 For $r = 1$ $length(R) = 0$.
 \newline
 
-\textbf{Sequenced route:} Let $M = (c_1, c_2, ..., c_l)$ be a sequence of point of interest categories. $R = (r_1, r_2, ..., r_l)$ is a sequenced route that follows the category sequence M, if $P_i \in U_{M_i}$ where $1 \leq i \leq l$. The points of interest in the route should belong to the corresponding category sets, defined in the category sequence. \newline
+\textbf{Sequenced route:} Let $M = (c_1, c_2, ..., c_l)$ be a sequence of CoIs. $R = (r_1, r_2, ..., r_l)$ is a sequenced route that follows the category sequence M, if $P_i \in C_{M_i}$ where $1 \leq i \leq l$. The Points of Interest (PoIs) in the route should belong to the corresponding CoI sets, defined in the category sequence. \newline
 
 \textbf{Optimal sequenced route (OSR) query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$ and a starting point $sp$ in ${\rm I\!R}^2$, $Q(sp, M)$ is the Optimal Sequenced Route (OSR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$.
 
@@ -38,11 +38,11 @@ Table \ref{table} summarizes all used notations.
 		\hline
 		\textit{Symbol} & \textit{Meaning} \\
 		\hline
-		$U_i$ & a point set for a category in ${\rm I\!R}^2$ \\ 
+		$C_i$ & a point set for a category in ${\rm I\!R}^2$ \\ 
 		\hline
-		$|U_i|$ & cardinality of the set $U_i$ \\ 
+		$|C_i|$ & cardinality of the set $C_i$ \\ 
 		\hline
-		$n$ & number of point sets $U_i$ \\ 
+		$n$ & number of point sets $C_i$ \\ 
 		\hline
 		$dist(., .)$ & distance function in ${\rm I\!R}^2$ \\ 
 		\hline
