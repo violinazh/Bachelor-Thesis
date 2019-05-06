@@ -14,15 +14,15 @@
 \contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace caseAfter}}{22}{algocfproc.caseAfter}
 \contentsline {algocf}{\numberline {3}{\ignorespaces pne()\cite {OSR}}}{23}{algocf.3}
 \contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{23}{algocfproc.trim}
-\contentsline {algocf}{\numberline {4}{\ignorespaces equalityOperator-baseline()}}{26}{algocf.4}
-\contentsline {algocf}{\numberline {5}{\ignorespaces modifiedPNE-baseline()}}{27}{algocf.5}
-\contentsline {algocf}{\numberline {6}{\ignorespaces notEqualityOperator()}}{30}{algocf.6}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{31}{algocfproc.trim}
-\contentsline {algocf}{\numberline {7}{\ignorespaces orOperator()}}{35}{algocf.7}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{37}{algocfproc.modifyRouteA}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{38}{algocfproc.modifyRouteB}
-\contentsline {algocf}{\numberline {8}{\ignorespaces orderOperator()}}{43}{algocf.8}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{44}{algocfproc.modifyRouteA}
-\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{45}{algocfproc.modifyRouteB}
+\contentsline {algocf}{\numberline {4}{\ignorespaces equalityOperator-baseline()}}{27}{algocf.4}
+\contentsline {algocf}{\numberline {5}{\ignorespaces modifiedPNE-baseline()}}{28}{algocf.5}
+\contentsline {algocf}{\numberline {6}{\ignorespaces notEqualityOperator()}}{31}{algocf.6}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace trim($PSR$)}}{32}{algocfproc.trim}
+\contentsline {algocf}{\numberline {7}{\ignorespaces orOperator()}}{36}{algocf.7}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{38}{algocfproc.modifyRouteA}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{39}{algocfproc.modifyRouteB}
+\contentsline {algocf}{\numberline {8}{\ignorespaces orderOperator()}}{44}{algocf.8}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteA($PSR$)}}{45}{algocfproc.modifyRouteA}
+\contentsline {algocf}{\numberline {-}{\ignorespaces Procedure\nobreakspace modifyRouteB($PSR$)}}{46}{algocfproc.modifyRouteB}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

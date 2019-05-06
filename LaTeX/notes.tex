@@ -3,13 +3,13 @@
 % Table -> summary of notations
 \chapter{Notations and Preliminaries} 
 \label{sec:notes}
-In this chapter, we would like to introduce some terms, notations and definitions that are used throughout the thesis, such as the definition for a Sequenced Route Query (SRQ), which we need in order to define the operators. \newline
+In this chapter, we would like to introduce some terms, notations and definitions that are used throughout the thesis, such as the definition for a Sequenced Route Query (SRQ), which we need in order to define the operators.
 
-\textbf{PoIs sets:} We assume that we have $n$ sets $C_1$, $C_2$, ..., $C_n$, which contain points in a 2-dimensional space ${\rm I\!R}^2$ and $dist(., .)$ is a distance function, which obtains the distance between two points in a two dimensional road network. The sets $C_i$ represent the data sets for the different Categories of Interest (CoIs), e.g. restaurants, gas stations etc.. \newline
+\textbf{PoIs sets:} We assume that we have $n$ sets $C_1$, $C_2$, ..., $C_n$, which contain points in a 2-dimensional space ${\rm I\!R}^2$ and $dist(., .)$ is a distance function, which obtains the distance between two points in a two dimensional road network. The sets $C_i$ represent the data sets for the different Categories of Interest (CoIs), e.g. restaurants, gas stations etc.. 
 
-\textbf{Category sequence:} $M = (c_1, c_2, ..., c_l)$ is a sequence of categories, if $1 \leq c_i \leq n$ for $1 \leq i \leq l$, where n is the number of present CoI sets $C_i$. The user is only allowed to ask for existing categories. \newline
+\textbf{Category sequence:} $M = (c_1, c_2, ..., c_l)$ is a sequence of categories, if $1 \leq c_i \leq n$ for $1 \leq i \leq l$, where n is the number of present CoI sets $C_i$. The user is only allowed to ask for existing categories.
 
-\textbf{Route:} $R =(r_1, r_2, ..., r_r)$ is a route, if $r_i \in {\rm I\!R}^2$ for each $1 \leq i \leq r$. $R_sp$ is a route that starts from the starting point $sp$: $R_{sp} = (sp, r_1, r_2, ..., r_r)$\newline
+\textbf{Route:} $R =(r_1, r_2, ..., r_r)$ is a route, if $r_i \in {\rm I\!R}^2$ for each $1 \leq i \leq r$. $R_sp$ is a route that starts from the starting point $sp$: $R_{sp} = (sp, r_1, r_2, ..., r_r)$
 
 \textbf{Route length:} The length of a route $R = (r_1, r_2, ..., r_r)$ is defined as:
 
@@ -18,23 +18,32 @@ length(R) = \sum_{i=1}^{r-1} dist(P_i, P_{i+1})
 \end{equation}
 
 For $r = 1$ $length(R) = 0$.
-\newline
 
-\textbf{Sequenced route:} Let $M = (c_1, c_2, ..., c_l)$ be a sequence of CoIs. $R = (r_1, r_2, ..., r_l)$ is a sequenced route that follows the category sequence M, if $P_i \in C_{M_i}$ where $1 \leq i \leq l$. The Points of Interest (PoIs) in the route should belong to the corresponding CoI sets, defined in the category sequence. \newline
+\textbf{Sequenced route:} Let $M = (c_1, c_2, ..., c_l)$ be a sequence of CoIs. $R = (r_1, r_2, ..., r_l)$ is a sequenced route that follows the category sequence M, if $P_i \in C_{M_i}$ where $1 \leq i \leq l$. The Points of Interest (PoIs) in the route should belong to the corresponding CoI sets, defined in the category sequence.
 
-\textbf{Optimal sequenced route (OSR) query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$ and a starting point $sp$ in ${\rm I\!R}^2$, $Q(sp, M)$ is the Optimal Sequenced Route (OSR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$.
+\textbf{Optimal sequenced route (OSR) query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$ and a starting point $sp$ in ${\rm I\!R}^2$, $Q(sp, M)$ is the Optimal Sequenced Route (OSR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$. The length of the complete route is defined as:
 
 \begin{equation}
 length(sp, R) = dist(sp, P_1) + length(R)
 \end{equation}
 
-All other sequenced routes that follow $M$ are referred to as candidate sequenced routes (SR). \newline
+All other sequenced routes that follow $M$ are referred to as candidate sequenced routes (SR).
+
+\textbf{Nearest neighbor:} The nearest neighbor from the category point set $C_p$ to a route point $r_q$ is defined as $NN(r_q, c_p)$.
+
+\textbf{Next nearest neighbor:} The next nearest neighbor $r_p'$ from the category point set $C_p$ to a route point $r_q$, relative to the last found  $k$-th neighbor $r_p$ is defined as $KNN(r_q, c_p')$. This is the $k+1$-th neighbor of $r_q$ and the following equation must apply:
+
+\begin{equation}
+dist(r_q, r_p') \geq dist(r_q, r_p)
+\end{equation} 
 
 Table \ref{table} summarizes all used notations.
 
+\enlargethispage{30pt}
+
 \begin{table}[h!]
 \centering
-	\begin{tabular}{ |l|l| } 
+	\begin{tabular}{ |l|p{10cm}| } 
 		\hline
 		\textit{Symbol} & \textit{Meaning} \\
 		\hline
@@ -63,6 +72,10 @@ Table \ref{table} summarizes all used notations.
 		$length(sp, R)$ & length of $R_{sp} = (sp, r_1, r_2, ..., r_r)$, $= length(R_{sp})$ \\ 
 		\hline
 		$Q(sp, M)$ & sequenced route query \\ 
+		\hline
+		$NN(r_q, c_p)$ & nearest neighbor from the category point set $C_p$ to a route point $r_q$ \\ 
+		\hline
+		$KNN(r_q, c_p')$ & next nearest neighbor $r_p'$ from the category point set $C_p$ to a route point $r_q$ \\ 
 		\hline
 	\end{tabular}
 \caption{Notations}

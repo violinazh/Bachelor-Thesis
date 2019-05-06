@@ -2,8 +2,8 @@
 \SetKw{Break}{break}
 
 \SetKwFunction{PNE}{PNE}
-\SetKwFunction{NN}{nearestNeigbour}
-\SetKwFunction{KNN}{kNearestNeigbour}
+\SetKwFunction{NN}{NN}
+\SetKwFunction{KNN}{kNN}
 \SetKwFunction{dist}{dist}
 \SetKwFunction{length}{length}
 
@@ -38,13 +38,34 @@ $Q(sp, M, EQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the 
 % Table with first nearest neghbors of all categories to all crossroads nodes.
 In order to faster calculate the heuristic for the partial routes, the nearest neighbors of all CoIs to each node are precalculated and kept in a 2-dimensional table in memory for easy access. For precalculation a modified Dijkstra is executed for every node, which terminates as soon as it reaches the nearest neighbors of every category to a the given graph vertex.
 
-% Introducing the proposed algorithm + proving the correctness
+% Introducing the proposed algorithm
 \subsection{Proposed approach} 
 \label{sec:approachEO}
 The equality operator is designed using the PNE approach, proposed in \cite{OSR} and briefly presented in algorithm \texttt{\nameref{alg:PNE}}. It uses the progressive neighbor explorator as its base to upgrade on and extends it with a heuristic approach to shrink the search space.
 
 \subsubsection{Heuristic}
-For generating the routes and deciding which of them are worth further expanding on, the proposed approach uses an initially calculated \textit{upper bound} of an artificially build OSR, which satisfies the equality condition, and compares it to a lower bound of a route, considered by the algorithm. The \textit{lower bound} of a certain route represents the sum of its length and its heuristic. The heuristic of a certain PSR is the maximum distance out of the distances to the nearest PoIs from the set of categories that are yet to be expanded. The function \texttt{\ref{proc:heuristic}()} calculates the heuristic for a given route $R$.
+\label{sec:heuristic}
+For generating the routes and deciding which of them are worth further expanding on, the proposed approach uses an initially calculated \textit{upper bound} of an artificially build OSR, which satisfies the equality condition, and compares it to a lower bound of a route, considered by the algorithm. The heap is sorted by the lower bound. 
+
+We formally define the heuristic of a route:
+
+\textbf{\textit{Heuristic:}} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$ and a PSR $R' = (r_1, r_2, ..., r_k)$ the heuristic for this route is defined as: 
+
+\begin{equation}
+h(R') = \max_{i \in [k+1, l]} nearestNeighbor(r_k, C_{M_{i}})
+\end{equation}
+
+For a full SR $h(R) = 0$.
+
+The heuristic of a certain PSR is the maximum distance out of the distances to the nearest PoIs from the set of categories that are yet to be expanded. 
+
+The \textbf{\textit{lower bound}} of a PSR $R'$ represents the sum of its length and its heuristic:
+
+\begin{equation}
+LB(R') = length(R') + h(R')
+\end{equation}
+
+The function \texttt{\ref{proc:heuristic}()} calculates the heuristic for a given route $R$.
 
 \begin{function}[htb!]
 \caption{heuristic($R$)}
@@ -52,7 +73,7 @@ For generating the routes and deciding which of them are worth further expanding
 
 	\tcp{Calculates the heuristic for the given route $R = (r_1, r_2, ..., r_k)$}
 	\tcp{For every route, which already contains $r_i$ $R = (r_1, r_2, ...,r_i, ..., r_k)$ the distance to $r_j$ is calculated as \dist{$r_k, r_i$}}
-	\For(For all direct neighbors to $r_k$ of every subsequent category find the maximum distance){$c_{k+1}$ to $c_n$}{find $max($\dist{$r_k, r_i$}$)$\;}	
+	\For(For all direct neighbors to $r_k$ of every subsequent category find the maximum distance){$c_{k+1}$ to $c_n$}{find $h(R)$\;}	
 
 \end{function}
 
@@ -118,8 +139,7 @@ At each subsequent iteration of the algorithm \texttt{\nameref{alg:mPNE}} (line 
 	
 	\ForEach(Checking the upper bound for every $r_1$ neighbor of $sp$ in the category set $C_{M_1}$){$r_1$ in $C_{M_1}$}{
 		build a new $PSR$ with $r_1$\;
-		$LB = \length{$PSR$} + \heuristic{$PSR$}$\;
-		\If{$LB <= UB$}{
+		\If{$LB(PSR) <= UB$}{
 			place the new $PSR$ $(r_1)$ on the $heap$\;	
 		}
 	}
@@ -154,9 +174,8 @@ At each subsequent iteration of the algorithm \texttt{\nameref{alg:mPNE}} (line 
 \caption{caseBefore()}
 \label{proc:c1}
 	
-	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
-	\If{$LB <= UB$}{
+	\If{$LB(current) <= UB$}{
 		\A{
 			\NN{$r_k, C_{M_{k+1}}$}\;
 			update $PSR$ to contain $r_{k+1}$\;
@@ -181,10 +200,8 @@ In \texttt{\ref{proc:c2}()} $r_j$ is to be found. In a) (line 4 to 10) instead o
 \caption{caseContaining()}
 \label{proc:c2}
 	
-	
-	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
-	\If{$LB <= UB$}{
+	\If{$LB(current) <= UB$}{
 		\A{
 			\dist{$r_{j-1}, r_i$}\;
 			update $PSR$ to contain $r_i$ in the place $j$\;
@@ -212,10 +229,8 @@ In \texttt{\ref{proc:c3}()} $r_{j+1}$ is to be found. In a) (line 4 to 10) the n
 \caption{caseAfterOrContaining()}
 \label{proc:c3}
 	
-	
-	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
-	\If{$LB < UB$}{
+	\If{$LB(current) < UB$}{
 		\A{
 			\NN{$r_j, C_{M_{j+1}}$}\;
 			update $PSR$ to contain $r_{j+1}$\;
@@ -237,11 +252,9 @@ In \texttt{\ref{proc:c4}()} we find PSR after $r_j$. The case is similar to proc
 \caption{caseAfter()}
 \label{proc:c4}
 	
-	
 	\tcp{Same procedure as caseBefore() + trimming part to filter SR and update UB if needed}
-	$LB = \length{$current$} + \heuristic{$current$}$\;
 	\tcp{Heuristic check}
-	\If{$LB <= UB$}{
+	\If{$LB(current) <= UB$}{
 		\A{
 			\NN{$r_k, C_{M_{k+1}}$}\;
 			update $PSR$ to contain $r_{k+1}$\;
@@ -311,7 +324,7 @@ In step 2 of the $modifiedPNE()$ all neighbors to the starting point $sp$ from t
 
 \begin{table}[h]
 	\centering
-	\begin{tabular}{ |l|l| } 
+	\begin{tabular}{ |l|p{12.5cm}| } 
 		\hline
 		Step & PSR $R : length(R), heuristic(R)$ \\
 		\hline
@@ -344,8 +357,30 @@ In step 2 of the $modifiedPNE()$ all neighbors to the starting point $sp$ from t
 
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
-\todo[color=yellow!40]{Todo: Correctness}
+We prove that our proposed approach correctly delivers a solution to the equality problem in metric spaces. In order to prove the correctness, we first prove that the heuristic is admissible.
 
+\textbf{Lemma 1:} The heuristic, defined formally in Section \ref{sec:heuristic}, is admissible.
+
+\textit{Proof:} For a given PSR $R' = (r_1, r_2, ..., r_k)$ let $h*$ be the actual it takes $R'$ to be a complete route. The heuristic function $h$ would be admissible if the inequality holds:
+
+\begin{equation}
+h(R') \leq h*(R')
+\end{equation} 
+
+Let us assume that $h(R') \geq h*(R')$. Since we know that the heuristic is calculated as the maximum distance to the nearest neighbor of the last PoI $r_k$ to the remaining categories $(c_{k+1}, ..., c_l)$ in $M$, we are certain that the route will have at least remaining distance $h*(R')$ the heuristic $h(R')$ itself. It is not possible that there would be any shorter route present, because then the heuristic $h(R')$ could not be a distance to a nearest neighbor. Therefore the equation holds true by contradiction and we proved the heuristic to be admissible. With this we know that the \textit{lower bound} of $R'$, which is calculated as $length(R') + h(R')$ could not be overestimated and thus an estimated optimal path is found.
+
+Next we need to prove that all partial routes have been examined by the algorithm.
+
+\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator examines all partial candidate routes.
+
+\textit{Proof:} The algorithm (\texttt{\nameref{alg:mPNE}} (line 1 to 5)) checks the lower bound for every $r_1$ neighbor of $sp$ in the category set $C_{M_1}$. All partial routes, which satisfy the requirement to have a shorter lower bound than the estimated upper bound are given a chance to be expanded and placed on the heap. 
+%Let us assume that there is a route $R = ()$
+The correctness of the algorithm is implied by the correctness of PNE itself.
+%??? running until the heap is empty
+
+Lemma 2 shows that the equality algorithm progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$, it prunes the ones that could not be optimal according to a consistent heuristic and returns the optimal route. Thus the correctness of the proposed algorithm is proved.
+
+\textbf{Lemma 3:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator accurately finds an optimal route, which satisfies the equality condition.
 
 \subsection{Baseline approach} 
 \label{sec:baselineEO}
