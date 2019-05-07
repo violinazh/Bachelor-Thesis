@@ -98,8 +98,8 @@ In the first set of experiments, shown in Figure \ref{fig:neo_length} a), b), c)
 \end{figure}
 
 In the second set of experiments, shown in Figure \ref{fig:neo_frequency} a), b), c), the not-equality operator was evaluated in terms of the frequency of the categories $c_i$, $c_j$, which can be \textit{low}, \textit{middle} and \textit{high}, for a default query length of 5.  
-Here we can see more interesting results compared to the equality operator. The \textit{low} frequency has higher results on all parameters than the \textit{middle} frequency. This can be explained with the fact that when the categories which have to not be equal are less frequent, then the possibility of PNE reaching a route with different PoIs at places of the not equal categories is lower, therefore the not-equality algorithm searches for longer for not equal PoIs, compared to when the category has a middle frequency. And when the frequency is high, if PNE doesn't directly find a route with equal PoIs then the not-equality algorithm must inspect more points, therefore generates more routes and the time increases exponentially. 
-Figure \ref{fig:neo_frequency} b), c) follow the same trend as the processing time. 
+Here we can see more interesting results compared to the equality operator. The \textit{low} frequency has higher results on all parameters than the \textit{middle} frequency. This can be explained with the fact that when the categories which have to be not equal are less frequent, then the possibility of PNE reaching a route with different PoIs at places of the not equal categories is lower. In this case the search space of not equal PoIs is larger, compared to when the category of the not equal PoIs has a middle frequency. And when the category frequency is high, if PNE does not directly find a route with equal PoIs then the not-equality algorithm must inspect more PoIs. Therefore the algorithm generates more routes and the time increases exponentially. 
+The results in \ref{fig:neo_frequency} b), c) are equivalent to the results in \ref{fig:neo_frequency} a). 
 
 \begin{figure}[H]
 	\includegraphics[scale=0.33]{images/neo_frequency.png}
@@ -108,7 +108,7 @@ Figure \ref{fig:neo_frequency} b), c) follow the same trend as the processing ti
 	\label{fig:neo_frequency}
 \end{figure}
 
-In the third set of experiments, shown in Figure \ref{fig:neo_distance} a), b), c), the equality operator was evaluated in terms of the  distance between the categories $c_i$, $c_j$ in the category sequence $M$, which varies from 0 to 3, for a default query length of 5.  
+In the third set of experiments, shown in Figure \ref{fig:neo_distance} a), b), c), the not-equality operator was evaluated in terms of the  distance between the categories $c_i$, $c_j$ in the category sequence $M$, which varies from 0 to 3, for a default query length of 5.  
 Here we can also see more interesting results compared to the equality operator. When the distance between the mentioned categories is 0, the result, usually found with PNE, always contains equal points at indices $i$ and $j$. Therefore the algorithm for the not-equality operator has to inspect more points in order to find the optimal route, in which the PoIs at indices $i$ and $j$ are not equal to each other. This increases the search space and in turn the number of heap fetches, the maximum heap size and the processing time increase as well. For distances 1, 2, 3 no obvious argumentation can be applied, because here we are not able to judge the possibility for equal PoIs objectively.
 % Is this argumentation okay?
 Nevertheless, all three performance parameters - processing time, number of heap fetches and maximum heap size, follow the same trend and increase proportionately to each other.
