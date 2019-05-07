@@ -1,0 +1,18 @@
+\babel@toc {ngerman}{}
+\babel@toc {english}{}
+\beamer@sectionintoc {1}{Motivation}{3}{0}{1}
+\beamer@sectionintoc {2}{Related Work}{4}{0}{2}
+\beamer@sectionintoc {3}{Problem Definition}{5}{0}{3}
+\beamer@sectionintoc {4}{Introducing the Operators}{6}{0}{4}
+\beamer@subsectionintoc {4}{1}{Equality}{6}{0}{4}
+\beamer@subsectionintoc {4}{2}{Inequality}{7}{0}{4}
+\beamer@subsectionintoc {4}{3}{Or}{8}{0}{4}
+\beamer@subsectionintoc {4}{4}{Order}{9}{0}{4}
+\beamer@sectionintoc {5}{Evaluating the operators}{10}{0}{5}
+\beamer@subsectionintoc {5}{1}{Equality}{10}{0}{5}
+\beamer@subsectionintoc {5}{2}{Inequality}{11}{0}{5}
+\beamer@subsectionintoc {5}{3}{Or}{12}{0}{5}
+\beamer@subsectionintoc {5}{4}{Order}{13}{0}{5}
+\beamer@sectionintoc {6}{Conclusion}{14}{0}{6}
+\beamer@sectionintoc {7}{Discussion and Future Work}{15}{0}{7}
+\beamer@sectionintoc {8}{Literatur}{16}{1}{8}
