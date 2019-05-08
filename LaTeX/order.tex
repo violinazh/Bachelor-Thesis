@@ -152,14 +152,14 @@ In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighb
 
 \subsubsection{Running example}
 We describe the algorithm for the order operator using the example in Section \ref{sec:motORDER}, using the road network in Figure \ref{fig:example}. The user wanted to visit the restaurant at seond place in his route and also visit a bank and a pharmacy (i.e., $M = (b, r, ph)$, $|M| = l = 3$, $ORDER = (1)$). In Figure \ref{heapORDER} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
-First, the $notordered$ list is initiated: $[b, ph]$. Since the first position of the category sequence in the query is not fixed, routes from the starting point $sp$ with both categories in the $notordered$ list are generated: $b_1$ with length 2 and $ph_1$ with length 3. Route $b_1$ is shorter and is therefore placed on the $heap$. In step one, we have the case, where the searched PoI is at a fixed position 1. In this case in a) the nearest neighbor to $b_1$ from type restaurant $r_2$ is found, while in b) the next nearest neighbor to the starting point types bank and pharmacy are found and compared again. In step 5 the first SR $(ph_1, r_1, b_1)$ with length 8 is generated and placed as a candidate route on the $heap$.
-This process continues until in step 11 the optimal route $(ph_2, r_2, b_2)$ with length 6 is returned.
+First, the $notordered$ list is initiated: $[b, ph]$. Since the first position of the category sequence in the query is not fixed, routes from the starting point $sp$ with both categories in the $notordered$ list are generated: $b_1$ with length 2 and $ph_1$ with length 3. Route $b_1$ is shorter and is therefore placed on the $heap$. In step two, we have the case, where the searched PoI is at a fixed position 1. In this case in a) the nearest neighbor to $b_1$ from type restaurant $r_2$ is found, while in b) the next nearest neighbor to the starting point types bank and pharmacy are found and compared again. In step 6 the first SR $(ph_1, r_1, b_1)$ with length 8 is generated and placed as a candidate route on the $heap$.
+This process continues until in step 12 the optimal route $(ph_2, r_2, b_2)$ with length 6 is returned.
 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{ |l|p{12cm}| } 
 		\hline
-		Step & PSR $R : length(r), r.notordered$ \\
+		Step & Heap contents (PSR $R : length(r), r.notordered$) \\
 		\hline
 		1 & $(b_1 : 2, [ph])$ \\ 
 		\hline
@@ -181,7 +181,7 @@ This process continues until in step 11 the optimal route $(ph_2, r_2, b_2)$ wit
 		\hline
 		10 & $(b_2, r_2 : 5, [ph]), (ph_2, r_2, b_2 : 6, []),$ \st{$(b_1, r_1, ph_1 : 7, [])$} $, (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
 		\hline
-		11 & $(ph_2, r_2, b_2 : 6, []), (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b])$ \\ 
+		11 & $(ph_2, r_2, b_2 : 6, []), (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b]),$ \st{$(b_2, r_2, ph_1 : 12, [])$} \\ 
 		\hline
 	\end{tabular}
 	\caption{Steps of the algorithm for ORDER using the road network from Figure \ref{fig:example}}

@@ -30,7 +30,10 @@
 % (*.eps format if you use latex+dvips+ps2pdf,
 % *.jpg/*.png/*.pdf if you use pdflatex)
 
-
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage[ruled,linesnumbered,vlined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{soul}
 
 % the presentation starts here
 
@@ -39,11 +42,15 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 \subtitle{Adviser: Saeed Taghizadeh}
 \author{Violina Zhekova}
 
-\institute{IPD B{\"o}hm}
-
+\institute{Institute for Program Structures and Data Organization (IPD), Chair Prof. B{\"o}hm}
 
 \begin{document}
-	
+
+\SetKwFunction{NN}{NN}
+\SetKwFunction{KNN}{kNN}
+\SetKwBlock{A}{a)}{end}
+\SetKwBlock{B}{b)}{end}
+
 % change the following line to "ngerman" for German style date and logos
 \selectlanguage{english}
 
@@ -54,7 +61,9 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 
 %table of contents
 \begin{frame}{Outline}
-	\tableofcontents
+	\begin{multicols}{2}
+		\tableofcontents
+	\end{multicols}
 \end{frame}
 
 
@@ -62,9 +71,11 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\begin{frame}{Motivation}
 	
 		\begin{itemize}
-			\item Sequenced Route Queries (SRQ) - finding routes passing through multiple Points of Interest (PoIs)
-			\item Advances in Location Based Services (LBS)
-			\item Geographic Information System (GIS) applications (e.g. logistics and supply chain management) \newline
+			\item \textit{Sequenced Route Queries} (SRQ) - finding routes passing through multiple \textit{Points of Interest} (PoIs)
+			\pause
+			\item Advances in \textit{Location Based Services} (LBS) and \textit{Geographic Information System} (GIS) applications (e.g. logistics and supply chain management)
+			\pause 
+			\item \underline{Aim}: Designing a language to enable the user to express his query requirements in a flexible manner
 		\end{itemize}
 		
 		\begin{figure}[h]
@@ -77,13 +88,31 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\begin{frame}{Related work}
 	
 		\begin{itemize}
-			\item Trip Planning Queries (TPQ)
-			\item Optimal Sequenced Route (OSR) Query
-			\item Skylyne concept 
-			\item Considering multiple factors of a route – rating, distance and category weights
-			\item SRQ issued by users moving along a route
-			\newline
+			\item Vector vs. metric spaces
+			\item \textit{Trip Planning Queries} (TPQ)
+			\item The \textit{Optimal Sequenced Route} (OSR) Query
+			\item The Skylyne concept applied to SRQ
+			\item Considering multiple factors of a route – rating of PoIs, distance and category weights, dynamic factors (e.g. traffic information)
+			\item SRQ issued by users moving along a route  
+			\item \textit{Multi-rule Partial Sequenced Route} (MRPSR) Query
 		\end{itemize}
+	
+	\end{frame}
+
+\section{Example}
+	\begin{frame}{Example}
+	
+		\begin{itemize}
+			\item \textbf{Category sequence}: (restaurant, bank, movie theater, restaurant) 
+			\textbf{Condition}: equal restaurants
+			\pause
+			\item \textit{Optimal Sequenced Route} (OSR): $(r_1, b_1, mt_1, r_2)$, length: 11 (shown with \textcolor{red}{red} lines)
+			\item Optimal route with equal restaurants: $(r_1, b_1, mt_1, r_1)$, length: 12 (shown with dashed lines)
+		\end{itemize}
+	
+		\only<2>{\begin{figure}[h]
+			\includegraphics[scale=0.7]{Example_beamer.png}
+		\end{figure}}
 	
 	\end{frame}
 
@@ -91,48 +120,127 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\begin{frame}{Problem definition}
 	
 		\begin{itemize}
-			\item
+			\item \textbf{Problem}: Need for flexibility in route finding queries
+			\item \textbf{Solution}: Developing a query language operators to fulfill the essential user's requirements:
+			\begin{itemize}
+				\item Relationships among the PoIs
+				\item Order and priority of the PoIs
+				\item Expressing multiple travel variations
+				\newline
+			\end{itemize}
+		    \pause
+		    \item Proposing four essential operators: "equality" operator, "inequality" operator, "or" operator, "order" operator
+		    \item Making use of existing approaches (PNE (\textit{Progressive Neighbor Exploration})) to transform the complex user query 
 		\end{itemize}
 	
 	\end{frame}
 
+		\bigbreak
+	\begin{frame}{PNE Algorithm}
+		\scalebox{.8}{\begin{algorithm}[H]
+			\caption{PNE}
+			fetch a $PSR$ from the heap\;
+			\Switch{$s = size(PSR)$}{
+				\Case{$s == l$}{
+					$PSR$ is the optimal route\;
+					\Return $PSR$\;
+				}
+				\Case{$s \neq l$}{
+					\A{
+						\NN{$r_{|PSR|}, C_{M_{|PSR|+1}}$}\;
+						update $PSR$ and perform trimming in case it is a candidate SR \;
+						put $PSR$ back on the $heap$ \;
+					} 
+					\B{
+						\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
+						generate a new $PSR$ and place it on the $heap$\;
+					} 
+				}
+			}
+		\end{algorithm}}
+	\end{frame}
+
 \section{Introducing the Operators}
 
-	\subsection{Equality}
-		\begin{frame}{Equality}
+	\subsection{Equality operator}
+		\begin{frame}{Equality operator}
 			
 			\begin{itemize}
-				\item
+				\item \textit{Input}: A category sequence $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices of the equal PoIs $i$ and $j$, where $c_i = c_j$
+				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$, where $r_i = r_j$ \newline
+				\item \textbf{Proposed approach}: uses the Progressive Neighbor Explorator (PNE) as its base to upgrade on and extends it with a heuristic approach to shrink the search space
+				\item \textbf{Baseline/trivial approach}: extends the PNE with forcing the PoIs $r_i$ and $r_j$ to be equal; does not use optimization techniques
 			\end{itemize}
 			
 		\end{frame}
+	
+		\begin{frame}{Heuristic}
+			Given a sequence of categories $M = (c_1, c_2, ..., c_l)$ and a PSR $R' = (r_1, r_2, ..., r_k)$ the \textbf{\textit{heuristic}} for this route is defined as: 
+			
+			\begin{equation}
+			h(R') = \max_{i \in [k+1, l]} nearestNeighbor(r_k, C_{M_{i}})
+			\end{equation}
+			
+			\begin{itemize}
+				\item Informal: The heuristic of a certain PSR is the maximum distance out of the distances to the nearest PoIs from the set of categories that are yet to be expanded. 
+			\end{itemize}
+			\pause
+			The \textbf{\textit{lower bound}} of a PSR $R'$ represents the sum of its length and its heuristic:
+			
+			\begin{equation}
+			LB(R') = length(R') + h(R')
+			\end{equation}
+			
+			\begin{itemize}
+				\item The proposed algorithm uses a heap, sorted by the lower bound of the routes
+			\end{itemize}
+		\end{frame}
+	
+		\input{eo_example}
 					
 	\subsection{Inequality}
 		\begin{frame}{Inequality}
 		
 			\begin{itemize}
-				\item
+				\item \textit{Input}: A category sequence $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices of the unequal PoIs $i$ and $j$, where $c_i = c_j$
+				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$, where $r_i \neq r_j$ \newline
+				\item \textbf{Proposed approach}: based on the Progressive Neighbor Explorator (PNE)
 			\end{itemize}
 		
 		\end{frame}
+	
+		\input{neo_example}
 	
 	\subsection{Or}
 		\begin{frame}{Or}
 		
 			\begin{itemize}
-				\item
+				\item \textbf{OR sequence:} An OR sequence $OR = (M_1, M_2, ..., M_m)$ represents the disjunction of category sequences, such as $M_1 = (c_1, c_2, ..., c_l)$.\newline
+				\item \textit{Input}: A sequence of OR sequences $S = (OR_1, OR_2, ..., OR_n)$ and a starting point $sp$ in ${\rm I\!R}^2$
+				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$ \newline
+				\item \textbf{Proposed approach}: progressively inspects each option $M_i$ from the OR sequences $OR_i$ in \newline $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route
+				\item \textbf{Proposed approach}: runs the PNE algorithm on all possible combinations of the query to find the shortest route out of them
 			\end{itemize}
 		
 		\end{frame}
+	
+		\input{or_example}
 	
 	\subsection{Order}
 		\begin{frame}{Order}
 		
 			\begin{itemize}
-				\item
+				\item \textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, is a sequence of indices in a category sequence $M_1 = (c_1, c_2, ..., c_l)$, which indicate that the categories at the given indices should remain in the fixed positions in this category sequence.
+				\item $NOTORDERED = \overline{ORDER}$ 
+				\item \textit{Input}: A sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$
+				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$ 
+				\item \textbf{Proposed approach}: inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
+				\item \textbf{Proposed approach}: runs the PNE algorithm on all possible permutations of the query to find the shortest route out of them
 			\end{itemize}
 		
 		\end{frame}
+	
+		\input{order_example}
 	
 \section{Evaluating the operators}
 
@@ -173,7 +281,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 		\end{frame}
 	
 \section{Conclusion}
-	\begin{frame}{Problem definition}
+	\begin{frame}{Conclusion}
 	
 		\begin{itemize}
 			\item
@@ -181,7 +289,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	
 	\end{frame}
 
-\section{Discussion and Future Work}
+\section{Discussion}
 	\begin{frame}{Discussion and Future Work}
 	
 		\begin{itemize}
@@ -520,186 +628,186 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 
 \begin{frame}[allowframebreaks]{Literatur}
 
-%% --------------------
-%% |   Bibliography   |
-%% --------------------
-
-\bibliographystyle{alphadin}	% german style
-
-\section{Literatur}
-\begin{thebibliography}{9}
+	%% --------------------
+	%% |   Bibliography   |
+	%% --------------------
 	
-	\bibitem{active} 
-	Didier Guzzni, Adam Cheyer, Charles Baur. 
-	\textit{Active, a platform for building intelligent software}. 
-	IEEE Web Intelligence and Intelligent Agent Technology Workshops, 2006.
+	\bibliographystyle{alphadin}	% german style
 	
-	\bibitem{dialog} 
-	Alexander Wachtel, Jonas Klamroth, Walter F. Tichy. 
-	\textit{A Natural Dialog System Based on Active Ontologies}.
-	Annalen der Physik, 322(10):891–921, 1905.
-	
-	\bibitem{siriTech} 
-	Steven Levy.
-	\textit{An exclusive inside look at how artificial intelligence and machine learning work at Apple}.
-	\\\texttt{https://www.wired.com/2016/08/an-exclusive-look-at-how-ai-and-machine-learning-work-at-apple/}
-	
-	\bibitem{siriPrivacy} 
-	Informationen zum Sicherheitsinhalt von iOS 7.1.2.
-	\\\texttt{https://support.apple.com/de-de/HT203014}
-	
-	\bibitem{tech} 
-	Bernadette Johnson.
-	\textit{How Siri Works}.
-	\\\texttt{http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/siri.htm}
-	
-	\bibitem{imagesSiri} 
-	Stasys Bielinis.
-	\textit{How Siri on iPhone 4S works and why it’s a big deal. Apple’s AI tech details in 230 pages of patent app}.
-	\\\texttt{http://www.unwiredview.com/2011/10/12/how-siri-on-iphone-4s-works-and-why-it-a-big-deal-apple's-ai-tech-details-in-230-pages-of-patent-app/}
-	
-	\bibitem{GoogleVoice} 
-	Johan Schalkwyk, Doug Beeferman, Francoise Beaufays, Bill Byrne, Ciprian Chelba, Mike Cohen, Maryam Garret, Brian Strope. 
-	\textit{Google Search by Voice: A case study}. 
-	
-	%not used yet
-	\bibitem{automatic} 
-	Ciprian Chelba, Dan Bikel, Maria Shugrina, Patrick Nguyen, Shankar Kumar. 
-	\textit{Large Scale Language Modeling in Automatic Speech Recognition}. 
-	
-	\bibitem{google} 
-	Voice Search
-	\\\texttt{https://www.xovi.de/wiki/Voice\_Search}
-	
-	\bibitem{googleAssistant} 
-	Matthew Lynley.
-	\textit{Google unveils Google Assistant, a virtual assistant that’s a big upgrade to Google Now}.
-	\\\texttt{https://techcrunch.com/2016/05/18/google-unveils-google-assistant-a-big-upgrade-to-google-now/}
-	
-	\bibitem{googleChrome} 
-	Get notifications from Google Now in Chrome 
-	\\\texttt{https://chrome.googleblog.com/2014/02/get-notifications-from-google-now-in.html}
-	
-	\bibitem{googlenowontap} 
-	Use Google Now on tap
-	\\\texttt{https://support.google.com/websearch/answer/6304517?hl=de}
-	
-	\bibitem{googlelanguages} 
-	Mariella Moon.
-	\textit{Google Voice Search can now handle multiple languages with ease}.
-	\\\texttt{https://www.engadget.com/2014/08/15/google-voice-search-multi-language-default/}
-	
-	\bibitem{googleoffline} 
-	Eric Ravenscraft.
-	\textit{Use Some Google Now Voice Commands Without an Internet Connection}.
-	\\\texttt{http://lifehacker.com/use-some-google-now-voice-commands-without-an-internet-1733336980}
-	
-	\bibitem{googleassistant} 
-	Meet your Google Assistant
-	\\\texttt{https://assistant.google.com/}
-	
-	\bibitem{cortanaChina} 
-	Joe Belfiore.
-	\textit{Windows Phone 8.1 Update brings Cortana to new markets + new features}.
-	\\\texttt{https://blogs.windows.com/windowsexperience/2014/07/30/windows-phone-8-1-update-brings-cortana-to-new-markets-new-features/JWs4xbDf9Di7x5Zu.97}
-	
-	\bibitem{cortanaAndroid} 
-	Mary Jo Foley.
-	\textit{Microsoft gears up for Cortana on Android preview}.
-	\\\texttt{http://www.zdnet.com/article/microsoft-gears-up-for-cortana-on-android-preview/}
-	
-	\bibitem{cortanaReminders} 
-	Brad Sams.
-	\textit{Windows 10: Cortana now syncs reminders}.
-	\\\texttt{https://www.neowin.net/news/windows-10-cortana-now-syncs-reminders}
-	
-	\bibitem{cortanaPredict} 
-	Virginia Backaitis.
-	\textit{Why Microsoft's Cortana is 14 for 14 Calling World Cup Matches}.
-	\\\texttt{http://www.cmswire.com/cms/big-data/why-microsofts-cortana-is-14-for-14-calling-world-cup-matches-025853.php}
-	
-	\bibitem{cortanaFunc} 
-	Tina Sieber.
-	\textit{Here’s how to make the most of Cortana, the Windows 10 digital assistant}.
-	\\\texttt{https://www.digitaltrends.com/computing/get-know-cortana-windows-10/}
-	
-	\bibitem{cortanaSync} 
-	Brad Sams.
-	\textit{Cortana Can Now Sync Notifications From Your Android Phone To Your Windows 10 PC}.
-	\\\texttt{https://www.thurrott.com/windows/windows-10/67251/cortana-can-now-sync-notifications-android-phone-windows-10-pc}
-	
-	\bibitem{cortanaHandsfree} 
-	Daniel Rubino.
-	\textit{Hands on with 'Hey Cortana' and the Lumia 930 Denim update}
-	\\\texttt{https://www.windowscentral.com/hands-on-hey-cortana-video}
-	
-	\bibitem{cortanaLanguages} 
-	Cortana's regions and languages
-	\\\texttt{https://support.microsoft.com/en-gb/instantanswers/557b5e0e-0eb0-44db-87d6-5e5db6f9c5b0/cortana-s-regions-and-languages}
-	
-	\bibitem{cortanapaper} 
-	R. Sarikaya, P.A. Crook, A. Martin, M. Jeong, J.P. Robichaud, A. Celikyilmaz, Y.B. Kim, A. Rochette, O.Z. Khan, X. Liu, D. Boies, T. Anastasakos, Y. Feizollahi, N.Ramesh, H. Suzuki, R. Holenstein, E. Krawczyk, V. Radostev. 
-	\textit{An overview of end-to-end language understanding and dialog management for personal digital assistants}.
-	
-	\bibitem{cortanafunc} 
-	Chris Hoffman.
-	\textit{15 Things You Can Do With Cortana on Windows 10}.
-	\\\texttt{https://www.howtogeek.com/225458/15-things-you-can-do-with-cortana-on-windows-10/}
-	
-	\bibitem{cortanastory} 
-	Tom Warren.
-	\textit{1The story of Cortana, Micrsoft's Siri killer}.
-	\\\texttt{https://www.theverge.com/2014/4/2/5570866/cortana-windows-phone-8-1-digital-assistant}
-	
-	\bibitem{cortanaapps} 
-	Five Things You Didn't Know About Cortana, Microsoft’s Virtual Assistant
-	\\\texttt{https://www.recode.net/2014/9/22/11631126/five-things-you-didnt-know-about-cortana-microsofts-virtual-assistant}
-	
-	\bibitem{cortanaemotions} 
-	Melissa Riofrio.
-	\textit{Cortana's UI now expresses 18 different emotions. Siri remains detached and aloof}
-	\\\texttt{http://www.pcworld.com/article/2881902/cortanas-ui-now-expresses-18-different-emotions-siri-remains-detached-and-aloof.html}
-	
-	\bibitem{cortanaskills} 
-	Microsoft takes aim at Alexa with Cortana Skills Kit
-	\\\texttt{https://www.engadget.com/2017/05/10/stub-microsoft-takes-aim-at-alexa-with-cortana-skills-kit/}
-	
-	\bibitem{vergleichPakSafe} 
-	Steve Dent.
-	\textit{Die Digitalen Assistenten im Vergleich – Teil 2 unserer Miniserie}.
-	\\\texttt{http://www.paksafe.de/blog/die-digitalen-assistenten-im-vergleich-teil-2-unserer-miniserie}
-	
-	\bibitem{vergleichFeatureSnipets} 
-	Adrianne Jeffries
-	\textit{Google’s featured snippets are worse than fake news}.
-	\\\texttt{https://theoutline.com/post/1192/google-s-featured-snippets-are-worse-than-fake-news}
-	
-	\bibitem{vergleichOS} 
-	Peter Stelzel-Morawietz.
-	\textit{Was taugen Siri, Cortana und Google Now?}
-	\\\texttt{https://www.pcwelt.de/ratgeber/Spracherkennung-Siri-Cortana-Google-Now-im-Ueberblick-9847719.html}
-	
-	\bibitem{vergleichStat} 
-	Eric Enge
-	\textit{The Great Knowledge Box Showdown: Google Now vs. Siri vs. Cortana}.
-	\\\texttt{https://www.stonetemple.com/great-knowledge-box-showdown/VoiceStudyResults}
-	
-	\bibitem{vergleichSpeed} 
-	Jason Parker.
-	\textit{Google Search vs. Siri: Voice search speed test}.
-	\\\texttt{https://www.cnet.com/news/google-search-vs-siri-voice-search-speed-test-video/}
-	
-	\bibitem{vergleichSiriGSR} 
-	Mehdi Assefi, Guangchi Liu, Mike P. Wittie, Clemente Izurieta. 
-	Department of Computer Science, Montana State University.
-	\textit{An Experimental Evaluation of Apple Siri and Google Speech Recognition}.
-	
-	\bibitem{vergleichFunny} 
-	Britta O'Boyle, Chris Hall.
-	\textit{Siri vs Cortana: Which is the funniest assistant?}.
-	\\\texttt{http://www.pocket-lint.com/news/136238-siri-vs-cortana-which-is-the-funniest-assistant} 
-	
-\end{thebibliography}
+	\section{Literatur}
+	\begin{thebibliography}{9}
+		
+		\bibitem{active} 
+		Didier Guzzni, Adam Cheyer, Charles Baur. 
+		\textit{Active, a platform for building intelligent software}. 
+		IEEE Web Intelligence and Intelligent Agent Technology Workshops, 2006.
+		
+		\bibitem{dialog} 
+		Alexander Wachtel, Jonas Klamroth, Walter F. Tichy. 
+		\textit{A Natural Dialog System Based on Active Ontologies}.
+		Annalen der Physik, 322(10):891–921, 1905.
+		
+		\bibitem{siriTech} 
+		Steven Levy.
+		\textit{An exclusive inside look at how artificial intelligence and machine learning work at Apple}.
+		\\\texttt{https://www.wired.com/2016/08/an-exclusive-look-at-how-ai-and-machine-learning-work-at-apple/}
+		
+		\bibitem{siriPrivacy} 
+		Informationen zum Sicherheitsinhalt von iOS 7.1.2.
+		\\\texttt{https://support.apple.com/de-de/HT203014}
+		
+		\bibitem{tech} 
+		Bernadette Johnson.
+		\textit{How Siri Works}.
+		\\\texttt{http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/siri.htm}
+		
+		\bibitem{imagesSiri} 
+		Stasys Bielinis.
+		\textit{How Siri on iPhone 4S works and why it’s a big deal. Apple’s AI tech details in 230 pages of patent app}.
+		\\\texttt{http://www.unwiredview.com/2011/10/12/how-siri-on-iphone-4s-works-and-why-it-a-big-deal-apple's-ai-tech-details-in-230-pages-of-patent-app/}
+		
+		\bibitem{GoogleVoice} 
+		Johan Schalkwyk, Doug Beeferman, Francoise Beaufays, Bill Byrne, Ciprian Chelba, Mike Cohen, Maryam Garret, Brian Strope. 
+		\textit{Google Search by Voice: A case study}. 
+		
+		%not used yet
+		\bibitem{automatic} 
+		Ciprian Chelba, Dan Bikel, Maria Shugrina, Patrick Nguyen, Shankar Kumar. 
+		\textit{Large Scale Language Modeling in Automatic Speech Recognition}. 
+		
+		\bibitem{google} 
+		Voice Search
+		\\\texttt{https://www.xovi.de/wiki/Voice\_Search}
+		
+		\bibitem{googleAssistant} 
+		Matthew Lynley.
+		\textit{Google unveils Google Assistant, a virtual assistant that’s a big upgrade to Google Now}.
+		\\\texttt{https://techcrunch.com/2016/05/18/google-unveils-google-assistant-a-big-upgrade-to-google-now/}
+		
+		\bibitem{googleChrome} 
+		Get notifications from Google Now in Chrome 
+		\\\texttt{https://chrome.googleblog.com/2014/02/get-notifications-from-google-now-in.html}
+		
+		\bibitem{googlenowontap} 
+		Use Google Now on tap
+		\\\texttt{https://support.google.com/websearch/answer/6304517?hl=de}
+		
+		\bibitem{googlelanguages} 
+		Mariella Moon.
+		\textit{Google Voice Search can now handle multiple languages with ease}.
+		\\\texttt{https://www.engadget.com/2014/08/15/google-voice-search-multi-language-default/}
+		
+		\bibitem{googleoffline} 
+		Eric Ravenscraft.
+		\textit{Use Some Google Now Voice Commands Without an Internet Connection}.
+		\\\texttt{http://lifehacker.com/use-some-google-now-voice-commands-without-an-internet-1733336980}
+		
+		\bibitem{googleassistant} 
+		Meet your Google Assistant
+		\\\texttt{https://assistant.google.com/}
+		
+		\bibitem{cortanaChina} 
+		Joe Belfiore.
+		\textit{Windows Phone 8.1 Update brings Cortana to new markets + new features}.
+		\\\texttt{https://blogs.windows.com/windowsexperience/2014/07/30/windows-phone-8-1-update-brings-cortana-to-new-markets-new-features/JWs4xbDf9Di7x5Zu.97}
+		
+		\bibitem{cortanaAndroid} 
+		Mary Jo Foley.
+		\textit{Microsoft gears up for Cortana on Android preview}.
+		\\\texttt{http://www.zdnet.com/article/microsoft-gears-up-for-cortana-on-android-preview/}
+		
+		\bibitem{cortanaReminders} 
+		Brad Sams.
+		\textit{Windows 10: Cortana now syncs reminders}.
+		\\\texttt{https://www.neowin.net/news/windows-10-cortana-now-syncs-reminders}
+		
+		\bibitem{cortanaPredict} 
+		Virginia Backaitis.
+		\textit{Why Microsoft's Cortana is 14 for 14 Calling World Cup Matches}.
+		\\\texttt{http://www.cmswire.com/cms/big-data/why-microsofts-cortana-is-14-for-14-calling-world-cup-matches-025853.php}
+		
+		\bibitem{cortanaFunc} 
+		Tina Sieber.
+		\textit{Here’s how to make the most of Cortana, the Windows 10 digital assistant}.
+		\\\texttt{https://www.digitaltrends.com/computing/get-know-cortana-windows-10/}
+		
+		\bibitem{cortanaSync} 
+		Brad Sams.
+		\textit{Cortana Can Now Sync Notifications From Your Android Phone To Your Windows 10 PC}.
+		\\\texttt{https://www.thurrott.com/windows/windows-10/67251/cortana-can-now-sync-notifications-android-phone-windows-10-pc}
+		
+		\bibitem{cortanaHandsfree} 
+		Daniel Rubino.
+		\textit{Hands on with 'Hey Cortana' and the Lumia 930 Denim update}
+		\\\texttt{https://www.windowscentral.com/hands-on-hey-cortana-video}
+		
+		\bibitem{cortanaLanguages} 
+		Cortana's regions and languages
+		\\\texttt{https://support.microsoft.com/en-gb/instantanswers/557b5e0e-0eb0-44db-87d6-5e5db6f9c5b0/cortana-s-regions-and-languages}
+		
+		\bibitem{cortanapaper} 
+		R. Sarikaya, P.A. Crook, A. Martin, M. Jeong, J.P. Robichaud, A. Celikyilmaz, Y.B. Kim, A. Rochette, O.Z. Khan, X. Liu, D. Boies, T. Anastasakos, Y. Feizollahi, N.Ramesh, H. Suzuki, R. Holenstein, E. Krawczyk, V. Radostev. 
+		\textit{An overview of end-to-end language understanding and dialog management for personal digital assistants}.
+		
+		\bibitem{cortanafunc} 
+		Chris Hoffman.
+		\textit{15 Things You Can Do With Cortana on Windows 10}.
+		\\\texttt{https://www.howtogeek.com/225458/15-things-you-can-do-with-cortana-on-windows-10/}
+		
+		\bibitem{cortanastory} 
+		Tom Warren.
+		\textit{1The story of Cortana, Micrsoft's Siri killer}.
+		\\\texttt{https://www.theverge.com/2014/4/2/5570866/cortana-windows-phone-8-1-digital-assistant}
+		
+		\bibitem{cortanaapps} 
+		Five Things You Didn't Know About Cortana, Microsoft’s Virtual Assistant
+		\\\texttt{https://www.recode.net/2014/9/22/11631126/five-things-you-didnt-know-about-cortana-microsofts-virtual-assistant}
+		
+		\bibitem{cortanaemotions} 
+		Melissa Riofrio.
+		\textit{Cortana's UI now expresses 18 different emotions. Siri remains detached and aloof}
+		\\\texttt{http://www.pcworld.com/article/2881902/cortanas-ui-now-expresses-18-different-emotions-siri-remains-detached-and-aloof.html}
+		
+		\bibitem{cortanaskills} 
+		Microsoft takes aim at Alexa with Cortana Skills Kit
+		\\\texttt{https://www.engadget.com/2017/05/10/stub-microsoft-takes-aim-at-alexa-with-cortana-skills-kit/}
+		
+		\bibitem{vergleichPakSafe} 
+		Steve Dent.
+		\textit{Die Digitalen Assistenten im Vergleich – Teil 2 unserer Miniserie}.
+		\\\texttt{http://www.paksafe.de/blog/die-digitalen-assistenten-im-vergleich-teil-2-unserer-miniserie}
+		
+		\bibitem{vergleichFeatureSnipets} 
+		Adrianne Jeffries
+		\textit{Google’s featured snippets are worse than fake news}.
+		\\\texttt{https://theoutline.com/post/1192/google-s-featured-snippets-are-worse-than-fake-news}
+		
+		\bibitem{vergleichOS} 
+		Peter Stelzel-Morawietz.
+		\textit{Was taugen Siri, Cortana und Google Now?}
+		\\\texttt{https://www.pcwelt.de/ratgeber/Spracherkennung-Siri-Cortana-Google-Now-im-Ueberblick-9847719.html}
+		
+		\bibitem{vergleichStat} 
+		Eric Enge
+		\textit{The Great Knowledge Box Showdown: Google Now vs. Siri vs. Cortana}.
+		\\\texttt{https://www.stonetemple.com/great-knowledge-box-showdown/VoiceStudyResults}
+		
+		\bibitem{vergleichSpeed} 
+		Jason Parker.
+		\textit{Google Search vs. Siri: Voice search speed test}.
+		\\\texttt{https://www.cnet.com/news/google-search-vs-siri-voice-search-speed-test-video/}
+		
+		\bibitem{vergleichSiriGSR} 
+		Mehdi Assefi, Guangchi Liu, Mike P. Wittie, Clemente Izurieta. 
+		Department of Computer Science, Montana State University.
+		\textit{An Experimental Evaluation of Apple Siri and Google Speech Recognition}.
+		
+		\bibitem{vergleichFunny} 
+		Britta O'Boyle, Chris Hall.
+		\textit{Siri vs Cortana: Which is the funniest assistant?}.
+		\\\texttt{http://www.pocket-lint.com/news/136238-siri-vs-cortana-which-is-the-funniest-assistant} 
+		
+	\end{thebibliography}
 \end{frame}
 
 \end{document}

@@ -36,7 +36,7 @@ $M = (c_{a1}, c_{a2}, ..., c_{al}, c_{b1}, c_{b2}, ..., c_{bl}, c_{z1}, c_{z2}, 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
 \label{sec:approachOr}
-The or operator is designed using the PNE approach, proposed in \cite{OSR}. It progressively inspects each option $M_i$ from the or sequences $OR_i$ in \newline $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
+The or operator is designed using the PNE approach, proposed in \cite{OSR}. It progressively inspects each option $M_i$ from the OR sequences $OR_i$ in \newline $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
@@ -184,14 +184,14 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 
 \subsubsection{Running example}
 We describe the algorithm for the or operator using the example in Section \ref{sec:motOR}, using the road network in Figure \ref{fig:example}. The user wanted to visit either a bank or a pharmacy, then go to the movies and then to a restaurant (i.e., $S = (OR_1, OR_2, OR_3)$, $|S| = n = 3$, $OR_1 = ((b), (ph))$, $OR_2 = ((mt))$, $OR_2 = ((r))$). In Figure \ref{heapOR} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
-First, all routes from the starting point $sp$ to all possible category sequences in OR sequence $OR_1$ $(b)$ and $(ph)$ are generated. Since there is only one category the simple case is executed, where the nearest neighbor is found. Routes $(b_1)$ with length 2 and $(ph_1)$ with length 3 are generated and compared and the second one is chosen, based on its length, and placed on the $heap$. In step 1 route $(b_1)$ fetched and the nearest neighbor from the next OR sequence $OR_2$ is found. $OR_2$ only contains one category sequence with one category, therefore this is a simple case $modifyRouteA()$, where the nearest neighbor is found. In $modifyRouteB()$ the next nearest neighbor to the starting point from the OR sequence $OR_1$ is found, which is $ph_1$ with length 3, because $b_2$ with length 4 is further apart. 
-In step 5 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed on the $heap$ as the candidate route. Then in step 6 another SR $(ph_1, mt_1, r_2)$ with length 10 is generated, but it is longer than the candidate route, previously generated, so it gets discarded. Finally, the optimal route $(b_1, mt_1, r_2)$ with length 9 is returned.
+First, all routes from the starting point $sp$ to all possible category sequences in OR sequence $OR_1$ $(b)$ and $(ph)$ are generated. Since there is only one category the simple case is executed, where the nearest neighbor is found. Routes $(b_1)$ with length 2 and $(ph_1)$ with length 3 are generated and compared and the second one is chosen, based on its length, and placed on the $heap$. In step 2 route $(b_1)$ fetched and the nearest neighbor from the next OR sequence $OR_2$ is found. $OR_2$ only contains one category sequence with one category, therefore this is a simple case $modifyRouteA()$, where the nearest neighbor is found. In $modifyRouteB()$ the next nearest neighbor to the starting point from the OR sequence $OR_1$ is found, which is $ph_1$ with length 3, because $b_2$ with length 4 is further apart. 
+In step 6 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed on the $heap$ as the candidate route. Then in step 7 another SR $(ph_1, mt_1, r_2)$ with length 10 is generated, but it is longer than the candidate route, previously generated, so it gets discarded. Finally, the optimal route $(b_1, mt_1, r_2)$ with length 9 is returned.
 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{ |l|l| } 
 		\hline
-		Step & PSR $R : length(r), index(R)$ \\
+		Step & Heap contents (PSR $R : length(r), index(R)$) \\
 		\hline
 		1 & $(b_1 : 2, 1)$ \\ 
 		\hline

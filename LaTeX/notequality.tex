@@ -116,13 +116,13 @@ Each time a $PSR$ is generated the procedure \texttt{\ref{proc:trim_NEO}()} is p
 
 \subsubsection{Running example}
 We describe the algorithm for the not-equality operator using the example in Section \ref{sec:motNEO}. The user in the example wanted to visit a restaurant, a pharmacy and a restaurant again, but he wanted both restaurants to not be equal ($M = (r, ph, r)$, $|M| = l = 3$, $NOTEQUAL(0, 2)$). In Figure \ref{heapNEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
-First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a new $firstPSR$ is generated and put on the $heap$: $(r_1)$ with length 1. In step 2 route $(r_1)$ is fetched from the $heap$ and modified according to a) and b) as in the PNE algorithm. Similarly, this process is repeated until the route on top of the $heap$ follows the sequence $M = (r, ph, r)$. the difference here from the PNE algorithm comes from the trimming part. For example in step 2, route $(r_1, ph_1)$ is fetched from the $heap$ and in a) the full SR $(r_1, ph_1, r_1)$ is generated. In the trimming function, it is checked if the restaurants at positions 0 and 2 are equal. In case they are not the candidate route is initialized and placed on the $heap$, but in our case, they are equal and $j$ is also the last index 2, which means that the next neighbor to $ph_1$ is found and the alternate route $(r_1, ph_1, r_2)$ with length 10 is generated and placed on the $heap$. Then some more PSR are generated, until in step 4 $(r_1, ph_2)$ again a full SR $(r_1, ph_2, r_2)$ with length 7 is generated. The route is then trimmed and since the restaurants are not equal and also the route is shorter than the current candidate route, the candidate route is updated and the new SR is place on the $heap$. In step 5 the fetched route $(r_1, ph_2, r_2)$ is a full SR, which satisfies the condition for the restaurant at indices 0 and 2 to not be equal, is returned as the optimal route.
+First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a new $firstPSR$ is generated and put on the $heap$: $(r_1)$ with length 1. In step 2 route $(r_1)$ is fetched from the $heap$ and modified according to a) and b) as in the PNE algorithm. Similarly, this process is repeated until the route on top of the $heap$ follows the sequence $M = (r, ph, r)$. the difference here from the PNE algorithm comes from the trimming part. For example in step 2, route $(r_1, ph_1)$ is fetched from the $heap$ and in a) the full SR $(r_1, ph_1, r_1)$ is generated. In the trimming function, it is checked if the restaurants at positions 0 and 2 are equal. In case they are not the candidate route is initialized and placed on the $heap$, but in our case, they are equal and $j$ is also the last index 2, which means that the next neighbor to $ph_1$ is found and the alternate route $(r_1, ph_1, r_2)$ with length 10 is generated and placed on the $heap$. Then some more PSR are generated, until in step 5 from $(r_1, ph_2)$ again a full SR $(r_1, ph_2, r_2)$ with length 7 is generated. The route is then trimmed and since the restaurants are not equal and also the route is shorter than the current candidate route, the candidate route is updated and the new SR is placed on the $heap$. In step 6 the fetched route $(r_1, ph_2, r_2)$ is a full SR, which satisfies the condition for the restaurant at indices 0 and 2 to not be equal, is returned as the optimal route.
 
 \begin{table}[h]
 	\centering
 	\begin{tabular}{ |l|l| } 
 		\hline
-		Step & PSR $R : length(R)$ \\
+		Step & Heap contents (PSR $R : length(R)$) \\
 		\hline
 		1 & $(r_1 : 1)$ \\ 
 		 \hline
@@ -132,7 +132,7 @@ First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a ne
 		\hline
 		4 & $(r_1, ph_2 : 5), (r_2, ph_2 : 7), (r_1, ph_1, r_2 : 10)$ \\ 
 		\hline
-		5 & $(r_1, ph_2, r_2 : 7), (r_2, ph_2 : 7), (r_1, ph_1, r_2 : 10)$ \\ 
+		5 & $(r_1, ph_2, r_2 : 7), (r_2, ph_2 : 7),$ \st{$(r_1, ph_1, r_2 : 10)$} \\ 
 		\hline
 	\end{tabular}
 	\caption{Steps of the algorithm for NEO using the road network from Figure \ref{fig:example}}
