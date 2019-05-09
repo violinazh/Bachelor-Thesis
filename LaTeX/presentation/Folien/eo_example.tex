@@ -1,9 +1,9 @@
 \begin{frame}{Example: Step 1}
-	$M = (r, b, mt, r)$, $EQUAL(0, 3)$
+	$sp, M = (r, b, mt, r)$, $EQUAL(0, 3)$
 	
 	\begin{itemize}
 		\item Optimal route found with PNE: $(r_1, b_1, mt_1, r_2)$
-		\item Dummy SR: $(r_1, b_1, mt_1, r_1)$; Upper Bound $UB = length(dummySR)$
+		\item Dummy SR: $(r_1, b_1, mt_1, r_1)$; Upper Bound: $length(dummySR) = 12$, Candidate SR: $dummySR$
 	\end{itemize}
 
 	\begin{figure}[h]
@@ -24,7 +24,7 @@
 \end{frame}
 
 \begin{frame}{Example: Step 2}
-	$M = (r, b, mt, r)$, $EQUAL(0, 3)$
+	$sp, M = (r, b, mt, r)$, $EQUAL(0, 3)$
 
 	\begin{figure}[h]
 		\includegraphics[scale=0.8]{Example_EO_2.png}
@@ -46,7 +46,7 @@
 \end{frame}
 
 \begin{frame}{Example: Step 8}
-	$M = (r, b, mt, r)$, $EQUAL(0, 3)$
+	$sp, M = (r, b, mt, r)$, $EQUAL(0, 3)$
 	
 	\begin{figure}[h]
 		\includegraphics[scale=0.8]{Example_EO_8.png}
@@ -70,13 +70,13 @@
 \end{frame}
 
 \begin{frame}{Example: Step 9}
-	$M = (r, b, mt, r)$, $EQUAL(0, 3)$
+	$sp, M = (r, b, mt, r)$, $EQUAL(0, 3)$
 	
 	\begin{figure}[h]
 		\includegraphics[scale=0.8]{Example_EO_9.png}
 	\end{figure}
 	
-	Candidate SR: \textcolor{red}{$(r_2, b_1, mt_1, r_2 : 15, 0)$}
+	Candidate SR: \st{$\textcolor{red}{(r_2, b_1, mt_1, r_2 : 15, 0)}$}
 
 	\begin{table}[h]
 		\centering
@@ -90,6 +90,16 @@
 			\hline
 		\end{tabular}
 	\end{table}
+
+\end{frame}
+\begin{frame}{Example: Result}
+$sp, M = (r, b, mt, r)$, $EQUAL(0, 3)$
+
+\begin{figure}[h]
+	\includegraphics[scale=0.8]{Example_EO_result.png}
+\end{figure}
+
+Found SR: \textcolor{red}{$(r_1, b_1, mt_1, r_1 : 12, 0)$}
 
 \end{frame}
 

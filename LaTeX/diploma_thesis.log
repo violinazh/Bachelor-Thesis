@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  8 MAY 2019 23:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.7)  9 MAY 2019 19:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1145,9 +1145,9 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.372 N
-       ext we need to prove that all partial routes have been examined by th...
+       ext we need to prove that no suitable partial sequenced routes are pr...
 ]
-Underfull \vbox (badness 4752) has occurred while \output is active []
+Underfull \vbox (badness 2005) has occurred while \output is active []
 
  [26]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1584,7 +1584,7 @@ w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on diploma_thesis.pdf (70 pages, 827827 bytes).
+Output written on diploma_thesis.pdf (70 pages, 827753 bytes).
 PDF statistics:
  1305 PDF objects out of 1440 (max. 8388607)
  1180 compressed objects within 12 object streams

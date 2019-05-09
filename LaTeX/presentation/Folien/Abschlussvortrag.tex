@@ -34,6 +34,8 @@
 \usepackage{xcolor}
 \usepackage[ruled,linesnumbered,vlined,boxed,commentsnumbered]{algorithm2e}
 \usepackage{soul}
+\usepackage{multirow}
+\definecolor{kit}{RGB}{21,135,118}
 
 % the presentation starts here
 
@@ -50,6 +52,11 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 \SetKwFunction{KNN}{kNN}
 \SetKwBlock{A}{a)}{end}
 \SetKwBlock{B}{b)}{end}
+\SetKwFunction{trim}{trim}
+\SetKwFunction{caseBefore}{caseBefore}
+\SetKwFunction{caseContaining}{caseContaining}
+\SetKwFunction{caseAfterOrContaining}{caseAfterOrContaining}
+\SetKwFunction{caseAfter}{caseAfter}
 
 % change the following line to "ngerman" for German style date and logos
 \selectlanguage{english}
@@ -72,9 +79,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	
 		\begin{itemize}
 			\item \textit{Sequenced Route Queries} (SRQ) - finding routes passing through multiple \textit{Points of Interest} (PoIs)
-			\pause
 			\item Advances in \textit{Location Based Services} (LBS) and \textit{Geographic Information System} (GIS) applications (e.g. logistics and supply chain management)
-			\pause 
 			\item \underline{Aim}: Designing a language to enable the user to express his query requirements in a flexible manner
 		\end{itemize}
 		
@@ -89,12 +94,12 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	
 		\begin{itemize}
 			\item Vector vs. metric spaces
-			\item \textit{Trip Planning Queries} (TPQ)
-			\item The \textit{Optimal Sequenced Route} (OSR) Query
-			\item The Skylyne concept applied to SRQ
-			\item Considering multiple factors of a route – rating of PoIs, distance and category weights, dynamic factors (e.g. traffic information)
-			\item SRQ issued by users moving along a route  
-			\item \textit{Multi-rule Partial Sequenced Route} (MRPSR) Query
+			\item \textit{Trip Planning Queries} (TPQ) \cite{tpq}
+			\item The \textit{Optimal Sequenced Route} (OSR) Query \cite{osr}
+			\item The Skylyne concept applied to SRQ \cite{skyline}
+			\item Considering multiple factors of a route – rating of PoIs, distance and category weights, dynamic factors (e.g. traffic information) \cite{factors}
+			\item SRQ issued by users moving along a route \cite{moving}
+			\item \textit{Multi-rule Partial Sequenced Route} (MRPSR) Query \cite{multi}
 		\end{itemize}
 	
 	\end{frame}
@@ -130,40 +135,15 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 			\end{itemize}
 		    \pause
 		    \item Proposing four essential operators: "equality" operator, "inequality" operator, "or" operator, "order" operator
-		    \item Making use of existing approaches (PNE (\textit{Progressive Neighbor Exploration})) to transform the complex user query 
+		    \item Making use of existing approaches (PNE (\textit{Progressive Neighbor Exploration}) \cite{osr}) to transform the complex user query 
 		\end{itemize}
 	
-	\end{frame}
-
-		\bigbreak
-	\begin{frame}{PNE Algorithm}
-		\scalebox{.8}{\begin{algorithm}[H]
-			\caption{PNE}
-			fetch a $PSR$ from the heap\;
-			\Switch{$s = size(PSR)$}{
-				\Case{$s == l$}{
-					$PSR$ is the optimal route\;
-					\Return $PSR$\;
-				}
-				\Case{$s \neq l$}{
-					\A{
-						\NN{$r_{|PSR|}, C_{M_{|PSR|+1}}$}\;
-						update $PSR$ and perform trimming in case it is a candidate SR \;
-						put $PSR$ back on the $heap$ \;
-					} 
-					\B{
-						\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
-						generate a new $PSR$ and place it on the $heap$\;
-					} 
-				}
-			}
-		\end{algorithm}}
 	\end{frame}
 
 \section{Introducing the Operators}
 
 	\subsection{Equality operator}
-		\begin{frame}{Equality operator}
+		\begin{frame}{"Equality" operator}
 			
 			\begin{itemize}
 				\item \textit{Input}: A category sequence $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices of the equal PoIs $i$ and $j$, where $c_i = c_j$
@@ -198,85 +178,176 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	
 		\input{eo_example}
 					
-	\subsection{Inequality}
-		\begin{frame}{Inequality}
+	\subsection{Inequality operator}
+		\begin{frame}{"Inequality" operator}
 		
 			\begin{itemize}
 				\item \textit{Input}: A category sequence $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices of the unequal PoIs $i$ and $j$, where $c_i = c_j$
 				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$, where $r_i \neq r_j$ \newline
-				\item \textbf{Proposed approach}: based on the Progressive Neighbor Explorator (PNE)
+				\item \textbf{Proposed approach}: generates routes based on the Progressive Neighbor Explorator (PNE) and inspects partial routes for satisfying the requirement of unequal PoIs and modifies them accordingly
 			\end{itemize}
 		
 		\end{frame}
 	
-		\input{neo_example}
+		%\input{neo_example}
 	
-	\subsection{Or}
-		\begin{frame}{Or}
+	\subsection{Or operator}
+		\begin{frame}{"Or" operator}
 		
 			\begin{itemize}
 				\item \textbf{OR sequence:} An OR sequence $OR = (M_1, M_2, ..., M_m)$ represents the disjunction of category sequences, such as $M_1 = (c_1, c_2, ..., c_l)$.\newline
 				\item \textit{Input}: A sequence of OR sequences $S = (OR_1, OR_2, ..., OR_n)$ and a starting point $sp$ in ${\rm I\!R}^2$
 				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$ \newline
+				\pause
 				\item \textbf{Proposed approach}: progressively inspects each option $M_i$ from the OR sequences $OR_i$ in \newline $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route
 				\item \textbf{Proposed approach}: runs the PNE algorithm on all possible combinations of the query to find the shortest route out of them
 			\end{itemize}
 		
 		\end{frame}
 	
-		\input{or_example}
+		%\input{or_example}
 	
-	\subsection{Order}
-		\begin{frame}{Order}
+	\subsection{Order operator}
+		\begin{frame}{"Order" operator}
 		
 			\begin{itemize}
-				\item \textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, is a sequence of indices in a category sequence $M_1 = (c_1, c_2, ..., c_l)$, which indicate that the categories at the given indices should remain in the fixed positions in this category sequence.
-				\item $NOTORDERED = \overline{ORDER}$ 
+				\item \textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, is a sequence of indices in a category sequence $M = (c_1, c_2, ..., c_l)$, which indicate that the categories at the given indices should remain in the fixed positions in this category sequence.
+				%\item $NOTORDERED = \overline{ORDER}$ 
 				\item \textit{Input}: A sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$
-				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$ 
+				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$ \newline
+				\pause
 				\item \textbf{Proposed approach}: inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
 				\item \textbf{Proposed approach}: runs the PNE algorithm on all possible permutations of the query to find the shortest route out of them
 			\end{itemize}
 		
 		\end{frame}
 	
-		\input{order_example}
+		%\input{order_example}
 	
-\section{Evaluating the operators}
+\section{Evaluation}
 
-	\subsection{Equality}
-		\begin{frame}{Equality}
+	\subsection{Experiments}
+		\begin{frame}{Experiments}
 		
 			\begin{itemize}
-				\item
+				\item Road network of Berlin, with 428769
+				crossroad nodes, 504229 road edges, 5548 PoIs and 7 category types
+				\item 1000 queries with randomly selected
+				starting points
+			\end{itemize}
+		
+			\begin{table}[H]
+				\centering
+				\begin{tabular}{ |c|c|c| } 
+					\hline
+					\textit{Categories} & \textit{Size} & \textit{Frequency}\\
+					\hline
+					Restaurants & 2081 & \multirow{3}{3em}{High}\\ 
+					Coffee shops & 1002 &\\
+					Pubs and bars & 958 &\\  
+					\hline
+					Atms/Banks & 597 & \multirow{3}{3em}{Middle}\\
+					Pharmacies & 589 &\\
+					\hline
+					Gas stations & 180 & \multirow{3}{3em}{Low}\\
+					Movie theaters & 141 &\\ 
+					\hline
+				\end{tabular}
+				
+			\end{table}
+	
+			\begin{itemize}
+				\item \textbf{Quantitative evaluation criteria}: run time, number of heap fetches, maximum heap size (work space)
+				\item \textbf{Qualitative evaluation}: compare against baseline approaches
 			\end{itemize}
 		
 		\end{frame}
-	
-	\subsection{Inequality}
-		\begin{frame}{Inequality}
+
+	\subsection{Equality operator}
+		\begin{frame}{"Equality" operator - query length}
 		
 			\begin{itemize}
-			\item
+				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
 			\end{itemize}
+		
+			\begin{figure}[h]
+				\includegraphics[scale=0.275]{eo_length_orange.png}
+			\end{figure}
 		
 		\end{frame}
 	
-	\subsection{Or}
-		\begin{frame}{Or}
+		\begin{frame}{"Equality" operator - category frequency}
 		
 			\begin{itemize}
-			\item
+				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
 			\end{itemize}
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.275]{eo_frequency.png}
+			\end{figure}
 		
 		\end{frame}
 	
-	\subsection{Order}
-		\begin{frame}{Order}
+		\begin{frame}{"Equality" operator - category distance}
 		
 			\begin{itemize}
-			\item
+				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
 			\end{itemize}
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.275]{eo_distance.png}
+			\end{figure}
+		
+		\end{frame}
+	
+		\begin{frame}{"Equality" operator - baseline approach}
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.275]{eo2.png}
+			\end{figure}
+		
+		\end{frame}
+		
+	\subsection{Inequality operator}
+		\begin{frame}{"Inequality" operator - query length}
+		
+			\begin{itemize}
+				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+			\end{itemize}
+		
+			\begin{figure}[h]
+				\includegraphics[scale=0.275]{neo_length.png}
+			\end{figure}
+		
+		\end{frame}
+	
+	\subsection{Or operator}
+		\begin{frame}{"Or" operator}
+		
+			\begin{itemize}
+				\item \textbf{Evaluation parameter}: type and number of operands
+				\begin{itemize}
+					\item simple OR operand: $|M| = 1$
+					\item complex OR operand: $|M| > 1$
+				\end{itemize}
+			\end{itemize}
+		
+			\begin{figure}[H]
+				\includegraphics[scale=0.25]{or.png}
+			\end{figure}
+		
+		\end{frame}
+	
+	\subsection{Order operator}
+		\begin{frame}{"Order" operator}
+		
+			\begin{itemize}
+				\item \textbf{Evaluation parameter}: number of fixed positions in $M$
+			\end{itemize}
+			
+			\begin{figure}[h]
+				\includegraphics[scale=0.275]{order.png}
+			\end{figure}
 		
 		\end{frame}
 	
@@ -284,7 +355,10 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\begin{frame}{Conclusion}
 	
 		\begin{itemize}
-			\item
+			\item Proposed four essential route query language operators 
+			\item Developed algorithms that deliver an optimal result in metric spaces
+			\item Evaluated the approaches qualitatively and quantitatively and proved the efficiency of the algorithms
+			\
 		\end{itemize}
 	
 	\end{frame}
@@ -293,35 +367,23 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\begin{frame}{Discussion and Future Work}
 	
 		\begin{itemize}
-			\item
+			\item Easily modified: using a different quantifying parameter such as travel duration, finding $k$ optimal routes
+			\item Additional operators are possible: "hop", "and", "not", "necessity"
+			\item A different approach to implementing the operators
+				\begin{itemize}
+					\item Skyline concept \cite{skyline}
+				\end{itemize}
+			\item Extending the proposed algorithms to also support dynamic road networks, in which traffic information is provided (e.g., travel time, traffic congestion, etc.). \cite{dynamic}
 		\end{itemize}
 	
 	\end{frame}
 
-%\section{Vorstellung der intelligenten Assistenten}
-%	\subsection{Siri}
-%		
-%		\begin{frame}{Siri}
-%			
-%			\begin{columns}[T]
-%				\begin{column}{0.7\textwidth}
-%					\begin{itemize}
-%						\item Software von Apple
-%						\item Der erste auf dem Markt erschienene persönliche Assistent
-%						\item Basiert auf fortgeschrittenes maschinelles Lernen (Convolutional Neural
-%						Network und Long short-term memory)
-%					\end{itemize}
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.3\textwidth}
-%					\includegraphics[scale=0.3]{SiriLogo.jpg}
-%				\end{column}
-%			\end{columns}
-%
-%		\end{frame}
-%
-%		\begin{frame}{Siri: Funktionen}
-%		
+	\begin{frame}{The End}
+		\centering \Large
+		\emph{\textcolor{kit}{Thank you for the attention!}}
+	\end{frame}
+
+
 %			\begin{block}{Aktivieren}
 %				\begin{itemize}
 %					\item "Hey, Siri"
@@ -343,286 +405,6 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 %				\end{itemize}
 %			\end{alertblock}
 %		
-%		\end{frame}
-%
-%		\begin{frame}{Siri: Technologien}
-%			
-%			\begin{columns}[T]
-%				\begin{column}{0.6\textwidth}
-%					
-%					\includegraphics[scale=0.3]{Active_Ontology.jpg}
-%				
-%					Abbildung: Siris Komponenten \cite{imagesSiri}
-%					
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.4\textwidth}
-%					
-%					\includegraphics[scale=0.3]{Siri-iPhone-4S-iOS-active-ontology.jpg}
-%					
-%					Abbildung: Beispiel für die aktive Ontologie eines Restaurants \cite{imagesSiri}
-%
-%				\end{column}
-%			\end{columns}
-%			
-%		\end{frame}
-%
-%
-%	\subsection{Google Voice Search}
-%	
-%		\begin{frame}{Google Voice Search}
-%
-%			\begin{columns}[T]
-%				\begin{column}{0.7\textwidth}
-%					\begin{itemize}
-%						\item Entstand als eine spezielle Suchfunktion der Google Inc.
-%						\item Heute ist Google Voice Search im Google Now App integriert
-%						\item für die Betriebssysteme Android und iOS verfügbar \newline \newline
-%					\end{itemize}
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.3\textwidth}
-%					\includegraphics[scale=0.3]{GoogleLogo.png}
-%				\end{column}
-%			\end{columns}
-%	
-%			\begin{columns}[T]
-%				\begin{column}{0.6\textwidth}
-%					\begin{itemize}
-%						\item Google Now wird durch den Google Assistant (s. Abbildung rechts) abgelöst
-%					\end{itemize}
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.4\textwidth}
-%					\includegraphics[scale=0.1]{googleassistant.jpg}
-%				\end{column}
-%			\end{columns}		
-%		
-%		\end{frame}
-%	
-%		\begin{frame}{Google Voice Search: Funktionen}
-%			
-%			\begin{block}{Aktivieren}
-%				\begin{itemize}
-%					\item ''Okay Google"
-%				\end{itemize}
-%			\end{block}
-%			
-%			\begin{exampleblock}{Unterstützte Funktionen}
-%				\begin{itemize}
-%					\item Begrenzte Offline-Aktionen wie Musik spielen lassen, Mail öffnen und WiFi aktivieren (Voice Action)
-%					\item Internetsuche und gekoppelte Appfunktionen
-%					\item Situationsbedingte Information
-%					\item Semantische Suche
-%				\end{itemize}
-%			\end{exampleblock}
-%			
-%			\begin{alertblock}{Zusätzliche Funktionen}
-%				\begin{itemize}
-%					\item Google Now Empfehlungen in Form von "Karten"
-%					\item Zusammenfassung des Bildschirminhalts mit "Now on Tap" 
-%				\end{itemize}
-%			\end{alertblock}
-%			
-%		\end{frame}
-%	
-%		\begin{frame}{Google Voice Search: Technologien}
-%		
-%			\begin{columns}[T]
-%				\begin{column}{0.6\textwidth}
-%					\begin{itemize}
-%						\item Cloud-basierte Servicelieferung und Verwendung von vielen Ressourcen
-%						\item Forschung und die Entwicklung der Software in Google erfolgt ''in vivo"
-%						\item Googles Philosophie: "building models at scale"
-%						\item Vorläufer von Google Voice Search - GOOG-411, Google Maps for Mobile und Google Mobile App
-%						\item Entwicklung des User Interface in Verbindung mit dem Benutzerfeedback
-%					\end{itemize}
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.4\textwidth}
-%					\begin{figure}[h]
-%						\includegraphics[scale=0.3]{SpeechRecognizer.png}
-%						\centering
-%						\caption{Blockdiagramm der Spracherkennungssoftware \cite{GoogleVoice}}
-%						\label{fig:google1}
-%					\end{figure}
-%				\end{column}
-%			\end{columns}
-%		
-%		\end{frame}
-%
-%	\subsection{Cortana}
-%		
-%		\begin{frame}{Cortana}
-%			
-%			\begin{columns}[T]
-%				\begin{column}{0.7\textwidth}
-%					\begin{itemize}
-%						\item Software von Microsoft, ursprünglich für Windows Phone 8
-%						\item Auf Windows 10, Android und iOS (Betaversion) verfügbar
-%						\item In China unter dem Namen "Xiao Na" \newline \newline
-%					\end{itemize}
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.3\textwidth}
-%					\includegraphics[scale=0.4]{CortanaLogo.jpg}
-%				\end{column}
-%			\end{columns}
-%		
-%			\begin{columns}[T]
-%				\begin{column}{0.6\textwidth}
-%					\begin{itemize}
-%						\item Cortanas 18 Emotionen
-%					\end{itemize}
-%				\end{column}
-%				\hfill
-%				\begin{column}{0.4\textwidth}
-%					\includegraphics[scale=0.3]{cortana-emotions.jpg}
-%				\end{column}
-%			\end{columns}
-%	
-%			
-%		\end{frame}
-%	
-%		\begin{frame}{Cortana: Funktionen}
-%			
-%			\begin{block}{Aktivieren}
-%				\begin{itemize}
-%					\item "Hey Cortana"
-%				\end{itemize}
-%			\end{block}
-%			
-%			\begin{exampleblock}{Unterstützte Funktionen}
-%				\begin{itemize}
-%					\item Offline-Aktionen, App-bedingte Suche und Bing-Recherche
-%					\item Service für Erkennung von Liedern, Würfel rollen lassen, Münze werfen
-%					\item Erinnerungen in Verbindung mit Kontakten
-%					\item Nachrichtensynchronisation
-%				\end{itemize}
-%			\end{exampleblock}
-%			
-%			\begin{alertblock}{Zusätzliche Funktionen}
-%				\begin{itemize}
-%					\item Cortanas Notizbuch
-%					\item Auf Events basierte Funktionen
-%				\end{itemize}
-%			\end{alertblock}
-%			
-%		\end{frame}
-%	
-%		\begin{frame}{Cortana: Technologien}
-%			
-%			\bigskip
-%			
-%			\begin{figure}[h]
-%				\includegraphics[scale=0.4]{cortana-architecture.png}
-%				\centering
-%				\caption{Cortanas Systemarchitektur \cite{cortanapaper}}
-%				\label{fig:cortanasystem}
-%			\end{figure}
-%			
-%			\begin{itemize}
-%				\item Cortana Skills Kit
-%			\end{itemize}
-%			
-%		\end{frame}
-
-%\section{Vergleich und Bewertung der Assistenten}
-%	\begin{frame}{Vergleich und Bewertung der Assistenten}
-%		
-%		\begin{block}{Funktionen}
-%			\begin{itemize}
-%				\item Googles Ökosystem (Play Music, Chromecast etc.)
-%				\item Googles App-übergreifende Analyse
-%				\item Lokale Offline-Spracherkennung bei Google Voice Search und Cortana
-%				\item Cortanas originaler Funktionsumfang - Erkennung von Lieder, Würfel rollen lassen, Münze werfen und achtzehn Emotionen
-%			\end{itemize}
-%		\end{block}
-%	
-%	\end{frame}
-%
-%	\begin{frame}{Vergleich}
-%		
-%		\begin{block}{Technologien}
-%			\begin{itemize}
-%				\item Googles Wissensdatenbank „Knowledge-Graph“ und "Featured Snipets"
-%				\item Google setzt sich mit der Anzahl und Genauigkeit der beantworteten Anfragen durch
-%			\end{itemize}
-%		\end{block}
-%	
-%		\begin{figure}[h]
-%			\includegraphics[scale=0.5]{vergleichStat.jpg}
-%			\includegraphics[scale=0.5]{vergleichStat2.jpg}
-%			\centering
-%			\caption{Ratio of returned results to asked questions (links), Ratio of returned results to correct results (rechts);  October 4, 2014. \cite{vergleichStat}}
-%			\label{fig:vergleichImg}
-%		\end{figure}
-%	
-%	\end{frame}
-%	
-%	\begin{frame}{Vergleich}
-%	
-%		\begin{block}{Betriebssysteme und Geräte}
-%			\begin{itemize}
-%				\item \textbf{Windows}: Cortana\\ \textbf{iOS}: Siri, Cortana und Google Voice Search\\ \textbf{Android}: Google Voice Search und Cortana
-%				\item Google Voice Search unterstützt rund \textbf{40} Sprachen, Siri - \textbf{21} und Cortana \textbf{7}
-%			\end{itemize}
-%		\end{block}
-%		
-%		\begin{block}{User Experience}
-%			\begin{itemize}
-%				\item Siris und Cortanas lustige Persönlichkeiten\\ "Do you have a family?" \\
-%				''I have you. That's enough family for me'' - Siri\\
-%				''It is, for lack of a better word, impossible.'' - Cortana
-%				\item Subjektive Einschätzung
-%			\end{itemize}
-%		\end{block}
-%		
-%	\end{frame}
-%		
-%	\begin{frame}{Vergleich}
-%		
-%		\begin{columns}[T]
-%			\begin{column}{0.6\textwidth}
-%				\begin{block}{Sicherheit}
-%					\begin{itemize}
-%						\item Funktionalität basiert auf ständiges Zuhören
-%						\item Spekulation über Aufzeichnung und Auswertung der Umgebungsgeräusche
-%						\item Cortanas Notizbuch ist eine Innovation 
-%					\end{itemize}
-%				\end{block}
-%			\end{column}
-%			\hfill
-%			\begin{column}{0.4\textwidth}
-%				\begin{figure}[h]
-%					\includegraphics[scale=0.5]{CortanaNotebook.jpg}
-%					\caption{Cortanas Notizbuch}
-%				\end{figure}
-%			\end{column}
-%		\end{columns}
-%	
-%	\end{frame}
-%
-%\section{Zusammenfassung}
-%	\begin{frame}{Zusammenfassung}
-%	
-%		\begin{exampleblock}{Schlussfolgerung}
-%			\begin{itemize}
-%				\item Google Voice Search gewinnt im Bereich der Spracherkennung, App-übergreifender Funktionalität und Marktdominanz
-%				\item Cortana hat innovativen Charakter $\rightarrow$ Skills Kit
-%			\end{itemize}
-%		\end{exampleblock}
-%	
-%		\begin{itemize}
-%			\item Ersatz bestimmter Dienstleistungen durch die digitalen Assistenten in naher Zukunft 
-%			\item Die Assistenten laufen schon auf eigene Hausgeräten\newline
-%		\end{itemize}
-%
-%		\begin{figure}[h]
-%			\includegraphics[scale=0.5]{SCG.png}
-%		\end{figure}
-%	
-%	\end{frame}
 
 \appendix
 
@@ -637,177 +419,203 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\section{Literatur}
 	\begin{thebibliography}{9}
 		
-		\bibitem{active} 
-		Didier Guzzni, Adam Cheyer, Charles Baur. 
-		\textit{Active, a platform for building intelligent software}. 
-		IEEE Web Intelligence and Intelligent Agent Technology Workshops, 2006.
+		\bibitem{tpq} 
+		Feifei Li, Dihan Cheng, Marios Hadjieleftheriou, George Kollios and Shang-Hua Teng.
+		\textit{On trip planning queries in spatial databases}. 
+		In Bauzer Medeiros C., Egenhofer M.J., Bertino E. (eds) Advances in Spatial and Temporal Databases (SSTD), pages 273–290, 2005.
 		
-		\bibitem{dialog} 
-		Alexander Wachtel, Jonas Klamroth, Walter F. Tichy. 
-		\textit{A Natural Dialog System Based on Active Ontologies}.
-		Annalen der Physik, 322(10):891–921, 1905.
+		\bibitem{osr} 
+		Mehdi Sharifzadeh, Mohammad Kolahdouzan and Cyrus Shahabi.
+		\textit{The optimal sequenced route query}. 
+		The VLDB Journal, 17:765–787, 2008.
 		
-		\bibitem{siriTech} 
-		Steven Levy.
-		\textit{An exclusive inside look at how artificial intelligence and machine learning work at Apple}.
-		\\\texttt{https://www.wired.com/2016/08/an-exclusive-look-at-how-ai-and-machine-learning-work-at-apple/}
+		\bibitem{skyline} 
+		Yuya Sasaki, Yoshiharu Ishikawa, Yasuhiro Fujiwara and Makoto Onizuka.
+		\textit{Sequenced route query with semantic hierarchy}. 
+		In EDBT, pages 37–48, 2018.
 		
-		\bibitem{siriPrivacy} 
-		Informationen zum Sicherheitsinhalt von iOS 7.1.2.
-		\\\texttt{https://support.apple.com/de-de/HT203014}
+		\bibitem{factors} 
+		Jian Dai, Chengfei Liu, Jiajie Xu4 and Zhiming Ding.
+		\textit{On personalized and sequenced route planning}. 
+		World Wide Web, 19:679–705, 2016.
 		
-		\bibitem{tech} 
-		Bernadette Johnson.
-		\textit{How Siri Works}.
-		\\\texttt{http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/siri.htm}
+		\bibitem{moving} 
+		Jochen Eisner and Stefan Funke.
+		\textit{Sequenced route queries: Getting things done on the way back home}. 
+		In SIGSPATIAL ’12 Proceedings of the 20th International Conference on Advances in Geographic Information Systems, pages 502–505, 2012.
 		
-		\bibitem{imagesSiri} 
-		Stasys Bielinis.
-		\textit{How Siri on iPhone 4S works and why it’s a big deal. Apple’s AI tech details in 230 pages of patent app}.
-		\\\texttt{http://www.unwiredview.com/2011/10/12/how-siri-on-iphone-4s-works-and-why-it-a-big-deal-apple's-ai-tech-details-in-230-pages-of-patent-app/}
+		\bibitem{multi} 
+		Haiquan Chen, Wei-Shinn Ku, Min-Te Sun and Roger Zimmermann.
+		\textit{The partial sequenced route query with traveling rules in road networks}. 
+		Geoinformatica, 15:541–569, 2011.
 		
-		\bibitem{GoogleVoice} 
-		Johan Schalkwyk, Doug Beeferman, Francoise Beaufays, Bill Byrne, Ciprian Chelba, Mike Cohen, Maryam Garret, Brian Strope. 
-		\textit{Google Search by Voice: A case study}. 
-		
-		%not used yet
-		\bibitem{automatic} 
-		Ciprian Chelba, Dan Bikel, Maria Shugrina, Patrick Nguyen, Shankar Kumar. 
-		\textit{Large Scale Language Modeling in Automatic Speech Recognition}. 
-		
-		\bibitem{google} 
-		Voice Search
-		\\\texttt{https://www.xovi.de/wiki/Voice\_Search}
-		
-		\bibitem{googleAssistant} 
-		Matthew Lynley.
-		\textit{Google unveils Google Assistant, a virtual assistant that’s a big upgrade to Google Now}.
-		\\\texttt{https://techcrunch.com/2016/05/18/google-unveils-google-assistant-a-big-upgrade-to-google-now/}
-		
-		\bibitem{googleChrome} 
-		Get notifications from Google Now in Chrome 
-		\\\texttt{https://chrome.googleblog.com/2014/02/get-notifications-from-google-now-in.html}
-		
-		\bibitem{googlenowontap} 
-		Use Google Now on tap
-		\\\texttt{https://support.google.com/websearch/answer/6304517?hl=de}
-		
-		\bibitem{googlelanguages} 
-		Mariella Moon.
-		\textit{Google Voice Search can now handle multiple languages with ease}.
-		\\\texttt{https://www.engadget.com/2014/08/15/google-voice-search-multi-language-default/}
-		
-		\bibitem{googleoffline} 
-		Eric Ravenscraft.
-		\textit{Use Some Google Now Voice Commands Without an Internet Connection}.
-		\\\texttt{http://lifehacker.com/use-some-google-now-voice-commands-without-an-internet-1733336980}
-		
-		\bibitem{googleassistant} 
-		Meet your Google Assistant
-		\\\texttt{https://assistant.google.com/}
-		
-		\bibitem{cortanaChina} 
-		Joe Belfiore.
-		\textit{Windows Phone 8.1 Update brings Cortana to new markets + new features}.
-		\\\texttt{https://blogs.windows.com/windowsexperience/2014/07/30/windows-phone-8-1-update-brings-cortana-to-new-markets-new-features/JWs4xbDf9Di7x5Zu.97}
-		
-		\bibitem{cortanaAndroid} 
-		Mary Jo Foley.
-		\textit{Microsoft gears up for Cortana on Android preview}.
-		\\\texttt{http://www.zdnet.com/article/microsoft-gears-up-for-cortana-on-android-preview/}
-		
-		\bibitem{cortanaReminders} 
-		Brad Sams.
-		\textit{Windows 10: Cortana now syncs reminders}.
-		\\\texttt{https://www.neowin.net/news/windows-10-cortana-now-syncs-reminders}
-		
-		\bibitem{cortanaPredict} 
-		Virginia Backaitis.
-		\textit{Why Microsoft's Cortana is 14 for 14 Calling World Cup Matches}.
-		\\\texttt{http://www.cmswire.com/cms/big-data/why-microsofts-cortana-is-14-for-14-calling-world-cup-matches-025853.php}
-		
-		\bibitem{cortanaFunc} 
-		Tina Sieber.
-		\textit{Here’s how to make the most of Cortana, the Windows 10 digital assistant}.
-		\\\texttt{https://www.digitaltrends.com/computing/get-know-cortana-windows-10/}
-		
-		\bibitem{cortanaSync} 
-		Brad Sams.
-		\textit{Cortana Can Now Sync Notifications From Your Android Phone To Your Windows 10 PC}.
-		\\\texttt{https://www.thurrott.com/windows/windows-10/67251/cortana-can-now-sync-notifications-android-phone-windows-10-pc}
-		
-		\bibitem{cortanaHandsfree} 
-		Daniel Rubino.
-		\textit{Hands on with 'Hey Cortana' and the Lumia 930 Denim update}
-		\\\texttt{https://www.windowscentral.com/hands-on-hey-cortana-video}
-		
-		\bibitem{cortanaLanguages} 
-		Cortana's regions and languages
-		\\\texttt{https://support.microsoft.com/en-gb/instantanswers/557b5e0e-0eb0-44db-87d6-5e5db6f9c5b0/cortana-s-regions-and-languages}
-		
-		\bibitem{cortanapaper} 
-		R. Sarikaya, P.A. Crook, A. Martin, M. Jeong, J.P. Robichaud, A. Celikyilmaz, Y.B. Kim, A. Rochette, O.Z. Khan, X. Liu, D. Boies, T. Anastasakos, Y. Feizollahi, N.Ramesh, H. Suzuki, R. Holenstein, E. Krawczyk, V. Radostev. 
-		\textit{An overview of end-to-end language understanding and dialog management for personal digital assistants}.
-		
-		\bibitem{cortanafunc} 
-		Chris Hoffman.
-		\textit{15 Things You Can Do With Cortana on Windows 10}.
-		\\\texttt{https://www.howtogeek.com/225458/15-things-you-can-do-with-cortana-on-windows-10/}
-		
-		\bibitem{cortanastory} 
-		Tom Warren.
-		\textit{1The story of Cortana, Micrsoft's Siri killer}.
-		\\\texttt{https://www.theverge.com/2014/4/2/5570866/cortana-windows-phone-8-1-digital-assistant}
-		
-		\bibitem{cortanaapps} 
-		Five Things You Didn't Know About Cortana, Microsoft’s Virtual Assistant
-		\\\texttt{https://www.recode.net/2014/9/22/11631126/five-things-you-didnt-know-about-cortana-microsofts-virtual-assistant}
-		
-		\bibitem{cortanaemotions} 
-		Melissa Riofrio.
-		\textit{Cortana's UI now expresses 18 different emotions. Siri remains detached and aloof}
-		\\\texttt{http://www.pcworld.com/article/2881902/cortanas-ui-now-expresses-18-different-emotions-siri-remains-detached-and-aloof.html}
-		
-		\bibitem{cortanaskills} 
-		Microsoft takes aim at Alexa with Cortana Skills Kit
-		\\\texttt{https://www.engadget.com/2017/05/10/stub-microsoft-takes-aim-at-alexa-with-cortana-skills-kit/}
-		
-		\bibitem{vergleichPakSafe} 
-		Steve Dent.
-		\textit{Die Digitalen Assistenten im Vergleich – Teil 2 unserer Miniserie}.
-		\\\texttt{http://www.paksafe.de/blog/die-digitalen-assistenten-im-vergleich-teil-2-unserer-miniserie}
-		
-		\bibitem{vergleichFeatureSnipets} 
-		Adrianne Jeffries
-		\textit{Google’s featured snippets are worse than fake news}.
-		\\\texttt{https://theoutline.com/post/1192/google-s-featured-snippets-are-worse-than-fake-news}
-		
-		\bibitem{vergleichOS} 
-		Peter Stelzel-Morawietz.
-		\textit{Was taugen Siri, Cortana und Google Now?}
-		\\\texttt{https://www.pcwelt.de/ratgeber/Spracherkennung-Siri-Cortana-Google-Now-im-Ueberblick-9847719.html}
-		
-		\bibitem{vergleichStat} 
-		Eric Enge
-		\textit{The Great Knowledge Box Showdown: Google Now vs. Siri vs. Cortana}.
-		\\\texttt{https://www.stonetemple.com/great-knowledge-box-showdown/VoiceStudyResults}
-		
-		\bibitem{vergleichSpeed} 
-		Jason Parker.
-		\textit{Google Search vs. Siri: Voice search speed test}.
-		\\\texttt{https://www.cnet.com/news/google-search-vs-siri-voice-search-speed-test-video/}
-		
-		\bibitem{vergleichSiriGSR} 
-		Mehdi Assefi, Guangchi Liu, Mike P. Wittie, Clemente Izurieta. 
-		Department of Computer Science, Montana State University.
-		\textit{An Experimental Evaluation of Apple Siri and Google Speech Recognition}.
-		
-		\bibitem{vergleichFunny} 
-		Britta O'Boyle, Chris Hall.
-		\textit{Siri vs Cortana: Which is the funniest assistant?}.
-		\\\texttt{http://www.pocket-lint.com/news/136238-siri-vs-cortana-which-is-the-funniest-assistant} 
+		\bibitem{dynamic} 
+		Nirmesh Malviya, Samuel Madden and Arnab Bhattacharya. A continuous query system for dynamic route planning.
+		\textit{A continuous query system for dynamic route planning}. 
+		In ICDE ’11 Proceedings of the 2011 IEEE 27th International Conference on Data Engineering, pages 792–803, 2011.
 		
 	\end{thebibliography}
+\end{frame}
+
+\begin{frame}{Inequality operator - category frequency}
+
+	\begin{itemize}
+		\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+	\end{itemize}
+	
+	\begin{figure}[h]
+		\includegraphics[scale=0.275]{neo_frequency.png}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Inequality operator - category distance}
+
+	\begin{itemize}
+		\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+	\end{itemize}
+	
+	\begin{figure}[h]
+		\includegraphics[scale=0.275]{neo_distance.png}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{PNE Algorithm}
+\scalebox{.8}{\begin{algorithm}[H]
+		\caption{PNE}
+		fetch a $PSR$ from the heap\;
+		\Switch{$s = size(PSR)$}{
+			\Case{$s == l$}{
+				$PSR$ is the optimal route\;
+				\Return $PSR$\;
+			}
+			\Case{$s \neq l$}{
+				\A{
+					\NN{$r_{|PSR|}, C_{M_{|PSR|+1}}$}\;
+					update $PSR$ and perform trimming in case it is a candidate SR \;
+					put $PSR$ back on the $heap$ \;
+				} 
+				\B{
+					\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
+					generate a new $PSR$ and place it on the $heap$\;
+				} 
+			}
+		}
+\end{algorithm}}
+\end{frame}
+
+\begin{frame}{Notations}
+
+	\begin{table}[H]
+		\centering
+		\scalebox{.8}{\begin{tabular}{ |l|p{10cm}| } 
+			\hline
+			\textit{Symbol} & \textit{Meaning} \\
+			\hline
+			$C_i$ & a point set for a category in ${\rm I\!R}^2$ \\ 
+			\hline
+			$|C_i|$ & cardinality of the set $C_i$ \\ 
+			\hline
+			$n$ & number of point sets $C_i$ \\ 
+			\hline
+			$dist(., .)$ & distance function in ${\rm I\!R}^2$ \\ 
+			\hline
+			$M$ & category sequence, $=(c_1, c_2, ..., c_l)$ \\ 
+			\hline
+			$|M|$ & $l$, size of sequence $M$ = number of items in $M$ \\ 
+			\hline
+			$c_i$ & $i$th member of $M$ \\ 
+			\hline
+			$R$ & route, $= (r_1, r_2, ..., r_r)$ \\ 
+			\hline
+			$|R|$ & $r$, size of route $R$ = number of points in $R$ \\ 
+			\hline
+			$r_i$ & $i$th point in $R$ \\ 
+			\hline
+			$length(R)$ & length of $R$ \\ 
+			\hline
+			$length(sp, R)$ & length of $R_{sp} = (sp, r_1, r_2, ..., r_r)$, $= length(R_{sp})$ \\ 
+			\hline
+			$Q(sp, M)$ & sequenced route query \\ 
+			\hline
+			$NN(r_q, c_p)$ & nearest neighbor from the category point set $C_p$ to a route point $r_q$ \\ 
+			\hline
+			$KNN(r_q, c_p')$ & next nearest neighbor $r_p'$ from the category point set $C_p$ to a route point $r_q$ \\ 
+			\hline
+		\end{tabular}}
+	\end{table}
+
+\end{frame}
+
+\begin{frame}{Modified PNE}
+
+	\scalebox{.7}{\begin{algorithm}[H]
+		\caption{modifiedPNE()}
+		
+		\ForEach(Checking the upper bound for every $r_1$ neighbor of $sp$ in the category set $C_{M_1}$){$r_1$ in $C_{M_1}$}{
+			build a new $PSR$ with $r_1$\;
+			\If{$LB(PSR) <= UB$}{
+				place the new $PSR$ $(r_1)$ on the $heap$\;	
+			}
+		}
+		
+		\While{$heap$ is not empty}{
+			$current \leftarrow$ fetch a $PSR$ from the $heap$\;
+			\Switch{$s = size(current)$}{
+				\Case(Finding PSRs before $r_j$){$s <= j-1$}{
+					\caseBefore{}\;
+				}
+				\Case(Finding PSR containing $r_j$){$s = j$}{
+					\caseContaining{}\;
+				}
+				\Case(Finding PSR after/containing $r_j$){$s = j+1$}{
+					\caseAfterOrContaining{}\;
+				}
+				\Case(Finding PSRs after $r_j$){$s >= j+2$}{
+					\caseAfter{}\;
+				}
+			}
+		}
+		
+		\Return $foundSR$
+		
+	\end{algorithm}}
+
+\end{frame}
+
+
+\begin{frame}{NEO - Trimming}
+
+	\scalebox{.7}{\begin{procedure}[H]
+			\caption{trim($PSR$)}
+			\label{proc:trim_NEO}
+			
+			\eIf{$size(PSR) = l$}{
+				\eIf{$PSR[i] \neq PSR[j]$}{
+					\tcp{Optimization: length check}
+					\If{$length(PSR) <= length(candidate)$}{
+						update $candidate$\;
+						place $PSR$ on the $heap$\;
+					}
+				}
+				{
+					\tcp{In case $j$ is the last index in the route, we find the kth neighbor of the previous PoI to the last one}
+					\If{$size(PSR) = j + 1$}{
+						\KNN{$r_{|PSR|-1}, C_{M_{|PSR|}}$}\;
+						generate a new $PSR$\;
+						\trim{$PSR$}\;
+					}
+				}
+				
+			}{
+				\tcp{Optimization: length check}
+				\If{$length(PSR) <= length(candidate)$}{
+					place $PSR$ on the $heap$\;
+				}
+			}
+	\end{procedure}}
+
 \end{frame}
 
 \end{document}
