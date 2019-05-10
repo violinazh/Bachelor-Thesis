@@ -369,7 +369,7 @@ h(R') \leq c(R')
 
 Let us assume that $h(R') \geq c(R')$. Since we know that the heuristic is calculated as the maximum distance to the nearest neighbor of the last PoI $r_k$ to the remaining categories $(c_{k+1}, ..., c_l)$ in $M$, we are certain that the route will have at least actual cost $c(R')$ the heuristic $h(R')$ itself. It is not possible that the actual cost would exceed the heuristic, because then the $h(R')$ could not be a distance to a nearest neighbor. Therefore the equation holds true by contradiction and we proved the heuristic to be admissible. With this we know that the \textit{lower bound} of $R'$, which is calculated as $length(R') + h(R')$ could not be overestimated and thus an estimated optimal path is found.
 
-Next we need to prove that no suitable partial sequenced routes are pruned by the proposed algortihm.
+Next we need to prove that no suitable partial sequenced routes are pruned by the proposed algorithm.
 
 \textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator returns an optimal route in terms of route length.
 
@@ -377,7 +377,7 @@ Next we need to prove that no suitable partial sequenced routes are pruned by th
 
 Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r_{k+1}')$, which differ only in their last PoI. Since the result route is $R$, at this point the algorithm must choose $P$ as the partial route to extend. This means that $P$ has a smaller lower bound, because the heap is ordered by the lower bound of the route. Since the algorithm has chosen to return route $R$, which is the extension of partial sequenced route $P$ it means $length(P')+ h(P') > length(R)$. On the other hand $h(P') < c(P')$. Therefore, $length (P')+ c(P') > length(R)$, which implies $length(R') > length(R)$. This is a contradiction to the assumption made in the beginning.
 
-Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R$. But because the algorithm checks the lower bound for every $r_1$ neighbor of $sp$ in the category set $C_{M_1}$, all initial partial routes, which satisfy the requirement to have a shorter lower bound than the estimated upper bound are given a chance to be expanded and placed on the heap. So this means that the lower bound of the partial route exceeded the upper bound and therefore the full route $R'$ can not have a shorter length than $R$.
+Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R$. But because the algorithm checks the lower bound for every $r_1$ neighbor of $sp$ in the category set $C_{M_1}$, all initial partial routes, which satisfy the requirement to have a shorter lower bound than the estimated upper bound are given a chance to be expanded and placed on the heap. So this means that the lower bound of the partial route $P'$ exceeded the upper bound: $length(P') + h(P') > UB$. Since $length(P') + c(P') > length(P') + h(P')$, it means that $length(R') > UB$. And we know that $UB \geq length(R)$, from which we can establish $length(R') > length(R)$. This is a contradiction.
 
 Lemma 2 shows that the equality algorithm progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$, it prunes the ones that could not be optimal according to a consistent heuristic and returns the optimal route. Thus the correctness of the proposed algorithm is proved.
 
@@ -485,17 +485,17 @@ The algorithm \texttt{\nameref{alg:mPNE_baseline}} proceeds with examining the r
 \end{algorithm}
 
 \subsubsection{Correctness}
-First we need to prove that all partial routes have been examined by the algorithm.
+We need to prove that no suitable partial sequenced routes have been pruned by the baseline algorithm.
 
-\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the baseline algorithm for the equality operator examines all partial candidate routes.
+\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator returns an optimal route in terms of route length.
 
-\textit{Proof:} We have a sequenced route $R = (r_1, r_2, ..., r_l)$ produced by the algortihm. Let us assume that there exists a route $R' = (r_1', r_2', ..., r_l')$, which is the optimal route. Then it must hold true: $length(R') < length(R)$. 
+\textit{Proof by contradiction:} Let $R' = (r_1', r_2', ..., r_l')$ to be the optimal route and $R = (r_1, r_2, ..., r_l)$ to be the route that the algorithm finds. We assume $length(R') < length(R)$ and show that this is not possible. In order to do this, we differentiate between two separate cases: 
 
-Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r_{k+1}')$, which differ only in their last PoI. Since the result route is $R$ at this point the algortihm must choose $P$ as the partial route to extend. This means that $P$ has a shorter length than $P'$, because the heap is ordered by the length of the route. So it must hold true that $length(P) < length(P')$. But because the actual cost of $P$ is greater than the actual cost of $P'$ according to the assumption, it means that $length(P) > length(P')$, which implies $length(R) > length(R')$. And that contradicts the initial assumption. From this we conclude that $R$ is the optimal route.
+Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r_{k+1}')$, which differ only in their last PoI. Since the result route is $R$ at this point the algorithm must choose $P$ as the partial route to extend. This means that $P$ has a shorter length than $P'$, because the heap is ordered by the length of the route. Since the algorithm returns R as the optimal route it means that $length(P') > length(R)$. But because it also holds true that $length(R') > length(P')$, it implies $length(R') > length(R)$, which is a contradiction.
 
-Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R$. This means that the length of the partial route always exceeds the length of the candidate route on the heap and therefore the full route $R'$ can't possibly have a shorter length than $R$.
+Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R$. This means that the length of the partial route always exceeds the length of the candidate route on the heap $length(P') > length(R)$ and is therefore never extended to a full SR. This implies $length(R') > length(R)$ and this is a contradiction.
 
-Lemma 2 shows that the baseline equality algorithm progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$, it prunes the ones that could not be optimal and returns the optimal route. Thus the correctness of the baseline algorithm is proved.
+Lemma 2 shows that the baseline equality algorithm progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$ and returns the optimal route. Thus the correctness of the baseline algorithm is proved.
 
 \textbf{Lemma 3:} For given query $Q(sp, M, EQUAL(i, j))$, the baseline algorithm for the equality operator accurately finds an optimal route, which satisfies the equality condition.
 

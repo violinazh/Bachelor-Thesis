@@ -142,5 +142,19 @@ First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a ne
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
 \label{sec:correctnessNEO}
-\todo[color=yellow!40]{Todo: Correctness}
-%OSR Property - last index
+%??? OSR Property - last index
+We need to prove that no suitable partial sequenced routes have been pruned by the proposed algorithm.
+
+\textbf{Lemma 2:} For given query $Q(sp, M, NOTEQUAL(i, j))$, the algorithm for the inequality operator returns an optimal route in terms of route length.
+
+\textit{Proof by contradiction:} Let $R' = (r_1', r_2', ..., r_l')$ to be the optimal route and $R = (r_1, r_2, ..., r_l)$ to be the route that the algorithm finds. We assume $length(R') < length(R)$ and show that this is not possible. In order to do this, we differentiate between two separate cases: 
+
+Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r_{k+1}')$, which differ only in their last PoI. Since the result route is $R$ at this point the algorithm must choose $P$ as the partial route to extend. This means that $P$ has a shorter length than $P'$, because the heap is ordered by the length of the route. Since the algorithm returns R as the optimal route it means that $length(P') > length(R)$. But because it also holds true that $length(R') > length(P')$, it implies $length(R') > length(R)$, which is a contradiction.
+
+Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R$. This means that the length of the partial route always exceeds the length of the candidate route on the heap $length(P') > length(R)$, which implies $length(R') > length(R)$. And this is a contradiction.
+
+Lemma 2 shows that the algorithm for the inequality operator progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$ and returns the optimal route. Thus the correctness of the proposed approach is proved.
+
+\textbf{Lemma 3:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the inequality operator accurately finds an optimal route, which satisfies the equality condition.
+
+The correctness of the algorithm is implied by the correctness of PNE itself.

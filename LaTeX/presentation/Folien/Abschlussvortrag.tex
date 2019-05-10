@@ -67,7 +67,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 \end{frame}
 
 %table of contents
-\begin{frame}{Outline}
+\begin{frame}[noframenumbering]{Outline}
 	\begin{multicols}{2}
 		\tableofcontents
 	\end{multicols}
@@ -216,7 +216,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 				\item \textit{Input}: A sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$
 				\item \textit{Output}: Optimal route $R = (r_1, r_2, ..., r_l)$ \newline
 				\pause
-				\item \textbf{Proposed approach}: inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
+				\item \textbf{Proposed approach}: inspects progressively each category option for the indices out of the NOTORDERED sequence $NOTORDERED = \overline{ORDER}$, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
 				\item \textbf{Proposed approach}: runs the PNE algorithm on all possible permutations of the query to find the shortest route out of them
 			\end{itemize}
 		
@@ -264,10 +264,10 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 		\end{frame}
 
 	\subsection{Equality operator}
-		\begin{frame}{"Equality" operator - query length}
+		\begin{frame}{"Equality" operator: Query length}
 		
 			\begin{itemize}
-				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+				\item \textbf{Evaluation parameters}: \textcolor{kit}{(1) query length}, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
 			\end{itemize}
 		
 			\begin{figure}[h]
@@ -276,10 +276,10 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 		
 		\end{frame}
 	
-		\begin{frame}{"Equality" operator - category frequency}
+		\begin{frame}{"Equality" operator: Category frequency}
 		
 			\begin{itemize}
-				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+				\item \textbf{Evaluation parameters}: (1) query length, \textcolor{kit}{(2) frequency of the categories $c_i$, $c_j$ in the category sequence} and (3) distance between the categories $c_i$, $c_j$
 			\end{itemize}
 			
 			\begin{figure}[h]
@@ -288,10 +288,10 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 		
 		\end{frame}
 	
-		\begin{frame}{"Equality" operator - category distance}
+		\begin{frame}{"Equality" operator: Category distance}
 		
 			\begin{itemize}
-				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and \textcolor{kit}{(3) distance between the categories $c_i$, $c_j$}
 			\end{itemize}
 			
 			\begin{figure}[h]
@@ -300,7 +300,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 		
 		\end{frame}
 	
-		\begin{frame}{"Equality" operator - baseline approach}
+		\begin{frame}{"Equality" operator: Baseline approach}
 			
 			\begin{figure}[h]
 				\includegraphics[scale=0.275]{eo2.png}
@@ -309,10 +309,10 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 		\end{frame}
 		
 	\subsection{Inequality operator}
-		\begin{frame}{"Inequality" operator - query length}
+		\begin{frame}{"Inequality" operator: Query length}
 		
 			\begin{itemize}
-				\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
+				\item \textbf{Evaluation parameters}: \textcolor{kit}{(1) query length}, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
 			\end{itemize}
 		
 			\begin{figure}[h]
@@ -408,7 +408,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 
 \appendix
 
-\begin{frame}[allowframebreaks]{Literatur}
+\begin{frame}[noframenumbering,allowframebreaks]{Literatur}
 
 	%% --------------------
 	%% |   Bibliography   |
@@ -457,7 +457,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\end{thebibliography}
 \end{frame}
 
-\begin{frame}{Inequality operator - category frequency}
+\begin{frame}[noframenumbering]{Inequality operator - category frequency}
 
 	\begin{itemize}
 		\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
@@ -469,7 +469,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 
 \end{frame}
 
-\begin{frame}{Inequality operator - category distance}
+\begin{frame}[noframenumbering]{Inequality operator - category distance}
 
 	\begin{itemize}
 		\item \textbf{Evaluation parameters}: (1) query length, (2) frequency of the categories $c_i$, $c_j$ in the category sequence and (3) distance between the categories $c_i$, $c_j$
@@ -481,7 +481,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 
 \end{frame}
 
-\begin{frame}{PNE Algorithm}
+\begin{frame}[noframenumbering]{PNE Algorithm}
 \scalebox{.8}{\begin{algorithm}[H]
 		\caption{PNE}
 		fetch a $PSR$ from the heap\;
@@ -505,7 +505,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 \end{algorithm}}
 \end{frame}
 
-\begin{frame}{Notations}
+\begin{frame}[noframenumbering]{Notations}
 
 	\begin{table}[H]
 		\centering
@@ -548,7 +548,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 
 \end{frame}
 
-\begin{frame}{Modified PNE}
+\begin{frame}[noframenumbering]{Modified PNE}
 
 	\scalebox{.7}{\begin{algorithm}[H]
 		\caption{modifiedPNE()}
@@ -585,7 +585,7 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 \end{frame}
 
 
-\begin{frame}{NEO - Trimming}
+\begin{frame}[noframenumbering]{NEO - Trimming}
 
 	\scalebox{.7}{\begin{procedure}[H]
 			\caption{trim($PSR$)}
@@ -617,5 +617,9 @@ Queries]{Bachelor's Thesis \\ Flexible User-Friendly Trip Planning Queries}
 	\end{procedure}}
 
 \end{frame}
+
+\input{neo_example}
+\input{or_example}
+\input{order_example}
 
 \end{document}

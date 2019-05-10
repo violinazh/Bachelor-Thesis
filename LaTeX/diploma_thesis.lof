@@ -10,13 +10,13 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Equality operator - experiments on the query length}}{51}{figure.6.1}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Equality operator - experiments on the category frequency}}{52}{figure.6.2}
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Equality operator - experiments on the distance between equal categories $c_i$ and $c_j$}}{53}{figure.6.3}
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Equality operator - comparison experiments on the proposed approach and the baseline approach in terms of query length}}{54}{figure.6.4}
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Not-equality operator - experiments on the query length}}{55}{figure.6.5}
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Not-equality operator - experiments on the category frequency}}{56}{figure.6.6}
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Not-equality operator - experiments on the distance between equal categories $c_i$ and $c_j$}}{57}{figure.6.7}
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Or operator - experiments on the type and number of operands}}{58}{figure.6.8}
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Order operator - experiments on the number of fixed positions}}{59}{figure.6.9}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Equality operator - experiments on the query length}}{52}{figure.6.1}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Equality operator - experiments on the category frequency}}{53}{figure.6.2}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Equality operator - experiments on the distance between equal categories $c_i$ and $c_j$}}{54}{figure.6.3}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Equality operator - comparison experiments on the proposed approach and the baseline approach in terms of query length}}{55}{figure.6.4}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Not-equality operator - experiments on the query length}}{56}{figure.6.5}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Not-equality operator - experiments on the category frequency}}{57}{figure.6.6}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Not-equality operator - experiments on the distance between equal categories $c_i$ and $c_j$}}{58}{figure.6.7}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Or operator - experiments on the type and number of operands}}{59}{figure.6.8}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Order operator - experiments on the number of fixed positions}}{60}{figure.6.9}
 \addvspace {10\p@ }
