@@ -20,17 +20,17 @@
 \SetKwBlock{A}{a)}{end}
 \SetKwBlock{B}{b)}{end}
 
-\section{Equality operator}
+\section{"Equality" operator}
 \label{ch:EO}
 
 \subsection{Motivation} 
-The equality operator is based on the need of a user to express that some PoIs of the same category in the SRQ should be equal, as presented in the example in Section \ref{sec:motivation}.
+The "equality" operator is based on the need of a user to express that some PoIs of the same category in the SRQ should be equal, as presented in the example in Section \ref{sec:motivation}.
 
 \subsection{Problem definition} 
 \label{sec:problemEO}
-The equality operator is defined as follows:
+The "equality" operator is defined as follows:
 
-\textbf{Equality operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, where $r_i \in C_{M_{i}}$, $r_j \in C_{M_{j}}$ and $M_i = M_j$, $EQUAL(i, j)$ is an equality operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be the same points of interest.
+\textbf{"Equality" operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, where $r_i \in C_{M_{i}}$, $r_j \in C_{M_{j}}$ and $M_i = M_j$, $EQUAL(i, j)$ is an "equality" operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be the same points of interest.
 $Q(sp, M, EQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$ and where $r_i = r_j$.
 
 \subsection{Precomputations} 
@@ -41,7 +41,7 @@ In order to faster calculate the heuristic for the partial routes, the nearest n
 % Introducing the proposed algorithm
 \subsection{Proposed approach} 
 \label{sec:approachEO}
-The equality operator is designed using the PNE approach, proposed in \cite{OSR} and briefly presented in algorithm \texttt{\nameref{alg:PNE}}. It uses the progressive neighbor explorator as its base to upgrade on and extends it with a heuristic approach to shrink the search space.
+The "equality" operator is designed using the PNE approach, proposed in \cite{OSR} and briefly presented in algorithm \texttt{\nameref{alg:PNE}}. It uses the progressive neighbor explorator as its base to upgrade on and extends it with a heuristic approach to shrink the search space.
 
 \subsubsection{Heuristic}
 \label{sec:heuristic}
@@ -80,7 +80,7 @@ The function \texttt{\ref{proc:heuristic}()} calculates the heuristic for a give
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 
-The algorithm for the equality operator as shown in \texttt{\nameref{alg:equality}} is constructed using multiple procedures.
+The algorithm for the "equality" operator as shown in \texttt{\nameref{alg:equality}} is constructed using multiple procedures.
 
 \begin{algorithm}[htb!]
 \caption{equalityOperator()}
@@ -108,11 +108,9 @@ The algorithm for the equality operator as shown in \texttt{\nameref{alg:equalit
 
 \end{algorithm}
 
-\pagebreak
-
 $heap$, $found$ and $UB$ are initialized (line 1 to 3). In $heap$ the PSR which are to be examined by the algorithm are stored. It is sorted by the \textit{lower bound} of the PSR. $foundSR$ stores a candidate SR. $UB$ is the length of the candidate route and it is updated each time a full SR is found. The update is performed in procedure \texttt{\ref{proc:trim}()}.
 
-First, an optimal sequenced route is found using the PNE algorithm (line 4). It is checked, if the two PoIs that the user has asked to be equal (line 5), are equal in the OSR. If so, the OSR is returned (line 7), else the equality operator continues with the creation of an artificial SR $dummySR$ and the modified PNE algorithm (line 9, 10). 
+First, an optimal sequenced route is found using the PNE algorithm (line 4). It is checked, if the two PoIs that the user has asked to be equal (line 5), are equal in the OSR. If so, the OSR is returned (line 7), else the "equality" operator continues with the creation of an artificial SR $dummySR$ and the modified PNE algorithm (line 9, 10). 
 
 Second, we artificially create a sequenced route from the optimal route, found by PNE, as seen in \texttt{\ref{proc:dummy}()}. The optimal route is changed, so that $r_j$ is made to be equal to $r_i$ (line 2, 3) and the length of the artificially created PSR is the initial upper bound (line 4), by which later partial sequenced routes are either kept or discarded.
 
@@ -301,8 +299,6 @@ In \texttt{\ref{proc:c4}()} we find PSR after $r_j$. The case is similar to proc
 	}
 \end{algorithm}
 
-\pagebreak
-
 \begin{procedure}[H]
 \caption{trim($PSR$)}
 \label{proc:trim}
@@ -318,7 +314,7 @@ In \texttt{\ref{proc:c4}()} we find PSR after $r_j$. The case is similar to proc
 \end{procedure}
 
 \subsubsection{Running example}
-We describe the algorithm for the equality operator using the example in Section \ref{sec:motivation}. The user in the example wanted to visit a restaurant, a bank, a movie theater and a restaurant again, but he wanted both restaurants to be equal ($M = (r, b, mt, r)$, $|M| = l = 4$, $EQUAL(0, 3)$). In Figure \ref{heapEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+We describe the algorithm for the "equality" operator using the example in Section \ref{sec:motivation}. The user in the example wanted to visit a restaurant, a bank, a movie theater and a restaurant again, but he wanted both restaurants to be equal ($M = (r, b, mt, r)$, $|M| = l = 4$, $EQUAL(0, 3)$). In Figure \ref{heapEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
 First, the $optimalRoute$ is found with PNE: $(r_1, b_1, mt_1, r_2)$. The algorithm checks if the PoIs at indices 0 and 3 are equal and since they are not, it continues with building the $dummySR$: $(r_1, b_1, mt_1, r_1)$. The \textit{upper bound} is initialized with the length of the $dummySR$, which is 12, and also $foundSR$ is initialized with $dummySR$ until a better route is possibly found.
 In step 2 of the $modifiedPNE()$ all neighbors to the starting point $sp$ from type restaurant ($r_1$, $r_2$) are found and if their calculated $lower bound$ is smaller than the $upper bound$, which is the case for both restaurant, they are put on the $heap$: Partial routes $R_1 = (r_1)$ with length 1 and heuristic 5 and $R_2 = (r_2)$ with length 5 and heuristic 9 are generated and placed on the $heap$. Since the $heap$ is ordered ascending by $lower bound$, which is calculated as the sum of length and heuristic, $R_1$ is at the top of the $heap$ and fetched in step 3. Here we have $caseBefore()$, where we first check if the $LB$ of the PSR satisfies the condition to be smaller than the $UB$, and step a) of the PNE algorithm is performed. The nearest neighbor to $r_1$ of type bank $b_1$ is found and the new generated PSR $(r_1, b_1)$ with length 4 and heuristic 3 is calculated and placed on the $heap$. In step 4, $(r_1, b_1)$ is fetched and we enter $caseBefore()$ again and since the condition for the \textit{lower bound} to be smaller than the \textit{upper bound} is fulfilled, steps a) and b) are performed; in a) the nearest neighbor to $b_1$ from type movie theater is found, which is $mt_1$, and the PSR is extended, then in b) the next nearest neighbor to $r_1$ from type bank $b_2$ is found and a new PSR $(r_1, b_2)$ is generated. For both PSR their length is less the global \textit{upper bound} and they are put on the $heap$. The process is repeated until a route with $size(PSR) = 3$ is reached. This is the case with step 8, where we have fetches PSR $(r_1, b_1, mt_1)$. Here $caseContaining()$ is performed: the next PoI is forcefully set to be the PoI at index 0, which is $r_1$ and the travel distance from $mt_1$ to $r_1$ is calculated. $Trimming$ is performed on new SR $(r_1, b_1, mt_1, r_1)$ with length 12: it is compared with the found route and $foundSR$, but it is the same and $foundSR$ and $UB$ are not updated. In another scenario, if the newly found SR was shorter than $foundSR$, then it would be updated together with $UB$. In the next step 9, again we have $caseContaining()$ and a new full SR $(r_2, b_1, mt_1, r_2)$ with length 15 is generated, but when compared with $foundSR$, it is longer, so it gets discarded. The same steps are executed in the next two step 10 and 11, until all routes have been developed and checked, whch is the case when $heap$ is empty. Then the optimal sequenced route with equal PoIs at indices 0 and 3 in $foundSR$ is returned: $(r_1, b_1, mt_1, r_1)$.
 
@@ -371,7 +367,7 @@ Let us assume that $h(R') \geq c(R')$. Since we know that the heuristic is calcu
 
 Next we need to prove that no suitable partial sequenced routes are pruned by the proposed algorithm.
 
-\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator returns an optimal route in terms of route length.
+\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the "equality" operator returns an optimal route in terms of route length.
 
 \textit{Proof by contradiction:} Let $R' = (r_1', r_2', ..., r_l')$ to be the optimal route and $R = (r_1, r_2, ..., r_l)$ to be the route that the algorithm finds. We assume $length(R') < length(R)$ and show that this is not possible. In order to do this, we differentiate between two separate cases: 
 
@@ -381,21 +377,16 @@ Case 2: At no point partial route $P'$ exists, which is to be extended to sequen
 
 Lemma 2 shows that the equality algorithm progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$, it prunes the ones that could not be optimal according to a consistent heuristic and returns the optimal route. Thus the correctness of the proposed algorithm is proved.
 
-\textbf{Lemma 3:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator accurately finds an optimal route, which satisfies the equality condition.
-
-The correctness of the algorithm is implied by the correctness of PNE itself.
-
 \subsection{Baseline approach} 
 \label{sec:baselineEO}
-The baseline approach to the equality operator is entirely based on PNE by simply forcing $r_i$ and $r_j$ to be equal in the process of modifying the routes. In this variant, there is no heuristic and also no length checks are performed.
+\enlargethispage{\baselineskip}
+The baseline approach to the "equality" operator is entirely based on PNE by simply forcing $r_i$ and $r_j$ to be equal in the process of modifying the routes. In this variant, there is no heuristic and also no length checks are performed.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 The algorithm \texttt{\nameref{alg:equality_baseline}} starts by finding an optimal sequenced route with PNE (line 2), as mentioned in the proposed approach \ref{sec:approachEO} and checks if $r_i$ and $r_j$ are already equal (line 3). If this is the case, it returns the found optimal route (line 5), otherwise (line 7) it continues with to perform \texttt{\nameref{alg:mPNE_baseline}}. 
 
-\pagebreak
-
-\begin{algorithm}[H]
+\begin{algorithm}[htb!]
 \caption{equalityOperator-baseline()}
 \label{alg:equality_baseline}
 	
@@ -487,16 +478,12 @@ The algorithm \texttt{\nameref{alg:mPNE_baseline}} proceeds with examining the r
 \subsubsection{Correctness}
 We need to prove that no suitable partial sequenced routes have been pruned by the baseline algorithm.
 
-\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the equality operator returns an optimal route in terms of route length.
+\textbf{Lemma 2:} For given query $Q(sp, M, EQUAL(i, j))$, the algorithm for the "equality" operator returns an optimal route in terms of route length.
 
 \textit{Proof by contradiction:} Let $R' = (r_1', r_2', ..., r_l')$ to be the optimal route and $R = (r_1, r_2, ..., r_l)$ to be the route that the algorithm finds. We assume $length(R') < length(R)$ and show that this is not possible. In order to do this, we differentiate between two separate cases: 
 
 Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r_{k+1}')$, which differ only in their last PoI. Since the result route is $R$ at this point the algorithm must choose $P$ as the partial route to extend. This means that $P$ has a shorter length than $P'$, because the heap is ordered by the length of the route. Since the algorithm returns R as the optimal route it means that $length(P') > length(R)$. But because it also holds true that $length(R') > length(P')$, it implies $length(R') > length(R)$, which is a contradiction.
 
-Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R$. This means that the length of the partial route always exceeds the length of the candidate route on the heap $length(P') > length(R)$ and is therefore never extended to a full SR. This implies $length(R') > length(R)$ and this is a contradiction.
+Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R'$. This means that the length of the partial route would exceed the length of the candidate route on top of the heap $length(P') > length(R)$ and is therefore never generated. This implies $length(R') > length(R)$ and this is a contradiction.
 
 Lemma 2 shows that the baseline equality algorithm progressively searches the entire space of candidate sequenced routes with equal PoI at indices $i$ and $j$ and returns the optimal route. Thus the correctness of the baseline algorithm is proved.
-
-\textbf{Lemma 3:} For given query $Q(sp, M, EQUAL(i, j))$, the baseline algorithm for the equality operator accurately finds an optimal route, which satisfies the equality condition.
-
-The correctness of the algorithm is implied by the correctness of PNE itself.

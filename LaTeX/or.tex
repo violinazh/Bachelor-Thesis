@@ -10,11 +10,11 @@
 \SetKwBlock{A}{a)}{end}
 \SetKwBlock{B}{b)}{end}
 
-\section{Or operator}
+\section{"Or" operator}
 
 \subsection{Motivation}
 \label{sec:motOR}
-The or operator gives the user flexibility to express his need for different route alternatives. It represents the disjunction operator, usually present in query languages. In the context of a sequenced route query, the user can specify multiple categories or a list of categories, which can be disjoint. Then the query is responsible for finding the best route out of all the options that the user has specified. The best route is qualified based on length.
+The "or" operator gives the user flexibility to express his need for different route alternatives. It represents the disjunction operator, usually present in query languages. In the context of a sequenced route query, the user can specify multiple categories or a list of categories, which can be disjoint. Then the query is responsible for finding the best route out of all the options that the user has specified. The best route is qualified based on length.
 
 Suppose that a user poses the following query: first he has time to go to either a bank or a pharmacy, then he has a date in a movie theater and after that he plans to go to the restaurant. The proposed approach uses a modified PNE to generate an optimal result for this type of query.
 
@@ -36,7 +36,7 @@ $M = (c_{a1}, c_{a2}, ..., c_{al}, c_{b1}, c_{b2}, ..., c_{bl}, c_{z1}, c_{z2}, 
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
 \label{sec:approachOr}
-The or operator is designed using the PNE approach, proposed in \cite{OSR}. It progressively inspects each option $M_i$ from the OR sequences $OR_i$ in \newline $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
+The "or" operator is designed using the PNE approach, proposed in \cite{OSR}. It progressively inspects each option $M_i$ from the OR sequences $OR_i$ in \newline $S = (OR_1, OR_2, ..., OR_n)$, compares them and continues with the best one, based on length, until it reaches a full sequenced route.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
@@ -183,7 +183,7 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 \end{procedure}
 
 \subsubsection{Running example}
-We describe the algorithm for the or operator using the example in Section \ref{sec:motOR}, using the road network in Figure \ref{fig:example}. The user wanted to visit either a bank or a pharmacy, then go to the movies and then to a restaurant (i.e., $S = (OR_1, OR_2, OR_3)$, $|S| = n = 3$, $OR_1 = ((b), (ph))$, $OR_2 = ((mt))$, $OR_2 = ((r))$). In Figure \ref{heapOR} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+We describe the algorithm for the "or" operator using the example in Section \ref{sec:motOR}, using the road network in Figure \ref{fig:example}. The user wanted to visit either a bank or a pharmacy, then go to the movies and then to a restaurant (i.e., $S = (OR_1, OR_2, OR_3)$, $|S| = n = 3$, $OR_1 = ((b), (ph))$, $OR_2 = ((mt))$, $OR_2 = ((r))$). In Figure \ref{heapOR} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
 First, all routes from the starting point $sp$ to all possible category sequences in OR sequence $OR_1$ $(b)$ and $(ph)$ are generated. Since there is only one category the simple case is executed, where the nearest neighbor is found. Routes $(b_1)$ with length 2 and $(ph_1)$ with length 3 are generated and compared and the second one is chosen, based on its length, and placed on the $heap$. In step 2 route $(b_1)$ fetched and the nearest neighbor from the next OR sequence $OR_2$ is found. $OR_2$ only contains one category sequence with one category, therefore this is a simple case $modifyRouteA()$, where the nearest neighbor is found. In $modifyRouteB()$ the next nearest neighbor to the starting point from the OR sequence $OR_1$ is found, which is $ph_1$ with length 3, because $b_2$ with length 4 is further apart. 
 In step 6 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed on the $heap$ as the candidate route. Then in step 7 another SR $(ph_1, mt_1, r_2)$ with length 10 is generated, but it is longer than the candidate route, previously generated, so it gets discarded. Finally, the optimal route $(b_1, mt_1, r_2)$ with length 9 is returned.
 
@@ -214,12 +214,24 @@ In step 6 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed 
 	\label{heapOR}
 \end{table}
 
-\subsection{Baseline approach} 
-\label{sec:baselineOr}
-A naive solution to find an optimal route with the or operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.
-
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
 \label{sec:correctnessOr}
-\todo[color=yellow!40]{Todo: Correctness}
+We need to prove that no suitable partial sequenced routes have been pruned by the proposed algorithm.
 
+\textbf{Lemma 2:} For given query $Q(sp, S)$, the algorithm for the "or" operator returns an optimal route in terms of route length.
+
+\textit{Proof by contradiction:} Let $R' = (r_1', r_2', ..., r_l')$ to be the optimal route and $R = (r_1, r_2, ..., r_l)$ to be the route that the algorithm finds. We assume $length(R') < length(R)$ and show that this is not possible. In order to do this, we differentiate between two separate cases: 
+
+Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r'_{k+1})$, which differ only in their last PoI. Since the result route is $R$ at this point the algorithm must choose $P$ as the partial route to extend. This means that $P$ has a shorter length than $P'$, because the heap is ordered by the length of the route. Since the algorithm returns R as the optimal route it means that $length(P') > length(R)$. But because it also holds true that $length(R') > length(P')$, it implies $length(R') > length(R)$, which is a contradiction.
+
+Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R'$. This means that the length of the partial route would exceed the length of the candidate route on top of the heap $length(P') > length(R)$ and is therefore never generated. This implies $length(R') > length(R)$ and this is a contradiction.
+
+Lemma 2 shows that the algorithm for the "or" operator progressively searches for candidate sequenced routes, which follow the possible combinations of category sequences, and returns the optimal route. Thus the correctness of the proposed approach is proved.
+
+\subsection{Baseline approach} 
+\label{sec:baselineOr}
+A naive solution to find an optimal route with the "or" operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.
+
+\subsubsection{Correctness}
+The correctness of the baseline algorithm is implied by the correctness of PNE itself.

@@ -10,11 +10,11 @@
 \SetKwBlock{A}{a)}{end}
 \SetKwBlock{B}{b)}{end}
 
-\section{Order operator}
+\section{"Order" operator}
 
 \subsection{Motivation}
 \label{sec:motORDER}
-The order operator gives the user the opportunity to build a single query with applied to the category sequence order rules that satisfy his needs. In the context of a sequenced route query, the user can specify single, none or multiple categories out of a sequenced category list to be in specific fixed positions in the category sequence. Then, only these categories are found in the form of a sequenced route query (SRQ) while the others are inspected and prioritized algorithmically. The approach is responsible for finding the best route, based on length, out of all possible total-order optimal route queries.
+The "order" operator gives the user the opportunity to build a single query with applied to the category sequence order rules that satisfy his needs. In the context of a sequenced route query, the user can specify single, none or multiple categories out of a sequenced category list to be in specific fixed positions in the category sequence. Then, only these categories are found in the form of a sequenced route query (SRQ) while the others are inspected and prioritized algorithmically. The approach is responsible for finding the best route, based on length, out of all possible total-order optimal route queries.
 
 Suppose that a user poses the following query: he wants to visit a restaurant, before and after that he wishes to visit a bank and a pharmacy, but it is not important for him to visit one before the other. So the query only knows that restaurant must be visited second. The proposed approach in this chapter uses a modified PNE algorithm to generate an optimal result for this type of query.
 
@@ -33,7 +33,7 @@ The order query is then defined as follows: \newline
 % Introducing the proposed algorithm + proving the correctness
 \subsection{Proposed approach} 
 \label{sec:approachOrder}
-The order operator is designed using the PNE approach, proposed in \cite{OSR}. It keeps a sequence of the not ordered categories, which is the complement of the ORDER sequence: $NOTORDERED = \overline{ORDER}$, and inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route. The NOTORDERED sequence is updated for every PSR, as it is specific to a route. Each time a PSR is build with one of the not ordered categories, it is removed from the NOTORDERED sequence for this specific route.
+The "order" operator is designed using the PNE approach, proposed in \cite{OSR}. It keeps a sequence of the not ordered categories, which is the complement of the ORDER sequence: $NOTORDERED = \overline{ORDER}$, and inspects progressively each category option for the indices out of the NOTORDERED sequence, compares them and continues with the best one, based on length, until it reaches a full sequenced route. The NOTORDERED sequence is updated for every PSR, as it is specific to a route. Each time a PSR is build with one of the not ordered categories, it is removed from the NOTORDERED sequence for this specific route.
 
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
@@ -151,7 +151,7 @@ In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighb
 \end{procedure}
 
 \subsubsection{Running example}
-We describe the algorithm for the order operator using the example in Section \ref{sec:motORDER}, using the road network in Figure \ref{fig:example}. The user wanted to visit the restaurant at seond place in his route and also visit a bank and a pharmacy (i.e., $M = (b, r, ph)$, $|M| = l = 3$, $ORDER = (1)$). In Figure \ref{heapORDER} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+We describe the algorithm for the "order" operator using the example in Section \ref{sec:motORDER}, using the road network in Figure \ref{fig:example}. The user wanted to visit the restaurant at seond place in his route and also visit a bank and a pharmacy (i.e., $M = (b, r, ph)$, $|M| = l = 3$, $ORDER = (1)$). In Figure \ref{heapORDER} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
 First, the $notordered$ list is initiated: $[b, ph]$. Since the first position of the category sequence in the query is not fixed, routes from the starting point $sp$ with both categories in the $notordered$ list are generated: $b_1$ with length 2 and $ph_1$ with length 3. Route $b_1$ is shorter and is therefore placed on the $heap$. In step two, we have the case, where the searched PoI is at a fixed position 1. In this case in a) the nearest neighbor to $b_1$ from type restaurant $r_2$ is found, while in b) the next nearest neighbor to the starting point types bank and pharmacy are found and compared again. In step 6 the first SR $(ph_1, r_1, b_1)$ with length 8 is generated and placed as a candidate route on the $heap$.
 This process continues until in step 12 the optimal route $(ph_2, r_2, b_2)$ with length 6 is returned.
 
@@ -188,12 +188,24 @@ This process continues until in step 12 the optimal route $(ph_2, r_2, b_2)$ wit
 	\label{heapORDER}
 \end{table}
 
-\subsection{Baseline approach} 
-\label{sec:baselineOrder}
-A naive solution, similar to the one with the or operator in Chapter \ref{sec:baselineOr}, for finding an optimal route with the order operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.
-
 % Proving the correctness and comparing to the baseline/trivial approach
 \subsubsection{Correctness}
 \label{sec:correctnessOrder}
-\todo[color=yellow!40]{Todo: Correctness}
+We need to prove that no suitable partial sequenced routes have been pruned by the proposed algorithm.
 
+\textbf{Lemma 2:} For given query $Q(sp, M, ORDER)$, the algorithm for the "order" operator returns an optimal route in terms of route length.
+
+\textit{Proof by contradiction:} Let $R' = (r_1', r_2', ..., r_l')$ to be the optimal route and $R = (r_1, r_2, ..., r_l)$ to be the route that the algorithm finds. We assume $length(R') < length(R)$ and show that this is not possible. In order to do this, we differentiate between two separate cases: 
+
+Case 1: At some point in time we have the partial routes $P = (r_1, ..., r_k, r_{k+1})$ and $P' = (r_1, ..., r_k, r'_{k+1})$, which differ only in their last PoI. Since the result route is $R$ at this point the algorithm must choose $P$ as the partial route to extend. This means that $P$ has a shorter length than $P'$, because the heap is ordered by the length of the route. Since the algorithm returns R as the optimal route it means that $length(P') > length(R)$. But because it also holds true that $length(R') > length(P')$, it implies $length(R') > length(R)$, which is a contradiction.
+
+Case 2: At no point partial route $P'$ exists, which is to be extended to sequenced route $R'$. This means that the length of the partial route would exceed the length of the candidate route on top of the heap $length(P') > length(R)$ and is therefore never generated. This implies $length(R') > length(R)$ and this is a contradiction.
+
+Lemma 2 shows that the algorithm for the "order" operator progressively searches for candidate sequenced routes, which follow the possible permutations of category sequences, and returns the optimal route. Thus the correctness of the proposed approach is proved.
+
+\subsection{Baseline approach} 
+\label{sec:baselineOrder}
+A naive solution, similar to the one with the "or" operator in Chapter \ref{sec:baselineOr}, for finding an optimal route with the "order" operator would be to run the PNE algorithm on all possible permutations of the query and to find the shortest route out of all. This is known as the baseline approach.
+
+\subsubsection{Correctness}
+The correctness of the baseline algorithm is implied by the correctness of PNE itself.
