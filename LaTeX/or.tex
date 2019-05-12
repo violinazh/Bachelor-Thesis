@@ -20,10 +20,12 @@ Suppose that a user poses the following query: first he has time to go to either
 
 \subsection{Problem definition} 
 \label{sec:problemOr}
-In order to explain the or query, first we need to define what an OR sequence is: \newline
+In order to explain the or query, first we need to define what an OR sequence is: 
+
 \textbf{OR sequence:} An OR sequence $OR = (M_1, M_2, ..., M_m)$ represents the disjunction of category sequences, such as $M_1 = (c_1, c_2, ..., c_l)$. At least one of the category sequences, defined in this OR sequence, must be present in the final result of the query.
 
-The or query is defined as follows: \newline
+The or query is defined as follows:
+
 \textbf{Or query:} Given a sequence of OR sequences $S = (OR_1, OR_2, ..., OR_n)$ and a starting point $sp$ in ${\rm I\!R}^2$
 $Q(sp, S)$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows one of the possible permutations of the sequence $S$. 
 For example $P = (M_a, M_b, ..., M_z)$ is a permutation of $S$, where $M_a = (c_{a1}, c_{a2}, ..., c_{al})$, $M_b = (c_{b1}, c_{b2}, ..., c_{bl})$ and $M_z = (c_{z1}, c_{z2}, ..., c_{zl})$ build a category sequence \newline
@@ -41,12 +43,12 @@ The "or" operator is designed using the PNE approach, proposed in \cite{OSR}. It
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmOr}
-The algorithm \texttt{\nameref{alg:or}} starts by initializing the $heap$, ordered by the length of the routes, and the first PSR (line 1 to 16). It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a SR is reached. As can be seen in line 2, a PSR is build with each $M_i$ from the first OR sequences $OR_1$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor in $C_{M_i}$ to the starting point as the PNE algorithm would, otherwise it finds the nearest neighbor in $C_{M_i[1]}$ to the starting point and initializes the list of categories $PSR.categories$ for the $PSR$. From all these generated PSR the shortest one is chosen and put on the $heap$.
+Algorithm \texttt{\nameref{alg:or}} starts by initializing the $heap$, ordered by the length of the routes, and the first PSR (line 1 to 16). It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a SR is reached. As can be seen in line 2, a PSR is build with each $M_i$ from the first OR sequences $OR_1$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor in $C_{M_i}$ to the starting point as the PNE algorithm would, otherwise it finds the nearest neighbor in $C_{M_i[1]}$ to the starting point and initializes the list of categories $PSR.categories$ for the $PSR$. From all these generated PSR the shortest one is chosen and put on the $heap$.
 
-Modified PNE proceeds with examining the routes on the $heap$ by $index(PSR)$ and modifying them according to PNE. $index(PSR)$ indicates the index of the last found OR sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. When the current route on the $heap$ is a full SR, where $s = n$, indicating the last OR sequence $OR_n$, then the optimal route has been found (line 21 to 24). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm (line 25 to 30). \newline
+The the algorithm proceeds with examining the routes on the $heap$ by $index(PSR)$ and modifying them according to PNE. $index(PSR)$ indicates the index of the last found OR sequence $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$ for the fetched $PSR$. When the current route on the $heap$ is a full SR, where $s = n$, indicating the last OR sequence $OR_n$, then the optimal route has been found (line 21 to 24). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm (line 25 to 30). \newline
 
 \begin{algorithm}[H]
-\caption{orOperator()}
+\caption{OrOperator}
 \label{alg:or}
 	
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
@@ -99,14 +101,19 @@ Modified PNE proceeds with examining the routes on the $heap$ by $index(PSR)$ an
 
 \end{algorithm}
 
-In \texttt{\ref{proc:modifyRouteA}()} it is differentiated between a complete PSR and an incomplete PSR. 
-A complete PSR has an empty list of $PSR.categories$, which means that the next OR sequence can be examined (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 6) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor to $r_{|PSR|}$ in $C_{M_{i}}$ as the PNE algorithm would (line 6 to 10), otherwise it finds the nearest neighbor to $r_{|PSR|}$ in $C_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSR the shortest one is chosen and put on the $heap$.
-For an incomplete PSR the next nearest neighbor to $r_{|PSR|}$ in $C_{PSR.categories[1]}$ is found (line 20 to 25). The indicator $PSR.prevPosition$ for the PSR is also updated to indicate that in \texttt{\ref{proc:modifyRouteB}()} the k-th neighbor to the second to last PoI should be found.
-Trimming is also performed (see \texttt{\ref{proc:trim}()}). \newline
+In Procedure \texttt{\ref{proc:modifyRouteA}} it is differentiated between a complete PSR and an incomplete PSR. 
+A complete PSR has an empty list of $PSR.categories$, which means that the next OR sequence can be examined (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_s$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 6) if it contains a single category or a sequence of categories. In the first case, it finds the nearest neighbor to $r_{|PSR|}$ in $C_{M_{i}}$ as the PNE algorithm would (line 6 to 10), otherwise it finds the nearest neighbor to $r_{|PSR|}$ in $C_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From these generated PSRs the shortest one is chosen and put on the $heap$.
+For an incomplete PSR the next nearest neighbor to $r_{|PSR|}$ in $C_{PSR.categories[1]}$ is found (line 20 to 25). The indicator $PSR.prevPosition$ for the PSR is also updated to indicate that in \texttt{\ref{proc:modifyRouteB}} the k-th neighbor to the second to last PoI should be found.
+Trimming is also performed (see \texttt{\ref{proc:trim}}).
+
+In Procedure \texttt{\ref{proc:modifyRouteB}} it is checked if the indicator $PSR.prevPosition$ for the PSR is set ot $true$ (line 1). If that is the case, it means, that the OR sequence of the previous position $OR_{s-1}$ should be examined again (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the k-th nearest neighbor $r_{|PSR|-1}$ in $C_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the k-th nearest neighbor to $r_{|PSR|-1}$ in $C_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From these generated PSRs the shortest one is chosen and put on the $heap$. 
+If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that the k-th nearest neighbor to $r_{|PSR|}$ in $C_{PSR.categories[1]}$ is found (line 20 to 25). \newline
+
+%\enlargethispage{\baselineskip}
 
 \begin{procedure}[H]
-\caption{modifyRouteA($PSR$)}
-\label{proc:modifyRouteA}
+	\caption{modifyRouteA-or($PSR$)}
+	\label{proc:modifyRouteA}
 	
 	\eIf{$PSR.categories$ is empty}{
 		\tcp{We continue with next OR sequence}
@@ -136,20 +143,15 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}). \newline
 		$PSR.prevPosition \leftarrow false$\;
 		$update$ $newPSR$\;
 	}
-		
+	
 	\tcp{Trimming is also done (see \ref{proc:trim})}
 	place $newPSR$ on $heap$\;
 \end{procedure}
 
 \pagebreak
 
-In \texttt{\ref{proc:modifyRouteB}()} it is checked if the indicator $PSR.prevPosition$ for the PSR is set ot $true$ (line 1). If that is the case, it means, that the OR sequence of the previous position $OR_{s-1}$ should be examined again (line 1 to 19). A PSR is build with each $M_i$ from the OR sequences $OR_{s-1}$ in $S = (OR_1, OR_2, ..., OR_n)$. The algorithm also checks for each $M_i$ (line 5) if it contains a single category or a sequence of categories. In the first case, it finds the k-th nearest neighbor $r_{|PSR|-1}$ in $C_{M_{i}}$ as the PNE algorithm would (line 6), otherwise it finds the k-th nearest neighbor to $r_{|PSR|-1}$ in $C_{M_i[1]}$ and initializes the list of categories $PSR.categories$ for the $PSR$ (line 10 to 16). From all these PSRs the shortest one is chosen and put on the $heap$. 
-If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that the k-th nearest neighbor to $r_{|PSR|}$ in $C_{PSR.categories[1]}$ is found (line 20 to 25).
-
-\enlargethispage{\baselineskip}
-
 \begin{procedure}[H]
-\caption{modifyRouteB($PSR$)}
+\caption{modifyRouteB-or($PSR$)}
 \label{proc:modifyRouteB}
 	
 	\eIf{$PSR.prevPosition$}{
@@ -184,7 +186,7 @@ If the indicator $PSR.prevPosition$ for the PSR is set ot $false$  it means that
 
 \subsubsection{Running example}
 We describe the algorithm for the "or" operator using the example in Section \ref{sec:motOR}, using the road network in Figure \ref{fig:example}. The user wanted to visit either a bank or a pharmacy, then go to the movies and then to a restaurant (i.e., $S = (OR_1, OR_2, OR_3)$, $|S| = n = 3$, $OR_1 = ((b), (ph))$, $OR_2 = ((mt))$, $OR_2 = ((r))$). In Figure \ref{heapOR} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
-First, all routes from the starting point $sp$ to all possible category sequences in OR sequence $OR_1$ $(b)$ and $(ph)$ are generated. Since there is only one category the simple case is executed, where the nearest neighbor is found. Routes $(b_1)$ with length 2 and $(ph_1)$ with length 3 are generated and compared and the second one is chosen, based on its length, and placed on the $heap$. In step 2 route $(b_1)$ fetched and the nearest neighbor from the next OR sequence $OR_2$ is found. $OR_2$ only contains one category sequence with one category, therefore this is a simple case $modifyRouteA()$, where the nearest neighbor is found. In $modifyRouteB()$ the next nearest neighbor to the starting point from the OR sequence $OR_1$ is found, which is $ph_1$ with length 3, because $b_2$ with length 4 is further apart. 
+First, all routes from the starting point $sp$ to all possible category sequences in OR sequence $OR_1$ $(b)$ and $(ph)$ are generated. Since there is only one category the simple case is executed, where the nearest neighbor is found. Routes $(b_1)$ with length 2 and $(ph_1)$ with length 3 are generated and compared and the second one is chosen, based on its length, and placed on the $heap$. In step 2 route $(b_1)$ fetched and the nearest neighbor from the next OR sequence $OR_2$ is found. $OR_2$ only contains one category sequence with one category, therefore this is a simple case $modifyRouteA$, where the nearest neighbor is found. In $modifyRouteB$ the next nearest neighbor to the starting point from the OR sequence $OR_1$ is found, which is $ph_1$ with length 3, because $b_2$ with length 4 is further apart. 
 In step 6 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed on the $heap$ as the candidate route. Then in step 7 another SR $(ph_1, mt_1, r_2)$ with length 10 is generated, but it is longer than the candidate route, previously generated, so it gets discarded. Finally, the optimal route $(b_1, mt_1, r_2)$ with length 9 is returned.
 
 \begin{table}[h]
@@ -210,7 +212,7 @@ In step 6 a full route $(b_1, mt_1, r_2)$ with length 9 is generated and placed 
 		8 & $(b_1, mt_1, r_2 : 9, 3), (b_2, mt_1 : 9, 2),$ \st{$(ph_2, mt_1, r_2 : 11, 3)$} \\ 
 		\hline
 	\end{tabular}
-	\caption{Steps of the algorithm for OR using the road network from Figure \ref{fig:example}}
+	\caption{Steps of the OR algorithm using the road network from Figure \ref{fig:example}}
 	\label{heapOR}
 \end{table}
 

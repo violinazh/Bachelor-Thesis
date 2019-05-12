@@ -21,7 +21,7 @@ The "inequality" operator is based on the need to express that some PoIs in the 
 \label{sec:problemNEO}
 The "inequality" operator is defined as follows:
 
-\textbf{"Inequality" operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in C_{M_{i}}$, $r_j \in C_{M_{j}}$ and $M_i \neq M_j$, $UNEQUAL(i, j)$ is an "inequality" operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
+\textbf{"Inequality" operator:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and indices $i$ and $j$, , where $r_i \in C_{M_{i}}$, $r_j \in C_{M_{j}}$ and $M_i = M_j$, $UNEQUAL(i, j)$ is an "inequality" operator, which states that $r_i$ and $r_j$ in the found route $R = (r_1, r_2, ..., r_l)$ should be different points of interest.
 $Q(sp, M, UNEQUAL(i, j))$ is a Sequenced Route (SR) Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows $M$ and where $r_i \neq r_j$.
 
 %\subsection{Precomputations} 
@@ -36,10 +36,10 @@ The "inequality" operator is designed using the PNE approach, proposed in \cite{
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmNEO}
-The algorithm \texttt{\nameref{alg:notequality}} starts by initializing the $heap$, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a full SR is found (line 7 to 20). Each full SR (line 8 to 11) is checked if it is a full SR. If this is the case, the found optimal SR is returned, otherwise the next PSR on the $heap$ is fetched. If the fetched PSR is not a full SR but a partial route (line 12 to 19), then the algorithm performs a) and b) as in the original PNE algorithm. \newline
+Algorithm \texttt{\nameref{alg:notequality}} starts by initializing the $heap$, ordered by the length of the routes, and the first PSR (line 1, 2, 3). It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a full SR is found (line 7 to 20). Each full SR (line 8 to 11) is inspected to see if it is a full SR. If this is the case, the found optimal SR is returned, otherwise the next PSR on the $heap$ is fetched. If the fetched PSR is not a full SR but a partial route (line 12 to 19), then the algorithm performs a) and b) as in the original PNE algorithm. \newline
 
 \begin{algorithm}[H]
-\caption{notEqualityOperator()}
+\caption{InequalityOperator}
 \label{alg:notequality}
 	
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
@@ -83,10 +83,10 @@ The algorithm \texttt{\nameref{alg:notequality}} starts by initializing the $hea
 
 \pagebreak
 
-Each time a $PSR$ is generated the procedure \texttt{\ref{proc:trim_NEO}()} is performed. It is checked if the generated $PSR$ is a full SR (line 1) and if that is the case (line 1 to 16) the route is further examined. In the case that the route satisfies the requirement for $i$ and $j$ to not be equal (line 2 to 8), its length is compared to that of the candidate route and if it is shorter or equal, the candidate route is updated and the sequenced route is placed on the $heap$. Otherwise (line 8 to 15) we check if $j$ is the last index in the route and in this case (line 10 to 14) the k-th neighbor of the previous PoI to the last one is found and a new $PSR$ is generated. If the route does not satisfy the requirements for $i$ and $j$ to not be equal and $j$ to be last index, it is simply discarded as a not possible SR. In case that the generated route is still not a full SR (line 16 to 21) the $PSR$ is placed on the $heap$. \newline
+Each time a $PSR$ is generated Procedure \texttt{\ref{proc:trim_NEO}} is performed. It is inspected if the generated $PSR$ is a full SR (line 1) and if that is the case (line 1 to 16) the route is further examined. In the case that the route satisfies the requirement for $i$ and $j$ to not be equal (line 2 to 8), its length is compared to that of the candidate route and if it is shorter or equal, the candidate route is updated and the sequenced route is placed on the $heap$. Otherwise (line 8 to 15) we check if $j$ is the last index in the route and in this case (line 10 to 14) the k-th neighbor of the previous PoI to the last one is found and a new $PSR$ is generated. If the route does not satisfy the requirements for $i$ and $j$ to not be equal and $j$ to be last index, it is simply discarded as a not possible SR. In the case that the generated route is still not a full SR (line 16 to 21) the $PSR$ is placed on the $heap$. \newline
 
 \begin{procedure}[H]
-\caption{trim($PSR$)}
+\caption{trim-unequal($PSR$)}
 \label{proc:trim_NEO}
 	
 	\eIf{$size(PSR) = l$}{
@@ -115,7 +115,7 @@ Each time a $PSR$ is generated the procedure \texttt{\ref{proc:trim_NEO}()} is p
 \end{procedure}
 
 \subsubsection{Running example}
-We describe the algorithm for the "inequality" operator using the example in Section \ref{sec:motNEO}. The user in the example wanted to visit a restaurant, a pharmacy and a restaurant again, but he wanted both restaurants to not be equal ($M = (r, ph, r)$, $|M| = l = 3$, $UNEQUAL(0, 2)$). In Figure \ref{heapNEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+We describe the algorithm for the "inequality" operator using the example in Section \ref{sec:motNEO}. The user in the example wanted to visit a restaurant, a pharmacy and a restaurant again, but he wanted both restaurants to not be equal ($M = (r, ph, r)$, $|M| = l = 3$, $UNEQUAL(0, 2)$). In Figure \ref{heapNEO} the partial routes stored in the $heap$ in each step of the algorithm are displayed. \newline
 First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a new $firstPSR$ is generated and put on the $heap$: $(r_1)$ with length 1. In step 2 route $(r_1)$ is fetched from the $heap$ and modified according to a) and b) as in the PNE algorithm. Similarly, this process is repeated until the route on top of the $heap$ follows the sequence $M = (r, ph, r)$. the difference here from the PNE algorithm comes from the trimming part. For example in step 2, route $(r_1, ph_1)$ is fetched from the $heap$ and in a) the full SR $(r_1, ph_1, r_1)$ is generated. In the trimming function, it is checked if the restaurants at positions 0 and 2 are equal. In case they are not the candidate route is initialized and placed on the $heap$, but in our case, they are equal and $j$ is also the last index 2, which means that the next neighbor to $ph_1$ is found and the alternate route $(r_1, ph_1, r_2)$ with length 10 is generated and placed on the $heap$. Then some more PSR are generated, until in step 5 from $(r_1, ph_2)$ again a full SR $(r_1, ph_2, r_2)$ with length 7 is generated. The route is then trimmed and since the restaurants are not equal and also the route is shorter than the current candidate route, the candidate route is updated and the new SR is placed on the $heap$. In step 6 the fetched route $(r_1, ph_2, r_2)$ is a full SR, which satisfies the condition for the restaurant at indices 0 and 2 to not be equal, is returned as the optimal route.
 
 \begin{table}[h]
@@ -135,7 +135,7 @@ First, the nearest neighbor to the starting point $sp$, $r_1$  is found and a ne
 		5 & $(r_1, ph_2, r_2 : 7), (r_2, ph_2 : 7),$ \st{$(r_1, ph_1, r_2 : 10)$} \\ 
 		\hline
 	\end{tabular}
-	\caption{Steps of the algorithm for NEO using the road network from Figure \ref{fig:example}}
+	\caption{Steps of the NEO algorithm using the road network from Figure \ref{fig:example}}
 	\label{heapNEO}
 \end{table}
 

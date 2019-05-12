@@ -20,10 +20,12 @@ Suppose that a user poses the following query: he wants to visit a restaurant, b
 
 \subsection{Problem definition} 
 \label{sec:problemOrder}
-First we need to define what an ORDER sequence is:\newline
+First we need to define what an ORDER sequence is:
+
 \textbf{ORDER sequence:} An order sequence $ORDER = (i_1, i_2, ..., i_k)$, with $k \leq l$ and $1 \leq i_i \leq l$ is a sequence of indices in a category sequence $M_1 = (c_1, c_2, ..., c_l)$. They represent the categories at the given indices and indicate that these categories should remain in the given places in this category sequence $M$. The PoIs from categories, of which no indices are specified in the ORDER sequence can be placed at any other index from the remaining indices for the not ordered categories.
 
-The order query is then defined as follows: \newline
+The order query is then defined as follows: 
+
 \textbf{Order query:} Given a sequence of categories $M = (c_1, c_2, ..., c_l)$, a starting point $sp$ in ${\rm I\!R}^2$ and an ORDER sequence $ORDER = (i_1, i_2, ..., i_k)$, $Q(sp, M, ORDER)$ is a Route Query, which searches for the shortest (in terms of function $length$) sequenced route $R$ that follows partially $M$ as defined by the ORDER sequence.
 
 %\subsection{Precomputations} 
@@ -38,12 +40,12 @@ The "order" operator is designed using the PNE approach, proposed in \cite{OSR}.
 % Explaining the algorithm step by step
 \subsubsection{Algorithm}
 \label{sec:algortihmOrder}
-The algorithm \texttt{\nameref{alg:order}} starts by initializing the $heap$, ordered by the length of the routes, and the NOTORDERED sequence (line 1, 2). For building the first PSR (line 3 to 14), the algorithm checks if the first index is contained in the ORDER sequence and if that is the case it finds the nearest neighbor to the starting point from the first category, otherwise it builds partial routes with all possible categories for the first position, which are all the categories in the NOTORDERED list. From all these PSRs the shortest one is chosen and put on the $heap$. It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a SR is reached. 
+Algorithm \texttt{\nameref{alg:order}} starts by initializing the $heap$, ordered by the length of the routes, and the NOTORDERED sequence (line 1, 2). For building the first PSR (line 3 to 14), the algorithm checks if the first index is contained in the ORDER sequence and if that is the case it finds the nearest neighbor to the starting point from the first category, otherwise it builds partial routes with all possible categories for the first position, which are the categories in the NOTORDERED list. From these generated PSRs the shortest one is chosen and put on the $heap$. It then proceeds to inspect and modify the routes on the $heap$ based on their length, until a SR is reached. 
 
-The algorithm proceeds with examining the routes on the $heap$ by size and modifying them according to PNE. When the current route on the $heap$ is a full SR, where $s = l$, then the optimal route has been found (line 18 to 21). Otherwise the algorithm modifies the current PSR according to cases a) and b) as in the PNE algorithm (line 22 to 27). \newline
+The algorithm proceeds with examining the routes on the $heap$ by size and modifying them according to PNE. When the current route on the $heap$ is a full SR, where $s = l$, then the optimal route has been found (line 18 to 21). Otherwise the algorithm modifies the current PSR according to cases a) and b) as the PNE algorithm would (line 22 to 27). \newline
 
 \begin{algorithm}[H]
-\caption{orderOperator()}
+\caption{OrderOperator}
 \label{alg:order}
 	
 	\SetKwInOut{Input}{Input}\SetKwInOut{Output}{Output}
@@ -97,11 +99,11 @@ The algorithm proceeds with examining the routes on the $heap$ by size and modif
 
 \pagebreak
 
-In \texttt{\ref{proc:mRouteA}()} it is checked if the category to be found next is part of the ORDER sequence. If this is the case it finds the nearest neighbor to the last PoI in the current PSR $r_{s-1}$ from the category set $C_{M_{s}}$, otherwise it finds all nearest neighbors to $r_{s-1}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$.
-Trimming is also performed (see \texttt{\ref{proc:trim}()}).
+In Procedure \texttt{\ref{proc:mRouteA}} it is checked if the category to be found next is part of the ORDER sequence. If this is the case it finds the nearest neighbor to the last PoI in the current PSR $r_{s-1}$ from the category set $C_{M_{s}}$, otherwise it finds all nearest neighbors to $r_{s-1}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$.
+Trimming is also performed (see \texttt{\ref{proc:trim}}).\newline
 
 \begin{procedure}[H]
-\caption{modifyRouteA($PSR$)}
+\caption{modifyRouteA-order($PSR$)}
 \label{proc:mRouteA}
 
 	\eIf{$ORDER$ contains $s$}{
@@ -125,10 +127,10 @@ Trimming is also performed (see \texttt{\ref{proc:trim}()}).
 
 \vspace{\baselineskip}
 
-In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighbor to $r_{s-2}$ is found. The algorithm checks again if the category to be found next is part of the ORDER sequence. If this is the case it simply finds the k-th nearest neighbor to $r_{s-2}$ from the category set $C_{M_{s-1}}$, otherwise it finds all nearest neighbors to $r_{s-2}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$. \newline
+In Procedure \texttt{\ref{proc:mRouteB}} an alternative PSR with the k-th nearest neighbor to $r_{s-2}$ is found. The algorithm checks again if the category to be found next is part of the ORDER sequence. If this is the case it simply finds the k-th nearest neighbor to $r_{s-2}$ from the category set $C_{M_{s-1}}$, otherwise it finds all nearest neighbors to $r_{s-2}$ from the categories in the NOTORDERED list $M_{i}$ and builds multiple partial routes, which are then compared and the shortest one is chosen and put on the $heap$. \newline
 
 \begin{procedure}[H]
-\caption{modifyRouteB($PSR$)}
+\caption{modifyRouteB-order($PSR$)}
 \label{proc:mRouteB}
 	
 	
@@ -151,7 +153,7 @@ In \texttt{\ref{proc:mRouteB}()} an alternative PSR with the k-th nearest neighb
 \end{procedure}
 
 \subsubsection{Running example}
-We describe the algorithm for the "order" operator using the example in Section \ref{sec:motORDER}, using the road network in Figure \ref{fig:example}. The user wanted to visit the restaurant at seond place in his route and also visit a bank and a pharmacy (i.e., $M = (b, r, ph)$, $|M| = l = 3$, $ORDER = (1)$). In Figure \ref{heapORDER} the partial routes stored in the $heap$ in each step of the algorithm are displayed.
+We describe the algorithm for the "order" operator using the example in Section \ref{sec:motORDER}, using the road network in Figure \ref{fig:example}. The user wanted to visit the restaurant at seond place in his route and also visit a bank and a pharmacy (i.e., $M = (b, r, ph)$, $|M| = l = 3$, $ORDER = (1)$). In Figure \ref{heapORDER} the partial routes stored in the $heap$ in each step of the algorithm are displayed. \newline
 First, the $notordered$ list is initiated: $[b, ph]$. Since the first position of the category sequence in the query is not fixed, routes from the starting point $sp$ with both categories in the $notordered$ list are generated: $b_1$ with length 2 and $ph_1$ with length 3. Route $b_1$ is shorter and is therefore placed on the $heap$. In step two, we have the case, where the searched PoI is at a fixed position 1. In this case in a) the nearest neighbor to $b_1$ from type restaurant $r_2$ is found, while in b) the next nearest neighbor to the starting point types bank and pharmacy are found and compared again. In step 6 the first SR $(ph_1, r_1, b_1)$ with length 8 is generated and placed as a candidate route on the $heap$.
 This process continues until in step 12 the optimal route $(ph_2, r_2, b_2)$ with length 6 is returned.
 
@@ -184,7 +186,7 @@ This process continues until in step 12 the optimal route $(ph_2, r_2, b_2)$ wit
 		11 & $(ph_2, r_2, b_2 : 6, []), (ph_2, r_1 :7, [b]), (b_2, r_1 : 9, [ph]), (ph_1, r_2 : 10, [b]),$ \st{$(b_2, r_2, ph_1 : 12, [])$} \\ 
 		\hline
 	\end{tabular}
-	\caption{Steps of the algorithm for ORDER using the road network from Figure \ref{fig:example}}
+	\caption{Steps of the ORDER algorithm using the road network from Figure \ref{fig:example}}
 	\label{heapORDER}
 \end{table}
 
